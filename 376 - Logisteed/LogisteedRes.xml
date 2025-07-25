@@ -1,0 +1,63 @@
+<ns0:Message xmlns:ns0="www.boltrics.nl/receiveshipment:v1.00">
+   <ns0:Header>
+      <ns0:MessageID>1</ns0:MessageID>
+      <ns0:CreationDateTime>2025-07-17T13:31:28.937+02:00</ns0:CreationDateTime>
+      <ns0:ProcesAction>INSERT</ns0:ProcesAction>
+      <ns0:FromTradingPartner>JCHEU</ns0:FromTradingPartner>
+      <ns0:ToTradingPartner>LOGISTEED</ns0:ToTradingPartner>
+      <ns0:Information>RCV-SHIPMENT</ns0:Information>
+   </ns0:Header>
+   <ns0:Documents>
+      <ns0:Document>
+         <ns0:AnnouncedDate>2025-07-11</ns0:AnnouncedDate>
+         <ns0:DeliveryDate>2025-07-18</ns0:DeliveryDate>
+         <ns0:PostingDate>20250717</ns0:PostingDate>
+         <ns0:ExternalDocumentNo>14899850</ns0:ExternalDocumentNo>
+         <ns0:DocumentComments>
+            <ns0:DocumentComment>
+               <ns0:Date>2025-07-17</ns0:Date>
+               <ns0:Code>WHSINSTRUCTION</ns0:Code>
+               <ns0:Comment>DI 18/07 - 03 21 77 14 14</ns0:Comment>
+            </ns0:DocumentComment>
+            <ns0:DocumentComment>
+               <ns0:Date>2025-07-17</ns0:Date>
+               <ns0:Code>WHSINSTRUCTION</ns0:Code>
+               <ns0:Comment>Created by:CMERCIP</ns0:Comment>
+            </ns0:DocumentComment>
+         </ns0:DocumentComments>
+         <ns0:ShipToAddress>
+            <ns0:OneoffAddress>True</ns0:OneoffAddress>
+            <ns0:Name>UGCF</ns0:Name>
+            <ns0:Address>Mohamed ALAKHOUCH</ns0:Address>
+            <ns0:City>Lens</ns0:City>
+            <ns0:PostCode>62300</ns0:PostCode>
+            <ns0:CountryCode>FR</ns0:CountryCode>
+         </ns0:ShipToAddress>
+         <ns0:ConsigneeAddress>
+            <ns0:OneoffAddress>True</ns0:OneoffAddress>
+            <ns0:Name>UGCF</ns0:Name>
+            <ns0:Address>Mohamed ALAKHOUCH</ns0:Address>
+            <ns0:City>Lens</ns0:City>
+            <ns0:PostCode>62300</ns0:PostCode>
+            <ns0:CountryCode>FR</ns0:CountryCode>
+         </ns0:ConsigneeAddress>
+         <ns0:IncotermCode>CIP</ns0:IncotermCode>
+         <ns0:Attribute03>129</ns0:Attribute03>
+         <ns0:Attributes>
+            <ns0:Attribute>
+               <ns0:Code>EDIMSGTYPE</ns0:Code>
+               <ns0:Value>DELIVERY_DELJIT_DESORD</ns0:Value>
+            </ns0:Attribute>
+         </ns0:Attributes>
+         <ns0:DocumentLines>
+            <ns0:DocumentLine>
+               <ns0:ExternalNo>PC-AWR</ns0:ExternalNo>
+               <ns0:Attribute04>610266176</ns0:Attribute04>
+               <ns0:Description>2024327098</ns0:Description>
+               <ns0:OrderQuantity>1</ns0:OrderQuantity>
+               <ns0:OrderUnitofMeasureCode>PCE</ns0:OrderUnitofMeasureCode>
+            </ns0:DocumentLine>
+         </ns0:DocumentLines>
+      </ns0:Document>
+   </ns0:Documents>
+</ns0:Message>
