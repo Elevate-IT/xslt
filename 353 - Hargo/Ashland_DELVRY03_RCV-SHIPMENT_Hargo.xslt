@@ -159,6 +159,28 @@
                         
                         <ns0:DocumentComments>
                             <xsl:for-each select="E1EDL20/E1EDL24[LFIMG = 0]/Z1EDLTM[PALLET_TYPE != '']">
+                                <xsl:variable name="PalTypeHeader">
+                                    <xsl:choose>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'C1'">
+                                            <xsl:text>CP1</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'C3'">
+                                            <xsl:text>CP3</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'EU'">
+                                            <xsl:text>EUR</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'IB'">
+                                            <xsl:text>IBC</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'T4'">
+                                            <xsl:text>CP4</xsl:text>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="substring(PALLET_TYPE, 1, 2)" />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:variable>
                                 <ns0:DocumentComment>
                                     <ns0:Code>INSTRUCTIES</ns0:Code>
                                     <ns0:Comment>
