@@ -11,7 +11,7 @@
     <xsl:variable name="OrderType">
         <xsl:choose>
             <xsl:when test="E1EDL20/E1EDL24[LFIMG &gt; 0][1]/WERKS = '5623'">
-                <xsl:text>ZENDING</xsl:text>
+                <xsl:text>ZENDING OUT</xsl:text>
             </xsl:when>
             <xsl:when test="upper-case(/ZDLVRY/IDOC/E1EDL20/E1EDL22/VSBED_BEZ) = 'MARINE'">
                 <xsl:text>SEA</xsl:text>
