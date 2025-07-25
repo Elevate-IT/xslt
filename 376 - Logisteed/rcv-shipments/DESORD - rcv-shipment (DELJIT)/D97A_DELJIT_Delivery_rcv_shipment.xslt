@@ -42,7 +42,7 @@
                         <xsl:value-of select="replace(s0:DTM/s0:C507[C50701 = '137']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
                     </ns0:AnnouncedDate>
                     <ns0:PlannedStartDate>
-                        <xsl:value-of select="replace(s0:DTM[s0:C507/C50701 = 2]/s0:C507/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')" />
+                        <xsl:value-of select="replace(s0:DTM[s0:C507/C50701 = '2']/s0:C507/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')" />
                     </ns0:PlannedStartDate>
                     <ns0:PlannedStartTime>
                         <xsl:value-of select="format-time(current-time(), '[H01]:[m01]')" />
