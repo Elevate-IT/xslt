@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version="1.0">
+                xmlns:ns0="www.boltrics.nl/receivesapinvoice:v1.00"
+                version="3.0">
   <xsl:output method="xml" indent="yes"/>
   
   <!-- Match the root -->

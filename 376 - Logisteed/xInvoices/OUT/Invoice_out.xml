@@ -1,0 +1,49 @@
+<xml odata.context="https://api.businesscentral.dynamics.com/v2.0/9982463c-feff-4f6f-8102-fe9760148e45/PROD-376/ODataV4/$metadata#Edm.String">
+    <value>
+        <Message>
+            <Header>
+                <InvoiceNumber>940192164</InvoiceNumber>
+                <InvoiceDate>20250613</InvoiceDate>
+                <InvoiceAmount>000000000008712100</InvoiceAmount>
+                <InvoiceCurrency>EUR</InvoiceCurrency>
+                <PaymentTerms>0000000000000Z501</PaymentTerms>
+                <ExchangeRate>000000100000</ExchangeRate>
+                <OraclePoNo>7700044610</OraclePoNo>
+                <Deliveryno>831399034</Deliveryno>
+            </Header>
+            <Lines>
+                <Line>
+                    <ERPLineNo>000050</ERPLineNo>
+                    <VATRate>00000000000000000</VATRate>
+                    <VATCode>EZ</VATCode>
+                    <InvoiceTaxAmount>000000000000000000</InvoiceTaxAmount>
+                    <OraclePOLineNo>000005</OraclePOLineNo>
+                    <Quantity>000000000000007</Quantity>
+                    <UnitPrice>000000000519000</UnitPrice>
+                    <ItemNo>7E483520</ItemNo>
+                    <ItemNo2>RWD-4.0NW1E-220S-K</ItemNo2>
+                    <InvLineNetVal>000000000003633000</InvLineNetVal>
+                    <CountryOfOrigin>ES</CountryOfOrigin>
+                    <NetWeight>000000000002450000</NetWeight>
+                    <GrossWeight>000000000002527000</GrossWeight>
+                    <HSCode>0252700084</HSCode>
+                </Line>
+                <Line>
+                    <ERPLineNo />
+                    <VATRate />
+                    <VATCode />
+                    <InvoiceTaxAmount />
+                    <OraclePOLineNo />
+                    <Quantity />
+                    <UnitPrice />
+                    <ItemNo />
+                    <InvLineNetVal />
+                    <CountryOfOrigin />
+                    <NetWeight />
+                    <GrossWeight />
+                    <HSCode />
+                </Line>
+            </Lines>
+        </Message>
+    </value>
+</xml>
