@@ -55,9 +55,7 @@
                              </xsl:if> -->
                         
                         <ns0:UnitOfMeasures> 
-                            <ns0:UnitOfMeasure>    
-
-                                
+                            <ns0:UnitOfMeasure>                                   
                                 <ns0:QtyperUnitofMeasure>
                                     <xsl:value-of select="//s0:LINLoop1/s0:QTY_4[s0:C186_4/C18601 = 52]/s0:C186_4/C18602" />
                                 </ns0:QtyperUnitofMeasure>
