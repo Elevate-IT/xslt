@@ -41,6 +41,13 @@
                             <xsl:value-of select="s0:IMD/s0:C273/C27304"/>
                         </ns0:SearchDescription>
                         
+                        <ns0:TariffNo>
+                            <xsl:value-of select="substring(//s0:FTX_3[s0:C108_3/C10801=999]/s0:C108_3/C10802, 1, 8)"/>
+                        </ns0:TariffNo>
+                        <ns0:TaricCode>
+                            <xsl:value-of select="substring(//s0:FTX_3[s0:C108_3/C10801=999]/s0:C108_3/C10802, 9, 2)"/>
+                        </ns0:TaricCode>
+                        
                         <!-- <xsl:if test="s0:LOC/ns0:C108/C10804!=''">
                              <ns0:CountryofOriginCode>
                              <xsl:value-of select="s0:LOC/ns0:C108/C10804"/>
@@ -49,14 +56,14 @@
                         
                         <ns0:UnitOfMeasures> 
                             <ns0:UnitOfMeasure>    
-                                <ns0:Code>
-                                    <xsl:text>CRT</xsl:text>
-                                </ns0:Code>
+
                                 
                                 <ns0:QtyperUnitofMeasure>
-                                    <!-- <xsl:value-of select="//s0:LINLoop1[s0:LIN/LIN01=2]/s0:QTYLoop1/s0:QTY_2/s0:C186_2/C18602" /> -->
-                                    <xsl:text>1</xsl:text>
+                                    <xsl:value-of select="//s0:LINLoop1/s0:QTY_4[s0:C186_4/C18601 = 52]/s0:C186_4/C18602" />
                                 </ns0:QtyperUnitofMeasure>
+                                <ns0:Code>
+                                    <xsl:value-of select="//s0:LINLoop1/s0:QTY_4[s0:C186_4/C18601 = 52]/s0:C186_4/C18603" />
+                                </ns0:Code>
                                 
                                 <!-- <ns0:EANCode>
                                      <xsl:value-of select="//s0:LINLoop1[s0:LIN/LIN01=1]/s0:LIN/s0:C212_6/C21201" />
