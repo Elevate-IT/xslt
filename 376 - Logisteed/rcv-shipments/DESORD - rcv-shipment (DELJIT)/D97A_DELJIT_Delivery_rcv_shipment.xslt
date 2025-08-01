@@ -209,9 +209,9 @@
                                             <xsl:value-of select="substring(key('Lines-by-LineNo',$LineKey)/s0:RFFLoop2[s0:RFF_2/s0:C506_2/C50601 = 'VN']/s0:RFF_2/s0:C506_2/C50602, 1, 35)"/>
                                         </ns0:Attribute04>
                                         
-                                        <ns0:Description>
+                                        <!-- <ns0:Description>
                                             <xsl:value-of select="substring(key('Lines-by-LineNo',$LineKey)/s0:RFFLoop2[s0:RFF_2/s0:C506_2/C50601 = 'ON']/s0:RFF_2/s0:C506_2/C50602, 1, 35)"/>
-                                        </ns0:Description>
+                                        </ns0:Description> -->
                                         
                                         <ns0:OrderQuantity>
                                             <xsl:value-of select="key('Lines-by-LineNo',$LineKey)/s0:QTYLoop1/s0:QTY[s0:C186/C18601='131']/s0:C186/C18602" />
