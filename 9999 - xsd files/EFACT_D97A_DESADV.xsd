@@ -5128,7 +5128,7 @@
           <xs:simpleType>
             <xs:restriction base="EDIFACT_AN">
               <xs:minLength value="1" />
-              <xs:maxLength value="35" />
+              <xs:maxLength value="70" />
             </xs:restriction>
           </xs:simpleType>
         </xs:element>
