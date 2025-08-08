@@ -38,7 +38,7 @@
                         <xsl:value-of select="s0:BGM/s0:C106/C10601" />
                     </ns0:ExternalDocumentNo>
 
-                    <ns0:AnnouncedDate>
+                    <!-- <ns0:AnnouncedDate>
                         <xsl:value-of select="replace(s0:DTM/s0:C507[C50701 = '137']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
                     </ns0:AnnouncedDate>
                     <ns0:PlannedStartDate>
@@ -49,7 +49,14 @@
                     </ns0:PlannedStartTime>
                     <ns0:PostingDate>
                         <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/>
-                    </ns0:PostingDate>
+                    </ns0:PostingDate> -->
+                    
+                    <ns0:OrderDate>
+                        <xsl:value-of select="replace(s0:DTM/s0:C507[C50701 = '137']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
+                    </ns0:OrderDate>
+                    <ns0:DeliveryDate>
+                        <xsl:value-of select="replace(s0:DTM/s0:C507[C50701 = '2']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
+                    </ns0:DeliveryDate>
                     
                     <ns0:Attribute01>
                         <xsl:value-of select="replace(s0:FTX[FTX01 = 'SIN'][starts-with(s0:C108/C10801, 'Created by:')]/s0:C108/C10801, 'Created by:', '')" />
