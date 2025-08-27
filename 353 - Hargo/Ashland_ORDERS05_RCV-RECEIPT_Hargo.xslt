@@ -177,6 +177,10 @@
                                             <!-- <xsl:value-of select="../VBELN" /> -->
                                         </ns0:Attribute01>
                                         
+                                        <ns0:ExternalDocumentNo>
+                                            <xsl:value-of select="format-number(E1EDK01/BELNR, '#')"/>
+                                        </ns0:ExternalDocumentNo>
+                                        
                                         <!--  DOC INFO SET  -->
                                         <ns0:Attributes>
                                             <!-- <ns0:Attribute>

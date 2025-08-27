@@ -43,14 +43,6 @@
                         </ns0:DocumentDate>
                         
                         <ns0:ExternalDocumentNo>
-                            <!-- <xsl:choose>
-                                 <xsl:when test="$OrderType = 'SEA' and E1EDT20/SIGNI != ''">
-                                 <xsl:value-of select="translate(E1EDT20/SIGNI, '-', '')" />
-                                 </xsl:when>
-                                 <xsl:otherwise>
-                                 <xsl:value-of select="concat($OrderType, translate(E1EDT20/TKNUM, '-', ''))" />
-                                 </xsl:otherwise>
-                                 </xsl:choose> -->
                             <xsl:value-of select="format-number(E1EDT20/TKNUM, '#')" />
                         </ns0:ExternalDocumentNo>
                         
@@ -312,6 +304,10 @@
                                         <ns0:Attribute06>
                                             <xsl:value-of select="VGBEL" />
                                         </ns0:Attribute06>
+                                        
+                                        <ns0:ExternalDocumentNo>
+                                            <xsl:value-of select="format-number(E1EDT20/TKNUM, '#')" />
+                                        </ns0:ExternalDocumentNo>
                                         
                                         <!--DOC INFO SET  -->
                                         <ns0:Attributes>
