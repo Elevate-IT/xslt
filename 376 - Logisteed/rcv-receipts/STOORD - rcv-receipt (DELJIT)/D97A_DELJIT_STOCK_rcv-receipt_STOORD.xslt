@@ -67,11 +67,17 @@
                             <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD09" />
                         </ns0:CountryCode>
                     </ns0:SenderAddress>
-                    <!-- <ns0:SenderAddress>
-                         <ns0:EANCode>                            
-                         <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SF']/s0:C058/C05801" />
-                         </ns0:EANCode>
-                         </ns0:SenderAddress> -->
+                    
+                    <ns0:IncotermCode>
+                        <xsl:choose>
+                            <xsl:when test="s0:FTX[FTX01 = 'Z99']/s0:C108/C10801!=''" >
+                                <xsl:value-of select="s0:FTX[FTX01 = 'Z99']/s0:C108/C10801" />
+                            </xsl:when> 
+                            <xsl:otherwise>
+                                <xsl:text>DDP</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>                        
+                    </ns0:IncotermCode>
 
                     <ns0:Attribute03>
                         <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />
