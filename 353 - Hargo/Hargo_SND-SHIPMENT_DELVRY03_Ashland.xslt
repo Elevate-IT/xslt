@@ -11,6 +11,20 @@
     </xsl:template>
     
     <xsl:template match="ns0:Message/ns0:Documents/ns0:Document">
+        <xsl:variable name="DepartureDate">
+            <xsl:choose>
+                <xsl:when test="ns0:DepartedDate != ''">
+                    <xsl:value-of select="ns0:DepartedDate"/>
+                </xsl:when>
+                <xsl:when test="ns0:EstimatedDepartureDate != ''">
+                    <xsl:value-of select="ns0:EstimatedDepartureDate"/>
+                </xsl:when>
+                <xsl:when test="ns0:PostingDate != ''">
+                    <xsl:value-of select="ns0:PostingDate"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+
         <DELVRY03>
             <IDOC BEGIN="1">
                 <EDI_DC40 SEGMENT="1">
@@ -29,7 +43,7 @@
                     <RCVPRT>LS</RCVPRT>
                     <RCVPRN>SAPPRE</RCVPRN>
                     <CREDAT>
-                        <xsl:value-of select="format-dateTime(../../ns0:Header/ns0:CreationDateTime, '[Y0001][M01][D01]')"/>
+                        <xsl:value-of select="format-date($DepartureDate, '[Y0001][M01][D01]')"/>
                     </CREDAT>
                     <CRETIM>
                         <xsl:value-of select="format-dateTime(../../ns0:Header/ns0:CreationDateTime, '[H01][m01][s01]')"/>
@@ -40,7 +54,7 @@
                 </EDI_DC40>
                 <E1EDL20 SEGMENT="1">
                     <VBELN>
-                        <xsl:value-of select="format-number(number(replace(ns0:No, '[^0-9]', '')), '0000000000')"/> <!-- 20241105 To be determined -->
+                        <xsl:value-of select="format-number(number(replace(ns0:ExternalDocumentNo, '[^0-9]', '')), '0000000000')"/>
                     </VBELN>
                     <E1EDL18 SEGMENT="1">
                         <QUALF>PGI</QUALF>
@@ -48,7 +62,7 @@
                     <E1EDT13 SEGMENT="1">
                         <QUALF>006</QUALF>
                         <ISDD>
-                            <xsl:value-of select="format-date(ns0:PostingDate, '[Y0001][M01][D01]')"/>
+                            <xsl:value-of select="format-date($DepartureDate, '[Y0001][M01][D01]')"/>
                         </ISDD>
                     </E1EDT13>
                 </E1EDL20>
