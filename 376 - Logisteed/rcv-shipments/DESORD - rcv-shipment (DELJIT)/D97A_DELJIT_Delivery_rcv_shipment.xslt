@@ -126,14 +126,6 @@
                             </ns0:Name> 
                             
                             <ns0:Address>
-                                <!-- <xsl:choose>
-                                    <xsl:when test="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05803 != ''" >
-                                        <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05803" />
-                                    </xsl:when> 
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
-                                    </xsl:otherwise>
-                                </xsl:choose> -->
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
                             </ns0:Address>
                             <ns0:City>
@@ -160,18 +152,13 @@
                                     </ns0:OneoffAddress>
                                 </xsl:otherwise>
                             </xsl:choose>
+                            
                             <ns0:Name>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05801" />
-                            </ns0:Name>
+                            </ns0:Name> 
+                            
                             <ns0:Address>
-                                <xsl:choose>
-                                    <xsl:when test="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05803 != ''" >
-                                        <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05803" />
-                                    </xsl:when> 
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
-                                    </xsl:otherwise>
-                                </xsl:choose>
+                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
                             </ns0:Address>
                             <ns0:City>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
