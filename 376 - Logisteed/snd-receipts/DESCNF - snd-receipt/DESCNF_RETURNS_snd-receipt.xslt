@@ -23,7 +23,7 @@
                     <UNH2.5>EDDS05</UNH2.5>
                 </UNH2>
                 <UNH4>
-                    <UNH4.1>1</UNH4.1>
+                    <UNH4.2>1</UNH4.2>
                 </UNH4>
             </UNH>
             
@@ -33,7 +33,7 @@
                     <C00204>RETURNS</C00204>
                 </ns0:C002>
                 <ns0:C106>
-                    <C10601> <xsl:value-of select="s0:No"/></C10601>
+                    <C10601> <xsl:value-of select="s0:ExternalDocumentNo"/></C10601>
                 </ns0:C106>
                 <BGM03>9</BGM03>
             </ns0:BGM>
@@ -256,6 +256,7 @@
                                     <xsl:value-of select="s0:ExternalNo"/>
                                 </C21201>
                                 <C21202>ZZZ</C21202>
+                                <C21204>90</C21204>
                             </ns0:C212_2>
                         </ns0:PIA>
                         <!-- <ns0:PIA>

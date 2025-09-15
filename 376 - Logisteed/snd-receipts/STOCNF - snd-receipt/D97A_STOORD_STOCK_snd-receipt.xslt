@@ -33,7 +33,7 @@
                     <C00201>351</C00201>
                 </ns0:C002>
                 <ns0:C106>
-                    <C10601> <xsl:value-of select="s0:No"/></C10601>
+                    <C10601><xsl:value-of select="s0:ExternalDocumentNo"/></C10601>
                 </ns0:C106>
                 <BGM03>9</BGM03>
             </ns0:BGM>
@@ -101,31 +101,29 @@
                  </ns0:RFF>
                  </ns0:RFFLoop1> -->
             
-            <!-- Party info Supplier -->
+            <!-- Party info Supplier --> receiver
             <ns0:NADLoop1>
                 <ns0:NAD>
                     <NAD01>CN</NAD01> <!-- was SU -->
                     <ns0:C082>
                         <C08201>
-                            <xsl:value-of select="upper-case(//s0:ToTradingPartner)" />
+                            <xsl:value-of select="upper-case(//s0:ToTradingPartner)" /> todo address code ean code
                         </C08201>
                         <C08203>91</C08203>
                     </ns0:C082>
-                 </ns0:NAD>
+                </ns0:NAD>
             </ns0:NADLoop1>
             
             
-            <!-- Party info DP -->
+            <!-- Party info DP --> sender
             <ns0:NADLoop1>
                 <ns0:NAD>
                     <NAD01>CZ</NAD01>
                     <ns0:C082>
-                        <C08201>
-                            <xsl:value-of select="upper-case(s0:ShipToAddress/s0:ExternalNo)" />
-                        </C08201>
+                        <C08201>129</C08201> todo attribute 3
                         <C08203>91</C08203>
                     </ns0:C082>
-                 </ns0:NAD>
+                </ns0:NAD>
             </ns0:NADLoop1>
             
             <ns0:CPSLoop1>
@@ -154,7 +152,38 @@
                         <ns0:PIA>
                             <PIA01>1</PIA01>
                             <ns0:C212_2>
-                                <C21201>1</C21201>
+                                <C21201>
+                                    <xsl:variable name="QualIndicator" >
+                                        <xsl:choose>
+                                            <xsl:when test="s0:Attribute01 = 'AVAILABLE'">1</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'AWAITING SCRAP'">AS01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'BLOCKED'"></xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'DAMAGED'">DA01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'DAMAGED CARTONS'">28</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'EXHIBITION STOCK'">40</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'FAULTY LOAN'">SA02</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'GRADED STOCK'">14</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'INSURANCE NO STOCK'">IN02</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'INSURANCE STOCK'">IN01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'INVESTIGATE/RE-WORK'">TE01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'JCI SOUTH AND EXPORT'">140S&amp;E</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'NON-ROHS'">15</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'OLD SPECS'">2</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'OLD STOCK'">14</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'OUT OF WARRANTY'">WA01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'RESERVED STOCK'">XX01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'RETURNS'">RE01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'RE-WORK (HACE)'">TE02</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'ROHS: AVAILABLE'"></xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'SAMPLE STOCK'">SA01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'SERVICE (HACE)'">TE03</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'SHORTAGE'">SK99</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'STOCK DISCREPANCY'">SK99</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'SURPLUS'">SK99</xsl:when>
+                                        </xsl:choose>
+                                    </xsl:variable>
+                                    <xsl:value-of select="concat(s0:Attribute03, $QualIndicator)" />
+                                </C21201>
                                 <C21202>ZZZ</C21202>
                                 <C21204>90</C21204>
                             </ns0:C212_2>
@@ -180,18 +209,18 @@
                                 </ns0:C506_4>
                             </ns0:RFF_4>
                         </ns0:RFFLoop3>
-
+                        
                         <!-- <ns0:GIN_2>
-                            <ns0:GIN01>
-                                <xsl:text>BN</xsl:text>
-                            </ns0:GIN01>
-                            <ns0:C208_6>
-                                <C20801>
-                                    <xsl:value-of select="s0:BatchNo" />
-                                </C20801>
-                            </ns0:C208_6>
-                        </ns0:GIN_2> -->
-                    </ns0:LINLoop1>
+                             <ns0:GIN01>
+                             <xsl:text>BN</xsl:text>
+                             </ns0:GIN01>
+                             <ns0:C208_6>
+                             <C20801>
+                             <xsl:value-of select="s0:BatchNo" />
+                             </C20801>
+                             </ns0:C208_6>
+                             </ns0:GIN_2> -->
+                     </ns0:LINLoop1>
                 </xsl:for-each>
             </ns0:CPSLoop1>
         </ns0:EFACT_D97A_DESADV>
