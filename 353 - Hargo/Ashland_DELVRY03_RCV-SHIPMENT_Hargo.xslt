@@ -190,16 +190,22 @@
                             </xsl:for-each>
                         </ns0:DocumentComments>
                         
-                        <ns0:Attributes>
-                            <xsl:if test="count(E1EDL20/E1EDL24/Z1EDLTM[PALLET_NOS != '']) &gt; 0">
-                                <ns0:Attribute>
-                                    <ns0:Code>AANTALPALS</ns0:Code>
-                                    <ns0:Value>
-                                        <xsl:value-of select="sum(E1EDL20/E1EDL24/Z1EDLTM[PALLET_NOS != '']/PALLET_NOS)" />
-                                    </ns0:Value>
-                                </ns0:Attribute>
-                            </xsl:if>
-                        </ns0:Attributes>
+                        <xsl:variable name="AANTALPALS" select="sum(E1EDL20/E1EDL24/Z1EDLTM[PALLET_NOS != '']/PALLET_NOS)"/>
+                        <xsl:if test="$AANTALPALS &gt; 0">
+                            <ns0:Attribute10>
+                                <xsl:value-of select="$AANTALPALS" />    
+                            </ns0:Attribute10>
+                            <ns0:Attributes>
+                                <xsl:if test="count(E1EDL20/E1EDL24/Z1EDLTM[PALLET_NOS != '']) &gt; 0">
+                                    <ns0:Attribute>
+                                        <ns0:Code>AANTALPALS</ns0:Code>
+                                        <ns0:Value>
+                                            <xsl:value-of select="$AANTALPALS" />
+                                        </ns0:Value>
+                                    </ns0:Attribute>
+                                </xsl:if>
+                            </ns0:Attributes>
+                        </xsl:if>
                         
                         <ns0:DocumentLines>
                             <xsl:for-each select="E1EDL20/E1EDL24[LFIMG &gt; 0]">
