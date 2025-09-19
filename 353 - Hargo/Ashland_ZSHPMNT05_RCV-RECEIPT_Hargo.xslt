@@ -60,7 +60,7 @@
                                 </xsl:when>
                                 <xsl:when test="($OrderType = 'SEA')">
                                     <xsl:choose>
-                                        <xsl:when test="E1EDT20/SIGNI != ''">
+                                        <xsl:when test="E1EDT20/SIGNI != '' and E1EDT20/E1EDL20[1]/ZSHPMNT/ZZEQ_TYPE != '12' ">
                                             <xsl:text>CONTAINER</xsl:text>
                                         </xsl:when>
                                         <xsl:otherwise>
