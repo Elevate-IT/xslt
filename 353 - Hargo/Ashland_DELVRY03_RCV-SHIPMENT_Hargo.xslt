@@ -173,8 +173,20 @@
                                         <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'IB'">
                                             <xsl:text>IBC</xsl:text>
                                         </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 1) = 'P'">
+                                            <xsl:text>P</xsl:text>
+                                        </xsl:when>
                                         <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'T4'">
                                             <xsl:text>CP4</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'T7'">
+                                            <xsl:text>CP7</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'US'">
+                                            <xsl:text>ORI</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 1) = 'W'">
+                                            <xsl:text>ORI</xsl:text>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:value-of select="substring(PALLET_TYPE, 1, 2)" />
@@ -184,7 +196,7 @@
                                 <ns0:DocumentComment>
                                     <ns0:Code>INSTRUCTIES</ns0:Code>
                                     <ns0:Comment>
-                                        <xsl:value-of select="concat('Type: ', substring(PALLET_TYPE, 1, 2), ', Qty: ', PALLET_NOS, ', Stackable: ', STACKBLE, ', Height: ', substring(PALLET_TYPE, 3))" />
+                                        <xsl:value-of select="concat('Type: ', $PalTypeHeader, ', Qty: ', PALLET_NOS, ', Stackable: ', STACKBLE, ', Height: ', substring(PALLET_TYPE, 3))" />
                                     </ns0:Comment>
                                 </ns0:DocumentComment>
                             </xsl:for-each>
