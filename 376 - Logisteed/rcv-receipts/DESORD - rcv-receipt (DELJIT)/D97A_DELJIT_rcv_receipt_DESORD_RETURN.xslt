@@ -114,6 +114,16 @@
                                         <ns0:OrderUnitofMeasureCode>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18603" />
                                         </ns0:OrderUnitofMeasureCode>
+                                        
+                                        <ns0:Attributes>
+                                            <ns0:Attribute>
+                                                <ns0:Code>EDILINENO</ns0:Code>
+                                                <ns0:Value>
+                                                    <xsl:value-of select="$LineKey" />
+                                                </ns0:Value>
+                                            </ns0:Attribute>
+                                        </ns0:Attributes>
+                                        
                                      </ns0:DocumentLine>
                                 </xsl:if>
                             </xsl:for-each>

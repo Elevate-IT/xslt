@@ -169,15 +169,15 @@
                                                 <xsl:value-of select="s0:PIA[s0:C212_2/C21202 = 'NB']/s0:C212_2/C21201" />
                                             </ns0:ExternalBatchNo>
                                         </xsl:if>
-
-                                        <!-- <ns0:Attributes>
+                                        
+                                        <ns0:Attributes>
                                             <ns0:Attribute>
-                                                <ns0:Code>LINENO</ns0:Code>
+                                                <ns0:Code>EDILINENO</ns0:Code>
                                                 <ns0:Value>
-                                                    <xsl:value-of select="s0:PIA[s0:C212_2/C21202 = 'LI']/s0:C212_2/C21201" />
+                                                    <xsl:value-of select="$LineKey" />
                                                 </ns0:Value>
                                             </ns0:Attribute>
-                                        </ns0:Attributes> -->
+                                        </ns0:Attributes>
 
                                         <xsl:if test="count(s0:PCILoop1) &gt; 0">
                                             <ns0:DocumentDetailLines>

@@ -248,6 +248,7 @@
                                 <C21203>92</C21203>
                             </ns0:C212>
                         </ns0:LIN>
+                        
                         <ns0:PIA>
                             <PIA01><xsl:value-of select="position()"/></PIA01>
                             <ns0:C212_2>
