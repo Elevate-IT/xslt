@@ -51,7 +51,7 @@
                         <!-- <ns0:Status>
                             <xsl:text>1</xsl:text>
                         </ns0:Status> -->
-                         
+
                         <!-- <xsl:if test="s0:LOC/ns0:C108/C10804!=''">
                              <ns0:CountryofOriginCode>
                              <xsl:value-of select="s0:LOC/ns0:C108/C10804"/>
