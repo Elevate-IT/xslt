@@ -48,9 +48,10 @@
                             <xsl:value-of select="substring(//s0:FTX_3[s0:C108_3/C10801=999]/s0:C108_3/C10802, 9, 2)"/>
                         </ns0:TaricCode>
                         
-                        <ns0:Status>
+                        <!-- <ns0:Status>
                             <xsl:text>1</xsl:text>
-                        </ns0:Status>
+                        </ns0:Status> -->
+
                         <!-- <xsl:if test="s0:LOC/ns0:C108/C10804!=''">
                              <ns0:CountryofOriginCode>
                              <xsl:value-of select="s0:LOC/ns0:C108/C10804"/>

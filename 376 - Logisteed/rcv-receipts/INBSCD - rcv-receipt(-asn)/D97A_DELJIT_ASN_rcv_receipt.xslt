@@ -114,52 +114,16 @@
                                         <ns0:OrderUnitofMeasureCode>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18603"/>
                                         </ns0:OrderUnitofMeasureCode>
-                                        <!-- <ns0:NetWeight>
-                                             <xsl:value-of select="sum(key('Lines-by-LineNo',$LineKey)/s0:QTY_3[s0:C186_3/C18601='12']/s0:C186_3/C18602)" />
-                                             </ns0:NetWeight> -->
                                         
-                                        <!-- <ns0:OrderQuantity>
-                                             <xsl:value-of select="sum(key('Lines-by-LineNo',$LineKey)/s0:QTY_3/s0:C186_3/C18602)" />
-                                             </ns0:OrderQuantity>
-                                             <ns0:OrderUnitofMeasureCode>
-                                             <xsl:choose>
-                                             <xsl:when test="key('Lines-by-LineNo',$LineKey)/s0:QTY_3/s0:C186_3/C18603='TU'">
-                                             <xsl:text>CRT</xsl:text>
-                                             </xsl:when>
-                                             <xsl:when test="key('Lines-by-LineNo',$LineKey)/s0:QTY_3/s0:C186_3/C18603='CU'">
-                                             <xsl:text>BAG</xsl:text>
-                                             </xsl:when>
-                                             </xsl:choose>
-                                             </ns0:OrderUnitofMeasureCode> -->
-                                        
-                                        
-                                        <!-- <ns0:CarrierQuantity>   
-                                             <xsl:value-of select="../PACLoop1/PAC/PAC01"/>
-                                             </ns0:CarrierQuantity> -->
-                                        
-                                        <!-- <xsl:if test="s0:PCILoop2/s0:DTM_9/s0:C507_9[C50701='94']/C50702 != ''">
-                                             <ns0:ProductionDate>
-                                             <xsl:value-of select="replace(s0:PCILoop2/s0:DTM_9/s0:C507_9[C50701='94']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
-                                             </ns0:ProductionDate>
-                                             </xsl:if>
-                                             <xsl:if test="s0:PCILoop2/s0:DTM_10/s0:C507_10[C50701='361']/C50702 != ''">
-                                             <ns0:ExpirationDate>
-                                             <xsl:value-of select="replace(s0:PCILoop2/s0:DTM_10/s0:C507_10[C50701='361']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
-                                             </ns0:ExpirationDate>
-                                             </xsl:if> -->
-                                        
-                                        <!-- <ns0:ExternalBatchNo>
-                                             <xsl:value-of select="s0:PCILoop2/s0:GINLoop2/s0:GIN_3[GIN01='BX']/s0:C208_12/C20801"/>
-                                             </ns0:ExternalBatchNo> -->
-                                        
-                                        <!-- <ns0:Attributes>
-                                             <ns0:Attribute>
-                                             <ns0:Code>LINENO</ns0:Code>
-                                             <ns0:Value>
-                                             <xsl:value-of select="s0:PIA[s0:C212_2/C21202 = 'LI']/s0:C212_2/C21201" />
-                                             </ns0:Value>
-                                             </ns0:Attribute>
-                                             </ns0:Attributes> -->
+                                        <ns0:Attributes>
+                                            <ns0:Attribute>
+                                                <ns0:Code>EDILINENO</ns0:Code>
+                                                <ns0:Value>
+                                                    <xsl:value-of select="$LineKey" />
+                                                </ns0:Value>
+                                            </ns0:Attribute>
+                                        </ns0:Attributes>
+
                                      </ns0:DocumentLine>
                                 </xsl:if>
                             </xsl:for-each>

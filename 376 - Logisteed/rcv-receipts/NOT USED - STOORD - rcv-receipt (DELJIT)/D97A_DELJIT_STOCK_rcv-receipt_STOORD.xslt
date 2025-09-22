@@ -114,6 +114,16 @@
                                         <ns0:DueDate>
                                             <xsl:value-of select="replace(s0:QTYLoop1[s0:DTM_6/s0:C507_6/C50703=102]/s0:DTM_6/s0:C507_6/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
                                         </ns0:DueDate>
+                                        
+                                        <ns0:Attributes>
+                                            <ns0:Attribute>
+                                                <ns0:Code>EDILINENO</ns0:Code>
+                                                <ns0:Value>
+                                                    <xsl:value-of select="$LineKey" />
+                                                </ns0:Value>
+                                            </ns0:Attribute>
+                                        </ns0:Attributes>
+                                        
                                      </ns0:DocumentLine>
                                 </xsl:if>
                             </xsl:for-each>
