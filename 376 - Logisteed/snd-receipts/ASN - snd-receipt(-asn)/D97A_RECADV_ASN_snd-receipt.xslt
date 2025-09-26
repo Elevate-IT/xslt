@@ -84,25 +84,6 @@
                         </C08201>
                         <C08203>91</C08203>
                     </ns0:C082>
-                    <!-- <ns0:C080>
-                         <C08001>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:Name)" />
-                         </C08001>
-                         </ns0:C080>
-                         <ns0:C059>
-                         <C05901>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:Address)" />
-                         </C05901>
-                         <C05902>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:City)" />
-                         </C05902>
-                         <C05903>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:PostCode)" />
-                         </C05903>
-                         <C05904>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:CountryName)" />
-                         </C05904>
-                         </ns0:C059> -->
                  </ns0:NAD>
             </ns0:NADLoop1>
             

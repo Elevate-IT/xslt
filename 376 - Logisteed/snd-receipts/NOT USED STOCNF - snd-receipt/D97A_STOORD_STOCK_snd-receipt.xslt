@@ -107,7 +107,7 @@
                     <NAD01>CN</NAD01> <!-- was SU -->
                     <ns0:C082>
                         <C08201>
-                            <xsl:value-of select="upper-case(//s0:ToTradingPartner)" /> todo address code ean code
+                            <xsl:value-of select="upper-case(//s0:ToTradingPartner)" />
                         </C08201>
                         <C08203>91</C08203>
                     </ns0:C082>
@@ -120,7 +120,7 @@
                 <ns0:NAD>
                     <NAD01>CZ</NAD01>
                     <ns0:C082>
-                        <C08201>129</C08201> todo attribute 3
+                        <C08201>129</C08201> 
                         <C08203>91</C08203>
                     </ns0:C082>
                 </ns0:NAD>
