@@ -99,12 +99,6 @@
                                 <xsl:variable name="LineKey" select="s0:LIN/LIN01" />
                                 <xsl:if test="s0:LIN/LIN01 != ''">
                                     <ns0:DocumentLine>
-                                        <!-- <ns0:GTIN>
-                                            <xsl:value-of select="s0:LIN/s0:C212/C21201" />
-                                        </ns0:GTIN>
-                                        <ns0:ExternalNo>
-                                            <xsl:value-of select="s0:PIA[PIA01='1'][s0:C212_2/C21202 = 'ZZZ']/s0:C212_2/C21201" />
-                                        </ns0:ExternalNo> -->
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="s0:LIN/s0:C212/C21201" />
                                         </ns0:ExternalNo>
@@ -114,6 +108,32 @@
                                         <ns0:OrderUnitofMeasureCode>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18603" />
                                         </ns0:OrderUnitofMeasureCode>
+                                        
+                                        <ns0:Attribute01>
+                                            <xsl:variable name="cleanValue" 
+                                                select="
+                                                    if (//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201 
+                                                        and starts-with(s0:PIA/s0:C212_2/C21201, //s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201)) 
+                                                        then substring(s0:PIA/s0:C212_2/C21201, string-length(//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201) + 1) 
+                                                    else s0:PIA/s0:C212_2/C21201" />
+                                            
+                                            <xsl:choose>
+                                                <xsl:when test="$cleanValue = '1'">AVAILABLE</xsl:when>
+                                                <xsl:when test="$cleanValue = '10'">OUT OF WARRANTY</xsl:when>
+                                                <xsl:when test="$cleanValue = '11'">DAMAGED CARTONS</xsl:when>
+                                                <xsl:when test="$cleanValue = '15'">DAMAGED</xsl:when>
+                                                <xsl:when test="$cleanValue = '20'">RETURN</xsl:when>
+                                                <xsl:when test="$cleanValue = '30'">AWAITING SCRAP</xsl:when>
+                                                <xsl:when test="$cleanValue = '35'">INSURANCE STOCK</xsl:when>
+                                                <xsl:when test="$cleanValue = '40'">EXHIBITION STOCK</xsl:when>
+                                                <xsl:when test="$cleanValue = '50'">RE-WORK (HACE)</xsl:when>
+                                                <xsl:when test="$cleanValue = '60'">SERVICE (HACE)</xsl:when>
+                                                <xsl:when test="$cleanValue = 'S&amp;E'">JCI SOUTH AND EXPORT</xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:value-of select="$cleanValue"/>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </ns0:Attribute01>
                                         
                                         <ns0:Attributes>
                                             <ns0:Attribute>
