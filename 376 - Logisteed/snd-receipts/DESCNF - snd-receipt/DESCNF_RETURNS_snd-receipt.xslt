@@ -126,8 +126,29 @@
                             <PIA01><xsl:value-of select="position()"/></PIA01>
                             <ns0:C212_2>
                                 <C21201>
-                                    <!-- your erp art no -->
-                                    <xsl:value-of select="s0:ExternalNo"/>
+                                    <xsl:variable name="QualIndicator" select="s0:Attribute01" />
+                                    
+                                    <xsl:variable name="MappedCode">
+                                        <xsl:choose>
+                                            <xsl:when test="$QualIndicator = 'AVAILABLE'">1</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'OUT OF WARRANTY'">10</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'DAMAGED CARTONS'">11</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'DAMAGED'">15</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'RETURN'">20</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'AWAITING SCRAP'">30</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'INSURANCE STOCK'">35</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'EXHIBITION STOCK'">40</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">50</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">60</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'JCI SOUTH AND EXPORT'">S&amp;E</xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="$QualIndicator"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
+                                    
+                                    <xsl:value-of select="concat(s0:Attribute03, $MappedCode)" />
+                                    
                                 </C21201>
                                 <C21202>ZZZ</C21202>
                                 <C21204>90</C21204>
