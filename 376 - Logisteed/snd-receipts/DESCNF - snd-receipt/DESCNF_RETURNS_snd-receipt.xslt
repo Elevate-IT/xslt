@@ -123,7 +123,7 @@
                         </ns0:LIN>
                         
                         <ns0:PIA>
-                            <PIA01>1></PIA01>
+                            <PIA01>1</PIA01>
                             <ns0:C212_2>
                                 <C21201>
                                     <xsl:variable name="QualIndicator" select="s0:Attribute01" />
