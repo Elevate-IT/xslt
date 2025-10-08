@@ -132,7 +132,11 @@
                                         
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="number(E1EDP19[QUALF = '001']/IDTNR)" />
-                                        </ns0:ExternalNo>   
+                                        </ns0:ExternalNo>
+                                        
+                                        <ns0:Description>
+                                            <xsl:value-of select="E1EDP19[QUALF = '001']/KTEXT" />
+                                        </ns0:Description>
                                         
                                         <!-- <ns0:ExternalBatchNo>
                                              <xsl:value-of select="CHARG" />
@@ -181,7 +185,7 @@
                                         </ns0:Attribute01>
                                         
                                         <ns0:ExternalDocumentNo>
-                                            <xsl:value-of select="format-number(E1EDK01/BELNR, '#')"/>
+                                            <xsl:value-of select="format-number(../E1EDK01/BELNR, '#')"/>
                                         </ns0:ExternalDocumentNo>
                                         
                                         <!--  DOC INFO SET  -->

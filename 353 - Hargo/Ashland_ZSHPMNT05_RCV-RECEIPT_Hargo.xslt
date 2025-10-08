@@ -260,7 +260,11 @@
                                         
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="number(MATNR)" />
-                                        </ns0:ExternalNo>   
+                                        </ns0:ExternalNo>
+                                        
+                                        <ns0:Description>
+                                            <xsl:value-of select="ARKTX" />
+                                        </ns0:Description>
                                         
                                         <ns0:ExternalBatchNo>
                                             <xsl:value-of select="CHARG" />
