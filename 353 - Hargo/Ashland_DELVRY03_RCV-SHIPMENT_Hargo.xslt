@@ -100,7 +100,7 @@
                             <xsl:value-of select="E1EDL20/E1EDT13[QUALF = 'xxx']/NTANF"/>
                         </ns0:DeliveryDate>
                         
-                        <xsl:if test="E1EDL20/INCO1 != 'FCA' and $OrderType != 'SEA'">
+                        <xsl:if test="E1EDL20/INCO1 != 'FCA' and not(contains(':SEA:LUCHTVRACHT:', concat(':', $OrderType, ':')))">
                             <ns0:EstimatedDepartureDate>
                                 <xsl:value-of select="E1EDL20/E1EDT13[QUALF = '003']/NTANF"/>
                             </ns0:EstimatedDepartureDate>
