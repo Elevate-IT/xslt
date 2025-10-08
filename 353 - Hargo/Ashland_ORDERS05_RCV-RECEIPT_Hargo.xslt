@@ -163,6 +163,9 @@
                                                 <xsl:when test="(WERKS = '5622') and ($OrderType2 != 'TRUCK EU')">
                                                     <xsl:text>CLEARED</xsl:text>
                                                 </xsl:when>
+                                                <xsl:when test="(WERKS = '5623')">
+                                                    <xsl:text>CLEARED</xsl:text>
+                                                </xsl:when>
                                                 <xsl:when test="WERKS = '5610'">
                                                     <xsl:text>BONDED</xsl:text>
                                                 </xsl:when>
