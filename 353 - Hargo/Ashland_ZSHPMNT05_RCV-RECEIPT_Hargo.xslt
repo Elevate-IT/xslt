@@ -271,6 +271,9 @@
                                                 <xsl:when test="(../E1ADRM1[PARTNER_Q = 'WE']/PARTNER_ID = 'X5622') and ($OrderType2 != 'TRUCK EU')">
                                                     <xsl:text>CLEARED</xsl:text>
                                                 </xsl:when>
+                                                <xsl:when test="(../E1ADRM1[PARTNER_Q = 'WE']/PARTNER_ID = 'X5623')">
+                                                    <xsl:text>CLEARED</xsl:text>
+                                                </xsl:when>
                                                 <xsl:when test="../E1ADRM1[PARTNER_Q = 'WE']/PARTNER_ID = 'X5610'">
                                                     <xsl:text>BONDED</xsl:text>
                                                 </xsl:when>
