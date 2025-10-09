@@ -58,8 +58,37 @@
             
             <xsl:variable name="FinYear" select="number(substring(ns0:PostingDate,1,4))" />
             <xsl:variable name="FinPeriod" select="number(substring(ns0:PostingDate,6,2))" />
+            <!-- logic adjusted for request 6082 -->
             <xsl:choose>
-              <xsl:when test="$FinPeriod &lt; 10">
+              <xsl:when test="$FinYear &lt; 2026">
+                <xsl:choose>
+                  <xsl:when test="$FinPeriod &lt; 10">
+                    <FinYear>
+                      <xsl:attribute name="number">
+                        <xsl:value-of select="$FinYear"/>
+                      </xsl:attribute>
+                    </FinYear>
+                    <FinPeriod>
+                      <xsl:attribute name="number">
+                        <xsl:value-of select="format-number($FinPeriod + 3, '00')"/>
+                      </xsl:attribute>
+                    </FinPeriod>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <FinYear>
+                      <xsl:attribute name="number">
+                        <xsl:value-of select="$FinYear + 1"/>
+                      </xsl:attribute>
+                    </FinYear>
+                    <FinPeriod>
+                      <xsl:attribute name="number">
+                        <xsl:value-of select="format-number($FinPeriod - 9, '00')"/>
+                      </xsl:attribute>
+                    </FinPeriod>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="$FinYear = 2026">
                 <FinYear>
                   <xsl:attribute name="number">
                     <xsl:value-of select="$FinYear"/>
@@ -74,16 +103,17 @@
               <xsl:otherwise>
                 <FinYear>
                   <xsl:attribute name="number">
-                    <xsl:value-of select="$FinYear + 1"/>
+                    <xsl:value-of select="$FinYear"/>
                   </xsl:attribute>
                 </FinYear>
                 <FinPeriod>
                   <xsl:attribute name="number">
-                    <xsl:value-of select="format-number($FinPeriod - 9, '00')"/>
+                    <xsl:value-of select="format-number($FinPeriod, '00')"/>
                   </xsl:attribute>
                 </FinPeriod>
               </xsl:otherwise>
             </xsl:choose>
+            
             
             <Document>
               <Subject>
