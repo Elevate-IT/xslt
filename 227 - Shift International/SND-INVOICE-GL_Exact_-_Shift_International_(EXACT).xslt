@@ -55,95 +55,36 @@
             <Date>
               <xsl:value-of select="ns0:PostingDate" />
             </Date>
-            <xsl:variable name="FinYear" select="substring(ns0:PostingDate,1,4)" />
+            
+            <xsl:variable name="FinYear" select="number(substring(ns0:PostingDate,1,4))" />
             <xsl:variable name="FinPeriod" select="number(substring(ns0:PostingDate,6,2))" />
             <xsl:choose>
-              <xsl:when test="$FinYear = '2024'">
-                <xsl:choose>
-                  <xsl:when test="$FinPeriod &lt; 10">
-                    <FinYear>
-                      <xsl:attribute name="number">
-                        <xsl:value-of select="2023"/>
-                      </xsl:attribute>
-                    </FinYear>
-                    <FinPeriod>
-                      <xsl:attribute name="number">
-                        <xsl:value-of select="$FinPeriod + 12"/>
-                      </xsl:attribute>
-                    </FinPeriod>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <FinYear>
-                      <xsl:attribute name="number">
-                        <xsl:value-of select="2025"/>
-                      </xsl:attribute>
-                    </FinYear>
-                    <FinPeriod>
-                      <xsl:attribute name="number">
-                        <xsl:text>0</xsl:text>
-                        <xsl:value-of select="$FinPeriod - 9"/>
-                      </xsl:attribute>
-                    </FinPeriod>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:when>
-              
-              <xsl:when test="$FinYear = '2025'">
-
-
-              <xsl:choose>
-                <xsl:when test="$FinPeriod &lt; 7">
-                  <FinYear>
+              <xsl:when test="$FinPeriod &lt; 10">
+                <FinYear>
                   <xsl:attribute name="number">
                     <xsl:value-of select="$FinYear"/>
                   </xsl:attribute>
                 </FinYear>
                 <FinPeriod>
                   <xsl:attribute name="number">
-                    <xsl:text>0</xsl:text>
-                    <xsl:value-of select="$FinPeriod + 3"/>
+                    <xsl:value-of select="format-number($FinPeriod + 3, '00')"/>
                   </xsl:attribute>
                 </FinPeriod>
-                </xsl:when>
-                <xsl:otherwise>
-                  <FinYear>
-                  <xsl:attribute name="number">
-                    <xsl:value-of select="$FinYear"/>
-                  </xsl:attribute>
-                </FinYear>
-                <FinPeriod>
-                  <xsl:attribute name="number">
-                    <xsl:value-of select="$FinPeriod + 3"/>
-                  </xsl:attribute>
-                </FinPeriod>
-                </xsl:otherwise>
-              </xsl:choose>
-                
               </xsl:when>
               <xsl:otherwise>
                 <FinYear>
                   <xsl:attribute name="number">
-                    <xsl:value-of select="substring(ns0:PostingDate,1,4)"/>
+                    <xsl:value-of select="$FinYear + 1"/>
                   </xsl:attribute>
                 </FinYear>
                 <FinPeriod>
                   <xsl:attribute name="number">
-                    <xsl:value-of select="substring(ns0:PostingDate,6,2)"/>
+                    <xsl:value-of select="format-number($FinPeriod - 9, '00')"/>
                   </xsl:attribute>
                 </FinPeriod>
               </xsl:otherwise>
             </xsl:choose>
-            <!-- <FinYear>
-                 
-                 <xsl:attribute name="number">
-                 <xsl:value-of select="substring(ns0:PostingDate,1,4)"/>
-                 </xsl:attribute>
-                 </FinYear>
-                 <FinPeriod>
-                 <xsl:attribute name="number">
-                 <xsl:value-of select="substring(ns0:PostingDate,6,2)"/>
-                 </xsl:attribute>
-                 </FinPeriod> -->
+            
             <Document>
               <Subject>
                 <xsl:value-of select="ns0:PostingDescription"/>
