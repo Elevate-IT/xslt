@@ -63,7 +63,7 @@
                     <ns0:C506>
                         <C50601>SRN</C50601>
                         <C50602>
-                            <xsl:value-of select="s0:ExternalDocumentNo"/>
+                            <xsl:value-of select="s0:No"/>
                         </C50602>
                     </ns0:C506>
                 </ns0:RFF>
@@ -80,7 +80,7 @@
                                     <xsl:value-of select="substring(translate(normalize-space(s0:SenderAddress/s0:Attribute01),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="substring(translate(normalize-space(s0:SenderAddress/s0:Name),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
+                                    <xsl:value-of select="substring(translate(normalize-space(s0:SenderAddress/s0:EANCode),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
                                 </xsl:otherwise>
                             </xsl:choose>
                         </C08201>
@@ -88,6 +88,7 @@
                     </ns0:C082>
                 </ns0:NAD>
             </ns0:NADLoop1>
+
             <ns0:NADLoop1>
                 <ns0:NAD>
                     <NAD01>CZ</NAD01>

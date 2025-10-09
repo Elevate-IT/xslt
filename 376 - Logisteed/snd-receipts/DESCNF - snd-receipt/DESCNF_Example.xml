@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
 <ns0:Message xmlns:ns0="www.boltrics.nl/sendreceipt:v1.00">
     <ns0:Header>
-        <ns0:MessageID>8</ns0:MessageID>
-        <ns0:CreationDateTime>2025-04-18T11:11:14</ns0:CreationDateTime>
+        <ns0:MessageID>4756</ns0:MessageID>
+        <ns0:CreationDateTime>2025-08-05T10:18:36</ns0:CreationDateTime>
         <ns0:ProcesAction>INSERT</ns0:ProcesAction>
         <ns0:FromTradingPartner>LOGISTEED</ns0:FromTradingPartner>
         <ns0:ToTradingPartner>JCHEU</ns0:ToTradingPartner>
@@ -13,54 +14,49 @@
     <ns0:Documents>
         <ns0:Document>
             <ns0:DocumentType>1</ns0:DocumentType>
-            <ns0:No>I25000030</ns0:No>
+            <ns0:No>I25000319</ns0:No>
             <ns0:Customer>
                 <ns0:No>JCHEU</ns0:No>
                 <ns0:EANCode>JCHEU</ns0:EANCode>
-                <ns0:Name>Johnson Controls Hitachi EU</ns0:Name>
-                <ns0:Address>Denim</ns0:Address>
-                <ns0:City>Madrid</ns0:City>
-                <ns0:PostCode>28018</ns0:PostCode>
-                <ns0:CountryRegionCode>ES</ns0:CountryRegionCode>
-                <ns0:CountryName>Spain</ns0:CountryName>
-                <ns0:Contact>TEST</ns0:Contact>
+                <ns0:Name>Johnson Controls Hitachi Air Conditioning Europe SAS France</ns0:Name>
+                <ns0:Address>Rue de Lombardie 2</ns0:Address>
+                <ns0:City>Saint Priest</ns0:City>
+                <ns0:PostCode>69800</ns0:PostCode>
+                <ns0:CountryRegionCode>FR</ns0:CountryRegionCode>
+                <ns0:CountryName>France</ns0:CountryName>
                 <ns0:PhoneNo>+44(0) 4444 8888888</ns0:PhoneNo>
                 <ns0:VATRegistrationNo>FR19392362448</ns0:VATRegistrationNo>
-                <ns0:E-Mail>marcos.bugallo@elevate-it.es</ns0:E-Mail>
+                <ns0:E-Mail>cecilia.carvalho@logisteed-europe.com</ns0:E-Mail>
                 <ns0:PaymentTermsCode>30D</ns0:PaymentTermsCode>
                 <ns0:RegistrationNo>A59925792</ns0:RegistrationNo>
                 <ns0:Attribute01>10208</ns0:Attribute01>
                 <ns0:Attribute02>16:00:00</ns0:Attribute02>
                 <ns0:Attribute03>Same day</ns0:Attribute03>
-                <ns0:Attribute04>Z11</ns0:Attribute04>
-                <ns0:Attribute05>Z11SHELF</ns0:Attribute05>
             </ns0:Customer>
             <ns0:BuildingCode>MSQ</ns0:BuildingCode>
             <ns0:LanguageCode>ENU</ns0:LanguageCode>
-            <ns0:LocationNo>DOCK1</ns0:LocationNo>
-            <ns0:DocumentDate>2025-04-16</ns0:DocumentDate>
-            <ns0:OrderDate>2025-03-13</ns0:OrderDate>
-            <ns0:PostingDate>2025-04-16</ns0:PostingDate>
+            <ns0:LocationNo>DOCK10</ns0:LocationNo>
+            <ns0:DocumentDate>2025-08-05</ns0:DocumentDate>
+            <ns0:OrderDate>2025-08-05</ns0:OrderDate>
+            <ns0:PostingDate>2025-08-05</ns0:PostingDate>
             <ns0:StatusCode>70-COMPLETED</ns0:StatusCode>
-            <ns0:ExternalDocumentNo>123987456</ns0:ExternalDocumentNo>
-            <ns0:ExternalReference>RETURNS</ns0:ExternalReference>
-            <ns0:AnnouncedDate>2025-04-16</ns0:AnnouncedDate>
-            <ns0:ArrivedDate>2025-04-16</ns0:ArrivedDate>
-            <ns0:ArrivedTime>13:17:32</ns0:ArrivedTime>
-            <ns0:DepartedDate>2025-04-16</ns0:DepartedDate>
+            <ns0:ExternalDocumentNo>640012922</ns0:ExternalDocumentNo>
+            <ns0:ExternalReference>Test 17282 (MAWO UAT)</ns0:ExternalReference>
+            <ns0:AnnouncedDate>2025-08-05</ns0:AnnouncedDate>
+            <ns0:ArrivedDate>2025-08-05</ns0:ArrivedDate>
+            <ns0:ArrivedTime>12:16:00</ns0:ArrivedTime>
+            <ns0:PlannedStartDate>2025-08-04</ns0:PlannedStartDate>
+            <ns0:PlannedStartTime>08:31:00</ns0:PlannedStartTime>
+            <ns0:DeliveryDate>2025-08-04</ns0:DeliveryDate>
             <ns0:IncotermCode>CIP</ns0:IncotermCode>
-            <ns0:IncotermCity>Andorra</ns0:IncotermCity>
-            <ns0:OrderTypeCode>STANDARD</ns0:OrderTypeCode>
+            <ns0:OrderTypeCode>RETURN</ns0:OrderTypeCode>
             <ns0:SenderAddress>
-                <ns0:No>JCHEU</ns0:No>
-                <ns0:Name>Johnsson Controls Hitachi EU</ns0:Name>
-                <ns0:Address>Denim</ns0:Address>
-                <ns0:City>Madrid</ns0:City>
-                <ns0:PhoneNo>+44(0) 4444 8888888</ns0:PhoneNo>
-                <ns0:PostCode>28018</ns0:PostCode>
-                <ns0:CountryRegionCode>ES</ns0:CountryRegionCode>
-                <ns0:Email>marcos.bugallo@elevate-it.es</ns0:Email>
-                <ns0:VATRegistrationNo>FR19392362448</ns0:VATRegistrationNo>
+                <ns0:No>ADR0000001982</ns0:No>
+                <ns0:Name>HD KLIMAATSYSTEMEN BV</ns0:Name>
+                <ns0:Address>CARNEOOL ,400</ns0:Address>
+                <ns0:City>DORDRECHT</ns0:City>
+                <ns0:CountryRegionCode>NL</ns0:CountryRegionCode>
+                <ns0:EANCode>5088575208057</ns0:EANCode>
             </ns0:SenderAddress>
             <ns0:ShipToAddress>
                 <ns0:No>MSQ</ns0:No>
@@ -72,14 +68,14 @@
                 <ns0:CountryRegionCode>ES</ns0:CountryRegionCode>
                 <ns0:AddressNo>4-6</ns0:AddressNo>
             </ns0:ShipToAddress>
-            <ns0:ShortcutDimension1Code>TE1112</ns0:ShortcutDimension1Code>
-            <ns0:ShortcutDimension2Code>10200</ns0:ShortcutDimension2Code>
+            <ns0:ShortcutDimension1Code>TE1511</ns0:ShortcutDimension1Code>
+            <ns0:ShortcutDimension2Code>10208</ns0:ShortcutDimension2Code>
             <ns0:Attribute03>129</ns0:Attribute03>
-            <ns0:Attribute10>PALLETS</ns0:Attribute10>
-            <ns0:GrossWeight>770</ns0:GrossWeight>
+            <ns0:Attribute10>LOOSECARTONS</ns0:Attribute10>
+            <ns0:GrossWeight>48</ns0:GrossWeight>
             <ns0:NetWeight>0</ns0:NetWeight>
             <ns0:VolumeWeight>0</ns0:VolumeWeight>
-            <ns0:Volume>720000</ns0:Volume>
+            <ns0:Volume>6374400</ns0:Volume>
             <ns0:Quantity>0</ns0:Quantity>
             <ns0:TotalCubage>0</ns0:TotalCubage>
             <ns0:CarrierQuantity>1</ns0:CarrierQuantity>
@@ -88,18 +84,48 @@
             <ns0:CarriageValue>0</ns0:CarriageValue>
             <ns0:InsuranceValue>0</ns0:InsuranceValue>
             <ns0:Destination>0</ns0:Destination>
-            <ns0:ParentDocumentNo>PICK2500000025</ns0:ParentDocumentNo>
+            <ns0:Attributes>
+                <ns0:Attribute>
+                    <ns0:Code>EDIMSGTYPE</ns0:Code>
+                    <ns0:Value>RETURNS_DESORD_DELJIT</ns0:Value>
+                </ns0:Attribute>
+                <ns0:Attribute>
+                    <ns0:Code>PLANT</ns0:Code>
+                    <ns0:Description>Plant Code</ns0:Description>
+                    <ns0:Value>129</ns0:Value>
+                </ns0:Attribute>
+                <ns0:Attribute>
+                    <ns0:Code>SA_10</ns0:Code>
+                    <ns0:Description>Sender Address Name</ns0:Description>
+                    <ns0:Value>HD KLIMAATSYSTEMEN BV</ns0:Value>
+                </ns0:Attribute>
+                <ns0:Attribute>
+                    <ns0:Code>SA_12</ns0:Code>
+                    <ns0:Description>Sender Address Address</ns0:Description>
+                    <ns0:Value>CARNEOOL ,400</ns0:Value>
+                </ns0:Attribute>
+                <ns0:Attribute>
+                    <ns0:Code>SA_14</ns0:Code>
+                    <ns0:Description>Sender Address City</ns0:Description>
+                    <ns0:Value>DORDRECHT</ns0:Value>
+                </ns0:Attribute>
+                <ns0:Attribute>
+                    <ns0:Code>SA_20</ns0:Code>
+                    <ns0:Description>Sender Address Country/Region Code</ns0:Description>
+                    <ns0:Value>NL</ns0:Value>
+                </ns0:Attribute>
+            </ns0:Attributes>
             <DimensionsSet>
                 <DimensionSet>
                     <DimensionCode>COSTCENTRE</DimensionCode>
                     <DimensionName></DimensionName>
-                    <DimensionValueCode>TE1112</DimensionValueCode>
+                    <DimensionValueCode>TE1511</DimensionValueCode>
                     <DimensionValueName></DimensionValueName>
                 </DimensionSet>
                 <DimensionSet>
                     <DimensionCode>COSTUNIT</DimensionCode>
                     <DimensionName></DimensionName>
-                    <DimensionValueCode>10200</DimensionValueCode>
+                    <DimensionValueCode>10208</DimensionValueCode>
                     <DimensionValueName></DimensionValueName>
                 </DimensionSet>
             </DimensionsSet>
@@ -132,6 +158,7 @@
                     <ns0:Name>Logisteed Europe (Spain Branch)</ns0:Name>
                     <ns0:Address>Calle Alemania 4-6</ns0:Address>
                     <ns0:City>Masquefa</ns0:City>
+                    <ns0:E-Mail>DL-EU-ES-SuperUserBoltrics@logisteed-europe.com</ns0:E-Mail>
                     <ns0:PhoneNo>+34 (0) 93 828 09 61</ns0:PhoneNo>
                     <ns0:Type>0</ns0:Type>
                     <ns0:PartyAddress>
@@ -148,6 +175,10 @@
             </ns0:DocumentParties>
             <ns0:DocumentConditions>
                 <ns0:DocumentCondition>
+                    <ns0:ConditionCode>MERCHNGBAT</ns0:ConditionCode>
+                    <ns0:ConditionValue>false</ns0:ConditionValue>
+                </ns0:DocumentCondition>
+                <ns0:DocumentCondition>
                     <ns0:ConditionCode>TSSERCOST</ns0:ConditionCode>
                     <ns0:ConditionValue>Y</ns0:ConditionValue>
                 </ns0:DocumentCondition>
@@ -160,76 +191,71 @@
                     <ns0:CarrierTypeCode>EURO</ns0:CarrierTypeCode>
                     <ns0:CarrierTypeTransportCode>EURO</ns0:CarrierTypeTransportCode>
                     <ns0:Type>1</ns0:Type>
-                    <ns0:No>RAS 10HNCE</ns0:No>
-                    <ns0:ExternalNo>RAS 8HNCE</ns0:ExternalNo>
+                    <ns0:No>RAS-3WHVRP1</ns0:No>
+                    <ns0:ExternalNo>RAS-3WHVRP1</ns0:ExternalNo>
                     <ns0:ItemNo>STD</ns0:ItemNo>
-                    <ns0:No2>7E311111</ns0:No2>
-                    <ns0:Description>OU Side Flow HP 10,0 HP (28,0 kW) 400V/3</ns0:Description>
-                    <ns0:Description2>RATESDDA01</ns0:Description2>
+                    <ns0:Description>ODU Yutaki S/SC R32 8kW 230/1</ns0:Description>
+                    <ns0:Description2>ODU Yutaki S/SC R32 8kW 230/1</ns0:Description2>
                     <ns0:BaseUnitofMeasureCode>PCE</ns0:BaseUnitofMeasureCode>
                     <ns0:UnitofMeasureCode>PCE</ns0:UnitofMeasureCode>
                     <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
-                    <ns0:Quantity>5</ns0:Quantity>
-                    <ns0:QtyCreated>5</ns0:QtyCreated>
-                    <ns0:QuantityBase>5</ns0:QuantityBase>
-                    <ns0:QtyBaseCreated>5</ns0:QtyBaseCreated>
+                    <ns0:Quantity>1</ns0:Quantity>
+                    <ns0:QtyCreated>1</ns0:QtyCreated>
+                    <ns0:QuantityBase>1</ns0:QuantityBase>
+                    <ns0:QtyBaseCreated>1</ns0:QtyBaseCreated>
                     <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
-                    <ns0:QtyPosted>5</ns0:QtyPosted>
-                    <ns0:QtyBasePosted>5</ns0:QtyBasePosted>
+                    <ns0:QtyPosted>1</ns0:QtyPosted>
+                    <ns0:QtyBasePosted>1</ns0:QtyBasePosted>
                     <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
                     <ns0:LineAmount>0</ns0:LineAmount>
                     <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
                     <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
                     <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
-                    <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
+                    <ns0:CarrierQuantity>1</ns0:CarrierQuantity>
                     <ns0:CarrierQtyCreated>1</ns0:CarrierQtyCreated>
-                    <ns0:DefaultQtyPerCarrier>6</ns0:DefaultQtyPerCarrier>
+                    <ns0:DefaultQtyPerCarrier>1</ns0:DefaultQtyPerCarrier>
                     <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
                     <ns0:CarrierQtyPosted>1</ns0:CarrierQtyPosted>
                     <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
                     <ns0:OrderUnitofMeasureCode>PCE</ns0:OrderUnitofMeasureCode>
                     <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
-                    <ns0:OrderQuantity>5</ns0:OrderQuantity>
-                    <ns0:PostedOrderQuantity>5</ns0:PostedOrderQuantity>
-                    <ns0:ItemCategoryCode>UTOPIA-INV</ns0:ItemCategoryCode>
-                    <ns0:TareWeightperUoM>15</ns0:TareWeightperUoM>
-                    <ns0:GrossWeightperUoM>154</ns0:GrossWeightperUoM>
-                    <ns0:NetWeightperUoM>139</ns0:NetWeightperUoM>
+                    <ns0:OrderQuantity>1</ns0:OrderQuantity>
+                    <ns0:PostedOrderQuantity>1</ns0:PostedOrderQuantity>
+                    <ns0:ProductGroupCode>BULK</ns0:ProductGroupCode>
+                    <ns0:TareWeightperUoM>4</ns0:TareWeightperUoM>
+                    <ns0:GrossWeightperUoM>48</ns0:GrossWeightperUoM>
+                    <ns0:NetWeightperUoM>44</ns0:NetWeightperUoM>
                     <ns0:VolumeWeight>0</ns0:VolumeWeight>
                     <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
                     <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
-                    <ns0:TareWeight>75</ns0:TareWeight>
-                    <ns0:GrossWeight>770</ns0:GrossWeight>
-                    <ns0:NetWeight>695</ns0:NetWeight>
-                    <ns0:BatchNo>B250000000039</ns0:BatchNo>
-                    <ns0:GrossWeightPosted>770</ns0:GrossWeightPosted>
-                    <ns0:NetWeightPosted>695</ns0:NetWeightPosted>
+                    <ns0:TareWeight>4</ns0:TareWeight>
+                    <ns0:GrossWeight>48</ns0:GrossWeight>
+                    <ns0:NetWeight>44</ns0:NetWeight>
+                    <ns0:BatchNo>B250000000268</ns0:BatchNo>
+                    <ns0:GrossWeightPosted>48</ns0:GrossWeightPosted>
+                    <ns0:NetWeightPosted>44</ns0:NetWeightPosted>
                     <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
                     <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
-                    <ns0:LocationNo>DOCK1</ns0:LocationNo>
+                    <ns0:LocationNo>DOCK10</ns0:LocationNo>
                     <ns0:BuildingCode>MSQ</ns0:BuildingCode>
-                    <ns0:TaricCode>91</ns0:TaricCode>
-                    <ns0:TariffNo>84159000</ns0:TariffNo>
-                    <ns0:CountryofOriginCode>ES</ns0:CountryofOriginCode>
-                    <ns0:ShortcutDimension1Code>TE1112</ns0:ShortcutDimension1Code>
-                    <ns0:ShortcutDimension2Code>10200</ns0:ShortcutDimension2Code>
-                    <ns0:SenderAddressNo>JCHEU</ns0:SenderAddressNo>
+                    <ns0:ExternalDocumentNo>640012922</ns0:ExternalDocumentNo>
+                    <ns0:ShortcutDimension1Code>TE1511</ns0:ShortcutDimension1Code>
+                    <ns0:ShortcutDimension2Code>10208</ns0:ShortcutDimension2Code>
+                    <ns0:SenderAddressNo>ADR0000001982</ns0:SenderAddressNo>
                     <ns0:Ship-ToAddressNo>MSQ</ns0:Ship-ToAddressNo>
                     <ns0:MaterialType>0</ns0:MaterialType>
                     <ns0:Attribute01>AVAILABLE</ns0:Attribute01>
                     <ns0:Attribute02>AVAILABLE</ns0:Attribute02>
                     <ns0:Attribute03>129</ns0:Attribute03>
-                    <ns0:SearchDescriptionItemNo>RAS 10HNCE</ns0:SearchDescriptionItemNo>
+                    <ns0:Attribute10>0</ns0:Attribute10>
+                    <ns0:SearchDescriptionItemNo>ODU YUTAKI S/SC R32 8KW 230/1</ns0:SearchDescriptionItemNo>
                     <ns0:SenderAddress>
-                        <ns0:No>JCHEU</ns0:No>
-                        <ns0:Name>Johnsson Controls Hitachi EU</ns0:Name>
-                        <ns0:Address>Denim</ns0:Address>
-                        <ns0:City>Madrid</ns0:City>
-                        <ns0:PhoneNo>+44(0) 4444 8888888</ns0:PhoneNo>
-                        <ns0:PostCode>28018</ns0:PostCode>
-                        <ns0:CountryRegionCode>ES</ns0:CountryRegionCode>
-                        <ns0:Email>marcos.bugallo@elevate-it.es</ns0:Email>
-                        <ns0:VATRegistrationNo>FR19392362448</ns0:VATRegistrationNo>
+                        <ns0:No>ADR0000001982</ns0:No>
+                        <ns0:Name>HD KLIMAATSYSTEMEN BV</ns0:Name>
+                        <ns0:Address>CARNEOOL ,400</ns0:Address>
+                        <ns0:City>DORDRECHT</ns0:City>
+                        <ns0:CountryRegionCode>NL</ns0:CountryRegionCode>
+                        <ns0:EANCode>5088575208057</ns0:EANCode>
                     </ns0:SenderAddress>
                     <ns0:ShipToAddress>
                         <ns0:No>MSQ</ns0:No>
@@ -258,109 +284,36 @@
                             <ns0:Value>129</ns0:Value>
                         </ns0:Attribute>
                     </ns0:Attributes>
-                    <ns0:RelatedDocumentLines>
-                        <ns0:RelatedDocumentLine>
-                            <ns0:DocumentType>4</ns0:DocumentType>
-                            <ns0:DocumentNo>PICK2500000025</ns0:DocumentNo>
-                            <ns0:LineNo>10000</ns0:LineNo>
-                            <ns0:Sell-toCustomerNo>JCHEU</ns0:Sell-toCustomerNo>
-                            <ns0:CarrierTypeCode>EURO</ns0:CarrierTypeCode>
-                            <ns0:CarrierTypeTransportCode>EURO</ns0:CarrierTypeTransportCode>
-                            <ns0:Type>4</ns0:Type>
-                            <ns0:No>ER001</ns0:No>
-                            <ns0:Description>OU Side Flow HP 10,0 HP (28,0 kW) 400V/3</ns0:Description>
-                            <ns0:UnitofMeasureCode>PCE</ns0:UnitofMeasureCode>
-                            <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
-                            <ns0:Quantity>0</ns0:Quantity>
-                            <ns0:QtyCreated>0</ns0:QtyCreated>
-                            <ns0:QuantityBase>5</ns0:QuantityBase>
-                            <ns0:QtyBaseCreated>0</ns0:QtyBaseCreated>
-                            <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
-                            <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
-                            <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
-                            <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
-                            <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
-                            <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
-                            <ns0:CarrierQtyCreated>0</ns0:CarrierQtyCreated>
-                            <ns0:DefaultQtyPerCarrier>0</ns0:DefaultQtyPerCarrier>
-                            <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
-                            <ns0:CarrierQtyPosted>0</ns0:CarrierQtyPosted>
-                            <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
-                            <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
-                            <ns0:OrderQuantity>0</ns0:OrderQuantity>
-                            <ns0:ItemCategoryCode>UTOPIA-INV</ns0:ItemCategoryCode>
-                            <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
-                            <ns0:GrossWeightperUoM>0</ns0:GrossWeightperUoM>
-                            <ns0:NetWeightperUoM>0</ns0:NetWeightperUoM>
-                            <ns0:VolumeWeight>0</ns0:VolumeWeight>
-                            <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
-                            <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
-                            <ns0:TareWeight>0</ns0:TareWeight>
-                            <ns0:GrossWeight>0</ns0:GrossWeight>
-                            <ns0:NetWeight>0</ns0:NetWeight>
-                            <ns0:BatchNo>B250000000039</ns0:BatchNo>
-                            <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
-                            <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
-                            <ns0:LocationNo>DOCK1</ns0:LocationNo>
-                            <ns0:BuildingCode>MSQ</ns0:BuildingCode>
-                            <ns0:TaricCode>91</ns0:TaricCode>
-                            <ns0:TariffNo>84159000</ns0:TariffNo>
-                            <ns0:ExternalDocumentNo>123987456</ns0:ExternalDocumentNo>
-                            <ns0:ShortcutDimension1Code>TE1511</ns0:ShortcutDimension1Code>
-                            <ns0:ShortcutDimension2Code>10208</ns0:ShortcutDimension2Code>
-                            <ns0:MaterialType>0</ns0:MaterialType>
-                            <ns0:Attribute01>AVAILABLE</ns0:Attribute01>
-                            <ns0:Attribute02>AVAILABLE</ns0:Attribute02>
-                            <ns0:Attribute03>129</ns0:Attribute03>
-                            <ns0:Attributes>
-                                <ns0:Attribute>
-                                    <ns0:Code>CUSTQUAL</ns0:Code>
-                                    <ns0:Description>Customer Quality</ns0:Description>
-                                    <ns0:Value>AVAILABLE</ns0:Value>
-                                </ns0:Attribute>
-                                <ns0:Attribute>
-                                    <ns0:Code>LGSTDQUAL</ns0:Code>
-                                    <ns0:Description>Logisteed Class</ns0:Description>
-                                    <ns0:Value>AVAILABLE</ns0:Value>
-                                </ns0:Attribute>
-                                <ns0:Attribute>
-                                    <ns0:Code>PLANT</ns0:Code>
-                                    <ns0:Description>Plant Code</ns0:Description>
-                                    <ns0:Value>129</ns0:Value>
-                                </ns0:Attribute>
-                            </ns0:Attributes>
-                        </ns0:RelatedDocumentLine>
-                    </ns0:RelatedDocumentLines>
                     <ns0:DocumentDetailLines>
                         <ns0:DocumentDetailLine>
-                            <ns0:DocumentNo>I25000030</ns0:DocumentNo>
+                            <ns0:DocumentNo>I25000319</ns0:DocumentNo>
+                            <ns0:ExternalDocumentNo>640012922</ns0:ExternalDocumentNo>
                             <ns0:DocumentLineNo>10000</ns0:DocumentLineNo>
                             <ns0:LineNo>100000</ns0:LineNo>
                             <ns0:CarrierTypeCode>EURO</ns0:CarrierTypeCode>
                             <ns0:CarrierTypeTransportCode>EURO</ns0:CarrierTypeTransportCode>
-                            <ns0:CustomerItemNo>RAS 10HNCE</ns0:CustomerItemNo>
-                            <ns0:ExternalNo>RAS 8HNCE</ns0:ExternalNo>
+                            <ns0:CustomerItemNo>RAS-3WHVRP1</ns0:CustomerItemNo>
+                            <ns0:ExternalNo>RAS-3WHVRP1</ns0:ExternalNo>
                             <ns0:UnitofMeasureCode>PCE</ns0:UnitofMeasureCode>
                             <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
-                            <ns0:Quantity>5</ns0:Quantity>
-                            <ns0:QuantityBase>5</ns0:QuantityBase>
-                            <ns0:CarrierNo>ER001</ns0:CarrierNo>
+                            <ns0:Quantity>1</ns0:Quantity>
+                            <ns0:QuantityBase>1</ns0:QuantityBase>
+                            <ns0:CarrierNo>STOKJE1</ns0:CarrierNo>
                             <ns0:CarrierLineNo>1</ns0:CarrierLineNo>
-                            <ns0:OrderQuantity>5</ns0:OrderQuantity>
-                            <ns0:TareWeight>75</ns0:TareWeight>
-                            <ns0:GrossWeight>770</ns0:GrossWeight>
-                            <ns0:NetWeight>695</ns0:NetWeight>
-                            <ns0:BatchNo>B250000000039</ns0:BatchNo>
+                            <ns0:OrderQuantity>1</ns0:OrderQuantity>
+                            <ns0:TareWeight>4</ns0:TareWeight>
+                            <ns0:GrossWeight>48</ns0:GrossWeight>
+                            <ns0:NetWeight>44</ns0:NetWeight>
+                            <ns0:BatchNo>B250000000268</ns0:BatchNo>
                             <ns0:BuildingCode>MSQ</ns0:BuildingCode>
-                            <ns0:LocationNo>DOCK1</ns0:LocationNo>
+                            <ns0:LocationNo>DOCK10</ns0:LocationNo>
                             <ns0:Posted>1</ns0:Posted>
                             <ns0:Length>120</ns0:Length>
                             <ns0:Width>80</ns0:Width>
-                            <ns0:Height>75</ns0:Height>
-                            <ns0:Volume>720000</ns0:Volume>
+                            <ns0:Height>664</ns0:Height>
+                            <ns0:Volume>6374400</ns0:Volume>
                             <ns0:AlcoholByVolume>0</ns0:AlcoholByVolume>
                             <ns0:AlcoholLiters>0</ns0:AlcoholLiters>
-                            <ns0:CountryofOriginCode>ES</ns0:CountryofOriginCode>
                             <ns0:Attribute01>AVAILABLE</ns0:Attribute01>
                             <ns0:Attribute02>AVAILABLE</ns0:Attribute02>
                             <ns0:Attribute03>129</ns0:Attribute03>
@@ -385,6 +338,10 @@
                     </ns0:DocumentDetailLines>
                     <ns0:DocumentLineConditions>
                         <ns0:DocumentLineCondition>
+                            <ns0:ConditionCode>MERCHNGBAT</ns0:ConditionCode>
+                            <ns0:ConditionValue>false</ns0:ConditionValue>
+                        </ns0:DocumentLineCondition>
+                        <ns0:DocumentLineCondition>
                             <ns0:ConditionCode>TSSERCOST</ns0:ConditionCode>
                             <ns0:ConditionValue>Y</ns0:ConditionValue>
                         </ns0:DocumentLineCondition>
@@ -393,49 +350,48 @@
             </ns0:DocumentLines>
             <ns0:Carriers>
                 <ns0:Carrier>
-                    <ns0:No>ER001</ns0:No>
+                    <ns0:No>STOKJE1</ns0:No>
                     <ns0:CarrierTypeCode>EURO</ns0:CarrierTypeCode>
                     <ns0:CarrierTypeTransportCode>EURO</ns0:CarrierTypeTransportCode>
                     <ns0:CarrierTypeWeight>21</ns0:CarrierTypeWeight>
-                    <ns0:NetWeight>695</ns0:NetWeight>
-                    <ns0:GrossWeight>770</ns0:GrossWeight>
+                    <ns0:NetWeight>44</ns0:NetWeight>
+                    <ns0:GrossWeight>48</ns0:GrossWeight>
                     <ns0:Length>120</ns0:Length>
                     <ns0:Width>80</ns0:Width>
-                    <ns0:Height>90</ns0:Height>
-                    <ns0:Cubage>864000</ns0:Cubage>
+                    <ns0:Height>679</ns0:Height>
+                    <ns0:Cubage>6518400</ns0:Cubage>
                     <ns0:Type>0</ns0:Type>
                     <ns0:StatusCode>30-PRINTED</ns0:StatusCode>
-                    <ns0:GroundCarrier>ER001</ns0:GroundCarrier>
+                    <ns0:GroundCarrier>STOKJE1</ns0:GroundCarrier>
                     <ns0:BuildingCode>MSQ</ns0:BuildingCode>
                     <ns0:Contents>
                         <ns0:Content>
                             <ns0:DocumentLineNo>10000</ns0:DocumentLineNo>
-                            <ns0:CarrierNo>ER001</ns0:CarrierNo>
+                            <ns0:CarrierNo>STOKJE1</ns0:CarrierNo>
                             <ns0:CarrierTypeCode>EURO</ns0:CarrierTypeCode>
                             <ns0:CarrierTypeTransportCode>EURO</ns0:CarrierTypeTransportCode>
-                            <ns0:CustomerItemNo>RAS 10HNCE</ns0:CustomerItemNo>
-                            <ns0:ExternalNo>RAS 8HNCE</ns0:ExternalNo>
+                            <ns0:CustomerItemNo>RAS-3WHVRP1</ns0:CustomerItemNo>
+                            <ns0:ExternalNo>RAS-3WHVRP1</ns0:ExternalNo>
                             <ns0:UnitofMeasureCode>PCE</ns0:UnitofMeasureCode>
                             <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
-                            <ns0:Quantity>5</ns0:Quantity>
+                            <ns0:Quantity>1</ns0:Quantity>
                             <ns0:OrderQuantity>0</ns0:OrderQuantity>
                             <ns0:Temperature>0</ns0:Temperature>
-                            <ns0:TareWeight>75</ns0:TareWeight>
-                            <ns0:GrossWeight>770</ns0:GrossWeight>
-                            <ns0:NetWeight>695</ns0:NetWeight>
+                            <ns0:TareWeight>4</ns0:TareWeight>
+                            <ns0:GrossWeight>48</ns0:GrossWeight>
+                            <ns0:NetWeight>44</ns0:NetWeight>
                             <ns0:Posted>1</ns0:Posted>
-                            <ns0:BatchNo>B250000000039</ns0:BatchNo>
-                            <ns0:CreationDateTime>2025-04-16T09:40:57</ns0:CreationDateTime>
-                            <ns0:ModifiedDateTime>2025-04-16T09:40:58</ns0:ModifiedDateTime>
+                            <ns0:BatchNo>B250000000268</ns0:BatchNo>
+                            <ns0:CreationDateTime>2025-08-05T10:17:54</ns0:CreationDateTime>
+                            <ns0:ModifiedDateTime>2025-08-05T10:17:57</ns0:ModifiedDateTime>
                             <ns0:Length>120</ns0:Length>
                             <ns0:Width>80</ns0:Width>
-                            <ns0:Height>75</ns0:Height>
-                            <ns0:Volume>720000</ns0:Volume>
+                            <ns0:Height>664</ns0:Height>
+                            <ns0:Volume>6374400</ns0:Volume>
                             <ns0:BaseUnitofMeasureCode>PCE</ns0:BaseUnitofMeasureCode>
-                            <ns0:QuantityBase>5</ns0:QuantityBase>
+                            <ns0:QuantityBase>1</ns0:QuantityBase>
                             <ns0:AlcoholByVolume>0</ns0:AlcoholByVolume>
                             <ns0:AlcoholLiters>0</ns0:AlcoholLiters>
-                            <ns0:CountryofOriginCode>ES</ns0:CountryofOriginCode>
                             <ns0:Attribute01>AVAILABLE</ns0:Attribute01>
                             <ns0:Attribute02>AVAILABLE</ns0:Attribute02>
                             <ns0:Attribute03>129</ns0:Attribute03>
@@ -456,7 +412,6 @@
                                     <ns0:Value>129</ns0:Value>
                                 </ns0:Attribute>
                             </ns0:Attributes>
-                            <ns0:CustItemAttribute01>CRTN</ns0:CustItemAttribute01>
                         </ns0:Content>
                     </ns0:Contents>
                 </ns0:Carrier>
