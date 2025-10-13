@@ -107,7 +107,7 @@
                                     <xsl:value-of select="normalize-space(substring(Line, 533, 35))"/>
                                 </ns0:City>
                                 <ns0:CountryCode>
-                                    <xsl:value-of select="normalize-space(substring(Line, 569, 2))"/>
+                                    <xsl:value-of select="normalize-space(substring(Line, 568, 2))"/>
                                 </ns0:CountryCode>
                                 <ns0:Contact>
                                     <xsl:value-of select="normalize-space(substring(Line, 570, 70))"/>
@@ -116,6 +116,39 @@
                                     <xsl:value-of select="normalize-space(substring(Line, 640, 30))"/>
                                 </ns0:PhoneNo>
                             </ns0:ShipToAddress>
+                            
+                            <ns0:ConsigneeAddress>
+                                <ns0:EANCode>
+                                    <xsl:value-of select="normalize-space(substring(Line, 373, 10))"/>
+                                </ns0:EANCode>
+                                <ns0:Name>
+                                    <xsl:value-of select="normalize-space(substring(Line, 383, 35))"/>
+                                </ns0:Name>
+                                <ns0:Name2>
+                                    <xsl:value-of select="normalize-space(substring(Line, 418, 35))"/>
+                                </ns0:Name2>
+                                <ns0:Address>
+                                    <xsl:value-of select="normalize-space(substring(Line, 453, 35))"/>
+                                </ns0:Address>
+                                <ns0:Address2>
+                                    <xsl:value-of select="normalize-space(substring(Line, 488, 35))"/>
+                                </ns0:Address2>
+                                <ns0:PostCode>
+                                    <xsl:value-of select="normalize-space(substring(Line, 523, 10))"/>
+                                </ns0:PostCode>
+                                <ns0:City>
+                                    <xsl:value-of select="normalize-space(substring(Line, 533, 35))"/>
+                                </ns0:City>
+                                <ns0:CountryCode>
+                                    <xsl:value-of select="normalize-space(substring(Line, 568, 2))"/>
+                                </ns0:CountryCode>
+                                <ns0:Contact>
+                                    <xsl:value-of select="normalize-space(substring(Line, 570, 70))"/>
+                                </ns0:Contact>
+                                <ns0:PhoneNo>
+                                    <xsl:value-of select="normalize-space(substring(Line, 640, 30))"/>
+                                </ns0:PhoneNo>
+                            </ns0:ConsigneeAddress>
                             
                             <!-- Transport Type
                                  <xsl:value-of select="normalize-space(substring(Line, 670, 4))"/> -->
