@@ -31,12 +31,22 @@
                     <ns0:DeliveryDate>
                         <xsl:value-of select="replace(s0:DTM[s0:C507/C50701 = 137]/s0:C507/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')" />
                     </ns0:DeliveryDate>
+
+                    <ns0:AnnouncedDate>
+                        <xsl:value-of select="replace(s0:DTM[s0:C507/C50701 = 137]/s0:C507/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')" />
+                    </ns0:AnnouncedDate>
+                    <ns0:AnnouncedTime>
+                        <xsl:value-of select="format-time(current-time(), '[H01]:[m01]')" />
+                    </ns0:AnnouncedTime>
+
                     <ns0:PlannedStartDate>
                         <xsl:value-of select="replace(s0:DTM[s0:C507/C50701 = 2]/s0:C507/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')" />
                     </ns0:PlannedStartDate>
                     <ns0:PlannedStartTime>
                         <xsl:value-of select="format-time(current-time(), '[H01]:[m01]')" />
                     </ns0:PlannedStartTime>
+
+
                     <ns0:PostingDate>
                         <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')" />
                     </ns0:PostingDate>
