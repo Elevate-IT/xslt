@@ -183,7 +183,7 @@
                                     <GIN01>BN</GIN01>
                                     <C208_6>
                                         <C20801>
-                                            <xsl:value-of select="s0:SpecificationNo"/>
+                                            <xsl:value-of select="s0:ExternalSerialNo"/>
                                         </C20801>
                                     </C208_6>          
                                 </ns0:GIN_2>
