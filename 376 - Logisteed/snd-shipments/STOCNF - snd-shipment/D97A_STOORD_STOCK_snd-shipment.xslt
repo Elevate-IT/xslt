@@ -76,11 +76,11 @@
                     <ns0:C082>
                         <C08201>
                             <xsl:choose>
-                                <xsl:when test="s0:ConsigneeAddress/s0:Attribute01 != ''">
-                                    <xsl:value-of select="substring(translate(normalize-space(s0:ConsigneeAddress/s0:Attribute01),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
+                                <xsl:when test="s0:ConsigneeAddress/s0:EANCode != ''">
+                                    <xsl:value-of select="substring(translate(normalize-space(s0:ConsigneeAddress/s0:EANCode),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="substring(translate(normalize-space(s0:ConsigneeAddress/s0:Name),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
+                                    <xsl:text>ONE TIME</xsl:text>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </C08201>
@@ -185,16 +185,17 @@
                             </ns0:RFF_4>
                         </ns0:RFFLoop3>
                         
-                        <!-- <ns0:GIN_2>
-                             <ns0:GIN01>
-                             <xsl:text>BN</xsl:text>
-                             </ns0:GIN01>
-                             <ns0:C208_6>
-                             <C20801>
-                             <xsl:value-of select="s0:BatchNo" />
-                             </C20801>
-                             </ns0:C208_6>
-                             </ns0:GIN_2> -->
+                        <xsl:for-each select="s0:SpecificationSets/s0:SpecificationSet[s0:SpecificationTypeCode='PCE']">
+                            <ns0:GIN_2>
+                                <GIN01>BN</GIN01>
+                                <C208_6>
+                                    <C20801>
+                                        <xsl:value-of select="s0:ExternalSerialNo"/>
+                                    </C20801>
+                                </C208_6>          
+                            </ns0:GIN_2>
+                        </xsl:for-each>
+                        
                      </ns0:LINLoop1>
                 </xsl:for-each>
             </ns0:CPSLoop1>
