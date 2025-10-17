@@ -63,38 +63,12 @@
                     <ns0:Attribute01>
                         <xsl:value-of select="replace(s0:FTX[FTX01 = 'SIN'][starts-with(s0:C108/C10801, 'Created by:')]/s0:C108/C10801, 'Created by:', '')" />
                     </ns0:Attribute01>
-                    
-                    <xsl:if test="s0:NADLoop1/s0:NAD[NAD01 = 'CA']/s0:C058/C05801 != ''">
-                        <ns0:ShippingAgentCode>
-                            <xsl:value-of select="substring(s0:NADLoop1/s0:NAD[NAD01 = 'CA']/s0:C058/C05801, 1, 20)" />
-                        </ns0:ShippingAgentCode>
-                        <ns0:ShippingAgent>
-                            <ns0:ExternalNo>
-                                <xsl:value-of select="s0:NADLoop1/s0:NAD[NAD01 = 'SF']/s0:C082/C08201" />
-                            </ns0:ExternalNo>
-                            <ns0:Name>
-                                <xsl:value-of select="s0:NADLoop1/s0:NAD[NAD01 = 'SF']/s0:C080/C08001" />
-                            </ns0:Name>
-                            <ns0:Address>
-                                <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01='SF']/s0:NAD/s0:C059/C05901"/>
-                            </ns0:Address>
-                            <ns0:City>
-                                <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01='SF']/s0:NAD/NAD06"/>
-                            </ns0:City>
-                            <ns0:PostCode>
-                                <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01='SF']/s0:NAD/NAD08"/>
-                            </ns0:PostCode>
-                            <ns0:CountryCode>
-                                <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01='SF']/s0:NAD/NAD09"/>
-                            </ns0:CountryCode>
-                        </ns0:ShippingAgent>
-                    </xsl:if>
-                    
+                                       
                     <ns0:SenderAddress>
                         <xsl:choose>
-                            <xsl:when test="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C082/C08201 != 'ONE TIME'" >
+                            <xsl:when test="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201 != 'ONE TIME'" >
                                 <ns0:EANCode>
-                                    <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C082/C08201" />
+                                    <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />
                                 </ns0:EANCode>
                             </xsl:when> 
                             <xsl:otherwise>
@@ -104,30 +78,32 @@
                             </xsl:otherwise>
                         </xsl:choose>
                         <ns0:Name>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05801" />
+                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05801" />
                         </ns0:Name>
                         <ns0:Address>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05802" />
+                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05802" />
                         </ns0:Address>
                         <ns0:City>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
+                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD06" />
                         </ns0:City>
                         <ns0:PostCode>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD08" />
+                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD08" />
                         </ns0:PostCode>
                         <ns0:CountryCode>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD09" />
+                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD09" />
                         </ns0:CountryCode>
                     </ns0:SenderAddress>
+                    
+                    <!-- plant code -->
+                    <ns0:Attribute03>
+                        <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C082/C08201" />
+                    </ns0:Attribute03>
                     
                     <ns0:IncotermCode>
                         <xsl:value-of select="s0:FTX[FTX01 = 'Z99']/s0:C108/C10801" />
                     </ns0:IncotermCode>
                     
-                    <!-- plant code -->
-                    <ns0:Attribute03>
-                        <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />
-                    </ns0:Attribute03>
+                    
                     
                     <ns0:Attributes>
                         <ns0:Attribute>
