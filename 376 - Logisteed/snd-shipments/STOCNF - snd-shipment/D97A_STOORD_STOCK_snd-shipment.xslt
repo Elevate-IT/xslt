@@ -76,11 +76,11 @@
                     <ns0:C082>
                         <C08201>
                             <xsl:choose>
-                                <xsl:when test="s0:ConsigneeAddress/s0:Attribute01 != ''">
-                                    <xsl:value-of select="substring(translate(normalize-space(s0:ConsigneeAddress/s0:Attribute01),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
+                                <xsl:when test="s0:ConsigneeAddress/s0:EANCode != ''">
+                                    <xsl:value-of select="substring(translate(normalize-space(s0:ConsigneeAddress/s0:EANCode),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="substring(translate(normalize-space(s0:ConsigneeAddress/s0:Name),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
+                                    <xsl:text>ONE TIME</xsl:text>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </C08201>

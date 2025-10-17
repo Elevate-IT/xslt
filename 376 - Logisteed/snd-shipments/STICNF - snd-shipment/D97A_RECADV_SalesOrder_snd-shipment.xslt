@@ -66,7 +66,7 @@
                     <NAD01>CN</NAD01>
                     <ns0:C082>
                         <C08201>
-                            <xsl:value-of select="//s0:FromTradingPartner" />
+                            <xsl:value-of select="substring(translate(normalize-space(s0:Attribute03),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
                         </C08201>
                         <C08203>91</C08203>
                     </ns0:C082>
