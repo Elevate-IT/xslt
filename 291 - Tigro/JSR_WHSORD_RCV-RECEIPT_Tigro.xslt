@@ -5,6 +5,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:eit="http://www.elevate-it.be"
                 exclude-result-prefixes = "#all" >   
+    
     <xsl:output method="xml" indent="yes" version="1.0"/>
     
     <xsl:function name="eit:createDate">
@@ -60,6 +61,10 @@
                             <xsl:value-of select="eit:createDate(E1EDT13[QUALF = '007']/NTANF)"/>
                         </ns0:DeliveryDate>
                         
+                        <ns0:SenderReference>
+                            <xsl:value-of select="distinct-values(E1EDL24[LFIMG > 0]/VGBEL)"/>
+                        </ns0:SenderReference>
+                        
                         <ns0:SenderAddress>
                             <ns0:Name>
                                 <xsl:value-of select="substring(E1ADRM1[PARTNER_Q = 'LF']/NAME1, 1, 100)"/>
@@ -99,17 +104,15 @@
                                         <xsl:value-of select="CHARG" />
                                     </ns0:ExternalBatchNo>
                                     
-                                    <ns0:Attribute03>
-                                        <xsl:value-of select="LICHN" />
-                                    </ns0:Attribute03>
-                                    
                                     <ns0:OrderQuantity>
                                          <xsl:value-of select="LFIMG" />
                                     </ns0:OrderQuantity>
                                     
-                                    <!-- <ns0:OrderUnitofMeasureCode>
-                                         <xsl:value-of select="VRKME" />
-                                         </ns0:OrderUnitofMeasureCode> -->
+                                    <xsl:if test="VRKME != 'PCE'">
+                                        <ns0:OrderUnitofMeasureCode>
+                                            <xsl:value-of select="VRKME" />
+                                        </ns0:OrderUnitofMeasureCode>
+                                    </xsl:if>
                                     
                                     <ns0:GrossWeight>
                                         <xsl:value-of select="BRGEW" />
@@ -128,9 +131,17 @@
                                         <xsl:value-of select="concat($expDateParts[3], '-', $expDateParts[2], '-', $expDateParts[1])" />
                                     </ns0:ExpirationDate>
                                     
+                                    <ns0:InitialCarrierStatusCode>
+                                        <xsl:value-of select="ZZE1DL24/ZZLIPS_BESTQ" />
+                                    </ns0:InitialCarrierStatusCode>
+                                    
                                     <ns0:CountryofOriginCode>
                                         <xsl:value-of select="E1EDL35/HERKL" />
                                     </ns0:CountryofOriginCode>
+                                    
+                                    <ns0:Attribute03>
+                                        <xsl:value-of select="LICHN" />
+                                    </ns0:Attribute03>
                                     
                                     <!--DOC INFO SET  -->
                                     <ns0:Attributes>
@@ -148,6 +159,14 @@
                                             </ns0:Code>
                                             <ns0:Value>
                                                 <xsl:value-of select="HIPOS" />
+                                            </ns0:Value>
+                                        </ns0:Attribute>
+                                        <ns0:Attribute>
+                                            <ns0:Code>
+                                                <xsl:text>PO_NO</xsl:text>
+                                            </ns0:Code>
+                                            <ns0:Value>
+                                                <xsl:value-of select="VGBEL" />
                                             </ns0:Value>
                                         </ns0:Attribute>
                                         <ns0:Attribute>
