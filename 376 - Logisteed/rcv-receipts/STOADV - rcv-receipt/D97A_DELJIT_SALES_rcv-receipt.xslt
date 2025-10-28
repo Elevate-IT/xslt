@@ -138,7 +138,16 @@
                                                 <xsl:value-of select="s0:PIA[s0:C212_2/C21202 = 'NB']/s0:C212_2/C21201" />
                                             </ns0:ExternalBatchNo>
                                         </xsl:if>
-                                        
+
+                                        <xsl:if test="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10801 != ''">
+                                            <ns0:CustomsValueper>
+                                                <xsl:value-of select="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10801" />
+                                            </ns0:CustomsValueper>
+                                            <ns0:CurrencyCode>
+                                                <xsl:value-of select="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10802" />
+                                            </ns0:CurrencyCode>
+                                        </xsl:if>
+
                                         <ns0:Attributes>
                                             <ns0:Attribute>
                                                 <ns0:Code>EDILINENO</ns0:Code>
