@@ -175,6 +175,17 @@
                                 </C18603>
                             </ns0:C186_2>
                         </ns0:QTY_2>
+
+                          <xsl:for-each select="s0:SpecificationSets/s0:SpecificationSet[s0:SpecificationTypeCode='PCE']">
+                            <ns0:GIN_2>
+                                <GIN01>BN</GIN01>
+                                <ns0:C208_6>
+                                    <C20801>
+                                        <xsl:value-of select="s0:ExternalSerialNo"/>
+                                    </C20801>
+                                </ns0:C208_6>          
+                            </ns0:GIN_2>
+                        </xsl:for-each>
                         
                         <ns0:RFFLoop3>
                             <ns0:RFF_4>
@@ -185,16 +196,7 @@
                             </ns0:RFF_4>
                         </ns0:RFFLoop3>
                         
-                        <xsl:for-each select="s0:SpecificationSets/s0:SpecificationSet[s0:SpecificationTypeCode='PCE']">
-                            <ns0:GIN_2>
-                                <GIN01>BN</GIN01>
-                                <C208_6>
-                                    <C20801>
-                                        <xsl:value-of select="s0:ExternalSerialNo"/>
-                                    </C20801>
-                                </C208_6>          
-                            </ns0:GIN_2>
-                        </xsl:for-each>
+                      
                         
                      </ns0:LINLoop1>
                 </xsl:for-each>
