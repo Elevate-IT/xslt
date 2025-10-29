@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ns0:Message xmlns:ns0="www.boltrics.nl/sendshipment:v1.00">
+  <ns0:Header>
+    <ns0:MessageID>121658</ns0:MessageID>
+    <ns0:CreationDateTime>2021-11-04T11:46:19</ns0:CreationDateTime>
+    <ns0:ProcesAction>INSERT</ns0:ProcesAction>
+    <ns0:FromTradingPartner>DANDOY</ns0:FromTradingPartner>
+    <ns0:ToTradingPartner>ELCO1070K</ns0:ToTradingPartner>
+    <ns0:Database>Dynamics_RAPP_181</ns0:Database>
+    <ns0:CompanyName>Transports Dandoy</ns0:CompanyName>
+    <ns0:Information>SND-SHIPMENT-ELCO</ns0:Information>
+  </ns0:Header>
+  <ns0:Documents>
+    <ns0:Document>
+      <ns0:DocumentType>2</ns0:DocumentType>
+      <ns0:No>U210006273</ns0:No>
+      <ns0:Customer>
+        <ns0:No>ELCO1070K</ns0:No>
+        <ns0:EANCode>ELCO1070K</ns0:EANCode>
+        <ns0:Name>Elco Belgium</ns0:Name>
+        <ns0:Address>Boulevard Industriel 61</ns0:Address>
+        <ns0:City>Anderlecht</ns0:City>
+        <ns0:PostCode>1070</ns0:PostCode>
+        <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+        <ns0:CountryName>België</ns0:CountryName>
+        <ns0:PhoneNo>32493408255</ns0:PhoneNo>
+        <ns0:VATRegistrationNo>BE0414905028</ns0:VATRegistrationNo>
+        <ns0:E-Mail>celine.dechamps@be.elco.net</ns0:E-Mail>
+      </ns0:Customer>
+      <ns0:BuildingCode>MOLLEM1</ns0:BuildingCode>
+      <ns0:LocationNo>EXP FASE1</ns0:LocationNo>
+      <ns0:DocumentDate>2021-11-04</ns0:DocumentDate>
+      <ns0:OrderDate>2021-11-04</ns0:OrderDate>
+      <ns0:PostingDate>2021-11-04</ns0:PostingDate>
+      <ns0:StatusCode>45-LOADED</ns0:StatusCode>
+      <ns0:ExternalDocumentNo>8002987256</ns0:ExternalDocumentNo>
+      <ns0:AnnouncedDate>2021-11-04</ns0:AnnouncedDate>
+      <ns0:ArrivedDate>2021-11-04</ns0:ArrivedDate>
+      <ns0:DepartedDate>2021-10-13</ns0:DepartedDate>
+      <ns0:PlannedStartDate>2021-10-13</ns0:PlannedStartDate>
+      <ns0:DeliveryDate>2021-10-13</ns0:DeliveryDate>
+      <ns0:OrderTypeCode>STD</ns0:OrderTypeCode>
+      <ns0:SenderAddress>
+        <ns0:No>ADR01366</ns0:No>
+        <ns0:ExternalNo>4622</ns0:ExternalNo>
+        <ns0:Name>Luogo di sped Dandoy</ns0:Name>
+        <ns0:Name2>Exploitation site  Mollem 1  (War.)</ns0:Name2>
+        <ns0:Address>Zone 5 Mollem 190</ns0:Address>
+        <ns0:City>Mollem (Asse)</ns0:City>
+        <ns0:PostCode>1730</ns0:PostCode>
+        <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+      </ns0:SenderAddress>
+      <ns0:ShipToAddress>
+        <ns0:No>ADR01368</ns0:No>
+        <ns0:ExternalNo>0058109751</ns0:ExternalNo>
+        <ns0:Name>SAENEN   Zonen b.v.b.a.</ns0:Name>
+        <ns0:Address>gettendonkstraat 1 </ns0:Address>
+        <ns0:City>Tessenderlo</ns0:City>
+        <ns0:PostCode>3980</ns0:PostCode>
+        <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+      </ns0:ShipToAddress>
+      <ns0:SenderReference>0006013912</ns0:SenderReference>
+      <ns0:Attribute01>211030315</ns0:Attribute01>
+      <ns0:GrossWeight>0</ns0:GrossWeight>
+      <ns0:NetWeight>0</ns0:NetWeight>
+      <ns0:VolumeWeight>0</ns0:VolumeWeight>
+      <ns0:Volume>0</ns0:Volume>
+      <ns0:Quantity>0</ns0:Quantity>
+      <ns0:ExpectedShipmentCarrierQty>1</ns0:ExpectedShipmentCarrierQty>
+      <ns0:InvoiceValue>0</ns0:InvoiceValue>
+      <ns0:CarriageValue>0</ns0:CarriageValue>
+      <ns0:InsuranceValue>0</ns0:InsuranceValue>
+      <ns0:Attributes>
+        <ns0:Attribute>
+          <ns0:Code>EXTLINENO</ns0:Code>
+          <ns0:Description>External line no</ns0:Description>
+          <ns0:Value>000010</ns0:Value>
+        </ns0:Attribute>
+        <ns0:Attribute>
+          <ns0:Code>ST_10</ns0:Code>
+          <ns0:Description>Ship-to Address Name</ns0:Description>
+          <ns0:Value>SAENEN   Zonen b.v.b.a.</ns0:Value>
+        </ns0:Attribute>
+        <ns0:Attribute>
+          <ns0:Code>ST_12</ns0:Code>
+          <ns0:Description>Ship-to Address Address</ns0:Description>
+          <ns0:Value>gettendonkstraat 1 </ns0:Value>
+        </ns0:Attribute>
+        <ns0:Attribute>
+          <ns0:Code>ST_14</ns0:Code>
+          <ns0:Description>Ship-to Address City</ns0:Description>
+          <ns0:Value>Tessenderlo</ns0:Value>
+        </ns0:Attribute>
+        <ns0:Attribute>
+          <ns0:Code>ST_18</ns0:Code>
+          <ns0:Description>Ship-to Address Post Code</ns0:Description>
+          <ns0:Value>3980</ns0:Value>
+        </ns0:Attribute>
+        <ns0:Attribute>
+          <ns0:Code>ST_20</ns0:Code>
+          <ns0:Description>Ship-to Address Country/Region Code</ns0:Description>
+          <ns0:Value>BE</ns0:Value>
+        </ns0:Attribute>
+      </ns0:Attributes>
+      <ns0:DocumentLines>
+        <ns0:DocumentLine>
+          <ns0:DocumentType>2</ns0:DocumentType>
+          <ns0:LineNo>10000</ns0:LineNo>
+          <ns0:Sell-toCustomerNo>ELCO1070K</ns0:Sell-toCustomerNo>
+          <ns0:CarrierTypeCode>EPAL</ns0:CarrierTypeCode>
+          <ns0:CarrierTypeTransportCode>EPAL</ns0:CarrierTypeTransportCode>
+          <ns0:Type>1</ns0:Type>
+          <ns0:No>A27798</ns0:No>
+          <ns0:ExternalNo>3732073</ns0:ExternalNo>
+          <ns0:ItemNo>STD</ns0:ItemNo>
+          <ns0:ExtBatchNoMandatoryPost>1</ns0:ExtBatchNoMandatoryPost>
+          <ns0:EANCode>5414849600829</ns0:EANCode>
+          <ns0:EANCodeBaseUnitofMeasure>5414849600829</ns0:EANCodeBaseUnitofMeasure>
+          <ns0:OrderEANCode>5414849600829</ns0:OrderEANCode>
+          <ns0:Description>KIT BASE TOIT PLAT S 2.5 V 2 CAPT.</ns0:Description>
+          <ns0:BaseUnitofMeasureCode>PCS</ns0:BaseUnitofMeasureCode>
+          <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+          <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+          <ns0:Quantity>0</ns0:Quantity>
+          <ns0:QtyCreated>0</ns0:QtyCreated>
+          <ns0:QuantityBase>0</ns0:QuantityBase>
+          <ns0:QtyBaseCreated>0</ns0:QtyBaseCreated>
+          <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
+          <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
+          <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+          <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+          <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+          <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
+          <ns0:CarrierQtyCreated>0</ns0:CarrierQtyCreated>
+          <ns0:DefaultQtyPerCarrier>1</ns0:DefaultQtyPerCarrier>
+          <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+          <ns0:CarrierQtyPosted>0</ns0:CarrierQtyPosted>
+          <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+          <ns0:OrderUnitofMeasureCode>PCS</ns0:OrderUnitofMeasureCode>
+          <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+          <ns0:OrderQuantity>1</ns0:OrderQuantity>
+          <ns0:PostedOrderQuantity>0</ns0:PostedOrderQuantity>
+          <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+          <ns0:GrossWeightperUoM>0</ns0:GrossWeightperUoM>
+          <ns0:NetWeightperUoM>0</ns0:NetWeightperUoM>
+          <ns0:VolumeWeight>0</ns0:VolumeWeight>
+          <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+          <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+          <ns0:TareWeight>0</ns0:TareWeight>
+          <ns0:GrossWeight>0</ns0:GrossWeight>
+          <ns0:NetWeight>0</ns0:NetWeight>
+          <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
+          <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
+          <ns0:LocationNo>EXP FASE1</ns0:LocationNo>
+          <ns0:BuildingCode>MOLLEM1</ns0:BuildingCode>
+          <ns0:ExternalDocumentNo>8002987256</ns0:ExternalDocumentNo>
+          <ns0:SenderAddressNo>ADR01366</ns0:SenderAddressNo>
+          <ns0:Ship-ToAddressNo>ADR01368</ns0:Ship-ToAddressNo>
+          <ns0:MaterialType>0</ns0:MaterialType>
+          <ns0:Attribute01>000010</ns0:Attribute01>
+          <ns0:SenderAddress>
+            <ns0:No>ADR01366</ns0:No>
+            <ns0:ExternalNo>4622</ns0:ExternalNo>
+            <ns0:Name>Luogo di sped Dandoy</ns0:Name>
+            <ns0:Name2>Exploitation site  Mollem 1  (War.)</ns0:Name2>
+            <ns0:Address>Zone 5 Mollem 190</ns0:Address>
+            <ns0:City>Mollem (Asse)</ns0:City>
+            <ns0:PostCode>1730</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:SenderAddress>
+          <ns0:ShipToAddress>
+            <ns0:No>ADR01368</ns0:No>
+            <ns0:ExternalNo>0058109751</ns0:ExternalNo>
+            <ns0:Name>SAENEN   Zonen b.v.b.a.</ns0:Name>
+            <ns0:Address>gettendonkstraat 1 </ns0:Address>
+            <ns0:City>Tessenderlo</ns0:City>
+            <ns0:PostCode>3980</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:ShipToAddress>
+          <ns0:Attributes>
+            <ns0:Attribute>
+              <ns0:Code>EXTLINENO</ns0:Code>
+              <ns0:Description>External line no</ns0:Description>
+              <ns0:Value>000010</ns0:Value>
+            </ns0:Attribute>
+          </ns0:Attributes>
+          <ns0:DocQuantityRegistrations>
+            <ns0:DocQuantityRegistration>
+              <ns0:Quantity>1</ns0:Quantity>
+              <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+              <ns0:RegistrationTypeCode>SHORTAGE</ns0:RegistrationTypeCode>
+            </ns0:DocQuantityRegistration>
+          </ns0:DocQuantityRegistrations>
+          <ns0:SelectCriteriaSets>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>45</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>81</ns0:FieldNo>
+              <ns0:Filter>10-AVAILABLE</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>1000</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+          </ns0:SelectCriteriaSets>
+        </ns0:DocumentLine>
+        <ns0:DocumentLine>
+          <ns0:DocumentType>2</ns0:DocumentType>
+          <ns0:LineNo>20000</ns0:LineNo>
+          <ns0:Sell-toCustomerNo>ELCO1070K</ns0:Sell-toCustomerNo>
+          <ns0:CarrierTypeCode>EPAL</ns0:CarrierTypeCode>
+          <ns0:CarrierTypeTransportCode>EPAL</ns0:CarrierTypeTransportCode>
+          <ns0:Type>1</ns0:Type>
+          <ns0:No>A25105</ns0:No>
+          <ns0:ExternalNo>3721447</ns0:ExternalNo>
+          <ns0:ItemNo>STD</ns0:ItemNo>
+          <ns0:ExtBatchNoMandatoryPost>1</ns0:ExtBatchNoMandatoryPost>
+          <ns0:EANCode>5414849168657</ns0:EANCode>
+          <ns0:EANCodeBaseUnitofMeasure>5414849168657</ns0:EANCodeBaseUnitofMeasure>
+          <ns0:OrderEANCode>5414849168657</ns0:OrderEANCode>
+          <ns0:Description>MONTAGEPROFIEL 2403MM/1PAAR</ns0:Description>
+          <ns0:BaseUnitofMeasureCode>PCS</ns0:BaseUnitofMeasureCode>
+          <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+          <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+          <ns0:Quantity>0</ns0:Quantity>
+          <ns0:QtyCreated>0</ns0:QtyCreated>
+          <ns0:QuantityBase>0</ns0:QuantityBase>
+          <ns0:QtyBaseCreated>0</ns0:QtyBaseCreated>
+          <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
+          <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
+          <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+          <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+          <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+          <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
+          <ns0:CarrierQtyCreated>0</ns0:CarrierQtyCreated>
+          <ns0:DefaultQtyPerCarrier>1</ns0:DefaultQtyPerCarrier>
+          <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+          <ns0:CarrierQtyPosted>0</ns0:CarrierQtyPosted>
+          <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+          <ns0:OrderUnitofMeasureCode>PCS</ns0:OrderUnitofMeasureCode>
+          <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+          <ns0:OrderQuantity>1</ns0:OrderQuantity>
+          <ns0:PostedOrderQuantity>0</ns0:PostedOrderQuantity>
+          <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+          <ns0:GrossWeightperUoM>7.637</ns0:GrossWeightperUoM>
+          <ns0:NetWeightperUoM>0</ns0:NetWeightperUoM>
+          <ns0:VolumeWeight>0</ns0:VolumeWeight>
+          <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+          <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+          <ns0:TareWeight>0</ns0:TareWeight>
+          <ns0:GrossWeight>0</ns0:GrossWeight>
+          <ns0:NetWeight>0</ns0:NetWeight>
+          <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
+          <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
+          <ns0:LocationNo>EXP FASE1</ns0:LocationNo>
+          <ns0:BuildingCode>MOLLEM1</ns0:BuildingCode>
+          <ns0:ExternalDocumentNo>8002987256</ns0:ExternalDocumentNo>
+          <ns0:SenderAddressNo>ADR01366</ns0:SenderAddressNo>
+          <ns0:Ship-ToAddressNo>ADR01368</ns0:Ship-ToAddressNo>
+          <ns0:MaterialType>0</ns0:MaterialType>
+          <ns0:Attribute01>000020</ns0:Attribute01>
+          <ns0:SenderAddress>
+            <ns0:No>ADR01366</ns0:No>
+            <ns0:ExternalNo>4622</ns0:ExternalNo>
+            <ns0:Name>Luogo di sped Dandoy</ns0:Name>
+            <ns0:Name2>Exploitation site  Mollem 1  (War.)</ns0:Name2>
+            <ns0:Address>Zone 5 Mollem 190</ns0:Address>
+            <ns0:City>Mollem (Asse)</ns0:City>
+            <ns0:PostCode>1730</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:SenderAddress>
+          <ns0:ShipToAddress>
+            <ns0:No>ADR01368</ns0:No>
+            <ns0:ExternalNo>0058109751</ns0:ExternalNo>
+            <ns0:Name>SAENEN   Zonen b.v.b.a.</ns0:Name>
+            <ns0:Address>gettendonkstraat 1 </ns0:Address>
+            <ns0:City>Tessenderlo</ns0:City>
+            <ns0:PostCode>3980</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:ShipToAddress>
+          <ns0:Attributes>
+            <ns0:Attribute>
+              <ns0:Code>EXTLINENO</ns0:Code>
+              <ns0:Description>External line no</ns0:Description>
+              <ns0:Value>000020</ns0:Value>
+            </ns0:Attribute>
+          </ns0:Attributes>
+          <ns0:DocQuantityRegistrations>
+            <ns0:DocQuantityRegistration>
+              <ns0:Quantity>1</ns0:Quantity>
+              <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+              <ns0:RegistrationTypeCode>SHORTAGE</ns0:RegistrationTypeCode>
+            </ns0:DocQuantityRegistration>
+          </ns0:DocQuantityRegistrations>
+          <ns0:SelectCriteriaSets>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>45</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>81</ns0:FieldNo>
+              <ns0:Filter>10-AVAILABLE</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>1000</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+          </ns0:SelectCriteriaSets>
+        </ns0:DocumentLine>
+        <ns0:DocumentLine>
+          <ns0:DocumentType>2</ns0:DocumentType>
+          <ns0:LineNo>30000</ns0:LineNo>
+          <ns0:Sell-toCustomerNo>ELCO1070K</ns0:Sell-toCustomerNo>
+          <ns0:CarrierTypeCode>EPAL</ns0:CarrierTypeCode>
+          <ns0:CarrierTypeTransportCode>EPAL</ns0:CarrierTypeTransportCode>
+          <ns0:Type>1</ns0:Type>
+          <ns0:No>A25098</ns0:No>
+          <ns0:ExternalNo>3721440</ns0:ExternalNo>
+          <ns0:ItemNo>STD</ns0:ItemNo>
+          <ns0:ExtBatchNoMandatoryPost>1</ns0:ExtBatchNoMandatoryPost>
+          <ns0:EANCode>5414849168756</ns0:EANCode>
+          <ns0:EANCodeBaseUnitofMeasure>5414849168756</ns0:EANCodeBaseUnitofMeasure>
+          <ns0:OrderEANCode>5414849168756</ns0:OrderEANCode>
+          <ns0:Description>COLLECTORKLEM SOLATRON S SET 4ST</ns0:Description>
+          <ns0:BaseUnitofMeasureCode>PCS</ns0:BaseUnitofMeasureCode>
+          <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+          <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+          <ns0:Quantity>0</ns0:Quantity>
+          <ns0:QtyCreated>0</ns0:QtyCreated>
+          <ns0:QuantityBase>0</ns0:QuantityBase>
+          <ns0:QtyBaseCreated>0</ns0:QtyBaseCreated>
+          <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
+          <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
+          <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+          <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+          <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+          <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
+          <ns0:CarrierQtyCreated>0</ns0:CarrierQtyCreated>
+          <ns0:DefaultQtyPerCarrier>1</ns0:DefaultQtyPerCarrier>
+          <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+          <ns0:CarrierQtyPosted>0</ns0:CarrierQtyPosted>
+          <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+          <ns0:OrderUnitofMeasureCode>PCS</ns0:OrderUnitofMeasureCode>
+          <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+          <ns0:OrderQuantity>2</ns0:OrderQuantity>
+          <ns0:PostedOrderQuantity>0</ns0:PostedOrderQuantity>
+          <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+          <ns0:GrossWeightperUoM>0.283</ns0:GrossWeightperUoM>
+          <ns0:NetWeightperUoM>0</ns0:NetWeightperUoM>
+          <ns0:VolumeWeight>0</ns0:VolumeWeight>
+          <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+          <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+          <ns0:TareWeight>0</ns0:TareWeight>
+          <ns0:GrossWeight>0</ns0:GrossWeight>
+          <ns0:NetWeight>0</ns0:NetWeight>
+          <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
+          <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
+          <ns0:LocationNo>EXP FASE1</ns0:LocationNo>
+          <ns0:BuildingCode>MOLLEM1</ns0:BuildingCode>
+          <ns0:ExternalDocumentNo>8002987256</ns0:ExternalDocumentNo>
+          <ns0:SenderAddressNo>ADR01366</ns0:SenderAddressNo>
+          <ns0:Ship-ToAddressNo>ADR01368</ns0:Ship-ToAddressNo>
+          <ns0:MaterialType>0</ns0:MaterialType>
+          <ns0:Attribute01>000030</ns0:Attribute01>
+          <ns0:SenderAddress>
+            <ns0:No>ADR01366</ns0:No>
+            <ns0:ExternalNo>4622</ns0:ExternalNo>
+            <ns0:Name>Luogo di sped Dandoy</ns0:Name>
+            <ns0:Name2>Exploitation site  Mollem 1  (War.)</ns0:Name2>
+            <ns0:Address>Zone 5 Mollem 190</ns0:Address>
+            <ns0:City>Mollem (Asse)</ns0:City>
+            <ns0:PostCode>1730</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:SenderAddress>
+          <ns0:ShipToAddress>
+            <ns0:No>ADR01368</ns0:No>
+            <ns0:ExternalNo>0058109751</ns0:ExternalNo>
+            <ns0:Name>SAENEN   Zonen b.v.b.a.</ns0:Name>
+            <ns0:Address>gettendonkstraat 1 </ns0:Address>
+            <ns0:City>Tessenderlo</ns0:City>
+            <ns0:PostCode>3980</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:ShipToAddress>
+          <ns0:Attributes>
+            <ns0:Attribute>
+              <ns0:Code>EXTLINENO</ns0:Code>
+              <ns0:Description>External line no</ns0:Description>
+              <ns0:Value>000030</ns0:Value>
+            </ns0:Attribute>
+          </ns0:Attributes>
+          <ns0:DocQuantityRegistrations>
+            <ns0:DocQuantityRegistration>
+              <ns0:Quantity>2</ns0:Quantity>
+              <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+              <ns0:RegistrationTypeCode>SHORTAGE</ns0:RegistrationTypeCode>
+            </ns0:DocQuantityRegistration>
+          </ns0:DocQuantityRegistrations>
+          <ns0:SelectCriteriaSets>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>45</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>81</ns0:FieldNo>
+              <ns0:Filter>10-AVAILABLE</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>1000</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+          </ns0:SelectCriteriaSets>
+        </ns0:DocumentLine>
+        <ns0:DocumentLine>
+          <ns0:DocumentType>2</ns0:DocumentType>
+          <ns0:LineNo>40000</ns0:LineNo>
+          <ns0:Sell-toCustomerNo>ELCO1070K</ns0:Sell-toCustomerNo>
+          <ns0:CarrierTypeCode>EPAL</ns0:CarrierTypeCode>
+          <ns0:CarrierTypeTransportCode>EPAL</ns0:CarrierTypeTransportCode>
+          <ns0:Type>1</ns0:Type>
+          <ns0:No>A25099</ns0:No>
+          <ns0:ExternalNo>3721441</ns0:ExternalNo>
+          <ns0:ItemNo>STD</ns0:ItemNo>
+          <ns0:ExtBatchNoMandatoryPost>1</ns0:ExtBatchNoMandatoryPost>
+          <ns0:EANCode>5414849168596</ns0:EANCode>
+          <ns0:EANCodeBaseUnitofMeasure>5414849168596</ns0:EANCodeBaseUnitofMeasure>
+          <ns0:OrderEANCode>5414849168596</ns0:OrderEANCode>
+          <ns0:Description>BEVEILIGING SOLATRON S</ns0:Description>
+          <ns0:BaseUnitofMeasureCode>PCS</ns0:BaseUnitofMeasureCode>
+          <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+          <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+          <ns0:Quantity>0</ns0:Quantity>
+          <ns0:QtyCreated>0</ns0:QtyCreated>
+          <ns0:QuantityBase>0</ns0:QuantityBase>
+          <ns0:QtyBaseCreated>0</ns0:QtyBaseCreated>
+          <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
+          <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
+          <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+          <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+          <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+          <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
+          <ns0:CarrierQtyCreated>0</ns0:CarrierQtyCreated>
+          <ns0:DefaultQtyPerCarrier>1</ns0:DefaultQtyPerCarrier>
+          <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+          <ns0:CarrierQtyPosted>0</ns0:CarrierQtyPosted>
+          <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+          <ns0:OrderUnitofMeasureCode>PCS</ns0:OrderUnitofMeasureCode>
+          <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+          <ns0:OrderQuantity>4</ns0:OrderQuantity>
+          <ns0:PostedOrderQuantity>0</ns0:PostedOrderQuantity>
+          <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+          <ns0:GrossWeightperUoM>0.127</ns0:GrossWeightperUoM>
+          <ns0:NetWeightperUoM>0</ns0:NetWeightperUoM>
+          <ns0:VolumeWeight>0</ns0:VolumeWeight>
+          <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+          <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+          <ns0:TareWeight>0</ns0:TareWeight>
+          <ns0:GrossWeight>0</ns0:GrossWeight>
+          <ns0:NetWeight>0</ns0:NetWeight>
+          <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
+          <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
+          <ns0:LocationNo>EXP FASE1</ns0:LocationNo>
+          <ns0:BuildingCode>MOLLEM1</ns0:BuildingCode>
+          <ns0:ExternalDocumentNo>8002987256</ns0:ExternalDocumentNo>
+          <ns0:SenderAddressNo>ADR01366</ns0:SenderAddressNo>
+          <ns0:Ship-ToAddressNo>ADR01368</ns0:Ship-ToAddressNo>
+          <ns0:MaterialType>0</ns0:MaterialType>
+          <ns0:Attribute01>000040</ns0:Attribute01>
+          <ns0:SenderAddress>
+            <ns0:No>ADR01366</ns0:No>
+            <ns0:ExternalNo>4622</ns0:ExternalNo>
+            <ns0:Name>Luogo di sped Dandoy</ns0:Name>
+            <ns0:Name2>Exploitation site  Mollem 1  (War.)</ns0:Name2>
+            <ns0:Address>Zone 5 Mollem 190</ns0:Address>
+            <ns0:City>Mollem (Asse)</ns0:City>
+            <ns0:PostCode>1730</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:SenderAddress>
+          <ns0:ShipToAddress>
+            <ns0:No>ADR01368</ns0:No>
+            <ns0:ExternalNo>0058109751</ns0:ExternalNo>
+            <ns0:Name>SAENEN   Zonen b.v.b.a.</ns0:Name>
+            <ns0:Address>gettendonkstraat 1 </ns0:Address>
+            <ns0:City>Tessenderlo</ns0:City>
+            <ns0:PostCode>3980</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:ShipToAddress>
+          <ns0:Attributes>
+            <ns0:Attribute>
+              <ns0:Code>EXTLINENO</ns0:Code>
+              <ns0:Description>External line no</ns0:Description>
+              <ns0:Value>000040</ns0:Value>
+            </ns0:Attribute>
+          </ns0:Attributes>
+          <ns0:DocQuantityRegistrations>
+            <ns0:DocQuantityRegistration>
+              <ns0:Quantity>4</ns0:Quantity>
+              <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+              <ns0:RegistrationTypeCode>SHORTAGE</ns0:RegistrationTypeCode>
+            </ns0:DocQuantityRegistration>
+          </ns0:DocQuantityRegistrations>
+          <ns0:SelectCriteriaSets>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>45</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>81</ns0:FieldNo>
+              <ns0:Filter>10-AVAILABLE</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>1000</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+          </ns0:SelectCriteriaSets>
+        </ns0:DocumentLine>
+        <ns0:DocumentLine>
+          <ns0:DocumentType>2</ns0:DocumentType>
+          <ns0:LineNo>50000</ns0:LineNo>
+          <ns0:Sell-toCustomerNo>ELCO1070K</ns0:Sell-toCustomerNo>
+          <ns0:CarrierTypeCode>EPAL</ns0:CarrierTypeCode>
+          <ns0:CarrierTypeTransportCode>EPAL</ns0:CarrierTypeTransportCode>
+          <ns0:Type>1</ns0:Type>
+          <ns0:No>A24898</ns0:No>
+          <ns0:ExternalNo>3721052</ns0:ExternalNo>
+          <ns0:ItemNo>STD</ns0:ItemNo>
+          <ns0:ExtBatchNoMandatoryPost>1</ns0:ExtBatchNoMandatoryPost>
+          <ns0:EANCode>5414849167759</ns0:EANCode>
+          <ns0:EANCodeBaseUnitofMeasure>5414849167759</ns0:EANCodeBaseUnitofMeasure>
+          <ns0:OrderEANCode>5414849167759</ns0:OrderEANCode>
+          <ns0:Description>PLAT DAK STAANDER LANG MET DWARSVERB.</ns0:Description>
+          <ns0:BaseUnitofMeasureCode>PCS</ns0:BaseUnitofMeasureCode>
+          <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+          <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+          <ns0:Quantity>0</ns0:Quantity>
+          <ns0:QtyCreated>0</ns0:QtyCreated>
+          <ns0:QuantityBase>0</ns0:QuantityBase>
+          <ns0:QtyBaseCreated>0</ns0:QtyBaseCreated>
+          <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
+          <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
+          <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+          <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+          <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+          <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
+          <ns0:CarrierQtyCreated>0</ns0:CarrierQtyCreated>
+          <ns0:DefaultQtyPerCarrier>1</ns0:DefaultQtyPerCarrier>
+          <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+          <ns0:CarrierQtyPosted>0</ns0:CarrierQtyPosted>
+          <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+          <ns0:OrderUnitofMeasureCode>PCS</ns0:OrderUnitofMeasureCode>
+          <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+          <ns0:OrderQuantity>3</ns0:OrderQuantity>
+          <ns0:PostedOrderQuantity>0</ns0:PostedOrderQuantity>
+          <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+          <ns0:GrossWeightperUoM>9.32</ns0:GrossWeightperUoM>
+          <ns0:NetWeightperUoM>0</ns0:NetWeightperUoM>
+          <ns0:VolumeWeight>0</ns0:VolumeWeight>
+          <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+          <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+          <ns0:TareWeight>0</ns0:TareWeight>
+          <ns0:GrossWeight>0</ns0:GrossWeight>
+          <ns0:NetWeight>0</ns0:NetWeight>
+          <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
+          <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
+          <ns0:LocationNo>EXP FASE1</ns0:LocationNo>
+          <ns0:BuildingCode>MOLLEM1</ns0:BuildingCode>
+          <ns0:ExternalDocumentNo>8002987256</ns0:ExternalDocumentNo>
+          <ns0:SenderAddressNo>ADR01366</ns0:SenderAddressNo>
+          <ns0:Ship-ToAddressNo>ADR01368</ns0:Ship-ToAddressNo>
+          <ns0:MaterialType>0</ns0:MaterialType>
+          <ns0:Attribute01>000050</ns0:Attribute01>
+          <ns0:SenderAddress>
+            <ns0:No>ADR01366</ns0:No>
+            <ns0:ExternalNo>4622</ns0:ExternalNo>
+            <ns0:Name>Luogo di sped Dandoy</ns0:Name>
+            <ns0:Name2>Exploitation site  Mollem 1  (War.)</ns0:Name2>
+            <ns0:Address>Zone 5 Mollem 190</ns0:Address>
+            <ns0:City>Mollem (Asse)</ns0:City>
+            <ns0:PostCode>1730</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:SenderAddress>
+          <ns0:ShipToAddress>
+            <ns0:No>ADR01368</ns0:No>
+            <ns0:ExternalNo>0058109751</ns0:ExternalNo>
+            <ns0:Name>SAENEN   Zonen b.v.b.a.</ns0:Name>
+            <ns0:Address>gettendonkstraat 1 </ns0:Address>
+            <ns0:City>Tessenderlo</ns0:City>
+            <ns0:PostCode>3980</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:ShipToAddress>
+          <ns0:Attributes>
+            <ns0:Attribute>
+              <ns0:Code>EXTLINENO</ns0:Code>
+              <ns0:Description>External line no</ns0:Description>
+              <ns0:Value>000050</ns0:Value>
+            </ns0:Attribute>
+          </ns0:Attributes>
+          <ns0:DocQuantityRegistrations>
+            <ns0:DocQuantityRegistration>
+              <ns0:Quantity>3</ns0:Quantity>
+              <ns0:UnitofMeasureCode>PCS</ns0:UnitofMeasureCode>
+              <ns0:RegistrationTypeCode>SHORTAGE</ns0:RegistrationTypeCode>
+            </ns0:DocQuantityRegistration>
+          </ns0:DocQuantityRegistrations>
+          <ns0:SelectCriteriaSets>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>45</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>81</ns0:FieldNo>
+              <ns0:Filter>10-AVAILABLE</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+            <ns0:SelectCriteriaSet>
+              <ns0:FieldNo>1000</ns0:FieldNo>
+              <ns0:Filter>%1</ns0:Filter>
+            </ns0:SelectCriteriaSet>
+          </ns0:SelectCriteriaSets>
+        </ns0:DocumentLine>
+      </ns0:DocumentLines>
+    </ns0:Document>
+  </ns0:Documents>
+</ns0:Message>

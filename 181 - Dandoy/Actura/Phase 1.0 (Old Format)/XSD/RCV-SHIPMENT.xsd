@@ -1,0 +1,5599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="www.boltrics.nl/receiveshipment:v1.00" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="www.boltrics.nl/receiveshipment:v1.00" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.00">
+<xs:annotation>
+<xs:appinfo>
+</xs:appinfo>
+</xs:annotation>
+<xs:element name="Message">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Header" type="HeaderType" nillable="false"/>
+<xs:element name="Documents">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Document" type="Documents" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="HeaderType">
+<xs:sequence>
+<xs:element name="MessageID" nillable="false">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CreationDateTime" type="xs:dateTime" nillable="false"/>
+<xs:element name="ProcesAction" nillable="false">
+<xs:annotation>
+<xs:documentation>INSERT MODIFY DELETE REPLACE SKIP</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+<xs:enumeration value="INSERT"/>
+<xs:enumeration value="MODIFY"/>
+<xs:enumeration value="DELETE"/>
+<xs:enumeration value="REPLACE"/>
+<xs:enumeration value="SKIP"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FromTradingPartner" nillable="false">
+<xs:annotation>
+<xs:documentation> Unique ID to be used mutually agreed</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ToTradingPartner" nillable="false">
+<xs:annotation>
+<xs:documentation> Unique ID to be used mutually agreed</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Database" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CompanyName" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="TestIndicator" type="xs:boolean" minOccurs="0" />
+<xs:element name="Information" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="UniqueMessageNumber" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Documents">
+<xs:all>
+<xs:element name="No" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Internal DocumentNo, only for internal purposes</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EANCode of the Customer</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Sell-toContact" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Contactname of Customer</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="BuildingCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="LocationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:annotation>
+<xs:documentation>ISO language code to be used</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DocumentDate" type="xs:date" nillable="false"/>
+<xs:element name="OrderDate" type="xs:date" minOccurs="0"/>
+<xs:element name="PostingDate" type="xs:date" minOccurs="0"/>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalDocumentNo" nillable="false">
+<xs:annotation>
+<xs:documentation>DocumentNo of the customer</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalReference" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Customer Reference</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Sell-toContactNo" minOccurs="0">
+<xs:annotation>
+<xs:documentation>ContactCode of Customer</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ShippingAgentCode" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Shipping Agent </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ShippingAgent" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="ShippingAgentServices" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VehicleNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="TrailerContainerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AnnouncedDate" type="xs:date" minOccurs="0"/>
+<xs:element name="AnnouncedTime" type="xs:time" minOccurs="0"/>
+<xs:element name="ArrivedDate" type="xs:date" minOccurs="0"/>
+<xs:element name="ArrivedTime" type="xs:time" minOccurs="0"/>
+<xs:element name="DepartedDate" type="xs:date" minOccurs="0"/>
+<xs:element name="DepartedTime" type="xs:time" minOccurs="0"/>
+<xs:element name="PlannedStartDate" type="xs:date" minOccurs="0"/>
+<xs:element name="PlannedEndDate" type="xs:date" minOccurs="0"/>
+<xs:element name="PlannedStartTime" type="xs:time" minOccurs="0"/>
+<xs:element name="PlannedEndTime" type="xs:time" minOccurs="0"/>
+<xs:element name="DeliveryDate" type="xs:date" minOccurs="0"/>
+<xs:element name="DeliveryTime" type="xs:time" minOccurs="0"/>
+<xs:element name="CalculatedTripNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CalculatedTripLineNo" type="xs:int" minOccurs="0"/>
+<xs:element name="OrderTypeCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="SenderAddress" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="ShipToAddress" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="ShipperAddress" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="ConsigneeAddress" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="SenderReference" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Ship-ToReference" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="TMSOrderNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="TripNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="SequenceNo" type="xs:int" minOccurs="0" />
+<xs:element name="GrossWeight" type="xs:decimal" minOccurs="0" />
+<xs:element name="NetWeight" type="xs:decimal" minOccurs="0" />
+<xs:element name="VolumeWeight" type="xs:decimal" minOccurs="0" />
+<xs:element name="Quantity" type="xs:decimal" minOccurs="0" />
+<xs:element name="CarrierQuantity" type="xs:decimal" minOccurs="0" />
+<xs:element name="ExpectedShipmentCarrierQty" type="xs:decimal" minOccurs="0"/>
+<xs:element name="IncotermCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="IncotermCity" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="InvoiceCurrencyCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="3"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="InvoiceValue" type="xs:decimal" minOccurs="0"/>
+<xs:element name="AssignedUserID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="65"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ModalityCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AdditionalDocumentNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ContainerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VesselNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ContainerSizeCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="SealNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryofDestinationCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryofOriginCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DockNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="IDCardNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PartyTemplateCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AgentReference" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CurrencyCodeCharges" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CarrierAddress" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="BillofLadingNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AirwayBillNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="11"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomsCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="NCTSMRNDocumentNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="BillToCustomer" minOccurs="0" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="No2" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostalAddress" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostalCity" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostalCountryRegionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostalPostCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PaymentTermsCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerPostingGroup" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="ReceivablesAccount" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ServiceChargeAcc" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AdditionalFeeAccount" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="CarriageValue" type="xs:decimal" minOccurs="0"/>
+<xs:element name="InsuranceValue" type="xs:decimal" minOccurs="0"/>
+<xs:element name="DossierNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DocumentComments" minOccurs="0" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentComment" minOccurs="0" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="Date" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Date Field</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:date">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Code" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Code can be used for predefined text codes or mutual agreed</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Comment" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Textcomment</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Attributes" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Attribute" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="Date" type="xs:date" minOccurs="0"/>
+<xs:element name="Code" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Description" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Value" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="250"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentConditions" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentCondition" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="ConditionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ConditionDescription" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ConditionValue" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="250" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentPackages" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentPackage" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="LineNo" type="xs:integer" minOccurs="0" />
+<xs:element name="MarksNumbers" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PackageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="NumberofPackages" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NumberofPieces" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Description" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Length" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Width" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Height" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Cubage" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TotalCubage" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TareWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="GrossWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NetWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="MeasuredWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="CarrierTypeCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CarrierTypeTransportCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="TariffNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ItemConditionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VolumeWeight" type="xs:decimal" minOccurs="0" />
+<xs:element name="DensityGroupCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DensityGroupActual" type="xs:decimal" minOccurs="0" />
+<xs:element name="GrossWeightPer" type="xs:decimal" minOccurs="0" />
+<xs:element name="NetWeightPer" type="xs:decimal" minOccurs="0" />
+<xs:element name="PackagePer" type="xs:decimal" minOccurs="0" />
+<xs:element name="ContainerLineNo" type="xs:int" minOccurs="0" />
+<xs:element name="SortingOrder" type="xs:int" minOccurs="0" />
+<xs:element name="AirwayBillNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="23" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ShipmentColli" type="xs:boolean" minOccurs="0" />
+<xs:element name="PackageStatus" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="IATAUnitCharge" type="xs:decimal" minOccurs="0" />
+<xs:element name="IATATotalCharge" type="xs:decimal" minOccurs="0" />
+<xs:element name="Origin" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DangerousGoodsCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="UNNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FlashPoint" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PackingGroupcode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="MarinePollutant" type="xs:boolean" minOccurs="0" />
+<xs:element name="ProperShippingName" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="250" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="LengthInch" type="xs:decimal" minOccurs="0" />
+<xs:element name="WidthInch" type="xs:decimal" minOccurs="0" />
+<xs:element name="HeightInch" type="xs:decimal" minOccurs="0" />
+<xs:element name="Label" minOccurs="0" />
+<xs:element name="carrierStatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentParties" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentParty" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="DocumentType" type="xs:int" minOccurs="0" />
+<xs:element name="DocumentNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="LineNo" type="xs:int" minOccurs="0" />
+<xs:element name="PartyType" type="xs:int" minOccurs="0" />
+<xs:element name="PartyTypeCode" minOccurs="1">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PartyCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="250" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="TableNo" type="xs:int" minOccurs="0" />
+<xs:element name="FieldNo" type="xs:int" minOccurs="0" />
+<xs:element name="Type" type="xs:int" minOccurs="0" />
+<xs:element name="AttachedtoLineNo" type="xs:int" minOccurs="0" />
+<xs:element name="AgreementNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="One-offAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="ShippingAgentAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="SenderAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="Ship-toAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="TerminalAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="CharterAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="AirlineAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="DepotAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="ShippingCompanyAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="ShipperAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="AgentAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="ConsigneeAddress" type="xs:boolean" minOccurs="0" />
+<xs:element name="PermittedConsignee" type="xs:boolean" minOccurs="0" />
+<xs:element name="PermittedConsigner" type="xs:boolean" minOccurs="0" />
+<xs:element name="PartyAddress" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="ServiceLevelAgreementEntries" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="ServiceLevelAgreementEntry" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="SourceTableNo" type="xs:int" minOccurs="0" />
+<xs:element name="SourceType" type="xs:int" minOccurs="0" />
+<xs:element name="SourceNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="SourceEntryNo" type="xs:int" minOccurs="0" />
+<xs:element name="SourceLineNo" type="xs:int" minOccurs="0" />
+<xs:element name="ServiceLevelAgreementCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Description" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AgreedValue" type="xs:decimal" minOccurs="0" />
+<xs:element name="ActualValue" type="xs:decimal" minOccurs="0" />
+<xs:element name="ServiceLevelAgrmtLineNo" type="xs:int" minOccurs="0" />
+<xs:element name="Result" type="xs:int" minOccurs="0" />
+<xs:element name="ReasonCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ResultValue" type="xs:decimal" minOccurs="0" />
+<xs:element name="AgreementDescription" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerName" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ShippingAgentCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ShippingAgentName" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AgreedEndDateTime" type="xs:dateTime" minOccurs="0" />
+<xs:element name="ActualEndDateTime" type="xs:dateTime" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentLines" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentLine" minOccurs="1" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="LineNo" type="xs:integer" minOccurs="0"/>
+<xs:element name="Type" minOccurs="0">
+<xs:annotation>
+<xs:documentation>LineType:1=Customer Item, 2=Service, 3=Package, 4=Carrier, 5=Activity, 6=Item, 7=Cost</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:int">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="No" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Articlenumber Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Articlenumber as in use with the client</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="GTIN" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Official article number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Description" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Description2" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="UnitofMeasureCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Quantity" type="xs:decimal" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Number of articles</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="OrderUnitofMeasureCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="QtyperOrderUnitofMeasure" type="xs:decimal" minOccurs="0"/>
+<xs:element name="OrderQuantity" type="xs:decimal" minOccurs="0"/>
+<xs:element name="QtyPerCarrier" type="xs:decimal" minOccurs="0"/>
+<xs:element name="UnitPrice" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TareWeightperUoM" type="xs:decimal" minOccurs="0"/>
+<xs:element name="GrossWeightperUoM" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NetWeightperUoM" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TareWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="GrossWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NetWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="VeterinaryNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ProductionDate" type="xs:date" minOccurs="0"/>
+<xs:element name="ExpirationDate" type="xs:date" minOccurs="0"/>
+<xs:element name="BatchNo" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Internal Batchnumber of Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalBatchNo" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Batchnumber as in use with the client</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CarrierQuantity" type="xs:integer" minOccurs="0"/>
+<xs:element name="CarrierTypeCode" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Carriertype converted to inhouse format</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CarrierTypeTransportCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="GTINCarrier" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Carrier GTIN converted to inhouse format</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="InitialCarrierStatusCode" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Initial carrier status, converted to inhouse format</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="InitialBatchStatusCode" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Initial Batch status, converted to inhouse format</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FreezingDate" type="xs:date" minOccurs="0"/>
+<xs:element name="CommentText" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DueDate" type="xs:date" minOccurs="0"/>
+<xs:element name="CountryofOriginCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>ISO codes to be used</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryPurchasedCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>ISO codes to be used</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="IncotermCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ItemCondition" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ItemHandling" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="TripNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="NewBuildingCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="NewLocationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="NewCrossdocking" type="xs:boolean" minOccurs="0"/>
+<xs:element name="LocationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CurrencyCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ContainerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VesselNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="SkalNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ActivityDate" type="xs:date" minOccurs="0"/>
+<xs:element name="FeatureRecognition" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomsValueper" type="xs:decimal" minOccurs="0" />
+<xs:element name="CustomsCurrencyCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="3" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="QtytoHandle" type="xs:decimal" minOccurs="0"/>
+<xs:element name="AttachedtoLineNo" type="xs:int" minOccurs="0"/>
+<xs:element name="OrderTypeCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="InvoiceValue" type="xs:decimal" minOccurs="0"/>
+<xs:element name="QtyPhysical" type="xs:decimal" minOccurs="0"/>
+<xs:element name="GrossWeightPhysical" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NetWeightPhysical" type="xs:decimal" minOccurs="0"/>
+<xs:element name="InvoiceValuePhysical" type="xs:decimal" minOccurs="0"/>
+<xs:element name="ProductVariant" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="SenderAddress" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="ShipToAddress" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:all>
+<xs:element name="No" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Primary Key in Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>External address number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>EAN Code of Address</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Name2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Address2" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="AddressNo" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>House Number</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="City" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PostCode" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="County" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryRegionCode" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Countrycodes to be used ISO standard</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CountryName" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Contact" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PhoneNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FaxNo" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Email" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="E-Mail" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="HomePage" nillable="true" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OneoffAddress" type="xs:boolean" nillable="true" minOccurs="0"/>
+<xs:element name="LanguageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VATRegistrationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolOrganizations" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PoolOrganization" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="PoolOrganization" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PoolID" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Restrictions" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Restriction" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="RestrictionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Available" type="xs:boolean" minOccurs="0" />
+<xs:element name="Forbidden" type="xs:boolean" minOccurs="0" />
+<xs:element name="Required" type="xs:boolean" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentLineComments" minOccurs="0" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentLineComment" minOccurs="0" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="Date" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Date Field</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:date">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Code" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Code can be used for predefined text codes or mutual agreed</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Comment" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Textcomment</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SelectCriteriaSets" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="SelectCriteriaSet" minOccurs="1" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="FieldNo" type="xs:int" minOccurs="0">
+<xs:annotation>
+<xs:documentation>For example 44=Expirationdate,45=Productiondate,540=Attribute01,541=Attribute02,542=Attribute03,543=Attribute04,544=Attribute05,545=Attribute06,546=Attribute07,547=Attribute08,548=Attribute09,549=Attribute10</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="FieldName" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Filter" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="80"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Attributes" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Attribute" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="Date" type="xs:date" minOccurs="0"/>
+<xs:element name="Code" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Description" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Value" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="250"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentLineConditions" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentLineCondition" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="ConditionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ConditionDescription" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ConditionValue" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="250" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentPackages" minOccurs="0" maxOccurs="1" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentPackage" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="LineNo" type="xs:integer" minOccurs="0" />
+<xs:element name="MarksNumbers" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PackageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="NumberofPackages" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NumberofPieces" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Description" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Length" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Width" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Height" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Cubage" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TotalCubage" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TareWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="GrossWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NetWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="MeasuredWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="CarrierTypeCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CarrierTypeTransportCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="TariffNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ItemConditionCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VolumeWeight" type="xs:decimal" minOccurs="0" />
+<xs:element name="DensityGroupCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DensityGroupActual" type="xs:decimal" minOccurs="0" />
+<xs:element name="GrossWeightPer" type="xs:decimal" minOccurs="0" />
+<xs:element name="NetWeightPer" type="xs:decimal" minOccurs="0" />
+<xs:element name="PackagePer" type="xs:decimal" minOccurs="0" />
+<xs:element name="ContainerLineNo" type="xs:int" minOccurs="0" />
+<xs:element name="SortingOrder" type="xs:int" minOccurs="0" />
+<xs:element name="AirwayBillNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="23" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ShipmentColli" type="xs:boolean" minOccurs="0" />
+<xs:element name="PackageStatus" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="IATAUnitCharge" type="xs:decimal" minOccurs="0" />
+<xs:element name="IATATotalCharge" type="xs:decimal" minOccurs="0" />
+<xs:element name="Origin" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DangerousGoodsCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="UNNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FlashPoint" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="PackingGroupcode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="MarinePollutant" type="xs:boolean" minOccurs="0" />
+<xs:element name="ProperShippingName" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="250" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="LengthInch" type="xs:decimal" minOccurs="0" />
+<xs:element name="WidthInch" type="xs:decimal" minOccurs="0" />
+<xs:element name="HeightInch" type="xs:decimal" minOccurs="0" />
+<xs:element name="Label" minOccurs="0" />
+<xs:element name="carrierStatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentDetailLines" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentDetailLine" minOccurs="0" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="CarrierNo" minOccurs="0">
+<xs:annotation>
+<xs:documentation>CarrierNo of Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalCarrierNo" minOccurs="0">
+<xs:annotation>
+<xs:documentation>CarrierNo of Customer 1-to-1 linked to internal carrierno</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="NVESSCC18No" minOccurs="0">
+<xs:annotation>
+<xs:documentation>SSCC-no</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CarrierTypeCode" minOccurs="0">
+<xs:annotation>
+<xs:documentation>CarrierrTypeCode can be converted to inHouse format</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="GTINCarrier" minOccurs="0">
+<xs:annotation>
+<xs:documentation>Carrier GTIN converted to inhouse format</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="InitialCarrierStatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="FreezingDate" type="xs:date" minOccurs="0"/>
+<xs:element name="UnitofMeasureCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Quantity" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TareWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="GrossWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NetWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="LocationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OrderUnitofMeasureCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="OrderQuantity" type="xs:decimal" minOccurs="0"/>
+<xs:element name="ContainerNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="VesselNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attributes" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Attribute" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="Date" type="xs:date" minOccurs="0"/>
+<xs:element name="Code" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Description" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Value" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="250"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CarrierSets" minOccurs="0" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="CarrierSet" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="CarrierNo" minOccurs="0">
+<xs:annotation>
+<xs:documentation>CarrierNo of Dynamics</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Quantity" type="xs:decimal" minOccurs="0"/>
+<xs:element name="UnitofMeasureCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="GrossWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NetWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TareWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="ProductionDate" type="xs:date" minOccurs="0"/>
+<xs:element name="ExpirationDate" type="xs:date" minOccurs="0"/>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SpecificationSets" minOccurs="0" >
+<xs:complexType>
+<xs:sequence>
+<xs:element name="SpecificationSet" minOccurs="1" maxOccurs="unbounded" >
+<xs:complexType>
+<xs:all>
+<xs:element name="LineNo" type="xs:int" minOccurs="1"/>
+<xs:element name="Type" type="xs:integer" minOccurs="0">
+<xs:annotation>
+<xs:documentation>1=Container, 2=Carrier, 3=Package, 4=Collo</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="ContainerLineNo" type="xs:int" minOccurs="0"/>
+<xs:element name="SpecificationTypeCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="SpecificationNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Description" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Quantity" type="xs:int" minOccurs="0"/>
+<xs:element name="UnitofMeasureCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="QuantityBase" type="xs:decimal" minOccurs="0"/>
+<xs:element name="QtyperUnitofMeasure" type="xs:decimal" minOccurs="0"/>
+<xs:element name="GrossWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="NetWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TareWeight" type="xs:decimal" minOccurs="0"/>
+<xs:element name="CustomerItemNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="CustomerItemDescription" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="SpecificationMethodCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="DescriptionInfo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ExternalSerialNo" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="30" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ProductionDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="StatusCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute01" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute02" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute03" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute04" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute05" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute06" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute07" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute08" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute09" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Attribute10" nillable="true" minOccurs="0">
+<xs:annotation>
+<xs:documentation> Additional information only to be used with mutual agreement</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PackageSets" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="PackageSet" minOccurs="1" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="PackageCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="EANCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20" />
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="Quantity" type="xs:decimal" minOccurs="0" />
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="DocumentReferences" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="DocumentReference" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="ReferenceType" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="20"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ReferenceNumber" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="ReferenceDate" type="xs:date" minOccurs="0"/>
+<xs:element name="ShowOnInvoice" type="xs:boolean" minOccurs="0"/>
+<xs:element name="InvoiceCode" minOccurs="0">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="10"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+<xs:complexType name="FooterType">
+<xs:sequence>
+<xs:element name="ContentOriginal" nillable="true">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

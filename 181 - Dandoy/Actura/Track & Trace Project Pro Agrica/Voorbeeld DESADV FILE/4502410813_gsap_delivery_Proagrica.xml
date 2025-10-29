@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:MessageHeader xmlns:ns1="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_DespatchAdvice_v2018p01">
+	<ns1:MessageID schemeID="REF">0000000134363313</ns1:MessageID>
+	<ns1:SendingDateTime>2021-04-16T07:47:27Z</ns1:SendingDateTime>
+	<ns1:SendingPartyID schemeID="GLN">4032219000003</ns1:SendingPartyID>
+	<ns1:ReceivingPartyID schemeID="GLN">GLN Dandoy to be updated</ns1:ReceivingPartyID>
+	<ns1:MessageType>102</ns1:MessageType>
+	<ns1:MessagePurposeCode>53</ns1:MessagePurposeCode>
+	<ns1:Delivery>
+		<ns1:DeliveryID schemeID="REF">1385188062</ns1:DeliveryID>
+		<ns1:DeliveryStatusCode>101</ns1:DeliveryStatusCode>
+		<ns1:DeliveryDateTime>2021-04-15T12:00:00Z</ns1:DeliveryDateTime>
+		<ns1:GrossWeight unitCode="KGM">4324.000</ns1:GrossWeight>
+		<ns1:NetWeight unitCode="KGM">3860.000</ns1:NetWeight>
+		<ns1:Volume>9.230</ns1:Volume>
+		<ns1:TradeParty>
+			<ns1:GlobalID schemeID="GLN">GLN ACtura BE</ns1:GlobalID>
+			<ns1:TradePartyRoleCode>OB</ns1:TradePartyRoleCode>
+			<ns1:TradePartyName>Actura</ns1:TradePartyName>
+			<ns1:StreetNameAndNumber>Rue de la Terre à Briques 29</ns1:StreetNameAndNumber>
+			<ns1:PostalCodeLocation>7522</ns1:PostalCodeLocation>
+			<ns1:CityName>Tournai</ns1:CityName>
+			<ns1:CountryCode>BE</ns1:CountryCode>
+			<ns1:PhoneNumber></ns1:PhoneNumber>
+			<ns1:TelefaxNumber></ns1:TelefaxNumber>
+			<ns1:EmailAddress></ns1:EmailAddress>
+		</ns1:TradeParty>
+		<ns1:TradeParty>
+			<ns1:GlobalID schemeID="GLN">GLN Dandoy to be updated</ns1:GlobalID>
+			<ns1:TradePartyRoleCode>ST</ns1:TradePartyRoleCode>
+			<ns1:TradePartyName>Dandoy</ns1:TradePartyName>
+			<ns1:StreetNameAndNumber></ns1:StreetNameAndNumber>
+			<ns1:PostalCodeLocation></ns1:PostalCodeLocation>
+			<ns1:CityName></ns1:CityName>
+			<ns1:CountryCode>BE</ns1:CountryCode>
+			<ns1:PhoneNumber></ns1:PhoneNumber>
+			<ns1:TelefaxNumber></ns1:TelefaxNumber>
+			<ns1:EmailAddress></ns1:EmailAddress>
+		</ns1:TradeParty>
+		<ns1:TradeParty>
+			<ns1:GlobalID schemeID="GLN">GLN XPO</ns1:GlobalID>
+			<ns1:TradePartyRoleCode>SF</ns1:TradePartyRoleCode>
+			<ns1:TradePartyName>XPO</ns1:TradePartyName>
+			<ns1:StreetNameAndNumber></ns1:StreetNameAndNumber>
+			<ns1:PostalCodeLocation></ns1:PostalCodeLocation>
+			<ns1:CityName></ns1:CityName>
+			<ns1:CountryCode>BE</ns1:CountryCode>
+			<ns1:PhoneNumber></ns1:PhoneNumber>
+			<ns1:TelefaxNumber></ns1:TelefaxNumber>
+			<ns1:EmailAddress></ns1:EmailAddress>
+		</ns1:TradeParty>
+		<ns1:DeliveryLine>
+			<ns1:DeliveryLineID schemeID="REF">10001</ns1:DeliveryLineID>
+			<ns1:DeliveryLineQuantity unitCode="NBR">1</ns1:DeliveryLineQuantity>
+			<ns1:ProductUnit>
+				<ns1:ProductUnitID_SSCC schemeID="SSCC">00342606894400002486</ns1:ProductUnitID_SSCC>
+				<ns1:ProductUnitTypeCode>101</ns1:ProductUnitTypeCode>
+				<ns1:ProductUnitName>Pallet</ns1:ProductUnitName>
+			</ns1:ProductUnit>
+			<ns1:PackageProductUnitFirstLevel>
+				<ns1:Quantity>40</ns1:Quantity>
+				<ns1:OrderReferenceID schemeID="REF">4502410813</ns1:OrderReferenceID>
+				<ns1:OrderLineReferenceID schemeID="REF">000010</ns1:OrderLineReferenceID>
+				<ns1:ProductUnit>
+					<ns1:ProductUnitID_GTIN schemeID="GTIN">04032219007200</ns1:ProductUnitID_GTIN>
+					<ns1:ProductUnitTypeCode>102</ns1:ProductUnitTypeCode>
+					<ns1:BatchID>CHE9A00016</ns1:BatchID>
+					<ns1:ProductUnitName>AXIAL 50 4X5 L                       DEA</ns1:ProductUnitName>
+					<ns1:SerialNumber>0</ns1:SerialNumber>
+					<ns1:ProductionDate>2019-01-24T00:00:00</ns1:ProductionDate>
+					<ns1:ExpiryDate>2022-01-23T00:00:00</ns1:ExpiryDate>
+				</ns1:ProductUnit>
+			</ns1:PackageProductUnitFirstLevel>
+		</ns1:DeliveryLine>
+		<ns1:DeliveryLine>
+			<ns1:DeliveryLineID schemeID="REF">10002</ns1:DeliveryLineID>
+			<ns1:DeliveryLineQuantity unitCode="NBR">1</ns1:DeliveryLineQuantity>
+			<ns1:ProductUnit>
+				<ns1:ProductUnitID_SSCC schemeID="SSCC">00342606894400002899</ns1:ProductUnitID_SSCC>
+				<ns1:ProductUnitTypeCode>101</ns1:ProductUnitTypeCode>
+				<ns1:ProductUnitName>Pallet</ns1:ProductUnitName>
+			</ns1:ProductUnit>
+			<ns1:PackageProductUnitFirstLevel>
+				<ns1:Quantity>40</ns1:Quantity>
+				<ns1:OrderReferenceID schemeID="REF">4502410813</ns1:OrderReferenceID>
+				<ns1:OrderLineReferenceID schemeID="REF">000010</ns1:OrderLineReferenceID>
+				<ns1:ProductUnit>
+					<ns1:ProductUnitID_GTIN schemeID="GTIN">04032219007200</ns1:ProductUnitID_GTIN>
+					<ns1:ProductUnitTypeCode>102</ns1:ProductUnitTypeCode>
+					<ns1:BatchID>CHE9A00016</ns1:BatchID>
+					<ns1:ProductUnitName>AXIAL 50 4X5 L                       DEA</ns1:ProductUnitName>
+					<ns1:SerialNumber>0</ns1:SerialNumber>
+					<ns1:ProductionDate>2019-01-24T00:00:00</ns1:ProductionDate>
+					<ns1:ExpiryDate>2022-01-23T00:00:00</ns1:ExpiryDate>
+				</ns1:ProductUnit>
+			</ns1:PackageProductUnitFirstLevel>
+		</ns1:DeliveryLine>
+		<ns1:DeliveryLine>
+			<ns1:DeliveryLineID schemeID="REF">10003</ns1:DeliveryLineID>
+			<ns1:DeliveryLineQuantity unitCode="NBR">1</ns1:DeliveryLineQuantity>
+			<ns1:ProductUnit>
+				<ns1:ProductUnitID_SSCC schemeID="SSCC">00342606894400002905</ns1:ProductUnitID_SSCC>
+				<ns1:ProductUnitTypeCode>101</ns1:ProductUnitTypeCode>
+				<ns1:ProductUnitName>Pallet</ns1:ProductUnitName>
+			</ns1:ProductUnit>
+			<ns1:PackageProductUnitFirstLevel>
+				<ns1:Quantity>40</ns1:Quantity>
+				<ns1:OrderReferenceID schemeID="REF">4502410813</ns1:OrderReferenceID>
+				<ns1:OrderLineReferenceID schemeID="REF">000010</ns1:OrderLineReferenceID>
+				<ns1:ProductUnit>
+					<ns1:ProductUnitID_GTIN schemeID="GTIN">04032219007200</ns1:ProductUnitID_GTIN>
+					<ns1:ProductUnitTypeCode>102</ns1:ProductUnitTypeCode>
+					<ns1:BatchID>CHE0A20021</ns1:BatchID>
+					<ns1:ProductUnitName>AXIAL 50 4X5 L                       DEA</ns1:ProductUnitName>
+					<ns1:SerialNumber>0</ns1:SerialNumber>
+					<ns1:ProductionDate>2020-01-24T00:00:00</ns1:ProductionDate>
+					<ns1:ExpiryDate>2023-01-23T00:00:00</ns1:ExpiryDate>
+				</ns1:ProductUnit>
+			</ns1:PackageProductUnitFirstLevel>
+		</ns1:DeliveryLine>
+		<ns1:DeliveryLine>
+			<ns1:DeliveryLineID schemeID="REF">10004</ns1:DeliveryLineID>
+			<ns1:DeliveryLineQuantity unitCode="NBR">1</ns1:DeliveryLineQuantity>
+			<ns1:ProductUnit>
+				<ns1:ProductUnitID_SSCC schemeID="SSCC">00342606894400002912</ns1:ProductUnitID_SSCC>
+				<ns1:ProductUnitTypeCode>101</ns1:ProductUnitTypeCode>
+				<ns1:ProductUnitName>Pallet</ns1:ProductUnitName>
+			</ns1:ProductUnit>
+			<ns1:PackageProductUnitFirstLevel>
+				<ns1:Quantity>40</ns1:Quantity>
+				<ns1:OrderReferenceID schemeID="REF">4502410813</ns1:OrderReferenceID>
+				<ns1:OrderLineReferenceID schemeID="REF">000010</ns1:OrderLineReferenceID>
+				<ns1:ProductUnit>
+					<ns1:ProductUnitID_GTIN schemeID="GTIN">04032219007200</ns1:ProductUnitID_GTIN>
+					<ns1:ProductUnitTypeCode>102</ns1:ProductUnitTypeCode>
+					<ns1:BatchID>CHE0A20021</ns1:BatchID>
+					<ns1:ProductUnitName>AXIAL 50 4X5 L                       DEA</ns1:ProductUnitName>
+					<ns1:SerialNumber>0</ns1:SerialNumber>
+					<ns1:ProductionDate>2020-01-24T00:00:00</ns1:ProductionDate>
+					<ns1:ExpiryDate>2023-01-23T00:00:00</ns1:ExpiryDate>
+				</ns1:ProductUnit>
+			</ns1:PackageProductUnitFirstLevel>
+		</ns1:DeliveryLine>
+		<ns1:DeliveryLine>
+			<ns1:DeliveryLineID schemeID="REF">10005</ns1:DeliveryLineID>
+			<ns1:DeliveryLineQuantity unitCode="NBR">1</ns1:DeliveryLineQuantity>
+			<ns1:ProductUnit>
+				<ns1:ProductUnitID_SSCC schemeID="SSCC">00342606894400002929</ns1:ProductUnitID_SSCC>
+				<ns1:ProductUnitTypeCode>101</ns1:ProductUnitTypeCode>
+				<ns1:ProductUnitName>Pallet</ns1:ProductUnitName>
+			</ns1:ProductUnit>
+			<ns1:PackageProductUnitFirstLevel>
+				<ns1:Quantity>40</ns1:Quantity>
+				<ns1:OrderReferenceID schemeID="REF">4502410813</ns1:OrderReferenceID>
+				<ns1:OrderLineReferenceID schemeID="REF">000010</ns1:OrderLineReferenceID>
+				<ns1:ProductUnit>
+					<ns1:ProductUnitID_GTIN schemeID="GTIN">04032219007200</ns1:ProductUnitID_GTIN>
+					<ns1:ProductUnitTypeCode>102</ns1:ProductUnitTypeCode>
+					<ns1:BatchID>CHE0A20021</ns1:BatchID>
+					<ns1:ProductUnitName>AXIAL 50 4X5 L                       DEA</ns1:ProductUnitName>
+					<ns1:SerialNumber>0</ns1:SerialNumber>
+					<ns1:ProductionDate>2020-01-24T00:00:00</ns1:ProductionDate>
+					<ns1:ExpiryDate>2023-01-23T00:00:00</ns1:ExpiryDate>
+				</ns1:ProductUnit>
+			</ns1:PackageProductUnitFirstLevel>
+		</ns1:DeliveryLine>
+	</ns1:Delivery>
+</ns1:MessageHeader>
