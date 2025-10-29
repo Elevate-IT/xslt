@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Sales_Invoice_Lines>
+  <Sales_Invoice_Line>
+    <No_SalesInvHdr>GV22.000001</No_SalesInvHdr>
+    <LineAmt_SalesInvLine>0</LineAmt_SalesInvLine>
+    <Desc_SalesInvLine>Rental</Desc_SalesInvLine>
+    <Desc2_SalesInvLine></Desc2_SalesInvLine>
+    <No_SalesInvLine>D000131</No_SalesInvLine>
+    <Qty_SalesInvLine>1</Qty_SalesInvLine>
+    <UOM_SalesInvLine>Container</UOM_SalesInvLine>
+    <UnitPrice_SalesInvLine>0</UnitPrice_SalesInvLine>
+    <Discount_SalesInvLine>0</Discount_SalesInvLine>
+    <VATIdentifier_SalesInvLine>21</VATIdentifier_SalesInvLine>
+    <Type_SalesInvLine>WMS Service</Type_SalesInvLine>
+    <Type3PL_SalesLine>WMS Service</Type3PL_SalesLine>
+    <No3PL_SalesLine>D000131</No3PL_SalesLine>
+    <InvDiscLineAmt_SalesInvLine>0</InvDiscLineAmt_SalesInvLine>
+    <TotalSubTotal>0</TotalSubTotal>
+    <TotalInvDiscAmount>0</TotalInvDiscAmount>
+    <TotalText>Total EUR</TotalText>
+    <Amount_SalesInvLine>0</Amount_SalesInvLine>
+    <TotalAmount>0</TotalAmount>
+    <Amount_AmtInclVAT>0</Amount_AmtInclVAT>
+    <AmtInclVAT_SalesInvLine>0</AmtInclVAT_SalesInvLine>
+    <VATAmtLineVATAmtText>Tax Amount</VATAmtLineVATAmtText>
+    <TotalExclVATText>Total EUR Excl. VAT</TotalExclVATText>
+    <TotalInclVATText>Total EUR Incl. VAT</TotalInclVATText>
+    <TotalAmountInclVAT>0</TotalAmountInclVAT>
+    <TotalAmountVAT>0</TotalAmountVAT>
+    <LineAmtAfterInvDiscAmt>0</LineAmtAfterInvDiscAmt>
+    <VATBaseDisc_SalesInvHdr>0</VATBaseDisc_SalesInvHdr>
+    <TotalPaymentDiscOnVAT>0</TotalPaymentDiscOnVAT>
+    <TotalInclVATText_SalesInvLine>Total EUR Incl. VAT</TotalInclVATText_SalesInvLine>
+    <VATAmtText_SalesInvLine>Tax Amount</VATAmtText_SalesInvLine>
+    <DocNo_SalesInvLine>01/12/21..31/12/21</DocNo_SalesInvLine>
+    <LineNo_SalesInvLine>50000</LineNo_SalesInvLine>
+    <UnitPriceCaption>Unit Price</UnitPriceCaption>
+    <SalesInvLineDiscCaption>Discount %</SalesInvLineDiscCaption>
+    <AmountCaption>Amount</AmountCaption>
+    <PostedShipmentDateCaption>Posted Shipment Date</PostedShipmentDateCaption>
+    <SubtotalCaption>Subtotal</SubtotalCaption>
+    <LineAmtAfterInvDiscCptn>Payment Discount on VAT</LineAmtAfterInvDiscCptn>
+    <VatPerc_SalesInvLine>21</VatPerc_SalesInvLine>
+    <WMS_Batch_No_SalesInvLine>B2100006171</WMS_Batch_No_SalesInvLine>
+    <Sell_To_Customer_No_SalesInvLine>2021-12-31</Sell_To_Customer_No_SalesInvLine>
+    <Desc_SalesInvLineCaption>Description</Desc_SalesInvLineCaption>
+    <Qty_SalesInvLineCaption>Quantity</Qty_SalesInvLineCaption>
+    <UOM_SalesInvLineCaption>UoM</UOM_SalesInvLineCaption>
+    <VatPerc_SalesInvLineCaption>VAT</VatPerc_SalesInvLineCaption>
+    <WMS_Batch_No_SalesInvLineCaption>Batch No.</WMS_Batch_No_SalesInvLineCaption>
+    <No_Of_TextLines_Present>0</No_Of_TextLines_Present>
+    <GroupText>Storage Cost: 01/12/21..31/12/21</GroupText>
+    <GroupText2></GroupText2>
+    <GroupText3></GroupText3>
+    <TrailerContainerNo_DocumentHeader></TrailerContainerNo_DocumentHeader>
+    <PostingDate_DocumentHeader></PostingDate_DocumentHeader>
+    <ArrivedDate_DocumentHeader></ArrivedDate_DocumentHeader>
+    <TrailerContainerNo_DocumentHeader_Caption>Trailer/Container No.</TrailerContainerNo_DocumentHeader_Caption>
+    <PostingDate_DocumentHeader_Caption>Posting Date</PostingDate_DocumentHeader_Caption>
+    <ArrivedDate_DocumentHeader_Caption>Arrived Date</ArrivedDate_DocumentHeader_Caption>
+    <Periodic_Starting_Date>01/12/21</Periodic_Starting_Date>
+    <Periodic_Ending_Date></Periodic_Ending_Date>
+    <Building_Code></Building_Code>
+    <ContainerNo>MRVU 351137-1</ContainerNo>
+    <ExternalBatch></ExternalBatch>
+    <ItemNo></ItemNo>
+    <ItemDescription></ItemDescription>
+    <EndingDate></EndingDate>
+    <Shipment></Shipment>
+    <ExtShipment></ExtShipment>
+    <Comment></Comment>
+    <No2></No2>
+    <GHS1>K-6.4&lt;BR&gt;M-6.4</GHS1>
+    <GHS2></GHS2>
+  </Sales_Invoice_Line>
+  <Sales_Invoice_Line>
+    <No_SalesInvHdr>GV22.000001</No_SalesInvHdr>
+    <LineAmt_SalesInvLine>27</LineAmt_SalesInvLine>
+    <Desc_SalesInvLine>Lifting In</Desc_SalesInvLine>
+    <Desc2_SalesInvLine></Desc2_SalesInvLine>
+    <No_SalesInvLine>D000065</No_SalesInvLine>
+    <Qty_SalesInvLine>1</Qty_SalesInvLine>
+    <UOM_SalesInvLine>Stuk</UOM_SalesInvLine>
+    <UnitPrice_SalesInvLine>27</UnitPrice_SalesInvLine>
+    <Discount_SalesInvLine>0</Discount_SalesInvLine>
+    <VATIdentifier_SalesInvLine>21</VATIdentifier_SalesInvLine>
+    <Type_SalesInvLine>WMS Service</Type_SalesInvLine>
+    <Type3PL_SalesLine>WMS Service</Type3PL_SalesLine>
+    <No3PL_SalesLine>D000065</No3PL_SalesLine>
+    <InvDiscLineAmt_SalesInvLine>0</InvDiscLineAmt_SalesInvLine>
+    <TotalSubTotal>27</TotalSubTotal>
+    <TotalInvDiscAmount>0</TotalInvDiscAmount>
+    <TotalText>Total EUR</TotalText>
+    <Amount_SalesInvLine>27</Amount_SalesInvLine>
+    <TotalAmount>27</TotalAmount>
+    <Amount_AmtInclVAT>5,67</Amount_AmtInclVAT>
+    <AmtInclVAT_SalesInvLine>32,67</AmtInclVAT_SalesInvLine>
+    <VATAmtLineVATAmtText>21% Tax</VATAmtLineVATAmtText>
+    <TotalExclVATText>Total EUR Excl. VAT</TotalExclVATText>
+    <TotalInclVATText>Total EUR Incl. VAT</TotalInclVATText>
+    <TotalAmountInclVAT>32,67</TotalAmountInclVAT>
+    <TotalAmountVAT>5,67</TotalAmountVAT>
+    <LineAmtAfterInvDiscAmt>5,67</LineAmtAfterInvDiscAmt>
+    <VATBaseDisc_SalesInvHdr>0</VATBaseDisc_SalesInvHdr>
+    <TotalPaymentDiscOnVAT>5,67</TotalPaymentDiscOnVAT>
+    <TotalInclVATText_SalesInvLine>Total EUR Incl. VAT</TotalInclVATText_SalesInvLine>
+    <VATAmtText_SalesInvLine>21% Tax</VATAmtText_SalesInvLine>
+    <DocNo_SalesInvLine>I210003673</DocNo_SalesInvLine>
+    <LineNo_SalesInvLine>20000</LineNo_SalesInvLine>
+    <UnitPriceCaption>Unit Price</UnitPriceCaption>
+    <SalesInvLineDiscCaption>Discount %</SalesInvLineDiscCaption>
+    <AmountCaption>Amount</AmountCaption>
+    <PostedShipmentDateCaption>Posted Shipment Date</PostedShipmentDateCaption>
+    <SubtotalCaption>Subtotal</SubtotalCaption>
+    <LineAmtAfterInvDiscCptn>Payment Discount on VAT</LineAmtAfterInvDiscCptn>
+    <VatPerc_SalesInvLine>21</VatPerc_SalesInvLine>
+    <WMS_Batch_No_SalesInvLine></WMS_Batch_No_SalesInvLine>
+    <Sell_To_Customer_No_SalesInvLine>20315</Sell_To_Customer_No_SalesInvLine>
+    <Desc_SalesInvLineCaption>Description</Desc_SalesInvLineCaption>
+    <Qty_SalesInvLineCaption>Quantity</Qty_SalesInvLineCaption>
+    <UOM_SalesInvLineCaption>UoM</UOM_SalesInvLineCaption>
+    <VatPerc_SalesInvLineCaption>VAT</VatPerc_SalesInvLineCaption>
+    <WMS_Batch_No_SalesInvLineCaption>Batch No.</WMS_Batch_No_SalesInvLineCaption>
+    <No_Of_TextLines_Present>0</No_Of_TextLines_Present>
+    <GroupText>Receipt I210003673: 08/12/21 Ref.: 3300068647</GroupText>
+    <GroupText2></GroupText2>
+    <GroupText3></GroupText3>
+    <TrailerContainerNo_DocumentHeader></TrailerContainerNo_DocumentHeader>
+    <PostingDate_DocumentHeader>08/12/21</PostingDate_DocumentHeader>
+    <ArrivedDate_DocumentHeader>08/12/21</ArrivedDate_DocumentHeader>
+    <TrailerContainerNo_DocumentHeader_Caption>Trailer/Container No.</TrailerContainerNo_DocumentHeader_Caption>
+    <PostingDate_DocumentHeader_Caption>Posting Date</PostingDate_DocumentHeader_Caption>
+    <ArrivedDate_DocumentHeader_Caption>Arrived Date</ArrivedDate_DocumentHeader_Caption>
+    <Periodic_Starting_Date>08/12/21</Periodic_Starting_Date>
+    <Periodic_Ending_Date></Periodic_Ending_Date>
+    <Building_Code>MERVIELDE</Building_Code>
+    <ContainerNo>MRVU 351137-1</ContainerNo>
+    <ExternalBatch></ExternalBatch>
+    <ItemNo>20072</ItemNo>
+    <ItemDescription>VG1025</ItemDescription>
+    <EndingDate></EndingDate>
+    <Shipment>I210003673</Shipment>
+    <ExtShipment>3300068647</ExtShipment>
+    <Comment></Comment>
+    <No2></No2>
+    <GHS1></GHS1>
+    <GHS2></GHS2>
+  </Sales_Invoice_Line>
+  <Sales_Invoice_Line>
+    <No_SalesInvHdr>GV22.000001</No_SalesInvHdr>
+    <LineAmt_SalesInvLine>180</LineAmt_SalesInvLine>
+    <Desc_SalesInvLine>Transhipment in CT (incl. weighing)</Desc_SalesInvLine>
+    <Desc2_SalesInvLine></Desc2_SalesInvLine>
+    <No_SalesInvLine>D000028</No_SalesInvLine>
+    <Qty_SalesInvLine>1</Qty_SalesInvLine>
+    <UOM_SalesInvLine>Stuk</UOM_SalesInvLine>
+    <UnitPrice_SalesInvLine>180</UnitPrice_SalesInvLine>
+    <Discount_SalesInvLine>0</Discount_SalesInvLine>
+    <VATIdentifier_SalesInvLine>21</VATIdentifier_SalesInvLine>
+    <Type_SalesInvLine>WMS Service</Type_SalesInvLine>
+    <Type3PL_SalesLine>WMS Service</Type3PL_SalesLine>
+    <No3PL_SalesLine>D000028</No3PL_SalesLine>
+    <InvDiscLineAmt_SalesInvLine>0</InvDiscLineAmt_SalesInvLine>
+    <TotalSubTotal>207</TotalSubTotal>
+    <TotalInvDiscAmount>0</TotalInvDiscAmount>
+    <TotalText>Total EUR</TotalText>
+    <Amount_SalesInvLine>180</Amount_SalesInvLine>
+    <TotalAmount>207</TotalAmount>
+    <Amount_AmtInclVAT>37,8</Amount_AmtInclVAT>
+    <AmtInclVAT_SalesInvLine>217,8</AmtInclVAT_SalesInvLine>
+    <VATAmtLineVATAmtText>21% Tax</VATAmtLineVATAmtText>
+    <TotalExclVATText>Total EUR Excl. VAT</TotalExclVATText>
+    <TotalInclVATText>Total EUR Incl. VAT</TotalInclVATText>
+    <TotalAmountInclVAT>250,47</TotalAmountInclVAT>
+    <TotalAmountVAT>43,47</TotalAmountVAT>
+    <LineAmtAfterInvDiscAmt>37,8</LineAmtAfterInvDiscAmt>
+    <VATBaseDisc_SalesInvHdr>0</VATBaseDisc_SalesInvHdr>
+    <TotalPaymentDiscOnVAT>43,47</TotalPaymentDiscOnVAT>
+    <TotalInclVATText_SalesInvLine>Total EUR Incl. VAT</TotalInclVATText_SalesInvLine>
+    <VATAmtText_SalesInvLine>21% Tax</VATAmtText_SalesInvLine>
+    <DocNo_SalesInvLine>I210003673</DocNo_SalesInvLine>
+    <LineNo_SalesInvLine>30000</LineNo_SalesInvLine>
+    <UnitPriceCaption>Unit Price</UnitPriceCaption>
+    <SalesInvLineDiscCaption>Discount %</SalesInvLineDiscCaption>
+    <AmountCaption>Amount</AmountCaption>
+    <PostedShipmentDateCaption>Posted Shipment Date</PostedShipmentDateCaption>
+    <SubtotalCaption>Subtotal</SubtotalCaption>
+    <LineAmtAfterInvDiscCptn>Payment Discount on VAT</LineAmtAfterInvDiscCptn>
+    <VatPerc_SalesInvLine>21</VatPerc_SalesInvLine>
+    <WMS_Batch_No_SalesInvLine></WMS_Batch_No_SalesInvLine>
+    <Sell_To_Customer_No_SalesInvLine>20315</Sell_To_Customer_No_SalesInvLine>
+    <Desc_SalesInvLineCaption>Description</Desc_SalesInvLineCaption>
+    <Qty_SalesInvLineCaption>Quantity</Qty_SalesInvLineCaption>
+    <UOM_SalesInvLineCaption>UoM</UOM_SalesInvLineCaption>
+    <VatPerc_SalesInvLineCaption>VAT</VatPerc_SalesInvLineCaption>
+    <WMS_Batch_No_SalesInvLineCaption>Batch No.</WMS_Batch_No_SalesInvLineCaption>
+    <No_Of_TextLines_Present>0</No_Of_TextLines_Present>
+    <GroupText>Receipt I210003673: 08/12/21 Ref.: 3300068647</GroupText>
+    <GroupText2></GroupText2>
+    <GroupText3></GroupText3>
+    <TrailerContainerNo_DocumentHeader></TrailerContainerNo_DocumentHeader>
+    <PostingDate_DocumentHeader>08/12/21</PostingDate_DocumentHeader>
+    <ArrivedDate_DocumentHeader>08/12/21</ArrivedDate_DocumentHeader>
+    <TrailerContainerNo_DocumentHeader_Caption>Trailer/Container No.</TrailerContainerNo_DocumentHeader_Caption>
+    <PostingDate_DocumentHeader_Caption>Posting Date</PostingDate_DocumentHeader_Caption>
+    <ArrivedDate_DocumentHeader_Caption>Arrived Date</ArrivedDate_DocumentHeader_Caption>
+    <Periodic_Starting_Date>08/12/21</Periodic_Starting_Date>
+    <Periodic_Ending_Date></Periodic_Ending_Date>
+    <Building_Code>MERVIELDE</Building_Code>
+    <ContainerNo>MRVU 351137-1</ContainerNo>
+    <ExternalBatch></ExternalBatch>
+    <ItemNo>20072</ItemNo>
+    <ItemDescription>VG1025</ItemDescription>
+    <EndingDate></EndingDate>
+    <Shipment>I210003673</Shipment>
+    <ExtShipment>3300068647</ExtShipment>
+    <Comment></Comment>
+    <No2></No2>
+    <GHS1></GHS1>
+    <GHS2></GHS2>
+  </Sales_Invoice_Line>
+</Sales_Invoice_Lines>
