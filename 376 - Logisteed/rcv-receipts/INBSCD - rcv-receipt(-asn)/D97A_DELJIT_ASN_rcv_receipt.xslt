@@ -123,6 +123,15 @@
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18603"/>
                                         </ns0:OrderUnitofMeasureCode>
                                         
+                                        <xsl:if test="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10801 != ''">
+                                            <ns0:CustomsValueper>
+                                                <xsl:value-of select="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10801" />
+                                            </ns0:CustomsValueper>
+                                            <ns0:CurrencyCode>
+                                                <xsl:value-of select="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10802" />
+                                            </ns0:CurrencyCode>
+                                        </xsl:if>
+                                        
                                         <ns0:Attributes>
                                             <ns0:Attribute>
                                                 <ns0:Code>EDILINENO</ns0:Code>

@@ -46,7 +46,6 @@
                         <xsl:value-of select="format-time(current-time(), '[H01]:[m01]')" />
                     </ns0:PlannedStartTime>
 
-
                     <ns0:PostingDate>
                         <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')" />
                     </ns0:PostingDate>
@@ -54,7 +53,7 @@
                     <OrderTypeCode>
                         <xsl:text>RETURN</xsl:text>
                     </OrderTypeCode>
-
+                    
                     <ns0:SenderAddress>
                         <xsl:choose>
                             <xsl:when test="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C082/C08201 != 'ONE TIME'" >
@@ -118,6 +117,16 @@
                                         <ns0:OrderUnitofMeasureCode>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18603" />
                                         </ns0:OrderUnitofMeasureCode>
+                                        
+                                        <xsl:if test="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10801 != ''">
+                                            <ns0:CustomsValueper>
+                                                <xsl:value-of select="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10801" />
+                                            </ns0:CustomsValueper>
+                                            <ns0:CurrencyCode>
+                                                <xsl:value-of select="s0:FTX_3[FTX01 = 'ZUP']/s0:C108_3/C10802" />
+                                            </ns0:CurrencyCode>
+                                        </xsl:if>
+
                                         
                                         <ns0:Attribute01>
                                             <xsl:variable name="cleanValue" 
