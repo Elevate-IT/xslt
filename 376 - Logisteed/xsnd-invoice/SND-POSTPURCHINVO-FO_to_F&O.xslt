@@ -56,7 +56,7 @@
         <!--24--><xsl:value-of select="functx:stringField('Factuurnummer', ns0:No, $sC, 40)"/>
         <!--25--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <!--26--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
-        <!--27--><xsl:value-of select="functx:stringField('Costcenter','', $sC, 6)"/>
+        <!--27--><xsl:value-of select="functx:stringField('Costcenter','', $sC, 16)"/>
         <!--28--><xsl:value-of select="functx:stringField('Costunit', '', $sC, 7)"/>
         <!--29--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <!--30--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
@@ -101,7 +101,7 @@
         <!--24--><xsl:value-of select="functx:stringField('Factuurnummer', ns0:DocumentNo, $sC, 40)"/>
         <!--25--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <!--26--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
-        <!--27--><xsl:value-of select="functx:stringField('Costcenter', ns0:DimensionsSet/ns0:DimensionSet[ns0:DimensionCode='COSTCENTRE']/ns0:DimensionValueCode, $sC, 6)"/>
+        <!--27--><xsl:value-of select="functx:stringField('Costcenter', ns0:DimensionsSet/ns0:DimensionSet[ns0:DimensionCode='COSTCENTRE']/ns0:DimensionValueCode, $sC, 16)"/>
         <!--28--><xsl:value-of select="functx:stringField('Costunit', ns0:DimensionsSet/ns0:DimensionSet[ns0:DimensionCode='COSTUNIT']/ns0:DimensionValueCode, $sC, 7)"/>
         <!--29--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <!--30--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
