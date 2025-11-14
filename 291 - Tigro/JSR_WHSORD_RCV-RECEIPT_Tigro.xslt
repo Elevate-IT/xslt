@@ -135,6 +135,10 @@
                                         <xsl:value-of select="ZZE1DL24/ZZLIPS_BESTQ" />
                                     </ns0:InitialCarrierStatusCode>
                                     
+                                    <ns0:InitialBatchStatusCode>
+                                        <xsl:value-of select="ZZE1DL24/ZZLIPS_BESTQ" />
+                                    </ns0:InitialBatchStatusCode>
+                                    
                                     <ns0:CountryofOriginCode>
                                         <xsl:value-of select="E1EDL35/HERKL" />
                                     </ns0:CountryofOriginCode>
