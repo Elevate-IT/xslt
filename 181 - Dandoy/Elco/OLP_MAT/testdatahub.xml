@@ -1,0 +1,44 @@
+<TextLines>
+  <Lines>
+    <Line>12029476          85   70   891     SAMMLER ASTRON TMO 30                   00001720000016603             ZPELPCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>000001073         98   40   940     THERMOSTAT DE SURCHAUFFE SESY           00000100000000003                 PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>000002672         98   40   940     THERMOCOUPLE  SESY                      000001000000000033234090383621    PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>000003678037      40   99   111     ENSEMBLE COUDE 30DEG D60/100            00000282500002403                 PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>000003678421      10   99   104     KIT SECURITE DE SURCHAUFFE FLUENDO      00000282500002403                 PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>0018000           98   10   910     GASKET FLANGE 5 HOLES SINGAL PHASE      000000000000000035414849261471    PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>0018470033        98   40   940     BOILER-BRUSHES                          000000340000000035414849017610    PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>0018760665        98   40   940     BOILER-BRUSHES                          000000399000000033234090253313    PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>002063            10   40   400     MICROBOILER 45 L                        000027000000226035411692338411    PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>005434            98   95   995     PRESSURE GAUGE                          000000420000002035411692042721    PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>007960            40   99   115     KAMERTHERMOSTAAT ET                     00000100000000003                 PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>013007726         98   90   990     BAFFLE PLATE SET                        000000000000000035414849238657    PCE                                                                                              *</Line>
+  </Lines>
+  <Lines>
+    <Line>016009            95   10   270     Contratto dummy                         00000000000000003                 EA                                                                                               *</Line>
+  </Lines>
+  <Lines>
+    <Line>016700            95   10   272     5TS                                     00000000000000003                 EA                                                                                               *</Line>
+  </Lines>
+</TextLines>

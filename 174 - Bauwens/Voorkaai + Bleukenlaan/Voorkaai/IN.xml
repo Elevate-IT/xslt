@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DESPATCH>
+	<UNH>
+		<ReleaseId>1.1.2</ReleaseId>
+		<ReleaseDate>2021-02-24T00:00:00</ReleaseDate>
+		<Receiver>72019</Receiver>
+		<Sender>1993</Sender>
+		<MessageId>161852</MessageId>
+		<MessageType>NEW</MessageType>
+	</UNH>
+	<DELIVERY>
+		<CallOffData>
+			<OrderId>891446006</OrderId>
+			<CallOffId>20</CallOffId>
+			<OrderReferenceId>47131|163170-16-TU-001|SAS KOFFIE|SRP 12x56 pads blanco handmatig|60236</OrderReferenceId>
+			<CustomerId>47131</CustomerId>
+			<CustomerName>SAS KOFFIE</CustomerName>
+			<CustomerName2>Dennelaan 10</CustomerName2>
+			<CustomerAddress/>
+			<CustomerZip>2340</CustomerZip>
+			<CustomerCity>BEERSE</CustomerCity>
+			<CustomerCountryId>BE</CustomerCountryId>
+			<CustomerVATNr>BE0404190783</CustomerVATNr>
+			<CustomerPhone>014 61 12 00</CustomerPhone>
+			<CustomerFax>014 61 27 52</CustomerFax>
+			<CustomerItemCode>60236</CustomerItemCode>
+			<CustomerItemDescription>SRP 12x56 pads blanco handmatig</CustomerItemDescription>
+			<CustomerOrderReference>24124</CustomerOrderReference>
+			<CustomerCallOffDescription>7248</CustomerCallOffDescription>
+			<CustomerItemFSCYesNo>Yes</CustomerItemFSCYesNo>
+			<CustomerItemFSCText>FSC Mix 70%, CU-COC-816233-D-07</CustomerItemFSCText>
+			<NumberOfPallets/>
+			<NormalDeliveryDate>20210719</NormalDeliveryDate>
+			<DeliveryAddressId>70459</DeliveryAddressId>
+			<DeliveryName>SAS</DeliveryName>
+			<DeliveryName2>LILSEDIJK 34</DeliveryName2>
+			<DeliveryAddress/>
+			<DeliveryZip>2340</DeliveryZip>
+			<DeliveryCity>BEERSE</DeliveryCity>
+			<DeliveryCountryId>BE</DeliveryCountryId>
+			<DeliveryAddressOpenTime>00:00</DeliveryAddressOpenTime>
+			<DeliveryAddressCloseTime>00:00</DeliveryAddressCloseTime>
+			<DeliveryAddressOpenTimeBis>00:00</DeliveryAddressOpenTimeBis>
+			<DeliveryAddressCloseTimeBis>00:00</DeliveryAddressCloseTimeBis>
+			<StockType>DOZEN</StockType>
+			<CallOffQuantity>1080</CallOffQuantity>
+			<FinalProductionStepSchedule/>
+			<TheoreticalStock>NO</TheoreticalStock>
+		</CallOffData>
+		<DespatchData>
+			<DebtorId>1993</DebtorId>
+			<CarrierRunId>527382</CarrierRunId>
+			<CarrierRunSeqId>1</CarrierRunSeqId>
+			<CarrierRunDate>20210719</CarrierRunDate>
+			<CarrierAddressId>1488</CarrierAddressId>
+			<CarrierName>BAUWENS EN ZOON</CarrierName>
+			<CarrierName2>Nieuwstraat 125 </CarrierName2>
+			<CarrierAddress/>
+			<CarrierZip>9190</CarrierZip>
+			<CarrierCity>STEKENE</CarrierCity>
+			<CarrierCountryId>BE</CarrierCountryId>
+			<IncoTerms>CPT - franko levering</IncoTerms>
+			<PickingInstructions/>
+			<PackingListRemark1>SmurfitKappa</PackingListRemark1>
+			<PackingListRemark2/>
+			<LineRemark1>BVT042BNL</LineRemark1>
+			<LineRemark2>846x1068 - 284x228x430</LineRemark2>
+			<PalletsDespatch>
+				<PalletLine>1</PalletLine>
+				<NumberOfPallets>2</NumberOfPallets>
+				<NumberOfPiecesPerPallet>540</NumberOfPiecesPerPallet>
+			</PalletsDespatch>
+			<PalletsPerCombination>
+				<PalletDescription>102</PalletDescription>
+				<PalletType>G</PalletType>
+				<PalletAgreement>HUUR</PalletAgreement>
+			</PalletsPerCombination>
+			<PalletsPerCombination>
+				<PalletDescription>964</PalletDescription>
+				<PalletType>T</PalletType>
+				<PalletAgreement>RUIL</PalletAgreement>
+			</PalletsPerCombination>
+		</DespatchData>
+	</DELIVERY>
+	<DELIVERY>
+		<CallOffData>
+			<OrderId>891446006</OrderId>
+			<CallOffId>20</CallOffId>
+			<OrderReferenceId>47131|163170-16-TU-001|SAS KOFFIE|SRP 12x56 pads blanco handmatig|60236</OrderReferenceId>
+			<CustomerId>47131</CustomerId>
+			<CustomerName>SAS KOFFIE</CustomerName>
+			<CustomerName2>Dennelaan 10</CustomerName2>
+			<CustomerAddress/>
+			<CustomerZip>2340</CustomerZip>
+			<CustomerCity>BEERSE</CustomerCity>
+			<CustomerCountryId>BE</CustomerCountryId>
+			<CustomerVATNr>BE0404190783</CustomerVATNr>
+			<CustomerPhone>014 61 12 00</CustomerPhone>
+			<CustomerFax>014 61 27 52</CustomerFax>
+			<CustomerItemCode>60236</CustomerItemCode>
+			<CustomerItemDescription>SRP 12x56 pads blanco handmatig</CustomerItemDescription>
+			<CustomerOrderReference>24124</CustomerOrderReference>
+			<CustomerCallOffDescription>7248</CustomerCallOffDescription>
+			<CustomerItemFSCYesNo>Yes</CustomerItemFSCYesNo>
+			<CustomerItemFSCText>FSC Mix 70%, CU-COC-816233-D-07</CustomerItemFSCText>
+			<NumberOfPallets/>
+			<NormalDeliveryDate>20210719</NormalDeliveryDate>
+			<DeliveryAddressId>70459</DeliveryAddressId>
+			<DeliveryName>SAS</DeliveryName>
+			<DeliveryName2>LILSEDIJK 34</DeliveryName2>
+			<DeliveryAddress/>
+			<DeliveryZip>2340</DeliveryZip>
+			<DeliveryCity>BEERSE</DeliveryCity>
+			<DeliveryCountryId>BE</DeliveryCountryId>
+			<DeliveryAddressOpenTime>00:00</DeliveryAddressOpenTime>
+			<DeliveryAddressCloseTime>00:00</DeliveryAddressCloseTime>
+			<DeliveryAddressOpenTimeBis>00:00</DeliveryAddressOpenTimeBis>
+			<DeliveryAddressCloseTimeBis>00:00</DeliveryAddressCloseTimeBis>
+			<StockType>DOZEN</StockType>
+			<CallOffQuantity>1080</CallOffQuantity>
+			<FinalProductionStepSchedule/>
+			<TheoreticalStock>NO</TheoreticalStock>
+		</CallOffData>
+		<DespatchData>
+			<DebtorId>1993</DebtorId>
+			<CarrierRunId>527382</CarrierRunId>
+			<CarrierRunSeqId>2</CarrierRunSeqId>
+			<CarrierRunDate>20210719</CarrierRunDate>
+			<CarrierAddressId>1488</CarrierAddressId>
+			<CarrierName>BAUWENS EN ZOON</CarrierName>
+			<CarrierName2>Nieuwstraat 125 </CarrierName2>
+			<CarrierAddress/>
+			<CarrierZip>9190</CarrierZip>
+			<CarrierCity>STEKENE</CarrierCity>
+			<CarrierCountryId>BE</CarrierCountryId>
+			<IncoTerms>CPT - franko levering</IncoTerms>
+			<PickingInstructions/>
+			<PackingListRemark1>SmurfitKappa</PackingListRemark1>
+			<PackingListRemark2/>
+			<LineRemark1>BVT042BNL</LineRemark1>
+			<LineRemark2>846x1068 - 284x228x430</LineRemark2>
+			<PalletsDespatch>
+				<PalletLine>1</PalletLine>
+				<NumberOfPallets>2</NumberOfPallets>
+				<NumberOfPiecesPerPallet>540</NumberOfPiecesPerPallet>
+			</PalletsDespatch>
+			<PalletsPerCombination>
+				<PalletDescription>102</PalletDescription>
+				<PalletType>G</PalletType>
+				<PalletAgreement>HUUR</PalletAgreement>
+			</PalletsPerCombination>
+			<PalletsPerCombination>
+				<PalletDescription>964</PalletDescription>
+				<PalletType>T</PalletType>
+				<PalletAgreement>RUIL</PalletAgreement>
+			</PalletsPerCombination>
+		</DespatchData>
+	</DELIVERY>
+	<DELIVERY>
+		<CallOffData>
+			<OrderId>897564002</OrderId>
+			<CallOffId>11</CallOffId>
+			<OrderReferenceId>47131|156820-68-TU-001|SAS KOFFIE|SRP 12x36P machinaal|60225</OrderReferenceId>
+			<CustomerId>47131</CustomerId>
+			<CustomerName>SAS KOFFIE</CustomerName>
+			<CustomerName2>Dennelaan 10</CustomerName2>
+			<CustomerAddress/>
+			<CustomerZip>2340</CustomerZip>
+			<CustomerCity>BEERSE</CustomerCity>
+			<CustomerCountryId>BE</CustomerCountryId>
+			<CustomerVATNr>BE0404190783</CustomerVATNr>
+			<CustomerPhone>014 61 12 00</CustomerPhone>
+			<CustomerFax>014 61 27 52</CustomerFax>
+			<CustomerItemCode>60225</CustomerItemCode>
+			<CustomerItemDescription>SRP 12x36P machinaal</CustomerItemDescription>
+			<CustomerOrderReference>24402</CustomerOrderReference>
+			<CustomerCallOffDescription>7233</CustomerCallOffDescription>
+			<CustomerItemFSCYesNo>Yes</CustomerItemFSCYesNo>
+			<CustomerItemFSCText>FSC Mix 70%, CU-COC-816233-D-07</CustomerItemFSCText>
+			<NumberOfPallets/>
+			<NormalDeliveryDate>20210719</NormalDeliveryDate>
+			<DeliveryAddressId>70459</DeliveryAddressId>
+			<DeliveryName>SAS</DeliveryName>
+			<DeliveryName2>LILSEDIJK 34</DeliveryName2>
+			<DeliveryAddress/>
+			<DeliveryZip>2340</DeliveryZip>
+			<DeliveryCity>BEERSE</DeliveryCity>
+			<DeliveryCountryId>BE</DeliveryCountryId>
+			<DeliveryAddressOpenTime>00:00</DeliveryAddressOpenTime>
+			<DeliveryAddressCloseTime>00:00</DeliveryAddressCloseTime>
+			<DeliveryAddressOpenTimeBis>00:00</DeliveryAddressOpenTimeBis>
+			<DeliveryAddressCloseTimeBis>00:00</DeliveryAddressCloseTimeBis>
+			<StockType>DOZEN</StockType>
+			<CallOffQuantity>1000</CallOffQuantity>
+			<FinalProductionStepSchedule/>
+			<TheoreticalStock>NO</TheoreticalStock>
+		</CallOffData>
+		<DespatchData>
+			<DebtorId>1993</DebtorId>
+			<CarrierRunId>527382</CarrierRunId>
+			<CarrierRunSeqId>3</CarrierRunSeqId>
+			<CarrierRunDate>20210719</CarrierRunDate>
+			<CarrierAddressId>1488</CarrierAddressId>
+			<CarrierName>BAUWENS EN ZOON</CarrierName>
+			<CarrierName2>Nieuwstraat 125 </CarrierName2>
+			<CarrierAddress/>
+			<CarrierZip>9190</CarrierZip>
+			<CarrierCity>STEKENE</CarrierCity>
+			<CarrierCountryId>BE</CarrierCountryId>
+			<IncoTerms>CPT - franko levering</IncoTerms>
+			<PickingInstructions/>
+			<PackingListRemark1>SmurfitKappa</PackingListRemark1>
+			<PackingListRemark2/>
+			<LineRemark1>BVT042BNL</LineRemark1>
+			<LineRemark2>533x1078 - 284x228x300</LineRemark2>
+			<PalletsDespatch>
+				<PalletLine>1</PalletLine>
+				<NumberOfPallets>1</NumberOfPallets>
+				<NumberOfPiecesPerPallet>1000</NumberOfPiecesPerPallet>
+			</PalletsDespatch>
+			<PalletsPerCombination>
+				<PalletDescription>102</PalletDescription>
+				<PalletType>G</PalletType>
+				<PalletAgreement>HUUR</PalletAgreement>
+			</PalletsPerCombination>
+			<PalletsPerCombination>
+				<PalletDescription>964</PalletDescription>
+				<PalletType>T</PalletType>
+				<PalletAgreement>RUIL</PalletAgreement>
+			</PalletsPerCombination>
+		</DespatchData>
+	</DELIVERY>
+	<DELIVERY>
+		<CallOffData>
+			<OrderId>897564002</OrderId>
+			<CallOffId>11</CallOffId>
+			<OrderReferenceId>47131|156820-68-TU-001|SAS KOFFIE|SRP 12x36P machinaal|60225</OrderReferenceId>
+			<CustomerId>47131</CustomerId>
+			<CustomerName>SAS KOFFIE</CustomerName>
+			<CustomerName2>Dennelaan 10</CustomerName2>
+			<CustomerAddress/>
+			<CustomerZip>2340</CustomerZip>
+			<CustomerCity>BEERSE</CustomerCity>
+			<CustomerCountryId>BE</CustomerCountryId>
+			<CustomerVATNr>BE0404190783</CustomerVATNr>
+			<CustomerPhone>014 61 12 00</CustomerPhone>
+			<CustomerFax>014 61 27 52</CustomerFax>
+			<CustomerItemCode>60225</CustomerItemCode>
+			<CustomerItemDescription>SRP 12x36P machinaal</CustomerItemDescription>
+			<CustomerOrderReference>24402</CustomerOrderReference>
+			<CustomerCallOffDescription>7233</CustomerCallOffDescription>
+			<CustomerItemFSCYesNo>Yes</CustomerItemFSCYesNo>
+			<CustomerItemFSCText>FSC Mix 70%, CU-COC-816233-D-07</CustomerItemFSCText>
+			<NumberOfPallets/>
+			<NormalDeliveryDate>20210719</NormalDeliveryDate>
+			<DeliveryAddressId>70459</DeliveryAddressId>
+			<DeliveryName>SAS</DeliveryName>
+			<DeliveryName2>LILSEDIJK 34</DeliveryName2>
+			<DeliveryAddress/>
+			<DeliveryZip>2340</DeliveryZip>
+			<DeliveryCity>BEERSE</DeliveryCity>
+			<DeliveryCountryId>BE</DeliveryCountryId>
+			<DeliveryAddressOpenTime>00:00</DeliveryAddressOpenTime>
+			<DeliveryAddressCloseTime>00:00</DeliveryAddressCloseTime>
+			<DeliveryAddressOpenTimeBis>00:00</DeliveryAddressOpenTimeBis>
+			<DeliveryAddressCloseTimeBis>00:00</DeliveryAddressCloseTimeBis>
+			<StockType>DOZEN</StockType>
+			<CallOffQuantity>1000</CallOffQuantity>
+			<FinalProductionStepSchedule/>
+			<TheoreticalStock>NO</TheoreticalStock>
+		</CallOffData>
+		<DespatchData>
+			<DebtorId>1993</DebtorId>
+			<CarrierRunId>527382</CarrierRunId>
+			<CarrierRunSeqId>4</CarrierRunSeqId>
+			<CarrierRunDate>20210719</CarrierRunDate>
+			<CarrierAddressId>1488</CarrierAddressId>
+			<CarrierName>BAUWENS EN ZOON</CarrierName>
+			<CarrierName2>Nieuwstraat 125 </CarrierName2>
+			<CarrierAddress/>
+			<CarrierZip>9190</CarrierZip>
+			<CarrierCity>STEKENE</CarrierCity>
+			<CarrierCountryId>BE</CarrierCountryId>
+			<IncoTerms>CPT - franko levering</IncoTerms>
+			<PickingInstructions/>
+			<PackingListRemark1>SmurfitKappa</PackingListRemark1>
+			<PackingListRemark2/>
+			<LineRemark1>BVT042BNL</LineRemark1>
+			<LineRemark2>533x1078 - 284x228x300</LineRemark2>
+			<PalletsDespatch>
+				<PalletLine>1</PalletLine>
+				<NumberOfPallets>1</NumberOfPallets>
+				<NumberOfPiecesPerPallet>1000</NumberOfPiecesPerPallet>
+			</PalletsDespatch>
+			<PalletsPerCombination>
+				<PalletDescription>102</PalletDescription>
+				<PalletType>G</PalletType>
+				<PalletAgreement>HUUR</PalletAgreement>
+			</PalletsPerCombination>
+			<PalletsPerCombination>
+				<PalletDescription>964</PalletDescription>
+				<PalletType>T</PalletType>
+				<PalletAgreement>RUIL</PalletAgreement>
+			</PalletsPerCombination>
+		</DespatchData>
+	</DELIVERY>
+</DESPATCH>

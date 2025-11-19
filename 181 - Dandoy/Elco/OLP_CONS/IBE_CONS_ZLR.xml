@@ -1,0 +1,89 @@
+<TextLines>
+  <Lines>
+    <Line>EDI_DC40  4000000000041158043731 3012  DELVRY03                      ZDELVRY03_V2                  DESADV                                           SAPAIQ    LS  SMPCLNT400                                                                                           SAP2SI    LISP0006013912                                                                                           20211103152033                                                                                                                20211103152032      </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL20002                    40000000000411580430000010000000200846221844622BEEL                                  DDU                            Z000000331.700           29.700         KGM131220.000     CMQ00000                                                                                                                                           20211103152033</Line>
+  </Lines>
+  <Lines>
+    <Line>ZE1EDL20_ADD000               400000000004115804300000200000103           31.700           29.700KG BE00000000                  446080531                                  008462218420211103</Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL22                       400000000004115804300000300000103Ship. Point Dandoy            Elco Belgium                                                                         Delivered Duty Unpaid         MTS Group Dummy Route                   Normal                                  </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL21                       400000000004115804300000400000103ZLR           10OB                    Z000            </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL23                       400000000004115804300000500000404Returns Delivery    Normal                                                      MTS Exp : B Group   Dummy MTS Group                                                                 </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL18                       400000000004115804300000600000103ORI                    </Line>
+  </Lines>
+  <Lines>
+    <Line>E2ADRM1001                    400000000004115804300000700000103AG  0058108112                        FR               Chauffage BROOZE   Fils s.a.                                                                                                                                                                                                                                                                                                    Avenue d Itterbeek  277                                                                                                               1070                               BRUXELLES                                                                                                                                   02/521 75 91                                                                                                                                                                                  BE    02                                                                      </Line>
+  </Lines>
+  <Lines>
+    <Line>E2ADRM1001                    400000000004115804300000800000103WE  0058108112                        FR               Chauffage BROOZE   Fils s.a.                                                                                                                                                                                                                                                                                                    Avenue d Itterbeek  277                                                                                                               1070                               BRUXELLES                                                                                                                                   02/521 75 91                                                                                                                                                                                  BE    02                                                                      </Line>
+  </Lines>
+  <Lines>
+    <Line>E2ADRM1001                    400000000004115804300000900000103OSP 4622                              FR               Luogo di sped Dandoy                    Exploitation site  Mollem 1  (War.)                                                                                                                                                                                                                                                     Zone 5 Mollem                                                                                                           190           1730                               Mollem (Asse)                                                                                                                                                                                                                                                                                                                             BE    02                                                                      </Line>
+  </Lines>
+  <Lines>
+    <Line>E2ADRM1001                    400000000004115804300001000000103OSO BEEL                              FR               Elco Belgium SA                                                                                                                                                                                                                                                                                                                 Z.I Research Park                                                                                                       60            1731                               ZELLIK                                                                                                                                                                                                                                                                                                                                    BE    02                                                                      </Line>
+  </Lines>
+  <Lines>
+    <Line>E2ADRM1001                    400000000004115804300001100000103VE  0058108112                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDT13001                    400000000004115804300001200000103006                        2021110300000020211103000000CET   0000000000000000000000000000CET                                                             </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDT13001                    400000000004115804300001300000103Z07                        2021110300000020211103000000      0000000000000000000000000000                                                                </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDT13001                    400000000004115804300001400000103003                        2021110300000020211103000000CET   0000000000000000000000000000                                                                </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDT13001                    400000000004115804300001500000103001                        2021110300000020211103000000CET   0000000000000000000000000000                                                                </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDT13001                    400000000004115804300001600000103007                        2021110313000020211103130000CET   0000000000000000000000000000                                                                </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDT13001                    400000000004115804300001700000103010                        2021110300000020211103000000CET   0000000000000000000000000000                                                                </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDT13001                    400000000004115804300001800000103015                        2021110300000020211103000000      0000000000000000000000000000                                                                </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL28                       400000000004115804300001900000103Z00000                                                                                                          0.000             </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL24006                    4000000000041158043000020000001030000103312164           3312164           THISION MINI 15.3                                                                    00002    46  TEMP                                1.000          PCE1.000          PCE29.700         31.700         KGM131220.000     CMQ                 0001Z000BL05B1918SA0005414849776708                                                                                                                                                                                                                                 000000                                                                                                                                                                                                                                                                                                                                      00000000</Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL25                       400000000004115804300002100002004temporaneo      Crane               Dummy MTS Group     Bruxelles           M.Fernandez si prov Belgium household   Sale CE                                 </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL26001                    400000000004115804300002200002004ZREF00002    40   10   722     1     1       0.0  0.0       SD02X           X   C12         1              </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL27001                    400000000004115804300002300002205ATGgr CM returns it.Finished Product    Dom. WH Boilers HE OELCO BE                                           BE-C M-D04                                                                      1 year                                                                                                                                                                                                  </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL35                       40000000000411580430000240000200484031090                                      </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL36                       400000000004115804300002500002405Boilers                                                                                                                                                                                                                                                                                                                                                                                </Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL43000                    400000000004115804300002600002004H0061097764                         00020020211103</Line>
+  </Lines>
+  <Lines>
+    <Line>E2EDL43000                    400000000004115804300002700002004M9805710487                         000200        </Line>
+  </Lines>
+  <Lines>
+    <Line></Line>
+  </Lines>
+</TextLines>
