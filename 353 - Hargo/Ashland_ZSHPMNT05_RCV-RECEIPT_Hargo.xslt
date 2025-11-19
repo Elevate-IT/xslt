@@ -13,6 +13,7 @@
         use="VGBEL" />
     
     <xsl:variable name="OrderType" select="upper-case(/ZSHPMNT05/IDOC/E1EDT20/E1EDT22/VSART_BEZ)"/>
+    <xsl:variable name="ContainerNo" select="translate(/ZSHPMNT05/IDOC/E1EDT20/SIGNI, '-', '')"/>
     <xsl:variable name="EUCountryCodes" select="tokenize('AT BE BG CY CZ DE DK EE ES FI FR GR HR HU IE IT LT LU LV MC MT NL PL PT RO SE SI SK', '\s+')" />
     
     <xsl:template match="/">
@@ -59,12 +60,13 @@
                                     <xsl:text>ZENDING</xsl:text>
                                 </xsl:when>
                                 <xsl:when test="($OrderType = 'SEA')">
+                                    <xsl:variable name="checkedContainerNo" select="analyze-string($ContainerNo, '([a-zA-Z]{3})([UJZujz])(\d{6})(\d)')"/> <!-- check containerno format with regex -->
                                     <xsl:choose>
-                                        <xsl:when test="E1EDT20/SIGNI != '' and E1EDT20/E1EDL20[1]/ZSHPMNT/ZZEQ_TYPE != '12' ">
+                                        <xsl:when test="$checkedContainerNo != ''">
                                             <xsl:text>CONTAINER</xsl:text>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:text>LCL</xsl:text>
+                                            <xsl:text>SEA</xsl:text>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:when>
@@ -151,31 +153,11 @@
                                 <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG > 0]/LFIMG), '#.###')"/>
                             </ns0:Quantity>
                             <ns0:ContainerNo>
-                                <xsl:variable name="ContainerNo" select="translate(E1EDT20/SIGNI, '-', '')"/>
                                 <xsl:if test="string-length($ContainerNo) &lt;= 13">
                                     <xsl:value-of select="$ContainerNo" />
                                 </xsl:if>
                             </ns0:ContainerNo>
                             <ns0:ContainerSizeCode>
-                                <!-- <xsl:variable name="EquipType" select="E1EDT20/E1EDL20[1]/ZSHPMNT/ZZEQ_TYPE" />
-                                     <xsl:variable name="FCL" select="tokenize('05 06 07 08 39 40 41 42 43 44 45 46', '\s+')" />
-                                     <xsl:variable name="FTL" select="tokenize('02 13 14 15 17 18 19 20 21 22 23 24 25 26 28 31 32 36 37 38 CT TC TS TT', '\s+')" />
-                                     <xsl:variable name="LCL" select="tokenize('01 03 04 12 27 29', '\s+')" />
-                                     <xsl:variable name="LTL" select="tokenize('09 10 11 16 30 33 34 35', '\s+')" />
-                                     <xsl:choose>
-                                     <xsl:when test="index-of($FCL, $EquipType)">
-                                     <xsl:text>FCL</xsl:text>
-                                     </xsl:when>
-                                     <xsl:when test="index-of($FTL, $EquipType)">
-                                     <xsl:text>FTL</xsl:text>
-                                     </xsl:when>
-                                     <xsl:when test="index-of($LCL, $EquipType)">
-                                     <xsl:text>LCL</xsl:text>
-                                     </xsl:when>
-                                     <xsl:when test="index-of($LTL, $EquipType)">
-                                     <xsl:text>LTL</xsl:text>
-                                     </xsl:when>
-                                     </xsl:choose> -->
                                 <xsl:value-of select="E1EDT20/E1EDL20[1]/ZSHPMNT/ZZEQ_TYPE"/>
                             </ns0:ContainerSizeCode>
                             <ns0:SealNo>
