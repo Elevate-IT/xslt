@@ -49,7 +49,8 @@
                             <xsl:value-of select="format-date(ns0:DocumentDate, '[Y0001][M01][D01]')"/>
                         </DOC_DATE>
                         <REF_DOC_NO>
-                            <xsl:value-of select="substring(concat('0000000000000000', replace(ns0:ExternalDocumentNo, ' ', '')), string-length(replace(ns0:ExternalDocumentNo, ' ', '')) + 1, 16)"/>
+                            <xsl:variable name="REF_DOC_NO" select="replace(distinct-values(ns0:DocumentLines/ns0:DocumentLine/ns0:DocumentDetailLines/ns0:DocumentDetailLine/ns0:Attributes/ns0:Attribute[ns0:Code = 'DELIVERYNO']/ns0:Value), ' ', '')" />
+                            <xsl:value-of select="substring(concat('0000000000000000', $REF_DOC_NO), string-length($REF_DOC_NO) + 1, 16)"/>
                         </REF_DOC_NO>
                         <PR_UNAME>INTERFAC</PR_UNAME>
                     </E1BP2017_GM_HEAD_01>
