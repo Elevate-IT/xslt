@@ -35,7 +35,7 @@
                     <xsl:text>INSERT</xsl:text>
                 </ns0:ProcesAction>
                 <ns0:FromTradingPartner>
-                    <xsl:text>JSR</xsl:text>
+                    <xsl:text>KL1557</xsl:text>
                 </ns0:FromTradingPartner>
                 <ns0:ToTradingPartner>
                     <xsl:text>Tigro</xsl:text>
