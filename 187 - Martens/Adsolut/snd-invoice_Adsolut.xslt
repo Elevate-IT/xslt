@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:ns0="www.boltrics.nl/sendpostedsalesinvoice:v1.00"
                 xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xmlns:ad="http://websrv.adsolut.be/webservices"
                 exclude-result-prefixes="ns0">
   
@@ -12,13 +13,13 @@
   <xsl:template match="/">
     <soap12:Envelope>
       <soap12:Body>
-        <ad:ImportSalesInvoices>
+        <ImportSalesInvoices xmlns="http://websrv.adsolut.be/webservices">
           <xml>
             <salesinvoices>
               <xsl:apply-templates select="//ns0:PostedSalesInvoice" />
             </salesinvoices>
           </xml>
-        </ad:ImportSalesInvoices>
+        </ImportSalesInvoices>
       </soap12:Body>
     </soap12:Envelope>
   </xsl:template>
@@ -62,10 +63,10 @@
         
         <!-- VAT regime mapping example -->
         <btwregimes_btwregime>
-          <xsl:choose>
+          <!-- <xsl:choose>
             <xsl:when test="ns0:VATBusPostingGroup='EU'">H</xsl:when>
             <xsl:otherwise>H</xsl:otherwise>
-          </xsl:choose>
+          </xsl:choose> -->
         </btwregimes_btwregime>
         
         <!-- Currency -->
@@ -73,7 +74,9 @@
           <xsl:value-of select="ns0:CurrencyCode"/>
         </valuta_code>
         
-        <koers>1,0</koers>
+        <koers>
+          <!-- 1,0 -->
+        </koers>
         
         <!-- Invoice totals -->
         <tebet>
