@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet version="3.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:ns0="www.boltrics.nl/sendpostedsalesinvoice:v1.00"
                 xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"
@@ -7,8 +7,10 @@
                 xmlns:ad="http://websrv.adsolut.be/webservices"
                 exclude-result-prefixes="ns0">
   
-  <xsl:output method="xml" indent="yes" />
-  
+  <!-- <xsl:output method="xml" indent="yes" cdata-section-elements="salesinvoices"/> -->
+  <!-- <xsl:output method="xml" indent="yes" /> -->
+  <xsl:output method="xml" cdata-section-elements="xml"/>
+
   <!-- Root template -->
   <xsl:template match="/">
     <soap12:Envelope>
@@ -141,7 +143,9 @@
       <btwcodes_btwcode>
         <xsl:choose>
           <xsl:when test="ns0:VATPercentage='21'">4</xsl:when>
-          <xsl:when test="ns0:VATPercentage='0'">0</xsl:when>
+          <xsl:when test="ns0:VATPercentage='12'">3</xsl:when>
+          <xsl:when test="ns0:VATPercentage='6'">2</xsl:when>
+          <xsl:when test="ns0:VATPercentage='0'">1</xsl:when>
           <xsl:otherwise>4</xsl:otherwise>
         </xsl:choose>
       </btwcodes_btwcode>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <soap12:Envelope xmlns:ad="http://websrv.adsolut.be/webservices"
-                 xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+   xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <soap12:Body>
-      <ad:ImportSalesInvoices>
+      <ImportSalesInvoices xmlns="http://websrv.adsolut.be/webservices">
          <xml>
             <salesinvoices>
-               <invoice>
+               <invoice xmlns="">
                   <blrela>
-                     <boekjaar_boekjaar>2025</boekjaar_boekjaar>
+                     <boekjaar_boekjaar><![CDATA[2025]]></boekjaar_boekjaar>
                      <dagboek_dagboek>VK</dagboek_dagboek>
                      <codefcbd_codefcbd>F</codefcbd_codefcbd>
                      <periode_periode>10</periode_periode>
@@ -15,21 +16,21 @@
                      <factdat>2025-10-15</factdat>
                      <vervdat>2025-11-14</vervdat>
                      <relaties_code>K0013294</relaties_code>
-                     <btwregimes_btwregime>H</btwregimes_btwregime>
+                     <btwregimes_btwregime />
                      <valuta_code>EUR</valuta_code>
-                     <koers>1,0</koers>
+                     <koers />
                      <tebet>397.32</tebet>
                      <basis>348.96</basis>
                      <btwtebet>48.36</btwtebet>
                      <statusfact_status>OK</statusfact_status>
                      <bedragkc>0,00</bedragkc>
                      <kortcont>0,00</kortcont>
-                     <ogm/>
+                     <ogm />
                      <omschrijving>Factuur B72510002</omschrijving>
-                     <vertegenw_code/>
+                     <vertegenw_code />
                   </blrela>
                   <blboekhpl>
-                     <datum/>
+                     <datum />
                      <boekhpl_reknr>701310</boekhpl_reknr>
                      <bedrag>36.12</bedrag>
                      <codedc>C</codedc>
@@ -37,10 +38,10 @@
                      <valuta_code>EUR</valuta_code>
                      <koers>1,0</koers>
                      <btwregimes_btwregime>H</btwregimes_btwregime>
-                     <btwcodes_btwcode>0</btwcodes_btwcode>
+                     <btwcodes_btwcode>1</btwcodes_btwcode>
                   </blboekhpl>
                   <blboekhpl>
-                     <datum/>
+                     <datum />
                      <boekhpl_reknr>701310</boekhpl_reknr>
                      <bedrag>25.80</bedrag>
                      <codedc>C</codedc>
@@ -51,7 +52,7 @@
                      <btwcodes_btwcode>4</btwcodes_btwcode>
                   </blboekhpl>
                   <blboekhpl>
-                     <datum/>
+                     <datum />
                      <boekhpl_reknr>701300</boekhpl_reknr>
                      <bedrag>204.48</bedrag>
                      <codedc>C</codedc>
@@ -62,7 +63,7 @@
                      <btwcodes_btwcode>4</btwcodes_btwcode>
                   </blboekhpl>
                   <blboekhpl>
-                     <datum/>
+                     <datum />
                      <boekhpl_reknr>701312</boekhpl_reknr>
                      <bedrag>82.56</bedrag>
                      <codedc>C</codedc>
@@ -70,11 +71,11 @@
                      <valuta_code>EUR</valuta_code>
                      <koers>1,0</koers>
                      <btwregimes_btwregime>H</btwregimes_btwregime>
-                     <btwcodes_btwcode>0</btwcodes_btwcode>
+                     <btwcodes_btwcode>1</btwcodes_btwcode>
                   </blboekhpl>
                </invoice>
             </salesinvoices>
          </xml>
-      </ad:ImportSalesInvoices>
+      </ImportSalesInvoices>
    </soap12:Body>
 </soap12:Envelope>
