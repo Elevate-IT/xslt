@@ -17,9 +17,11 @@
       <soap12:Body>
         <ImportSalesInvoices xmlns="http://websrv.adsolut.be/webservices">
           <xml>
+            <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
             <salesinvoices>
               <xsl:apply-templates select="//ns0:PostedSalesInvoice" />
             </salesinvoices>
+            <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
           </xml>
         </ImportSalesInvoices>
       </soap12:Body>
