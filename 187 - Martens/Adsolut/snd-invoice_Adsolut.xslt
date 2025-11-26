@@ -30,7 +30,6 @@
   <xsl:template match="ns0:PostedSalesInvoice">
     <invoice>
       <blrela>
-        <!-- Book year: from PostingDate -->
         <boekjaar_boekjaar>
           <xsl:value-of select="substring(ns0:PostingDate,1,4)" />
         </boekjaar_boekjaar>
@@ -38,49 +37,41 @@
         <dagboek_dagboek>VK</dagboek_dagboek>
         <codefcbd_codefcbd>F</codefcbd_codefcbd>
         
-        <!-- Period from PostingDate -->
         <periode_periode>
           <xsl:value-of select="substring(ns0:PostingDate,6,2)" />
         </periode_periode>
         
-        <!-- Invoice Number -->
         <factuur>
           <xsl:value-of select="ns0:No"/>
         </factuur>
         
-        <!-- Invoice Date -->
         <factdat>
           <xsl:value-of select="ns0:PostingDate"/>
         </factdat>
         
-        <!-- Due Date -->
         <vervdat>
           <xsl:value-of select="ns0:DueDate"/>
         </vervdat>
         
-        <!-- Customer code -->
         <relaties_code>
           <xsl:value-of select="ns0:Customer/ns0:No"/>
         </relaties_code>
         
-        <!-- VAT regime mapping example -->
-        <btwregimes_btwregime>
-          <!-- <xsl:choose>
+        <!-- Optioneel -->
+        <!-- <btwregimes_btwregime>
+          <xsl:choose>
             <xsl:when test="ns0:VATBusPostingGroup='EU'">H</xsl:when>
             <xsl:otherwise>H</xsl:otherwise>
-          </xsl:choose> -->
-        </btwregimes_btwregime>
+          </xsl:choose>
+        </btwregimes_btwregime> -->
         
-        <!-- Currency -->
         <valuta_code>
           <xsl:value-of select="ns0:CurrencyCode"/>
         </valuta_code>
         
-        <koers>
-          <!-- 1,0 -->
-        </koers>
-        
-        <!-- Invoice totals -->
+        <!-- Optioneel -->
+        <!-- <koers>1,0</koers> -->
+
         <tebet>
           <xsl:value-of select="format-number(ns0:AmountIncludingVAT, '0.00')" />
         </tebet>
@@ -111,7 +102,6 @@
   <!-- Line mappings -->
   <xsl:template match="ns0:SalesInvoiceLine">
     <blboekhpl>
-      <!-- Date -->
       <datum>
         <xsl:value-of select="../ns0:PostingDate"/>
       </datum>
@@ -121,7 +111,6 @@
         <xsl:value-of select="ns0:GeneralPostingGroup/ns0:SalesAccount"/>
       </boekhpl_reknr>
       
-      <!-- Amount -->
       <bedrag>
         <xsl:value-of select="format-number(ns0:Amount, '0.00')" />
       </bedrag>
@@ -137,7 +126,6 @@
       
       <koers>1,0</koers>
       
-      <!-- VAT Regime / Code example -->
       <btwregimes_btwregime>H</btwregimes_btwregime>
       
       <btwcodes_btwcode>
