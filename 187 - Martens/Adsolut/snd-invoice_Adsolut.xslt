@@ -7,15 +7,13 @@
                 xmlns:ad="http://websrv.adsolut.be/webservices"
                 exclude-result-prefixes="ns0">
   
-  <!-- <xsl:output method="xml" indent="yes" cdata-section-elements="salesinvoices"/> -->
-  <!-- <xsl:output method="xml" indent="yes" /> -->
-  <xsl:output method="xml" cdata-section-elements="xml"/>
+ <xsl:output method="xml" indent="yes" cdata-section-elements="xml"/>
 
   <!-- Root template -->
   <xsl:template match="/">
     <soap12:Envelope>
       <soap12:Body>
-        <ImportSalesInvoices xmlns="http://websrv.adsolut.be/webservices">
+        <ad:ImportSalesInvoices>
           <xml>
             <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
             <salesinvoices>
@@ -23,7 +21,7 @@
             </salesinvoices>
             <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
           </xml>
-        </ImportSalesInvoices>
+        </ad:ImportSalesInvoices>
       </soap12:Body>
     </soap12:Envelope>
   </xsl:template>
@@ -56,7 +54,14 @@
         </vervdat>
         
         <relaties_code>
-          <xsl:value-of select="ns0:Customer/ns0:No"/>
+          <xsl:choose>
+            <xsl:when test="ns0:BillToCustomer/ns0:EANCode != ''">
+              <xsl:value-of select="ns0:BillToCustomer/ns0:EANCode"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="ns0:BillToCustomer/ns0:No"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </relaties_code>
         
         <!-- Optioneel -->
