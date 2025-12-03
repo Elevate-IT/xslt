@@ -177,6 +177,9 @@
                                                     <xsl:when test="s0:Attribute01 = 'SHORTAGE'">SK99</xsl:when>
                                                     <xsl:when test="s0:Attribute01 = 'STOCK DISCREPANCY'">SK99</xsl:when>
                                                     <xsl:when test="s0:Attribute01 = 'SURPLUS'">SK99</xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:value-of select="s0:Attribute01"/>
+                                                    </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:variable>
                                             <xsl:choose>
