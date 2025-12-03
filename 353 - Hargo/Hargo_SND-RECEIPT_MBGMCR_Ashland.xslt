@@ -55,7 +55,7 @@
                         <PR_UNAME>INTERFAC</PR_UNAME>
                     </E1BP2017_GM_HEAD_01>
                     <E1BP2017_GM_CODE SEGMENT="1">
-                        <GM_CODE>01</GM_CODE> <!-- CHECK possible values: 01, 04 -->
+                        <GM_CODE>01</GM_CODE> <!-- Monday 171: E1BP2017_GM_CODE/GM_CODE -> 01 gebruiken -->
                     </E1BP2017_GM_CODE>
                     
                     <xsl:for-each select="ns0:DocumentLines/ns0:DocumentLine[ns0:Type = '1']">
@@ -79,19 +79,16 @@
                             <BATCH>
                                 <xsl:value-of select="../ns0:DocumentLine[ns0:LineNo = $LineNo]/ns0:ExternalBatchNo"/>
                             </BATCH>
-                            <MOVE_TYPE>109</MOVE_TYPE> <!-- CHECK possible values: -->
-                            <!-- Movement Type	Description	                                    Notes
-                                    109	        Ashland Intra company PO receipt.	
-                                    101	        Goods receipt on material from external vendor	
-                                    309	        Material to Material transfer	                GOOD STOCK ONLY
-                                    311	        Location Or Batch Change	                    GOOD STOCK ONLY
-                                    325	        Location Or Batch Change	                    BLOCKED STOCK ONLY
-                                    343	        Blocked to Unrestricted	
-                                    344	        Unrestricted to blocked	
-                                    551	        Scrapping	                                    GOOD STOCK ONLY
-                                    552	        Scrapping reversal	                            GOOD STOCK ONLY
-                                    555	        Scrap from blocked	                            BLOCKED STOCK ONLY
-                                    556	        UnScrap to blocked	                            BLOCKED STOCK ONLY -->
+                            <MOVE_TYPE>
+                                <xsl:choose>
+                                    <xsl:when test="substring(../../ns0:Attribute04, 1, 3) = ('101', '109')">
+                                        <xsl:value-of select="substring(../../ns0:Attribute04, 1, 3)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="../../ns0:Attribute04"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </MOVE_TYPE> <!-- Monday 171: we gebruiken enkel 109 & 101 deze worden al bij de inslag meegegeven = movement type -->
                             <ENTRY_QNT>
                                 <xsl:choose>
                                     <xsl:when test="ns0:PostedOrderQuantity &lt; 1">
@@ -111,17 +108,22 @@
                             <PO_ITEM>
                                 <xsl:value-of select="../ns0:DocumentLine[ns0:LineNo = $LineNo]/ns0:Attributes/ns0:Attribute[ns0:Code = 'POLINENO']/ns0:Value"/>
                             </PO_ITEM>
-                            <MVT_IND>B</MVT_IND> <!-- CHECK -->
+                            <MVT_IND>B</MVT_IND> <!-- Monday 171: E1BP2017_GM_ITEM_CREATE/MVT_IND -> idd 'B' gebruiken -->
                             <DELIV_NUMB_TO_SEARCH>
                                 <xsl:value-of select="../ns0:DocumentLine[ns0:LineNo = $LineNo]/ns0:Attribute01"/>
                             </DELIV_NUMB_TO_SEARCH>
-                            <DELIV_ITEM_TO_SEARCH></DELIV_ITEM_TO_SEARCH> <!-- CHECK -->
+                            <DELIV_ITEM_TO_SEARCH>
+                                    
+                            </DELIV_ITEM_TO_SEARCH>
 
-                            <!-- CHECK E1BP2017_GM_ITEM_CREATE1 needed? -->
-                            <!-- <E1BP2017_GM_ITEM_CREATE1 SEGMENT="1">
-                                <DELIV_NUMB>0852835037</DELIV_NUMB>
-                                <DELIV_ITEM>000010</DELIV_ITEM>
-                            </E1BP2017_GM_ITEM_CREATE1> -->
+                            <E1BP2017_GM_ITEM_CREATE1 SEGMENT="1">
+                                <DELIV_NUMB>
+                                    <xsl:value-of select="../ns0:DocumentLine[ns0:LineNo = $LineNo]/ns0:Attribute01" />
+                                </DELIV_NUMB>
+                                <DELIV_ITEM>
+                                    <xsl:value-of select="../ns0:DocumentLine[ns0:LineNo = $LineNo]/ns0:Attributes/ns0:Attribute[ns0:Code = 'POLINENO']/ns0:Value" />
+                                </DELIV_ITEM>
+                            </E1BP2017_GM_ITEM_CREATE1>
                         </E1BP2017_GM_ITEM_CREATE>
                     </xsl:for-each>
                 </Z1ZMBGMCR>

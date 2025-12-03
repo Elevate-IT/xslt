@@ -295,7 +295,7 @@
                                         </ns0:Attribute06>
                                         
                                         <ns0:ExternalDocumentNo>
-                                            <xsl:value-of select="format-number(E1EDT20/TKNUM, '#')" />
+                                            <xsl:value-of select="format-number(../../TKNUM, '#')" />
                                         </ns0:ExternalDocumentNo>
                                         
                                         <!--DOC INFO SET  -->
