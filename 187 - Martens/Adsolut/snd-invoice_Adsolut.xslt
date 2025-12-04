@@ -42,7 +42,7 @@
         </periode_periode>
         
         <factuur>
-          <xsl:value-of select="ns0:No"/>
+          <xsl:value-of select="replace(ns0:No, '[^0-9]', '')"/>
         </factuur>
         
         <factdat>
