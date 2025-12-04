@@ -14,13 +14,13 @@
     <soap12:Envelope>
       <soap12:Body>
         <ad:ImportSalesInvoices>
-          <xml>
+          <ad:xml>
             <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
             <salesinvoices>
               <xsl:apply-templates select="//ns0:PostedSalesInvoice" />
             </salesinvoices>
             <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
-          </xml>
+          </ad:xml>
         </ad:ImportSalesInvoices>
       </soap12:Body>
     </soap12:Envelope>
