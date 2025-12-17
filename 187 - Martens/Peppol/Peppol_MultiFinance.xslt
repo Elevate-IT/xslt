@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
-                xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+                xmlns:inv2="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
                 xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
                 xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
                 exclude-result-prefixes="msxsl"
@@ -10,7 +10,7 @@
   
   <xsl:variable name="COMPANY">
     <xsl:choose>
-      <xsl:when test="starts-with(/Invoice/cbc:ID, '1')">
+      <xsl:when test="starts-with(/inv2:Invoice/cbc:ID, '1')">
         <xsl:text>MARTENS</xsl:text>
       </xsl:when>
       <xsl:otherwise>
@@ -79,5 +79,19 @@
         <xsl:text>BE0448876111</xsl:text>
       </xsl:if>
     </xsl:copy>
-  </xsl:template> 
+  </xsl:template>
+  
+  <xsl:template match="cac:PaymentMeans/cac:PayeeFinancialAccount/cbc:ID">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"  />
+      
+      <xsl:if test="$COMPANY = 'MARTENS'">
+        <xsl:text>BE06230016606622</xsl:text>
+      </xsl:if>
+      
+      <xsl:if test="$COMPANY = 'ILS'">
+        <xsl:text>BE62230029259361</xsl:text>
+      </xsl:if>
+    </xsl:copy>
+  </xsl:template>
 </xsl:stylesheet>
