@@ -35,6 +35,7 @@
         </boekjaar_boekjaar>
         
         <dagboek_dagboek>VK</dagboek_dagboek>
+
         <codefcbd_codefcbd>F</codefcbd_codefcbd>
         
         <periode_periode>
@@ -73,7 +74,14 @@
         </btwregimes_btwregime> -->
         
         <valuta_code>
-          <xsl:value-of select="ns0:CurrencyCode"/>
+          <xsl:choose>
+            <xsl:when test="ns0:CurrencyCode != ''">
+              <xsl:value-of select="ns0:CurrencyCode"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>EUR</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
         </valuta_code>
         
         <!-- Optioneel -->
@@ -92,13 +100,20 @@
         </btwtebet>
         
         <statusfact_status>OK</statusfact_status>
-        <bedragkc>0,00</bedragkc>
-        <kortcont>0,00</kortcont>
-        <ogm/>
+
+        <!-- <bedragkc></bedragkc> -->
+
+        <kortcont>
+          <xsl:value-of select="format-number(ns0:PaymentDiscount, '0.00')" />  
+        </kortcont>
+
+        <!-- <ogm/> Overschrijving Gestructureerde Mededeling -->
+
         <omschrijving>
           <xsl:value-of select="ns0:PostingDescription"/>
         </omschrijving>
-        <vertegenw_code/>
+
+        <!-- <vertegenw_code/> -->
       </blrela>
       
       <!-- Accounting lines from SalesInvoiceLines -->
@@ -110,7 +125,7 @@
   <xsl:template match="ns0:SalesInvoiceLine">
     <blboekhpl>
       <datum>
-        <xsl:value-of select="../ns0:PostingDate"/>
+        <xsl:value-of select="ns0:PostingDate"/>
       </datum>
       
       <!-- Ledger account from General Posting Group -->
@@ -122,18 +137,35 @@
         <xsl:value-of select="format-number(ns0:Amount, '0.00')" />
       </bedrag>
       
-      <codedc>C</codedc>
+      <!-- <codedc>
+        <xsl:choose>
+          <xsl:when test="ns0:Amount &gt;= 0">
+            <xsl:text>C</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>D</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>  
+      </codedc> -->
+
       <hoeveelh>
         <xsl:value-of select="format-number(ns0:Quantity, '0.000')" />
       </hoeveelh>
       
-      <valuta_code>
+      <!-- <valuta_code>
         <xsl:value-of select="../../ns0:CurrencyCode"/>
       </valuta_code>
       
-      <koers>1,0</koers>
+      <koers>1,0</koers> -->
       
-      <btwregimes_btwregime>H</btwregimes_btwregime>
+      <btwregimes_btwregime>
+        <xsl:choose>
+          <xsl:when test="ns0:VATPostingGroup/ns0:VATBusPostingGroup = 'BINNENLAND'">H</xsl:when>
+          <xsl:when test="ns0:VATPostingGroup/ns0:VATBusPostingGroup = 'EU'">I</xsl:when>
+          <xsl:when test="ns0:VATPostingGroup/ns0:VATBusPostingGroup = 'EXPORT'">B</xsl:when>
+          <xsl:when test="ns0:VATPostingGroup/ns0:VATBusPostingGroup = 'FREE'">H</xsl:when>
+        </xsl:choose>  
+      </btwregimes_btwregime>
       
       <btwcodes_btwcode>
         <xsl:choose>
@@ -141,7 +173,6 @@
           <xsl:when test="ns0:VATPercentage='12'">3</xsl:when>
           <xsl:when test="ns0:VATPercentage='6'">2</xsl:when>
           <xsl:when test="ns0:VATPercentage='0'">1</xsl:when>
-          <xsl:otherwise>4</xsl:otherwise>
         </xsl:choose>
       </btwcodes_btwcode>
     </blboekhpl>
