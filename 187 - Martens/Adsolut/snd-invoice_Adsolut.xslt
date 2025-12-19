@@ -7,10 +7,10 @@
                 xmlns:ad="http://websrv.adsolut.be/webservices"
                 exclude-result-prefixes="ns0">
   
- <xsl:output method="xml" indent="yes" cdata-section-elements="xml"/>
+  <xsl:output method="xml" indent="yes" cdata-section-elements="xml"/>
   
   <xsl:decimal-format name="EU" decimal-separator="," grouping-separator=" "/>
-
+  
   <!-- Root template -->
   <xsl:template match="/">
     <soap12:Envelope>
@@ -37,7 +37,7 @@
         </boekjaar_boekjaar>
         
         <dagboek_dagboek>VK</dagboek_dagboek>
-
+        
         <codefcbd_codefcbd>F</codefcbd_codefcbd>
         
         <periode_periode>
@@ -69,11 +69,11 @@
         
         <!-- Optioneel -->
         <!-- <btwregimes_btwregime>
-          <xsl:choose>
-            <xsl:when test="ns0:VATBusPostingGroup='EU'">H</xsl:when>
-            <xsl:otherwise>H</xsl:otherwise>
-          </xsl:choose>
-        </btwregimes_btwregime> -->
+             <xsl:choose>
+             <xsl:when test="ns0:VATBusPostingGroup='EU'">H</xsl:when>
+             <xsl:otherwise>H</xsl:otherwise>
+             </xsl:choose>
+             </btwregimes_btwregime> -->
         
         <valuta_code>
           <xsl:choose>
@@ -88,7 +88,7 @@
         
         <!-- Optioneel -->
         <!-- <koers>1,0</koers> -->
-
+        
         <tebet>
           <xsl:value-of select="format-number(ns0:AmountIncludingVAT, '0,00', 'EU')" />
         </tebet>
@@ -102,19 +102,21 @@
         </btwtebet>
         
         <statusfact_status>OK</statusfact_status>
-
+        
         <!-- <bedragkc></bedragkc> -->
         
-        <kortcont>
-          <xsl:value-of select="format-number(ns0:PaymentDiscount, '0,00', 'EU')" />  
-        </kortcont>
-
+        <xsl:if test="count(ns0:PaymentDiscount) &gt; 0">
+          <kortcont>
+            <xsl:value-of select="format-number(ns0:PaymentDiscount, '0,00', 'EU')" />  
+          </kortcont>
+        </xsl:if>
+        
         <!-- <ogm/> Overschrijving Gestructureerde Mededeling -->
-
+        
         <omschrijving>
           <xsl:value-of select="ns0:PostingDescription"/>
         </omschrijving>
-
+        
         <!-- <vertegenw_code/> -->
       </blrela>
       
@@ -140,25 +142,25 @@
       </bedrag>
       
       <!-- <codedc>
-        <xsl:choose>
-          <xsl:when test="ns0:Amount &gt;= 0">
-            <xsl:text>C</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text>D</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>  
-      </codedc> -->
-
+           <xsl:choose>
+           <xsl:when test="ns0:Amount &gt;= 0">
+           <xsl:text>C</xsl:text>
+           </xsl:when>
+           <xsl:otherwise>
+           <xsl:text>D</xsl:text>
+           </xsl:otherwise>
+           </xsl:choose>  
+           </codedc> -->
+      
       <hoeveelh>
         <xsl:value-of select="format-number(ns0:Quantity, '0,000', 'EU')" />
       </hoeveelh>
       
       <!-- <valuta_code>
-        <xsl:value-of select="../../ns0:CurrencyCode"/>
-      </valuta_code>
-      
-      <koers>1,0</koers> -->
+           <xsl:value-of select="../../ns0:CurrencyCode"/>
+           </valuta_code>
+           
+           <koers>1,0</koers> -->
       
       <btwregimes_btwregime>
         <xsl:choose>
