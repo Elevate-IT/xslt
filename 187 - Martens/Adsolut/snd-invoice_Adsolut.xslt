@@ -8,6 +8,8 @@
                 exclude-result-prefixes="ns0">
   
  <xsl:output method="xml" indent="yes" cdata-section-elements="xml"/>
+  
+  <xsl:decimal-format name="EU" decimal-separator="," grouping-separator=" "/>
 
   <!-- Root template -->
   <xsl:template match="/">
@@ -88,23 +90,23 @@
         <!-- <koers>1,0</koers> -->
 
         <tebet>
-          <xsl:value-of select="format-number(ns0:AmountIncludingVAT, '0.00')" />
+          <xsl:value-of select="format-number(ns0:AmountIncludingVAT, '0,00', 'EU')" />
         </tebet>
         
         <basis>
-          <xsl:value-of select="format-number(ns0:Amount, '0.00')" />
+          <xsl:value-of select="format-number(ns0:Amount, '0,00', 'EU')" />
         </basis>
         
         <btwtebet>
-          <xsl:value-of select="format-number(ns0:AmountIncludingVAT - ns0:Amount, '0.00')" />
+          <xsl:value-of select="format-number(ns0:AmountIncludingVAT - ns0:Amount, '0,00', 'EU')" />
         </btwtebet>
         
         <statusfact_status>OK</statusfact_status>
 
         <!-- <bedragkc></bedragkc> -->
-
+        
         <kortcont>
-          <xsl:value-of select="format-number(ns0:PaymentDiscount, '0.00')" />  
+          <xsl:value-of select="format-number(ns0:PaymentDiscount, '0,00', 'EU')" />  
         </kortcont>
 
         <!-- <ogm/> Overschrijving Gestructureerde Mededeling -->
@@ -134,7 +136,7 @@
       </boekhpl_reknr>
       
       <bedrag>
-        <xsl:value-of select="format-number(ns0:Amount, '0.00')" />
+        <xsl:value-of select="format-number(ns0:Amount, '0,00', 'EU')" />
       </bedrag>
       
       <!-- <codedc>
@@ -149,7 +151,7 @@
       </codedc> -->
 
       <hoeveelh>
-        <xsl:value-of select="format-number(ns0:Quantity, '0.000')" />
+        <xsl:value-of select="format-number(ns0:Quantity, '0,000', 'EU')" />
       </hoeveelh>
       
       <!-- <valuta_code>
