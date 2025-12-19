@@ -119,7 +119,7 @@
       </blrela>
       
       <!-- Accounting lines from SalesInvoiceLines -->
-      <xsl:apply-templates select="ns0:SalesInvoiceLines/ns0:SalesInvoiceLine" />
+      <xsl:apply-templates select="ns0:SalesInvoiceLines/ns0:SalesInvoiceLine[ns0:Type != '0']" />
     </invoice>
   </xsl:template>
   
