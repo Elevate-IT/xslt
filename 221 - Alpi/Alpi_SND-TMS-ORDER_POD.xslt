@@ -33,7 +33,7 @@
                                   ns0:ToAddressDescription | ns0:ToAddressStreet | ns0:ToAddressPostCode | ns0:ToAddressCity | ns0:ToAddressCountryCode |
                                   ns0:UnloadingDateFrom | ns0:ActualEndingDate"/>
       
-      <xsl:apply-templates select="ns0:DocumentLines[ns0:Type = '1']"/>
+      <xsl:apply-templates select="ns0:DocumentLines"/>
       
       <xsl:apply-templates select="ns0:LinkedDocuments"/>
     </xsl:copy>
@@ -41,7 +41,7 @@
   
   <xsl:template match="ns0:DocumentLines">
     <xsl:copy>
-      <xsl:apply-templates select="ns0:DocumentLine"/>
+      <xsl:apply-templates select="ns0:DocumentLine[ns0:Type = '1']"/>
     </xsl:copy>
   </xsl:template>
   
