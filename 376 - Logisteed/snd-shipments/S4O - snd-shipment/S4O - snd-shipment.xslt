@@ -12,11 +12,10 @@
   </xsl:template>  
   
   <xsl:template match="/s0:Message/s0:Documents/s0:Document">   
-    <xsl:for-each select="s0:DocumentLines/s0:DocumentLine">
+    <xsl:for-each select="s0:DocumentLines/s0:DocumentLine[s0:Type = 1]">
       <xsl:text>S</xsl:text>
       <xsl:value-of select="//s0:Document/s0:No"/>
       <xsl:value-of select="codepoints-to-string(for $i in 1 to (41) return 32)"/>
-      <!-- <xsl:text>00000000</xsl:text> -->
       <xsl:value-of select="format-number(ceiling(s0:LineNo div 10000), '0000000000')" />
       <xsl:value-of select="codepoints-to-string(for $i in 1 to (40) return 32)"/>
       <xsl:value-of select="substring(concat(s0:No, '                  '), 1, 18)" />
@@ -27,11 +26,22 @@
       <xsl:text>0000000000</xsl:text>
       <xsl:value-of select="codepoints-to-string(for $i in 1 to (54) return 32)"/>
       
-      <xsl:value-of select="substring(concat(//s0:Document/s0:ShipToAddress/s0:Name, '                                   '), 1, 35)"/>
-      <xsl:value-of select="substring(concat(//s0:Document/s0:ShipToAddress/s0:Address, '                                   '), 1, 35)"/>
-      <xsl:value-of select="substring(concat(//s0:Document/s0:ShipToAddress/s0:City, '                                   '), 1, 35)"/>
-      <xsl:value-of select="substring(concat(//s0:Document/s0:ShipToAddress/s0:PostCode, '         '), 1, 9)"/>
-      <xsl:value-of select="substring(concat(//s0:Document/s0:ShipToAddress/s0:CountryRegionCode, '  '), 1, 2)"/>
+      <xsl:if test="//s0:Document/s0:ConsigneeAddress/s0:Name = ''" >
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ConsigneeAddress/s0:Name, '                                   '), 1, 35))"/>
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ConsigneeAddress/s0:Address, '                                   '), 1, 35))"/>
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ConsigneeAddress/s0:City, '                                   '), 1, 35))"/>
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ConsigneeAddress/s0:PostCode, '         '), 1, 9))"/>
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ConsigneeAddress/s0:CountryRegionCode, '  '), 1, 2))"/>
+      </xsl:if>
+      
+      <xsl:if test="//s0:Document/s0:ConsigneeAddress/s0:Name != ''" >
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ShipToAddress/s0:Name, '                                   '), 1, 35))"/>
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ShipToAddress/s0:Address, '                                   '), 1, 35))"/>
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ShipToAddress/s0:City, '                                   '), 1, 35))"/>
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ShipToAddress/s0:PostCode, '         '), 1, 9))"/>
+        <xsl:value-of select="upper-case(substring(concat(//s0:Document/s0:ShipToAddress/s0:CountryRegionCode, '  '), 1, 2))"/>
+      </xsl:if>
+      
       <xsl:text> </xsl:text>
       <xsl:value-of select="substring(concat(s0:CalculatedTripNo, '         '), 1, 9)"/>
       <xsl:text>&#10;</xsl:text> 
