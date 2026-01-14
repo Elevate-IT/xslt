@@ -20,7 +20,7 @@
       <xsl:value-of select="codepoints-to-string(for $i in 1 to (40) return 32)"/>
       <xsl:value-of select="substring(concat(s0:No, '                  '), 1, 18)" />
       <xsl:value-of select="codepoints-to-string(for $i in 1 to (32) return 32)"/>
-      <xsl:value-of select="format-number(s0:QuantityBase, '00000000000000000')" />
+      <xsl:value-of select="format-number(s0:QuantityBase * 1000, '00000000000000000')" />
       <xsl:text>SDD</xsl:text>
       <xsl:value-of select="codepoints-to-string(for $i in 1 to (332) return 32)"/>
       <xsl:text>0000000000</xsl:text>
