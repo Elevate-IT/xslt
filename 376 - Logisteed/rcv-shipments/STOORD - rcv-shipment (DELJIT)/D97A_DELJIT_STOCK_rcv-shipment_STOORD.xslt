@@ -126,6 +126,10 @@
                             </xsl:otherwise>
                         </xsl:choose>                        
                     </ns0:IncotermCode>
+                    
+                    <ns0:Attribute01>
+                        <xsl:value-of select="replace(s0:FTX[FTX01 = 'SIN'][starts-with(s0:C108/C10801, 'Created by:')]/s0:C108/C10801, 'Created by:', '')" />
+                    </ns0:Attribute01>
 
                     <ns0:Attribute03>
                         <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />
