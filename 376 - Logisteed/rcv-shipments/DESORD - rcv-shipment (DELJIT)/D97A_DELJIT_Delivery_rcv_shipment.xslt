@@ -126,8 +126,11 @@
                             </ns0:Name> 
                             
                             <ns0:Address>
-                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
+                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05803" />
                             </ns0:Address>
+                            <ns0:Address2>
+                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
+                            </ns0:Address2>
                             <ns0:City>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
                             </ns0:City>
