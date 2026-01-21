@@ -125,11 +125,11 @@
                          </ns0:Attribute04>
                         
                         <ns0:DocumentLines>
-                            <xsl:for-each select="E1EDP01[MENGE > 0][count(. | key('GroupedDocumentLines', concat(E1EDP19[QUALF = '001']/IDTNR, '-', ../E1EDK01/BELNR, '-', MENEE, '-', WERKS, '-', ../E1EDK01/BELNR))[1]) = 1]">
-                                <xsl:variable name="LineKey" select="concat(E1EDP19[QUALF = '001']/IDTNR, '-', ../E1EDK01/BELNR, '-', MENEE, '-', WERKS, '-', ../E1EDK01/BELNR)" />
-                                <xsl:if test="$LineKey != '----'">
+                            <xsl:for-each-group select="E1EDP01[MENGE > 0]" group-by="concat(E1EDP19[QUALF = '001']/IDTNR, '-', ../E1EDK01/BELNR, '-', MENEE, '-', WERKS, '-', ../E1EDK01/BELNR)">
+                            <!-- <xsl:for-each select="E1EDP01[MENGE > 0][count(. | key('GroupedDocumentLines', concat(E1EDP19[QUALF = '001']/IDTNR, '-', ../E1EDK01/BELNR, '-', MENEE, '-', WERKS, '-', ../E1EDK01/BELNR))[1]) = 1]"> -->
+                                <!-- <xsl:variable name="LineKey" select="concat(E1EDP19[QUALF = '001']/IDTNR, '-', ../E1EDK01/BELNR, '-', MENEE, '-', WERKS, '-', ../E1EDK01/BELNR)" /> -->
+                                <xsl:if test="current-grouping-key() != '----' and count(E1EDP19[QUALF = '001']/IDTNR) &gt; 0">
                                     <ns0:DocumentLine>
-                                        
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="number(E1EDP19[QUALF = '001']/IDTNR)" />
                                         </ns0:ExternalNo>
@@ -143,7 +143,7 @@
                                              </ns0:ExternalBatchNo>    -->
                                         
                                         <ns0:OrderQuantity>
-                                            <xsl:value-of select="sum(key('GroupedDocumentLines', $LineKey)/MENGE)" />
+                                            <xsl:value-of select="sum(current-group()/MENGE)" />
                                         </ns0:OrderQuantity>
                                         
                                         <ns0:OrderUnitofMeasureCode>
@@ -151,11 +151,11 @@
                                         </ns0:OrderUnitofMeasureCode>
                                         
                                         <ns0:GrossWeight>
-                                            <xsl:value-of select="sum(key('GroupedDocumentLines', $LineKey)/BRGEW)" />
+                                            <xsl:value-of select="sum(current-group()/BRGEW)" />
                                         </ns0:GrossWeight>
                                         
                                         <ns0:NetWeight>
-                                            <xsl:value-of select="sum(key('GroupedDocumentLines', $LineKey)/NTGEW)" />
+                                            <xsl:value-of select="sum(current-group()/NTGEW)" />
                                         </ns0:NetWeight>
                                         
                                         <!-- <ns0:CountryofOriginCode>
@@ -198,10 +198,26 @@
                                                     <xsl:value-of select="POSEX" /> Removed to allow for grouping
                                                 </ns0:Value>
                                             </ns0:Attribute> -->
+                                            
+                                            <ns0:Attribute>
+                                                <ns0:Code>
+                                                    <xsl:text>SPLIT_INFO</xsl:text>
+                                                </ns0:Code>
+                                                <ns0:Value>
+                                                    <xsl:for-each select="current-group()">
+                                                        <xsl:if test="position() &gt; 1">
+                                                            <xsl:text>;</xsl:text>
+                                                        </xsl:if>
+                                                        <xsl:value-of select="POSEX" />
+                                                        <xsl:text>/</xsl:text>
+                                                        <xsl:value-of select="number(MENGE)" />
+                                                    </xsl:for-each>
+                                                </ns0:Value>
+                                            </ns0:Attribute>
                                         </ns0:Attributes>
                                     </ns0:DocumentLine>
                                 </xsl:if>
-                            </xsl:for-each>
+                            </xsl:for-each-group>
                         </ns0:DocumentLines>  
                     </ns0:Document>
                 </xsl:for-each>  

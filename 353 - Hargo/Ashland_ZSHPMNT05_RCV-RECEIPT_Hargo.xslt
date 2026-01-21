@@ -233,9 +233,8 @@
                         
                         <ns0:DocumentLines>
                             <xsl:for-each-group select="E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) != 36462]" group-by="concat(MATNR, '-', CHARG, '-', ../E1ADRM1[PARTNER_Q = 'WE']/PARTNER_ID, '-', VGBEL, '-', ../VBELN, '-', VRKME, '-', E1EDL35/HERKL, '-', VGPOS)">
+                                <xsl:if test="current-grouping-key() != '-------'">
                                     <ns0:DocumentLine>
-                                        <!-- <xsl:value-of select="current-grouping-key()"/> -->
-                                    
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="number(MATNR)" />
                                         </ns0:ExternalNo>
@@ -353,7 +352,7 @@
                                             </ns0:Attribute10>
                                         </ns0:SenderAddress>
                                     </ns0:DocumentLine>
-                                
+                                </xsl:if>                               
                             </xsl:for-each-group>
                         </ns0:DocumentLines>  
                     </ns0:Document>
