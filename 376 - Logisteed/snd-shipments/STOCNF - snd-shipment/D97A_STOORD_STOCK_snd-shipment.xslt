@@ -6,11 +6,19 @@
                 exclude-result-prefixes="msxsl var s0"
                 version="3.0"  > 
     <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+    
     <xsl:template match="/">
         <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
     </xsl:template>
+    
+    <xsl:key
+        name="kByEdiLineNo"
+        match="s0:DocumentLine[s0:Type='1']"
+        use="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+    
     <xsl:template match="//s0:Message/s0:Documents/s0:Document">
         <xsl:variable name="Counter" select="position()"></xsl:variable>
+        
         <ns0:EFACT_D97A_DESADV>
             <UNH>
                 <UNH1>
@@ -68,8 +76,7 @@
                     </ns0:C506>
                 </ns0:RFF>
             </ns0:RFFLoop1>
-
-
+            
             <ns0:NADLoop1>
                 <ns0:NAD>
                     <NAD01>CN</NAD01>
@@ -107,7 +114,26 @@
                         <xsl:text>1</xsl:text>
                     </CPS01>   
                 </ns0:CPS>
-                <xsl:for-each select="//s0:Carriers/s0:Carrier/s0:Contents/s0:Content">
+                
+                <xsl:for-each
+                    select="s0:DocumentLines/s0:DocumentLine[s0:Type='1']
+                        [generate-id() = generate-id(
+                                key('kByEdiLineNo',
+                                    s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value
+                                )[1]
+                            )]">
+                    
+                    
+                    <xsl:variable name="ediLineNo"
+                        select="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+                    
+                    <xsl:variable name="groupLines"
+                        select="key('kByEdiLineNo', $ediLineNo)"/>
+                    
+                    <xsl:variable name="groupDetailLines"
+                        select="$groupLines/s0:DocumentDetailLines
+                            /s0:DocumentDetailLine[s0:Posted='1']"/>
+                    
                     <ns0:LINLoop1>
                         <ns0:LIN>
                             <LIN01>
@@ -115,8 +141,6 @@
                             </LIN01>
                             <ns0:C212>
                                 <C21201>
-                                    <!-- Item no GTIN EANCodeBaseUnitofMeasure-->
-                                    <!-- <xsl:value-of select="s0:EANCodeBaseUnitofMeasure"/> -->
                                     <xsl:value-of select="s0:ExternalNo"/>
                                 </C21201>
                                 <C21202>MF</C21202>
@@ -130,33 +154,33 @@
                                 <C21201>
                                     <xsl:variable name="QualIndicator" >
                                         <xsl:choose>
-                                            <xsl:when test="s0:Attribute01 = 'AVAILABLE'">1</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'AWAITING SCRAP'">AS01</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'BLOCKED'"></xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'DAMAGED'">DA01</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'DAMAGED CARTONS'">28</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'EXHIBITION STOCK'">40</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'FAULTY LOAN'">SA02</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'GRADED STOCK'">14</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'INSURANCE NO STOCK'">IN02</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'INSURANCE STOCK'">IN01</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'INVESTIGATE/RE-WORK'">TE01</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'JCI SOUTH AND EXPORT'">140S&amp;E</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'NON-ROHS'">15</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'OLD SPECS'">2</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'OLD STOCK'">14</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'OUT OF WARRANTY'">WA01</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'RESERVED STOCK'">XX01</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'RETURNS'">RE01</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'RE-WORK (HACE)'">TE02</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'ROHS: AVAILABLE'"></xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'SAMPLE STOCK'">SA01</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'SERVICE (HACE)'">TE03</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'SHORTAGE'">SK99</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'STOCK DISCREPANCY'">SK99</xsl:when>
-                                            <xsl:when test="s0:Attribute01 = 'SURPLUS'">SK99</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'AVAILABLE'">1</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'AWAITING SCRAP'">AS01</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'BLOCKED'"></xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'DAMAGED'">DA01</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'DAMAGED CARTONS'">28</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'EXHIBITION STOCK'">40</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'FAULTY LOAN'">SA02</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'GRADED STOCK'">14</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'INSURANCE NO STOCK'">IN02</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'INSURANCE STOCK'">IN01</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'INVESTIGATE/RE-WORK'">TE01</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'JCI SOUTH AND EXPORT'">140S&amp;E</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'NON-ROHS'">15</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'OLD SPECS'">2</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'OLD STOCK'">14</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'OUT OF WARRANTY'">WA01</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'RESERVED STOCK'">XX01</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'RETURNS'">RE01</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'RE-WORK (HACE)'">TE02</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'ROHS: AVAILABLE'"></xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'SAMPLE STOCK'">SA01</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'SERVICE (HACE)'">TE03</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'SHORTAGE'">SK99</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'STOCK DISCREPANCY'">SK99</xsl:when>
+                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'SURPLUS'">SK99</xsl:when>
                                             <xsl:otherwise>
-                                                <xsl:value-of select="s0:Attribute01"/>
+                                                <xsl:value-of select="$groupDetailLines/s0:Attribute01"/>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>
@@ -171,15 +195,15 @@
                             <ns0:C186_2>
                                 <C18601>12</C18601>
                                 <C18602>
-                                    <xsl:value-of select="sum(s0:Quantity)" />
+                                    <xsl:value-of select="sum($groupDetailLines/s0:Quantity)" />
                                 </C18602>
                                 <C18603>
                                     <xsl:text>PCE</xsl:text>
                                 </C18603>
                             </ns0:C186_2>
                         </ns0:QTY_2>
-
-                          <xsl:for-each select="s0:SpecificationSets/s0:SpecificationSet[s0:SpecificationTypeCode='PCE']">
+                        
+                        <xsl:for-each select="$groupDetailLines/s0:SpecificationSets/s0:SpecificationSet[s0:SpecificationTypeCode='PCE']">
                             <ns0:GIN_2>
                                 <GIN01>BN</GIN01>
                                 <ns0:C208_6>
@@ -199,9 +223,7 @@
                             </ns0:RFF_4>
                         </ns0:RFFLoop3>
                         
-                      
-                        
-                     </ns0:LINLoop1>
+                    </ns0:LINLoop1>
                 </xsl:for-each>
             </ns0:CPSLoop1>
         </ns0:EFACT_D97A_DESADV>
