@@ -6,10 +6,7 @@
                 exclude-result-prefixes = "#all" >   
     <xsl:output method="xml" indent="yes" version="1.0"/>
     
-    <xsl:key name="GroupedDocumentLines" match="//E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) != 36462]" 
-        use="concat(MATNR, '-', CHARG, '-', ../E1ADRM1[PARTNER_Q = 'WE']/PARTNER_ID, '-', VGBEL, '-', ../VBELN, '-', VRKME, '-', E1EDL35/HERKL, '-', VGPOS)" />
-    
-    <xsl:key name="GroupedBy_PONumbers" match="//E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) != 36462]" 
+    <xsl:key name="GroupedBy_PONumbers" match="//E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) != 36462]" 
         use="VGBEL" />
     
     <xsl:variable name="OrderType" select="upper-case(/ZSHPMNT05/IDOC/E1EDT20/E1EDT22/VSART_BEZ)"/>
@@ -49,7 +46,7 @@
                         
                         <ns0:ExternalReference>
                             <xsl:variable name="PONumbers" >
-                                <xsl:value-of select="E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) != 36462][count(. | key('GroupedBy_PONumbers', VGBEL)[1]) = 1]/VGBEL"/>
+                                <xsl:value-of select="E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) != 36462][count(. | key('GroupedBy_PONumbers', VGBEL)[1]) = 1]/VGBEL"/>
                             </xsl:variable>
                             <xsl:value-of select="substring(replace($PONumbers, ' ', '-'), 1, 80)" />
                         </ns0:ExternalReference>
@@ -144,13 +141,13 @@
                         
                         <xsl:if test="$OrderType = 'SEA'">
                             <ns0:GrossWeight>
-                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) != 36462]/BRGEW), '#.###')"/>
+                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) != 36462]/BRGEW), '#.###')"/>
                             </ns0:GrossWeight>
                             <ns0:NettWeight>
-                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) != 36462]/NTGEW), '#.###')"/>
+                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) != 36462]/NTGEW), '#.###')"/>
                             </ns0:NettWeight>
                             <ns0:Quantity>
-                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG > 0]/LFIMG), '#.###')"/>
+                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0]/LFIMG), '#.###')"/>
                             </ns0:Quantity>
                             <ns0:ContainerNo>
                                 <xsl:if test="string-length($ContainerNo) &lt;= 13">
@@ -221,13 +218,13 @@
                         
                         <xsl:if test="$OrderType = 'SEA'">
                             <ns0:Attribute03>
-                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) = 36462]/BRGEW), '#.###')"/>
+                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) = 36462]/BRGEW), '#.###')"/>
                             </ns0:Attribute03>
                             <!-- <ns0:Attribute06>
-                                 <xsl:value-of select="sum(E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) != 36462]/BRGEW) + sum(E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) = 36462]/BRGEW)"/>
+                                 <xsl:value-of select="sum(E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) != 36462]/BRGEW) + sum(E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) = 36462]/BRGEW)"/>
                                  </ns0:Attribute06> -->
                             <ns0:Attribute06>
-                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG > 0]/BRGEW), '#.###')"/>
+                                <xsl:value-of select="format-number(sum(E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0]/BRGEW), '#.###')"/>
                             </ns0:Attribute06>
                             <!-- <ns0:Attribute06>
                                  <xsl:value-of select="sum(E1EDT20/E1EDL20/BTGEW)"/>
@@ -235,11 +232,10 @@
                          </xsl:if>
                         
                         <ns0:DocumentLines>
-                            <xsl:for-each select="E1EDT20/E1EDL20/E1EDL24[LFIMG > 0][number(MATNR) != 36462][count(. | key('GroupedDocumentLines', concat(MATNR, '-', CHARG, '-', ../E1ADRM1[PARTNER_Q = 'WE']/PARTNER_ID, '-', VGBEL, '-', ../VBELN, '-', VRKME, '-', E1EDL35/HERKL, '-', VGPOS))[1]) = 1]">
-                                <xsl:variable name="LineKey" select="concat(MATNR, '-', CHARG, '-', ../E1ADRM1[PARTNER_Q = 'WE']/PARTNER_ID, '-', VGBEL, '-', ../VBELN, '-', VRKME, '-', E1EDL35/HERKL, '-', VGPOS)" />
-                                <xsl:if test="$LineKey != '-------'">
+                            <xsl:for-each-group select="E1EDT20/E1EDL20/E1EDL24[LFIMG &gt; 0][number(MATNR) != 36462]" group-by="concat(MATNR, '-', CHARG, '-', ../E1ADRM1[PARTNER_Q = 'WE']/PARTNER_ID, '-', VGBEL, '-', ../VBELN, '-', VRKME, '-', E1EDL35/HERKL, '-', VGPOS)">
                                     <ns0:DocumentLine>
-                                        
+                                        <!-- <xsl:value-of select="current-grouping-key()"/> -->
+                                    
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="number(MATNR)" />
                                         </ns0:ExternalNo>
@@ -267,7 +263,7 @@
                                         </ns0:CustomsCode>
                                         
                                         <ns0:OrderQuantity>
-                                            <xsl:value-of select="sum(key('GroupedDocumentLines', $LineKey)/LFIMG)" />
+                                            <xsl:value-of select="sum(current-group()/LFIMG)" />
                                         </ns0:OrderQuantity>
                                         
                                         <ns0:OrderUnitofMeasureCode>
@@ -275,11 +271,11 @@
                                         </ns0:OrderUnitofMeasureCode>
                                         
                                         <ns0:GrossWeight>
-                                            <xsl:value-of select="sum(key('GroupedDocumentLines', $LineKey)/BRGEW)" />
+                                            <xsl:value-of select="sum(current-group()/BRGEW)" />
                                         </ns0:GrossWeight>
                                         
                                         <ns0:NetWeight>
-                                            <xsl:value-of select="sum(key('GroupedDocumentLines', $LineKey)/NTGEW)" />
+                                            <xsl:value-of select="sum(current-group()/NTGEW)" />
                                         </ns0:NetWeight>
                                         
                                         <ns0:CountryofOriginCode>
@@ -308,6 +304,21 @@
                                                  <xsl:value-of select="POSNR" /> removed from message to allow for grouping
                                                  </ns0:Value>
                                                  </ns0:Attribute> -->
+                                            <ns0:Attribute>
+                                                <ns0:Code>
+                                                    <xsl:text>SPLIT_INFO</xsl:text>
+                                                </ns0:Code>
+                                                <ns0:Value>
+                                                    <xsl:for-each select="current-group()">
+                                                        <xsl:if test="position() &gt; 1">
+                                                            <xsl:text>;</xsl:text>
+                                                        </xsl:if>
+                                                        <xsl:value-of select="POSNR" />
+                                                        <xsl:text>/</xsl:text>
+                                                        <xsl:value-of select="number(LFIMG)" />
+                                                    </xsl:for-each>
+                                                </ns0:Value>
+                                            </ns0:Attribute>
                                             <ns0:Attribute>
                                                 <ns0:Code>
                                                     <xsl:text>POLINENO</xsl:text>
@@ -342,8 +353,8 @@
                                             </ns0:Attribute10>
                                         </ns0:SenderAddress>
                                     </ns0:DocumentLine>
-                                </xsl:if>
-                            </xsl:for-each>
+                                
+                            </xsl:for-each-group>
                         </ns0:DocumentLines>  
                     </ns0:Document>
                 </xsl:for-each>  
