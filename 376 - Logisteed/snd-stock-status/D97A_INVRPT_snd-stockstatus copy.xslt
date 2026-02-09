@@ -3,6 +3,7 @@
                 xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
                 xmlns:s0="www.boltrics.nl/stockstatus:v1.00"
                 xmlns:ns0="http://schemas.microsoft.com/BizTalk/EDI/EDIFACT/2006"
+                xmlns:env="http://schemas.boltrics.nl/stockstatus/envelope"
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
                 exclude-result-prefixes="msxsl var s0 MyScript" 
                 version="3.0">
@@ -17,9 +18,9 @@
     <xsl:key name="Group-by-PLANT-MATNO-QUAL" match="//s0:Carriers/s0:Carrier/s0:ContentLines/s0:CarrierContent" use="concat(generate-id(ancestor::s0:Customer[1]), '|', s0:Attribute03, '|', s0:ExternalCustomerItemNo, '-', s0:Attribute01)" />
     
     <xsl:template match="/">
-        <StockStatusEnvelope>
+        <env:StockStatusEnvelope>
             <xsl:apply-templates select="//s0:Message/s0:Customers/s0:Customer"/>
-        </StockStatusEnvelope>
+        </env:StockStatusEnvelope>
     </xsl:template>
     
     <xsl:template match="//s0:Message/s0:Customers/s0:Customer">
@@ -27,7 +28,7 @@
         <xsl:variable name="CustomerId" select="generate-id(.)" />
         <xsl:for-each select=".//s0:Carriers/s0:Carrier/s0:ContentLines/s0:CarrierContent[generate-id() = generate-id(key('Plant-only', concat($CustomerId, '|', s0:Attribute03))[1])]">
             <xsl:variable name="PlantCode" select="s0:Attribute03" />
-            <Message PlantCode="{$PlantCode}">
+            <env:Message PlantCode="{$PlantCode}">
                 <!-- <ns0:EANCOM_D01B_INVRPT> -->
                 <ns0:EFACT_D97A_INVRPT>
                     <!-- <UNB></UNB> -->
@@ -45,7 +46,7 @@
                     <ns0:BGM>
                         <ns0:C106>    
                             <C10601>               
-                                <xsl:value-of select="//s0:Header/s0:MessageID + position()" />
+                                <xsl:value-of select="//s0:Header/s0:MessageID" />
                             </C10601>               
                         </ns0:C106>
                     </ns0:BGM>
@@ -258,7 +259,7 @@
                     </xsl:for-each>
                 </ns0:EFACT_D97A_INVRPT>
                 <!-- </ns0:EANCOM_D01B_INVRPT> -->
-            </Message>
+            </env:Message>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
