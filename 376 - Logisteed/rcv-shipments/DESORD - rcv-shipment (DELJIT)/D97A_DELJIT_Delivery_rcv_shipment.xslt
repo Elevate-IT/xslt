@@ -37,19 +37,19 @@
                     <ns0:ExternalDocumentNo>
                         <xsl:value-of select="s0:BGM/s0:C106/C10601" />
                     </ns0:ExternalDocumentNo>
-
+                    
                     <!-- <ns0:AnnouncedDate>
-                        <xsl:value-of select="replace(s0:DTM/s0:C507[C50701 = '137']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
-                    </ns0:AnnouncedDate>
-                    <ns0:PlannedStartDate>
-                        <xsl:value-of select="replace(s0:DTM[s0:C507/C50701 = '2']/s0:C507/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')" />
-                    </ns0:PlannedStartDate>
-                    <ns0:PlannedStartTime>
-                        <xsl:value-of select="format-time(current-time(), '[H01]:[m01]')" />
-                    </ns0:PlannedStartTime>
-                    <ns0:PostingDate>
-                        <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/>
-                    </ns0:PostingDate> -->
+                         <xsl:value-of select="replace(s0:DTM/s0:C507[C50701 = '137']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
+                         </ns0:AnnouncedDate>
+                         <ns0:PlannedStartDate>
+                         <xsl:value-of select="replace(s0:DTM[s0:C507/C50701 = '2']/s0:C507/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')" />
+                         </ns0:PlannedStartDate>
+                         <ns0:PlannedStartTime>
+                         <xsl:value-of select="format-time(current-time(), '[H01]:[m01]')" />
+                         </ns0:PlannedStartTime>
+                         <ns0:PostingDate>
+                         <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/>
+                         </ns0:PostingDate> -->
                     
                     <ns0:OrderDate>
                         <xsl:value-of select="replace(s0:DTM/s0:C507[C50701 = '137']/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
@@ -66,15 +66,15 @@
                         <ns0:DocumentComments>
                             <xsl:for-each select="s0:FTX[FTX01='SIN']">
                                 <ns0:DocumentComment>
-                                <ns0:Date>
-                                    <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/>
-                                </ns0:Date>
-                                <ns0:Code>
-                                    <xsl:text>WHSINSTRUCTION</xsl:text>
-                                </ns0:Code>
-                                <ns0:Comment>
-                                    <xsl:value-of select="s0:C108/C10801"/>
-                                </ns0:Comment>
+                                    <ns0:Date>
+                                        <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/>
+                                    </ns0:Date>
+                                    <ns0:Code>
+                                        <xsl:text>WHSINSTRUCTION</xsl:text>
+                                    </ns0:Code>
+                                    <ns0:Comment>
+                                        <xsl:value-of select="s0:C108/C10801"/>
+                                    </ns0:Comment>
                                 </ns0:DocumentComment>
                             </xsl:for-each>
                         </ns0:DocumentComments>
@@ -189,6 +189,12 @@
                             <ns0:Code>EDIMSGTYPE</ns0:Code>
                             <ns0:Value>DELIVERY_DELJIT_DESORD</ns0:Value>
                         </ns0:Attribute>
+                        <ns0:Attribute>
+                            <ns0:Code>EDI_REF</ns0:Code>
+                            <ns0:Value> 
+                                <xsl:value-of select="(//s0:RFFLoop2[s0:RFF_2/s0:C506_2/C50601 = 'ON'])[1]/s0:RFF_2/s0:C506_2/C50602"/>
+                            </ns0:Value>
+                        </ns0:Attribute>
                     </ns0:Attributes>
                     
                     <xsl:if test="count(s0:SEQLoop1/s0:LINLoop1) &gt; 0">
@@ -207,8 +213,8 @@
                                         </ns0:Attribute04>
                                         
                                         <!-- <ns0:Description>
-                                            <xsl:value-of select="substring(key('Lines-by-LineNo',$LineKey)/s0:RFFLoop2[s0:RFF_2/s0:C506_2/C50601 = 'ON']/s0:RFF_2/s0:C506_2/C50602, 1, 35)"/>
-                                        </ns0:Description> -->
+                                             <xsl:value-of select="substring(key('Lines-by-LineNo',$LineKey)/s0:RFFLoop2[s0:RFF_2/s0:C506_2/C50601 = 'ON']/s0:RFF_2/s0:C506_2/C50602, 1, 35)"/>
+                                             </ns0:Description> -->
                                         
                                         <ns0:OrderQuantity>
                                             <xsl:value-of select="key('Lines-by-LineNo',$LineKey)/s0:QTYLoop1/s0:QTY[s0:C186/C18601='131']/s0:C186/C18602" />
@@ -231,7 +237,7 @@
                                                 </ns0:Value>
                                             </ns0:Attribute>
                                         </ns0:Attributes>
-
+                                        
                                         <xsl:if test="count(s0:PCILoop1) &gt; 0">
                                             <ns0:DocumentDetailLines>
                                                 <xsl:for-each select="s0:PCILoop1">
