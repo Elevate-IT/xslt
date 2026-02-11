@@ -1,11 +1,24 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
-                exclude-result-prefixes="msxsl var s0 MyScript" version="1.0"
                 xmlns:ns0="www.boltrics.nl/receivereceipt:v1.00"
                 xmlns:s0="http://schemas.microsoft.com/BizTalk/EDI/EDIFACT/2006"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript">
-  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:eit="http://www.elevate-it.be"
+                exclude-result-prefixes="#all" version="3.0">
+  
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" indent="true"/>
+  
+  <xsl:function name="eit:createDate">
+    <xsl:param name="inputDate"/>
+    <xsl:value-of select="xs:date(concat(substring($inputDate, 1, 4), '-', substring($inputDate, 5, 2), '-', substring($inputDate, 7, 2)))" />
+  </xsl:function>
+  
+  <xsl:function name="eit:createTime">
+    <xsl:param name="inputTime"/>
+    <xsl:value-of select="xs:time(concat(substring($inputTime, 1, 2), ':', substring($inputTime, 3, 2), ':00'))" />
+  </xsl:function>
 
   <xsl:key name="Group-By-Item_UoM_Batch_CorusNo" match="//s0:PACLoop1"
            use="concat(../s0:LINLoop1/s0:LIN/s0:C212/C21201, '-',
@@ -20,7 +33,7 @@
           <xsl:value-of select="UNH/UNH1" />
         </ns0:MessageID>
         <ns0:CreationDateTime>
-          <xsl:value-of select="MyScript:ParseDate(s0:DTM/s0:C507[C50701=137]/C50702,'yyyyMMddHHmm','s')" />
+          <xsl:value-of select="dateTime(eit:createDate(s0:DTM/s0:C507[C50701=137]/C50702), eit:createTime(substring(s0:DTM/s0:C507[C50701=137]/C50702, 9, 4)))" />
         </ns0:CreationDateTime>
         <ns0:ProcesAction>
           <xsl:text>INSERT</xsl:text>
@@ -35,7 +48,7 @@
       <ns0:Documents>
         <ns0:Document>
           <ns0:DocumentDate>
-            <xsl:value-of select="MyScript:ParseDate(s0:DTM/s0:C507[C50701=137]/C50702,'yyyyMMddHHmm','yyyy-MM-dd')" />
+            <xsl:value-of select="eit:createDate(s0:DTM/s0:C507[C50701=137]/C50702)" />
           </ns0:DocumentDate>
           <ns0:ExternalDocumentNo>
             <xsl:value-of select="s0:RFFLoop1[s0:RFF/s0:C506/C50601 = 'AAS']/s0:RFF/s0:C506/C50602" />
@@ -43,6 +56,7 @@
           <ns0:ExternalReference>
             <xsl:value-of select="s0:BGM[s0:C002/C00201 = 351]/BGM02" />
           </ns0:ExternalReference>
+          
           <ns0:SenderAddress>
             <ns0:ExternalNo>
               <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01 = 'CZ']/s0:NAD/s0:C082/C08201" />
@@ -81,6 +95,9 @@
                   <ns0:DocumentLine>
                     <ns0:No>
                       <xsl:choose>
+                        <xsl:when test="../../s0:NADLoop1[s0:NAD/NAD01 = 'CZ']/s0:LOC/s0:C517/C51701 = 'IJMUIDEN' and ../s0:LINLoop1/s0:LIN/s0:C212/C21201 = '3010490'">
+                          <xsl:text>RCTTATA-0004</xsl:text>
+                        </xsl:when>
                         <xsl:when test="s0:PAC[PAC01 = '1']/s0:C202/C20201 = 'CL'">
                           <xsl:text>RCTTATA-0001</xsl:text>
                         </xsl:when>
@@ -124,6 +141,14 @@
                     <ns0:Attributes>
                       <ns0:Attribute>
                         <ns0:Code>
+                          <xsl:text>REF1</xsl:text>
+                        </ns0:Code>
+                        <ns0:Value>
+                          <xsl:value-of select="concat(../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50602, ../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50603)" />
+                        </ns0:Value>
+                      </ns0:Attribute>
+                      <ns0:Attribute>
+                        <ns0:Code>
                           <xsl:text>REF2</xsl:text>
                         </ns0:Code>
                         <ns0:Value>
@@ -137,6 +162,14 @@
                         <ns0:Value>
                           <xsl:value-of select="../s0:LINLoop1/s0:LIN/s0:C212/C21201" />
                         </ns0:Value>
+                        <ns0:Attribute>
+                          <ns0:Code>
+                            <xsl:text>DOUANE</xsl:text>
+                          </ns0:Code>
+                          <ns0:Value>
+                            <xsl:text>FREE GOODS</xsl:text>
+                          </ns0:Value>
+                        </ns0:Attribute>
                       </ns0:Attribute>
                     </ns0:Attributes>
 
@@ -201,41 +234,4 @@
       </ns0:Documents>
     </ns0:Message>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 1;
-          return LINCounter.ToString();
-      }   
-      
-			public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-      
-      public string ParseEOMDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        DateTime endOfMonth = new DateTime(dateT.Year, dateT.Month, DateTime.DaysInMonth(dateT.Year, dateT.Month));
-        return endOfMonth.ToString(formatOut);
-      }
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }            
-
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
