@@ -36,7 +36,7 @@
 					</ExternalNo>
 					
 					<Description>
-						<xsl:value-of select="Column1"/>
+						<xsl:value-of select="substring(Column1, 1, 50)"/>
 					</Description>
 					
 					<BaseUnitofMeasure>
@@ -47,9 +47,9 @@
 						<xsl:text>JANSITEM</xsl:text>
 					</TemplateName>
 					
-					<ItemCategoryCode>
+					<ProductGroupCode>
 						<xsl:value-of select="Column3"/>
-					</ItemCategoryCode>
+					</ProductGroupCode>
 					
 					<UnitOfMeasures>
 						<UnitOfMeasure>
