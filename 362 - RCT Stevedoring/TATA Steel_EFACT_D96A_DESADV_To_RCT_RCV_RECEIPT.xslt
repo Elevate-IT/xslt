@@ -19,13 +19,13 @@
     <xsl:param name="inputTime"/>
     <xsl:value-of select="xs:time(concat(substring($inputTime, 1, 2), ':', substring($inputTime, 3, 2), ':00'))" />
   </xsl:function>
-
+  
   <xsl:key name="Group-By-Item_UoM_Batch_CorusNo" match="//s0:PACLoop1"
-           use="concat(../s0:LINLoop1/s0:LIN/s0:C212/C21201, '-',
-           s0:MEA_3[MEA01 = 'AAY'][s0:C502_3/C50201 = 'G']/s0:C174_3/C17401, '-',
-           s0:PCILoop1/s0:GIR[GIR01 = '3']/s0:C206_2[C20602 = 'BX']/C20601, '-',
-           concat(../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50602, ../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50603))" />
-
+    use="concat(../s0:LINLoop1/s0:LIN/s0:C212/C21201, '-',
+        s0:MEA_3[MEA01 = 'AAY'][s0:C502_3/C50201 = 'G']/s0:C174_3/C17401, '-',
+        s0:PCILoop1/s0:GIR[GIR01 = '3']/s0:C206_2[C20602 = 'BX']/C20601, '-',
+        concat(../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50602, ../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50603))" />
+  
   <xsl:template match="s0:EFACT_D96A_DESADV">
     <ns0:Message>
       <ns0:Header>
@@ -65,32 +65,32 @@
               <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01 = 'CZ']/s0:LOC/s0:C517/C51701" />
             </ns0:Name>
           </ns0:SenderAddress>
-
-			<ns0:Attributes>
-				<ns0:Attribute>
-					<ns0:Code>EDI_TDT1</ns0:Code>
-					<ns0:Value>
-						<xsl:value-of select="s0:TDTLoop1/s0:TDT/s0:C220/C22001" />
-					</ns0:Value>
-				</ns0:Attribute>
-				<ns0:Attribute>
-					<ns0:Code>EDI_TDT2</ns0:Code>
-					<ns0:Value>
-						<xsl:value-of select="s0:TDTLoop1/s0:TDT/s0:C222/C22204" />
-					</ns0:Value>
-				</ns0:Attribute>
-			</ns0:Attributes>
-
+          
+          <ns0:Attributes>
+            <ns0:Attribute>
+              <ns0:Code>EDI_TDT1</ns0:Code>
+              <ns0:Value>
+                <xsl:value-of select="s0:TDTLoop1/s0:TDT/s0:C220/C22001" />
+              </ns0:Value>
+            </ns0:Attribute>
+            <ns0:Attribute>
+              <ns0:Code>EDI_TDT2</ns0:Code>
+              <ns0:Value>
+                <xsl:value-of select="s0:TDTLoop1/s0:TDT/s0:C222/C22204" />
+              </ns0:Value>
+            </ns0:Attribute>
+          </ns0:Attributes>
+          
           <xsl:if test="count(//s0:PACLoop1) &gt; 0">
             <ns0:DocumentLines>
               <xsl:for-each select="//s0:PACLoop1[count(. | key('Group-By-Item_UoM_Batch_CorusNo', concat(../s0:LINLoop1/s0:LIN/s0:C212/C21201, '-',
-                                                                                                    s0:MEA_3[MEA01 = 'AAY'][s0:C502_3/C50201 = 'G']/s0:C174_3/C17401, '-',
-                                                                                                    s0:PCILoop1/s0:GIR[GIR01 = '3']/s0:C206_2[C20602 = 'BX']/C20601, '-',
-                                                                                                    concat(../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50602, ../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50603)))[1]) = 1]">
+                        s0:MEA_3[MEA01 = 'AAY'][s0:C502_3/C50201 = 'G']/s0:C174_3/C17401, '-',
+                        s0:PCILoop1/s0:GIR[GIR01 = '3']/s0:C206_2[C20602 = 'BX']/C20601, '-',
+                        concat(../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50602, ../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50603)))[1]) = 1]">
                 <xsl:variable name="LineKey" select="concat(../s0:LINLoop1/s0:LIN/s0:C212/C21201, '-',
-                                                       s0:MEA_3[MEA01 = 'AAY'][s0:C502_3/C50201 = 'G']/s0:C174_3/C17401, '-',
-                                                       s0:PCILoop1/s0:GIR[GIR01 = '3']/s0:C206_2[C20602 = 'BX']/C20601, '-',
-                                                       concat(../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50602, ../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50603))" />
+                    s0:MEA_3[MEA01 = 'AAY'][s0:C502_3/C50201 = 'G']/s0:C174_3/C17401, '-',
+                    s0:PCILoop1/s0:GIR[GIR01 = '3']/s0:C206_2[C20602 = 'BX']/C20601, '-',
+                    concat(../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50602, ../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50603))" />
                 <xsl:if test="$LineKey != '--'">
                   <ns0:DocumentLine>
                     <ns0:No>
@@ -162,17 +162,17 @@
                         <ns0:Value>
                           <xsl:value-of select="../s0:LINLoop1/s0:LIN/s0:C212/C21201" />
                         </ns0:Value>
-                        <ns0:Attribute>
-                          <ns0:Code>
-                            <xsl:text>DOUANE</xsl:text>
-                          </ns0:Code>
-                          <ns0:Value>
-                            <xsl:text>FREE GOODS</xsl:text>
-                          </ns0:Value>
-                        </ns0:Attribute>
+                      </ns0:Attribute>
+                      <ns0:Attribute>
+                        <ns0:Code>
+                          <xsl:text>DOUANE</xsl:text>
+                        </ns0:Code>
+                        <ns0:Value>
+                          <xsl:text>FREE GOODS</xsl:text>
+                        </ns0:Value>
                       </ns0:Attribute>
                     </ns0:Attributes>
-
+                    
                     <ns0:DocumentDetailLines>
                       <xsl:for-each select="key('Group-By-Item_UoM_Batch_CorusNo',$LineKey)/s0:PCILoop1">
                         <ns0:DocumentDetailLine>
@@ -207,6 +207,14 @@
                           <ns0:Attributes>
                             <ns0:Attribute>
                               <ns0:Code>
+                                <xsl:text>REF1</xsl:text>
+                              </ns0:Code>
+                              <ns0:Value>
+                                <xsl:value-of select="concat(../../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50602, ../../s0:LINLoop1/s0:RFFLoop3[s0:RFF_4/s0:C506_4/C50601 = 'VN']/s0:RFF_4/s0:C506_4/C50603)" />
+                              </ns0:Value>
+                            </ns0:Attribute>
+                            <ns0:Attribute>
+                              <ns0:Code>
                                 <xsl:text>REF2</xsl:text>
                               </ns0:Code>
                               <ns0:Value>
@@ -219,6 +227,14 @@
                               </ns0:Code>
                               <ns0:Value>
                                 <xsl:value-of select="../../s0:LINLoop1/s0:LIN/s0:C212/C21201" />
+                              </ns0:Value>
+                            </ns0:Attribute>
+                            <ns0:Attribute>
+                              <ns0:Code>
+                                <xsl:text>DOUANE</xsl:text>
+                              </ns0:Code>
+                              <ns0:Value>
+                                <xsl:text>FREE GOODS</xsl:text>
                               </ns0:Value>
                             </ns0:Attribute>
                           </ns0:Attributes>
