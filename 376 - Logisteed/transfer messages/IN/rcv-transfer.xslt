@@ -76,6 +76,10 @@
             <xsl:value-of select="normalize-space(substring($docLine, 98, 25))"/>
           </ns0:IncoTermCity> 
           
+          <ns0:ShippingAgentCode>
+            <xsl:text>INTERN</xsl:text>
+          </ns0:ShippingAgentCode>
+          
           <ns0:ConsigneeAddress>
             <ns0:ExternalNo>
               <xsl:value-of select="normalize-space(substring($docLine, 143, 20))"/>
@@ -119,6 +123,10 @@
                 <ns0:CurrencyCode>
                   <xsl:value-of select="normalize-space(substring(., 1521, 3))"/>
                 </ns0:CurrencyCode>
+                
+                <ns0:Attribute01>
+                  <xsl:value-of select="normalize-space(substring(., 1499, 10))"/>
+                </ns0:Attribute01>
                 
                 <ns0:Attributes>
                   <ns0:Attribute>

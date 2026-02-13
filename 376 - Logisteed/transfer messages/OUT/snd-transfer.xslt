@@ -1,53 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+                xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
+                xmlns:s0="www.boltrics.nl/sendtransfer:v1.00"
+                xmlns:ns0="http://schemas.microsoft.com/BizTalk/EDI/EDIFACT/2006"
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
-                xmlns:ns0="www.boltrics.nl/receivesapinvoice:v1.00">
-  <xsl:output method="text" omit-xml-declaration="yes" indent="no"/>
+                exclude-result-prefixes="msxsl var s0 MyScript" version="3.0">
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+  
   <xsl:template match="/">
-    <xsl:for-each select="//Header">
-      <xsl:text>H</xsl:text>
-      <xsl:text>0</xsl:text>
-      <!-- Return 32 is unicode voor spatie -->
-      <xsl:value-of select="concat(codepoints-to-string(for $i in 1 to (50 - string-length(InvoiceNumber)) return 32), InvoiceNumber)"/>
-      <xsl:text>0000000000</xsl:text>
-      <xsl:value-of select="concat('IN',codepoints-to-string(for $i in 1 to (30 - string-length('IN')) return 32))"/>
-      <xsl:value-of select="InvoiceDate"/>
-      <xsl:text>0000000000</xsl:text>
-      <xsl:text>                                                                                                                                                                               </xsl:text>
-      <xsl:value-of select="InvoiceCurrency"/>
-      
-      <!-- enter -->
-      <xsl:text>&#10;</xsl:text> 
-    </xsl:for-each>
-    
-    <xsl:for-each select="//Lines/Line">
-      <xsl:if test="ERPLineNo != ''">
-        <xsl:text>L</xsl:text>
-        <xsl:text>0</xsl:text>
-        <xsl:value-of select="concat(codepoints-to-string(for $i in 1 to (50 - string-length(//InvoiceNumber)) return 32), //InvoiceNumber)"/>
-        <xsl:text>0000000000</xsl:text>
-        <xsl:value-of select="concat('IN', codepoints-to-string(for $i in 1 to (30 - string-length('IN')) return 32))"/>
-        <xsl:value-of select="substring(ERPLineNo, string-length(ERPLineNo) - 3)" />
-        <xsl:value-of select="concat(ItemNo2, codepoints-to-string(for $i in 1 to (50 - string-length(ItemNo2)) return 32))"/>
-        <xsl:value-of select="HSCode"/>
-        <xsl:text>                    </xsl:text>
-        <xsl:text>AIR CONDITIONING</xsl:text>
-        <xsl:text>                                                                                                                                                                                                                                                                                                                                              </xsl:text>
-        <xsl:value-of select="CountryOfOrigin"/>
-        <xsl:text>    0000000000  </xsl:text>
-        <xsl:value-of select="substring(GrossWeight, string-length(GrossWeight) - 16)" />
-        <xsl:value-of select="substring(NetWeight, string-length(NetWeight) - 16)" />
-        <xsl:text>NAR </xsl:text>
-        <xsl:value-of select="substring(Quantity,2)"/>
-        <xsl:text>00000000000000000000                                                                                   0000000000    </xsl:text>
-        <xsl:value-of select="substring(InvLineNetVal,3)"/>
-        <xsl:value-of select="substring(InvLineNetVal,3)"/>        
-        <xsl:text>00000000000000000000000000000000</xsl:text>
+    <xsl:apply-templates select="/s0:Message/s0:Documents/s0:Document" />
+  </xsl:template>
+  
+  <xsl:key
+    name="kByEdiLineNo"
+    match="s0:DocumentLine[s0:Type='1']"
+    use="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+  
+  <xsl:template match="/s0:Message/s0:Documents/s0:Document">
+    <!-- for each inbound edi line no -->
+    <xsl:for-each select="s0:DocumentLines/s0:DocumentLine[s0:Type='1'][generate-id() = generate-id( key('kByEdiLineNo',s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value)[1])]">
+      <xsl:text>HELARG    TVA  DA</xsl:text>
+      <xsl:value-of select="concat(codepoints-to-string(for $i in 1 to (20 - string-length(//s0:ExternalDocumentNo)) return 32), //s0:ExternalDocumentNo)"/> 
+      <xsl:value-of select="format-date(current-date(), '[Y0001][M01][D01]')" />
+      <xsl:value-of select="//s0:DocumentDate"/>
+      <xsl:value-of select="//s0:DeliveryDate"/>
+      <xsl:value-of select="codepoints-to-string(for $i in 1 to 70 return 32)"/> 
+      <xsl:value-of select="codepoints-to-string(for $i in 1 to 35 return 32)"/> 
+      <xsl:value-of select="concat(codepoints-to-string(for $i in 1 to (9 - string-length(//s0:ExternalReference)) return 32), //s0:ExternalReference)"/> 
+      <xsl:value-of select="substring(s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value, string-length(s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value) - 1)"/>
+      <xsl:value-of select="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+      <xsl:value-of select="concat(codepoints-to-string(for $i in 1 to (20 - string-length(s0:ExternalNo)) return 32), s0:ExternalNo)"/>
+      <xsl:value-of select="concat(codepoints-to-string(for $i in 1 to (20 - string-length(s0:Description)) return 32), s0:Description)"/>
+      <xsl:value-of select="format-number(number(s0:QtyPosted), '000000000')" />
+      <xsl:text>PCE </xsl:text>
 
-        <!-- enter -->
-        <xsl:text>&#10;</xsl:text>
-      </xsl:if>
-    </xsl:for-each>
+      <xsl:text>  ? </xsl:text>
+      
+      <xsl:text>                    </xsl:text>
+      <xsl:text>            </xsl:text>
+      <xsl:text>   </xsl:text>
+      <xsl:text> </xsl:text>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:for-each> 
   </xsl:template>
 </xsl:stylesheet>
