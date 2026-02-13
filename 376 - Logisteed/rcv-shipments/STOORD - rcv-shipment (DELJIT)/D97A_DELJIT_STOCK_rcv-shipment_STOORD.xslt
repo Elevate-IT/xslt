@@ -156,9 +156,11 @@
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="s0:LIN/s0:C212/C21201"/>
                                         </ns0:ExternalNo>
+                                        
                                         <ns0:OrderQuantity>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18602"/>
                                         </ns0:OrderQuantity>
+
                                         <ns0:OrderUnitofMeasureCode>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18603"/>
                                         </ns0:OrderUnitofMeasureCode>

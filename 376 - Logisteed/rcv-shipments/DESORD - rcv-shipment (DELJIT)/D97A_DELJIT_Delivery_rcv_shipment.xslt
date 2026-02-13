@@ -181,7 +181,7 @@
                     
                     <!-- plant code -->
                     <ns0:Attribute03>
-                        <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />       
+                        <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />
                     </ns0:Attribute03>
                     
                     <ns0:Attributes>
@@ -207,6 +207,21 @@
                                             <xsl:value-of select="s0:LIN[s0:C212/C21202 = 'MF']/s0:C212/C21201"/>
                                         </ns0:ExternalNo>
                                         
+                                        <xsl:if test="s0:PIA[s0:C212_2/C21202 = 'ZZZ']/s0:C212_2/C21201 != ''">
+                                            <ns0:Attribute01>
+                                                <xsl:value-of select="replace(
+                                                        s0:PIA[s0:C212_2/C21202 = 'ZZZ']/s0:C212_2/C21201,
+                                                        concat('^', //s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201),
+                                                        '')" />
+                                            </ns0:Attribute01>
+                                        </xsl:if>
+                                        
+                                        <xsl:if test="s0:PIA[s0:C212_2/C21202 = 'NB']/s0:C212_2/C21201 != ''">
+                                            <ns0:ExternalBatchNo>
+                                                <xsl:value-of select="s0:PIA[s0:C212_2/C21202 = 'NB']/s0:C212_2/C21201" />
+                                            </ns0:ExternalBatchNo>
+                                        </xsl:if>
+                                        
                                         <!-- Order line reference -->
                                         <ns0:Attribute04>
                                             <xsl:value-of select="substring(key('Lines-by-LineNo',$LineKey)/s0:RFFLoop2[s0:RFF_2/s0:C506_2/C50601 = 'VN']/s0:RFF_2/s0:C506_2/C50602, 1, 35)"/>
@@ -222,13 +237,7 @@
                                         <ns0:OrderUnitofMeasureCode>
                                             <xsl:value-of select="key('Lines-by-LineNo',$LineKey)/s0:QTYLoop1/s0:QTY[s0:C186/C18601='131']/s0:C186/C18603" />
                                         </ns0:OrderUnitofMeasureCode>
-                                        
-                                        <xsl:if test="s0:PIA[s0:C212_2/C21202 = 'NB']/s0:C212_2/C21201 != ''">
-                                            <ns0:ExternalBatchNo>
-                                                <xsl:value-of select="s0:PIA[s0:C212_2/C21202 = 'NB']/s0:C212_2/C21201" />
-                                            </ns0:ExternalBatchNo>
-                                        </xsl:if>
-                                        
+
                                         <ns0:Attributes>
                                             <ns0:Attribute>
                                                 <ns0:Code>EDILINENO</ns0:Code>
