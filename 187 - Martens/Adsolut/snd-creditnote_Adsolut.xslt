@@ -176,7 +176,7 @@
           <xsl:when test="ns0:VAT='21'">4</xsl:when>
           <xsl:when test="ns0:VAT='12'">3</xsl:when>
           <xsl:when test="ns0:VAT='6'">2</xsl:when>
-          <xsl:when test="ns0:VAT='0'">1</xsl:when>
+          <xsl:when test="ns0:VAT='0' or count(ns0:VAT) = 0">1</xsl:when>
         </xsl:choose>
       </btwcodes_btwcode>
     </blboekhpl>
