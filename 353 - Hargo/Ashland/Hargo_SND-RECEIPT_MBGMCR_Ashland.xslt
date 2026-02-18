@@ -204,7 +204,7 @@
                     <xsl:value-of select="$OrigLine/ns0:Attribute06"/>
                 </PO_NUMBER>
                 <PO_ITEM>
-                    <xsl:value-of select="$OrigLine/ns0:Attributes/ns0:Attribute[ns0:Code = 'POLINENO']/ns0:Value"/>
+                    <xsl:value-of select="substring($OrigLine/ns0:Attributes/ns0:Attribute[ns0:Code = 'POLINENO']/ns0:Value, string-length($OrigLine/ns0:Attributes/ns0:Attribute[ns0:Code = 'POLINENO']/ns0:Value) - 4)"/>
                 </PO_ITEM>
                 <MVT_IND>B</MVT_IND> <!-- Monday 171: E1BP2017_GM_ITEM_CREATE/MVT_IND -> idd 'B' gebruiken -->
                 <DELIV_NUMB_TO_SEARCH>
