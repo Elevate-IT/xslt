@@ -95,7 +95,7 @@
                   <ns0:DocumentLine>
                     <ns0:No>
                       <xsl:choose>
-                        <xsl:when test="../../s0:NADLoop1[s0:NAD/NAD01 = 'CZ']/s0:LOC/s0:C517/C51701 = 'IJMUIDEN' and ../s0:LINLoop1/s0:LIN/s0:C212/C21201 = '3010490'">
+                        <xsl:when test="../../s0:NADLoop1[s0:NAD/NAD01 = 'CZ']/s0:LOC/s0:C517/C51701 = 'IJMUIDEN' and ../s0:LINLoop1/s0:LIN/s0:C212/C21201 = 'CBD105700223'">
                           <xsl:text>RCTTATA-0004</xsl:text>
                         </xsl:when>
                         <xsl:when test="s0:PAC[PAC01 = '1']/s0:C202/C20201 = 'CL'">
