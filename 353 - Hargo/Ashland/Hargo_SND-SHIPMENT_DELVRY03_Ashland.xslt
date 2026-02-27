@@ -16,9 +16,6 @@
                 <xsl:when test="ns0:DepartedDate != ''">
                     <xsl:value-of select="ns0:DepartedDate"/>
                 </xsl:when>
-                <xsl:when test="ns0:EstimatedDepartureDate != ''">
-                    <xsl:value-of select="ns0:EstimatedDepartureDate"/>
-                </xsl:when>
                 <xsl:when test="ns0:PostingDate != ''">
                     <xsl:value-of select="ns0:PostingDate"/>
                 </xsl:when>
