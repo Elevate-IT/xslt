@@ -26,14 +26,39 @@
       <xsl:value-of select="format-date(//s0:Document/s0:DeliveryDate, '[Y0001][M01][D01]')"/>
       <xsl:value-of select="codepoints-to-string(for $i in 1 to 70 return 32)"/> 
       <xsl:value-of select="codepoints-to-string(for $i in 1 to 35 return 32)"/> 
-      <xsl:value-of select="concat(//s0:Document/s0:ExternalReference, codepoints-to-string(for $i in 1 to (9 - string-length(//s0:Document/s0:ExternalReference)) return 32))"/> 
+      <xsl:value-of select="concat(//s0:Document/s0:ExternalDocumentNo, codepoints-to-string(for $i in 1 to (9 - string-length(//s0:Document/s0:ExternalDocumentNo)) return 32))"/> 
+
       <xsl:value-of select="substring(s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value, string-length(s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value) - 1)"/>
       <xsl:value-of select="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
       <xsl:value-of select="concat(s0:ExternalNo, codepoints-to-string(for $i in 1 to (18 - string-length(s0:ExternalNo)) return 32))"/>
       <xsl:value-of select="concat(s0:Description, codepoints-to-string(for $i in 1 to (40 - string-length(s0:Description)) return 32))"/>
       <xsl:value-of select="format-number(number(s0:QtyPosted), '000000000')" />
       <xsl:text>PCE </xsl:text>
-      <xsl:value-of select="concat(s0:Attribute01, codepoints-to-string(for $i in 1 to (10 - string-length(s0:Attribute01)) return 32))"/>
+      
+      
+      <!-- <xsl:value-of select="concat(s0:Attribute01, codepoints-to-string(for $i in 1 to (10 - string-length(s0:Attribute01)) return 32))"/> -->
+        
+        <xsl:choose>
+          <xsl:when test="s0:Attribute01 = 'AVAILABLE'">normal    </xsl:when>
+          <!-- <xsl:when test="$cleanValue = '10'">OUT OF WARRANTY</xsl:when>
+               <xsl:when test="$cleanValue = '11'">GRADED STOCK</xsl:when>
+               <xsl:when test="$cleanValue = '12'">GOOD STOCK TBC</xsl:when>
+               <xsl:when test="$cleanValue = '15'">NON-ROHS</xsl:when>
+               <xsl:when test="$cleanValue = '2'">OLD SPECS</xsl:when>
+               <xsl:when test="$cleanValue = '20'">DAMAGED CARTONS</xsl:when>
+               <xsl:when test="$cleanValue = '30'">DAMAGED</xsl:when>
+               <xsl:when test="$cleanValue = '35'">INSURANCE STOCK</xsl:when>
+               <xsl:when test="$cleanValue = '40'">EXHIBITION STOCK</xsl:when>
+               <xsl:when test="$cleanValue = '50'">RE-WORK (HACE)</xsl:when>
+               <xsl:when test="$cleanValue = '60'">SERVICE (HACE)</xsl:when>
+               <xsl:when test="$cleanValue = 'NA'">SHORTAGE</xsl:when>
+               <xsl:when test="$cleanValue = 'S&amp;E'">JCI SOUTH AND EXPORT</xsl:when> -->
+          <xsl:otherwise>
+            <xsl:value-of select="s0:Attribute01"/>
+          </xsl:otherwise>
+        </xsl:choose>
+
+
       <xsl:value-of select="codepoints-to-string(for $i in 1 to 20 return 32)"/> 
       <xsl:value-of select="codepoints-to-string(for $i in 1 to 12 return 32)"/> 
       <xsl:value-of select="codepoints-to-string(for $i in 1 to 3 return 32)"/> 
