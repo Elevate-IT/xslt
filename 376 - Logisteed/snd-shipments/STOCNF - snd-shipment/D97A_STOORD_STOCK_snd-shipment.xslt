@@ -152,39 +152,32 @@
                             <PIA01>1</PIA01>
                             <ns0:C212_2>
                                 <C21201>
-                                    <xsl:variable name="QualIndicator" >
+                                    <xsl:variable name="QualIndicator" select="s0:Attribute01" />
+                                    
+                                    <xsl:variable name="MappedCode">
                                         <xsl:choose>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'AVAILABLE'">1</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'AWAITING SCRAP'">AS01</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'BLOCKED'"></xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'DAMAGED'">DA01</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'DAMAGED CARTONS'">28</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'EXHIBITION STOCK'">40</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'FAULTY LOAN'">SA02</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'GRADED STOCK'">14</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'INSURANCE NO STOCK'">IN02</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'INSURANCE STOCK'">IN01</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'INVESTIGATE/RE-WORK'">TE01</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'JCI SOUTH AND EXPORT'">140S&amp;E</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'NON-ROHS'">15</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'OLD SPECS'">2</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'OLD STOCK'">14</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'OUT OF WARRANTY'">WA01</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'RESERVED STOCK'">XX01</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'RETURNS'">RE01</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'RE-WORK (HACE)'">TE02</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'ROHS: AVAILABLE'"></xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'SAMPLE STOCK'">SA01</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'SERVICE (HACE)'">TE03</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'SHORTAGE'">SK99</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'STOCK DISCREPANCY'">SK99</xsl:when>
-                                            <xsl:when test="$groupDetailLines/s0:Attribute01 = 'SURPLUS'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'AVAILABLE'">1</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'OUT OF WARRANTY'">TE01</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'DAMAGED CARTONS'">14</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'GOOD STOCK TBC'">11027</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'NON-ROHS'">15</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'RETURN'">28</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'AWAITING SCRAP'">DA01</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'INSURANCE STOCK'">IN01</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'EXHIBITION STOCK'">40</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">TE02</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">TE03</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SHORTAGE'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'STOCK DISCREPANCY'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SURPLUS'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'JCI SOUTH AND EXPORT'">140S&amp;E</xsl:when>
                                             <xsl:otherwise>
-                                                <xsl:value-of select="$groupDetailLines/s0:Attribute01"/>
+                                                <xsl:value-of select="$QualIndicator"/>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>
-                                    <xsl:value-of select="concat(s0:Attribute03, $QualIndicator)" />
+                                    
+                                    <xsl:value-of select="concat(s0:Attribute03, $MappedCode)" />
                                 </C21201>
                                 <C21202>ZZZ</C21202>
                                 <C21204>90</C21204>
