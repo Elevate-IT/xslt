@@ -22,7 +22,6 @@
                     <xsl:text>INSERT</xsl:text>
                 </ns0:ProcesAction>
                 <ns0:FromTradingPartner>
-                    <!-- <xsl:value-of select="UNB/UNB2.1" /> -->
                     <xsl:text>JCHEU</xsl:text>
                 </ns0:FromTradingPartner>
                 <ns0:ToTradingPartner>
@@ -45,7 +44,7 @@
                     <ns0:AnnouncedTime>
                         <xsl:value-of select="format-time(current-time(), '[H01]:[m01]')" />
                     </ns0:AnnouncedTime>
-
+                    
                     <ns0:PlannedStartDate>
                         <xsl:value-of select="replace(s0:DTM[s0:C507/C50701 = 2]/s0:C507/C50702,'(\d{4})(\d{2})(\d{2})','$1-$2-$3')" />
                     </ns0:PlannedStartDate>
@@ -57,17 +56,43 @@
                     </ns0:PostingDate>
                     
                     <ns0:SenderAddress>
-                        <ns0:EANCode>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />
-                        </ns0:EANCode>
-                        <ns0:Name>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C080/C08001" />
-                        </ns0:Name>
-                        <ns0:Address>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C059/C05901" />
-                        </ns0:Address>
+                        <xsl:choose>
+                            <xsl:when test="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201 != 'ONE TIME'" >
+                                <ns0:EANCode>
+                                    <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />
+                                </ns0:EANCode>
+                            </xsl:when> 
+                            <xsl:otherwise>
+                                <ns0:OneoffAddress>
+                                    <xsl:text>True</xsl:text>
+                                </ns0:OneoffAddress>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        
+                        <xsl:if test="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05801 != ''">
+                            <ns0:Name>
+                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05801" />
+                            </ns0:Name>
+                        </xsl:if>
+                        <xsl:if test="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05801 = ''">
+                            <ns0:Name>
+                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C080/C08001" />
+                            </ns0:Name>
+                        </xsl:if>
+                        
+                        <xsl:if test="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05802 != ''">
+                            <ns0:Address>
+                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05802" />
+                            </ns0:Address>
+                        </xsl:if>
+                        <xsl:if test="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05802 = ''">
+                            <ns0:Address>
+                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C059/C05901" />
+                            </ns0:Address>
+                        </xsl:if>
+
                         <ns0:City>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD06" />
+                            <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD06, 1, 30)" />
                         </ns0:City>
                         <ns0:PostCode>
                             <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD08" />
@@ -86,12 +111,6 @@
                         <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C082/C08201" />
                     </ns0:Attribute03>
                     
-                    <!-- <ns0:SenderAddress>
-                         <ns0:EANCode>                            
-                         <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SF']/s0:C058/C05801" />
-                         </ns0:EANCode>
-                         </ns0:SenderAddress> -->
-                    
                     <ns0:Attributes>
                         <ns0:Attribute>
                             <ns0:Code>EDIMSGTYPE</ns0:Code>
@@ -107,12 +126,6 @@
                                 <xsl:variable name="LineKey" select="s0:LIN/LIN01" />
                                 <xsl:if test="s0:LIN/LIN01 != ''">
                                     <ns0:DocumentLine>
-                                        <!-- <ns0:GTIN>
-                                            <xsl:value-of select="s0:LIN/s0:C212/C21201"/>
-                                        </ns0:GTIN>
-                                        <ns0:ExternalNo>
-                                            <xsl:value-of select="s0:PIA[PIA01='1'][s0:C212_2/C21202 = 'ZZZ']/s0:C212_2/C21201"/>
-                                        </ns0:ExternalNo> -->
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="s0:LIN/s0:C212/C21201"/>
                                         </ns0:ExternalNo>
@@ -140,8 +153,8 @@
                                                 </ns0:Value>
                                             </ns0:Attribute>
                                         </ns0:Attributes>
-
-                                     </ns0:DocumentLine>
+                                        
+                                    </ns0:DocumentLine>
                                 </xsl:if>
                             </xsl:for-each>
                         </ns0:DocumentLines>

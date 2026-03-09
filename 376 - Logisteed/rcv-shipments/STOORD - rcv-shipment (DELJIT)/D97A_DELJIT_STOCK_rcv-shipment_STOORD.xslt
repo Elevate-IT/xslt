@@ -73,7 +73,7 @@
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
                             </ns0:Address>
                             <ns0:City>
-                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
+                                <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06, 1, 30)" />
                             </ns0:City>
                             <ns0:PostCode>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD08" />
@@ -105,7 +105,7 @@
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
                             </ns0:Address>
                             <ns0:City>
-                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
+                                <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06, 1, 30)" />
                             </ns0:City>
                             <ns0:PostCode>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD08" />
@@ -136,10 +136,10 @@
                     </ns0:Attribute03>
 
                     <ns0:Attributes>
-                        <ns0:Attribute>
+                        <ns0:Attributfe>
                             <ns0:Code>EDIMSGTYPE</ns0:Code>
                             <ns0:Value>STOCK_DELJIT_STOORD</ns0:Value>
-                        </ns0:Attribute>
+                        </ns0:Attributfe>
                     </ns0:Attributes>
                     
                     <!-- PAC in Expect Qty. Carriers ?  -->
