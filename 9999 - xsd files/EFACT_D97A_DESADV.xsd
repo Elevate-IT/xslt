@@ -1245,7 +1245,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element minOccurs="0" maxOccurs="100" ref="GIN_2">
+        <xs:element minOccurs="0" maxOccurs="1000" ref="GIN_2">
           <xs:annotation>
             <xs:appinfo>
               <b:recordInfo structure="delimited" field_order="prefix" tag_name="GIN" delimiter_type="inherit_field" count_ignore="no" escape_type="inherit_escape" xmlns:b="http://schemas.microsoft.com/BizTalk/2003" notes="GOODS IDENTITY NUMBER" />
