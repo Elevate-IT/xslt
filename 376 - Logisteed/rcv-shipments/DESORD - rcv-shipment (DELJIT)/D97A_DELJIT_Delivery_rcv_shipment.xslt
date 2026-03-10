@@ -236,8 +236,8 @@
                                                 <xsl:when test="$cleanValue = '30'">AWAITING SCRAP</xsl:when>
                                                 <xsl:when test="$cleanValue = '35'">INSURANCE STOCK</xsl:when>
                                                 <xsl:when test="$cleanValue = '40'">EXHIBITION STOCK</xsl:when>
-                                                <xsl:when test="$cleanValue = '50'">RE-WORK (HACE)</xsl:when>
-                                                <xsl:when test="$cleanValue = '60'">SERVICE (HACE)</xsl:when>
+                                                <xsl:when test="$cleanValue = '50'">RE-WORK HACE</xsl:when>
+                                                <xsl:when test="$cleanValue = '60'">SERVICE HACE</xsl:when>
                                                 <xsl:when test="$cleanValue = 'NA'">STOCK DISCREPANCY</xsl:when>
                                                 <xsl:when test="$cleanValue = 'S&amp;E'">JCI SOUTH AND EXPORT</xsl:when>
                                                 <xsl:otherwise>

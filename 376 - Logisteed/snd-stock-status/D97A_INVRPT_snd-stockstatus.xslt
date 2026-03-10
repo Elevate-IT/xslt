@@ -178,6 +178,8 @@
                                                             <xsl:when test="$QualIndicator = 'EXHIBITION STOCK'">40</xsl:when>
                                                             <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">TE02</xsl:when>
                                                             <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">TE03</xsl:when>
+                                                            <xsl:when test="$QualIndicator = 'RE-WORK HACE'">TE02</xsl:when>
+                                                            <xsl:when test="$QualIndicator = 'SERVICE HACE'">TE03</xsl:when>
                                                             <xsl:when test="$QualIndicator = 'SHORTAGE'">SK99</xsl:when>
                                                             <xsl:when test="$QualIndicator = 'STOCK DISCREPANCY'">SK99</xsl:when>
                                                             <xsl:when test="$QualIndicator = 'SURPLUS'">SK99</xsl:when>
