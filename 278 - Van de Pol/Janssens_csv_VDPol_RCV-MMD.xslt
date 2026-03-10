@@ -40,12 +40,26 @@
 					</Description>
 					
 					<BaseUnitofMeasure>
-						<xsl:value-of select="Column2"/>
+						<xsl:choose>
+							<xsl:when test="Column2 = 'ST'">
+								<xsl:text>PCS</xsl:text>
+							</xsl:when>
+							<xsl:when test="Column2 = 'PC'">
+								<xsl:text>PCS</xsl:text>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="Column2"/>
+							</xsl:otherwise>
+						</xsl:choose>
 					</BaseUnitofMeasure>
 					
 					<TemplateName>
 						<xsl:text>JANSITEM</xsl:text>
 					</TemplateName>
+					
+					<ItemNo>
+						<xsl:text>STD</xsl:text>
+					</ItemNo>
 					
 					<ProductGroupCode>
 						<xsl:value-of select="Column3"/>
