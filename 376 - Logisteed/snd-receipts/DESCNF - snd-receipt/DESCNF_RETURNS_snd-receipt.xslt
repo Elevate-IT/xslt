@@ -158,14 +158,16 @@
                                             <xsl:when test="$QualIndicator = 'OUT OF WARRANTY'">TE01</xsl:when>
                                             <xsl:when test="$QualIndicator = 'DAMAGED CARTONS'">14</xsl:when>
                                             <xsl:when test="$QualIndicator = 'GOOD STOCK TBC'">11027</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'NON-ROHS'">15</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'NON-ROHS'">15</xsl:when> <!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'NON ROHS'">15</xsl:when>
                                             <xsl:when test="$QualIndicator = 'RETURN'">28</xsl:when>
                                             <xsl:when test="$QualIndicator = 'AWAITING SCRAP'">DA01</xsl:when>
                                             <xsl:when test="$QualIndicator = 'INSURANCE STOCK'">IN01</xsl:when>
                                             <xsl:when test="$QualIndicator = 'EXHIBITION STOCK'">40</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">TE02</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">TE03</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'RE-WORK HACE'">TE02</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">TE02</xsl:when><!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'RE-WORK HACE'">TE02</xsl:when><!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'RE WORK HACE'">TE02</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">TE03</xsl:when><!--OBSOLETE -->
                                             <xsl:when test="$QualIndicator = 'SERVICE HACE'">TE03</xsl:when>
                                             <xsl:when test="$QualIndicator = 'SHORTAGE'">SK99</xsl:when>
                                             <xsl:when test="$QualIndicator = 'STOCK DISCREPANCY'">SK99</xsl:when>
