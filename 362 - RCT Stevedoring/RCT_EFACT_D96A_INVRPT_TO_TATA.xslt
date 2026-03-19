@@ -4,7 +4,7 @@
                 xmlns:s0="www.boltrics.nl/stockstatus:v1.00"
                 xmlns:ns0="http://schemas.microsoft.com/BizTalk/EDI/EDIFACT/2006"
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
-                exclude-result-prefixes="msxsl var s0 MyScript" version="1.0">
+                version="3.0">
   <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
 
   <xsl:key name="Group-By-Item-CorusNo" match="//s0:CarrierContent"
@@ -42,7 +42,7 @@
         <ns0:C507>
           <C50701>182</C50701>
           <C50702>
-            <xsl:value-of select="MyScript:ParseDate(//s0:Header/s0:CreationDateTime, 's', 'yyyyMMddHHmm')" />
+            <xsl:value-of select="format-date(current-date(), '[Y0001][M01][D01]')" />
           </C50702>
           <C50703>203</C50703>
         </ns0:C507>
@@ -61,7 +61,7 @@
         <ns0:NAD>
           <NAD01>WH</NAD01>
           <ns0:C082>
-            <C08201>RCT-WILLEBROEK</C08201> <!--Seppe's stamp of approval-->
+            <C08201>RCT-WILLEBROEK</C08201>
             <C08203>91</C08203>
           </ns0:C082>
         </ns0:NAD>
@@ -144,7 +144,7 @@
                 <ns0:C507_8>
                   <C50701>179</C50701>
                   <C50702>
-                    <xsl:value-of select="MyScript:ParseDate(/s0:Message/s0:Header/s0:CreationDateTime, 's', 'yyyyMMddHHmm')"/>
+                    <xsl:value-of select="format-date(current-date(), '[Y0001][M01][D01]')" />
                   </C50702>
                   <C50703>203</C50703>
                 </ns0:C507_8>
@@ -179,7 +179,7 @@
               <ns0:CPSLoop2>
                 <ns0:CPS_2>
                   <CPS01>
-                    <xsl:value-of select="MyScript:GetCPSCounter()"/>
+                    <xsl:value-of select="position()"/>
                   </CPS01>
                 </ns0:CPS_2>
 
@@ -242,130 +242,4 @@
       </xsl:for-each>
     </ns0:EFACT_D96A_INVRPT>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-      int CPSCounter = 0;
-      public string GetCPSCounter()
-      {
-        return (++CPSCounter).ToString();
-      }
-      
-      public int NRCounter2 = 1;
-      public string GetNRCounter2(bool increment)
-      {
-        if (increment)
-          NRCounter2 += 1;
-        return (NRCounter2).ToString();
-      }
-      
-      public string GetNRCounter3()
-      {
-        return (NRCounter2 - 1).ToString();
-      }
-            
-      public int NRCounter = 0;
-      public string GetNRCounter(bool increment)
-      {
-        if (increment){
-          NRCounter2 = 1;
-          NRCounter += 1;
-        }        
-        return (NRCounter).ToString();
-      }
-      
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 10;
-          return LINCounter.ToString();
-      }
-      
-      public string Replace(string input, string toReplace, string replaceTo)
-			{
-				return input.Replace(toReplace,replaceTo);
-			}
-      
-			public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }
-      
-      public int QtyOnCarrier {get;set;}
-      public void AddToQtyOnCarrier(int qtyOnCarrier)
-	    {       
-         QtyOnCarrier = QtyOnCarrier + qtyOnCarrier;             
-      }
-    
-      public void SetQtyOnCarrier(int qtyOnCarrier)
-	    {       
-         QtyOnCarrier = qtyOnCarrier;             
-      }
-    
-      public int GetQtyOnCarrier()
-	    {       
-         return QtyOnCarrier;             
-      }
-             
-      public int QtyOnCarrierRetour {get;set;}
-      public void AddToQtyOnCarrierRetour(int qtyOnCarrierRetour)
-	    {       
-         QtyOnCarrierRetour = QtyOnCarrierRetour + qtyOnCarrierRetour;             
-      }
-    
-      public void SetQtyOnCarrierRetour(int qtyOnCarrierRetour)
-	    {       
-         QtyOnCarrierRetour = qtyOnCarrierRetour;             
-      }
-    
-      public int GetQtyOnCarrierRetour()
-	    {       
-         return QtyOnCarrierRetour;             
-      }
-      
-      public string ConvertStatusCode(string StatusCode)
-      {
-        switch (StatusCode)
-        {
-          case "10-NOUVEAU":
-          return "UN";
-          
-          case "15-CHANGER":
-          return "UN";
-          
-          case "20-LIBRE":
-          return "UN";
-          
-          case "50-COOL DOWN":
-          return "QI";
-          
-          case "51-CUSTOMER RETURN":
-          return "QI";
-          
-          case "52-QI EXPORT":
-          return "QI";
-          
-          case "90-BLOQUE":
-          return "QH";
-          
-          case "91-BLOQUEVIANDE":
-          return "QH";
-          
-          default:
-          return "UN";
-        }
-      }
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
