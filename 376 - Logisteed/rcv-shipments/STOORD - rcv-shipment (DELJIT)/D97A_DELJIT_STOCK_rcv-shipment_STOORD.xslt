@@ -136,10 +136,10 @@
                     </ns0:Attribute03>
 
                     <ns0:Attributes>
-                        <ns0:Attributfe>
+                        <ns0:Attribute>
                             <ns0:Code>EDIMSGTYPE</ns0:Code>
                             <ns0:Value>STOCK_DELJIT_STOORD</ns0:Value>
-                        </ns0:Attributfe>
+                        </ns0:Attribute>
                     </ns0:Attributes>
                     
                     <!-- PAC in Expect Qty. Carriers ?  -->
