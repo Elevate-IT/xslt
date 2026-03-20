@@ -1,0 +1,48 @@
+<xml>
+    <operation>CREATE</operation>
+    <message_id>OPD-2026-000188</message_id>
+    <message_type>UNLOAD</message_type>
+    <from_date>2026-01-22T00:00:00</from_date>
+    <until_date>2026-01-26T00:00:00</until_date>
+    <document_number>417231</document_number>
+    <tank>ST140</tank>
+    <order_lines>
+        <product>
+            <parent_product>WOC75601</parent_product>
+            <product_name>COMPETE SN C2/C3 5W-30</product_name>
+            <commercial_product>MPM MOTEROIL 5W30</commercial_product>
+            <article_description_code>WOC 0-75601-0-0-0</article_description_code>
+            <quantity_liters>28103</quantity_liters>
+            <quantity_kg>24000</quantity_kg>
+            <customer_unit>L</customer_unit>
+            <colored_product>0</colored_product>
+        </product>
+        <customer_number></customer_number>
+        <consignments>
+            <sender>
+                <name></name>
+                <address></address>
+                <postal_code></postal_code>
+                <city></city>
+                <country></country>
+            </sender>
+            <pickup_stop>
+                <name>Mervielde bulk storage</name>
+                <address>Monumentenstraat 13</address>
+                <postal_code>9940</postal_code>
+                <city>Ertvelde</city>
+                <country>BE</country>
+            </pickup_stop>
+            <delivery_stop>
+                <name>Garage de witte</name>
+                <address>Industrieweg 1</address>
+                <postal_code>2280</postal_code>
+                <city>Grobbendonk</city>
+                <country>BE</country>
+            </delivery_stop>
+        </consignments>
+        <blend_order>M314654</blend_order>
+        <remarks>Load compartments 1 through 3 first; include the quality certificate.</remarks>
+        <transport_reference>TR-4254235</transport_reference>
+    </order_lines>
+</xml>

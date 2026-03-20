@@ -1,0 +1,49 @@
+{
+  "operation": "CREATE",
+  "message_id": "OPD-2026-000188",
+  "message_type": "UNLOAD",
+  "from_date": "2026-01-22T00:00:00",
+  "until_date": "2026-01-26T00:00:00",
+  "document_number": 417231,
+  "tank": "ST140",
+  "order_lines": [
+    {
+      "product": {
+        "parent_product": "WOC75601",
+        "product_name": "COMPETE SN C2/C3 5W-30",
+        "commercial_product": "MPM MOTEROIL 5W30",
+        "article_description_code": "WOC 0-75601-0-0-0",
+        "quantity_liters": 28103,
+        "quantity_kg": 24000,
+        "customer_unit": "L",
+        "colored_product": 0
+      },
+      "customer_number": "",
+      "consignments": {
+        "sender": {
+          "name": "",
+          "address": "",
+          "postal_code": "",
+          "city": "",
+          "country": ""
+        },
+        "pickup_stop": {
+          "name": "Mervielde bulk storage",
+          "address": "Monumentenstraat 13",
+          "postal_code": "9940",
+          "city": "Ertvelde",
+          "country": "BE"
+        },
+        "delivery_stop": {
+          "name": "Garage de witte",
+          "address": "Industrieweg 1",
+          "postal_code": "2280",
+          "city": "Grobbendonk",
+          "country": "BE"
+        }
+      },
+      "blend_order": "M314654",
+      "remarks": "Load compartments 1 through 3 first; include the quality certificate.",
+      "transport_reference": "TR-4254235"
+    }]
+}
