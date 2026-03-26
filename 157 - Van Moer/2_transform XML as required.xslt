@@ -9,6 +9,7 @@
   <xsl:output method="xml" indent="true"/>
   
   <xsl:template match="array[@key = 'packages']/map/string[@key = 'description']/text()">
-    <xsl:value-of select="../../map[@key = 'deliveryNoteInfo']/array[@key = 'deliveryNoteLines'][1]/map/string[@key = 'articleName']"/>
+    <xsl:value-of select="../../map[@key = 'deliveryNoteInfo']/array[@key = 'deliveryNoteLines']/map[1]/string[@key = 'articleName']"/>
   </xsl:template>
+  
 </xsl:stylesheet>

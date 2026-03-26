@@ -17,7 +17,15 @@
     <xsl:value-of select="xml-to-json($transformed-xml)"/>
   </xsl:template>
   
-  <xsl:template match="array[@key = 'packages']/map/string[@key = 'description']/text()">
-    <xsl:value-of select="../../map[@key = 'deliveryNoteInfo']/array[@key = 'deliveryNoteLines']/map[1]/string[@key = 'articleName']"/>
+  <xsl:template match="/array">
+    <xsl:element name="map" namespace="http://www.w3.org/2005/xpath-functions">
+      <xsl:element name="array" namespace="http://www.w3.org/2005/xpath-functions">
+          <xsl:attribute name="key">
+            <xsl:text>response</xsl:text>
+          </xsl:attribute>
+          
+          <xsl:apply-templates select="@*|node()"/>
+        </xsl:element>
+    </xsl:element>
   </xsl:template>
 </xsl:stylesheet>
