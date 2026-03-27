@@ -1,0 +1,39 @@
+XSLT v3 migration audit
+Generated: 2026-03-27T11:08:49
+
+Total files: 181
+High risk (embedded script): 111
+Medium risk (msxsl usage, no script block): 64
+Low risk: 6
+
+Top script function calls:
+456	MyScript:RemEmptySpace
+290	MyScript:ParseDate
+85	MyScript:ConvertStatusCode
+82	MyScript:GetData
+48	MyScript:GetNRCounter
+40	MyScript:GetLinCounter
+39	MyScript:ToUpper
+35	MyScript:GetCurrentDate
+26	MyScript:parseUtcDT
+25	MyScript:GetFromSplitsArray
+24	MyScript:GetNRCounter3
+24	userCSharp:AddAccount
+17	MyScript:GetNRCounter2
+12	MyScript:TrimEnd
+12	MyScript:SetMinRunSeqId
+11	MyScript:GetCPSCounter
+10	MyScript:Abs
+9	MyScript:Split
+8	MyScript:GetGUID
+6	MyScript:PrintApos
+5	MyScript:GetNextPalletLine
+4	MyScript:Sleep
+3	MyScript:BuildMessage
+3	userCSharp:GetAccountAmount
+3	MyScript:WriteMessage
+3	MyScript:AddToMinRunSeqIdList
+3	MyScript:SetUNZSegment
+3	MyScript:Replace
+3	MyScript:RemoveDiacritics
+3	MyScript:ClearMessage
