@@ -1,0 +1,22 @@
+<xml odata.context="https://api.businesscentral.dynamics.com/v2.0/20cd45bb-0b1a-4f31-a706-794cd70079a0/RAPP-170/ODataV4/$metadata#Edm.String">
+  <value>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Response&gt;
+  &lt;Status&gt;Succeeded&lt;/Status&gt;
+  &lt;EntryNo&gt;300056&lt;/EntryNo&gt;
+  &lt;ProcessStatus&gt;INSERT&lt;/ProcessStatus&gt;
+  &lt;Exception&gt;&lt;/Exception&gt;
+  &lt;ErrorCallStack&gt;&lt;/ErrorCallStack&gt;
+  &lt;MessageID&gt;417231&lt;/MessageID&gt;
+  &lt;MessageType&gt;RCV-RECEIPT-WOLF&lt;/MessageType&gt;
+  &lt;SourceType&gt;Customer&lt;/SourceType&gt;
+  &lt;SourceNo&gt;20438&lt;/SourceNo&gt;
+  &lt;DateTimeReceived&gt;2026-03-25T10:09:31&lt;/DateTimeReceived&gt;
+  &lt;DateReceived&gt;2026-03-25&lt;/DateReceived&gt;
+  &lt;TimeReceived&gt;10:09:31&lt;/TimeReceived&gt;
+  &lt;DateTimeProcessed&gt;2026-03-25T10:09:35&lt;/DateTimeProcessed&gt;
+  &lt;DateProcessed&gt;2026-03-25&lt;/DateProcessed&gt;
+  &lt;TimeProcessed&gt;10:09:35&lt;/TimeProcessed&gt;
+  &lt;Company&gt;Transport Mervielde NV&lt;/Company&gt;
+  &lt;Username&gt;DATAHUB DYNAMICS 365 BC&lt;/Username&gt;
+&lt;/Response&gt;</value>
+</xml>

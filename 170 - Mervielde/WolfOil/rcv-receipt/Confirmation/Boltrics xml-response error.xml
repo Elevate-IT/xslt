@@ -1,0 +1,22 @@
+<xml odata.context="https://api.businesscentral.dynamics.com/v2.0/20cd45bb-0b1a-4f31-a706-794cd70079a0/RAPP-170/ODataV4/$metadata#Edm.String">
+  <value>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Response&gt;
+  &lt;Status&gt;Failed&lt;/Status&gt;
+  &lt;EntryNo&gt;0&lt;/EntryNo&gt;
+  &lt;ProcessStatus&gt;Not Received&lt;/ProcessStatus&gt;
+  &lt;Exception&gt;A call to System.Xml.Schema.XmlSchemaSet.Add failed with this message: The targetNamespace parameter &apos;www.boltrics.nl/receivereceiptwolf:v1.00&apos; should be the same value as the targetNamespace &apos;www.boltrics.nl/receivereceipt:v1.00&apos; of the schema.&lt;/Exception&gt;
+  &lt;ErrorCallStack&gt;&lt;/ErrorCallStack&gt;
+  &lt;MessageID&gt;&lt;/MessageID&gt;
+  &lt;MessageType&gt;&lt;/MessageType&gt;
+  &lt;SourceType&gt; &lt;/SourceType&gt;
+  &lt;SourceNo&gt;&lt;/SourceNo&gt;
+  &lt;DateTimeReceived&gt;&lt;/DateTimeReceived&gt;
+  &lt;DateReceived&gt;&lt;/DateReceived&gt;
+  &lt;TimeReceived&gt;00:00:00&lt;/TimeReceived&gt;
+  &lt;DateTimeProcessed&gt;&lt;/DateTimeProcessed&gt;
+  &lt;DateProcessed&gt;&lt;/DateProcessed&gt;
+  &lt;TimeProcessed&gt;00:00:00&lt;/TimeProcessed&gt;
+  &lt;Company&gt;Transport Mervielde NV&lt;/Company&gt;
+  &lt;Username&gt;DATAHUB DYNAMICS 365 BC&lt;/Username&gt;
+&lt;/Response&gt;</value>
+</xml>
