@@ -45,7 +45,7 @@
             </map>
         </xsl:variable>
 
-        <xsl:sequence select="xml-to-json($json-output)"/>
+        <xsl:sequence select="xml-to-json($json-output, map { 'indent': true() })"/>
     </xsl:function>
 
 </xsl:stylesheet>

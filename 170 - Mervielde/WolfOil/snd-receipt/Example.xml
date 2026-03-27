@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns0:Message xmlns:ns0="www.boltrics.nl/sendreceipt:v1.00">
+    <ns0:Header>
+        <ns0:MessageID>298863</ns0:MessageID>
+        <ns0:CreationDateTime>2026-03-17T15:34:05</ns0:CreationDateTime>
+        <ns0:ProcesAction>INSERT</ns0:ProcesAction>
+        <ns0:FromTradingPartner>MERVIELDE</ns0:FromTradingPartner>
+        <ns0:ToTradingPartner>20438</ns0:ToTradingPartner>
+        <ns0:Database>Dynamics_PROD_170</ns0:Database>
+        <ns0:CompanyName>Transport Mervielde NV</ns0:CompanyName>
+        <ns0:Information>SND-RECEIPT</ns0:Information>
+    </ns0:Header>
+    <ns0:Documents>
+        <ns0:Document>
+            <ns0:DocumentType>1</ns0:DocumentType>
+            <ns0:No>I260001747</ns0:No>
+            <ns0:Customer>
+                <ns0:No>20438</ns0:No>
+                <ns0:EANCode>20438</ns0:EANCode>
+                <ns0:Name>WOLF OIL CORPORATION NV</ns0:Name>
+                <ns0:Address>Georges Gilliotstraat 52</ns0:Address>
+                <ns0:City>HEMIKSEM</ns0:City>
+                <ns0:PostCode>2620</ns0:PostCode>
+                <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+                <ns0:CountryName>België</ns0:CountryName>
+                <ns0:VATRegistrationNo>BE0403.699.350</ns0:VATRegistrationNo>
+                <ns0:PaymentTermsCode>30D FD</ns0:PaymentTermsCode>
+            </ns0:Customer>
+            <ns0:BuildingCode>MERVIELDE</ns0:BuildingCode>
+            <ns0:LanguageCode>NLB</ns0:LanguageCode>
+            <ns0:LocationNo>EXP-IN MV</ns0:LocationNo>
+            <ns0:DocumentDate>2026-03-17</ns0:DocumentDate>
+            <ns0:OrderDate>2026-03-13</ns0:OrderDate>
+            <ns0:PostingDate>2026-03-17</ns0:PostingDate>
+            <ns0:StatusCode>45-GEBOEKT</ns0:StatusCode>
+            <ns0:VehicleNo>1COD105</ns0:VehicleNo>
+            <ns0:TrailerContainerNo>10</ns0:TrailerContainerNo>
+            <ns0:AnnouncedDate>2026-03-17</ns0:AnnouncedDate>
+            <ns0:ArrivedDate>2026-03-17</ns0:ArrivedDate>
+            <ns0:DepartedDate>2026-03-17</ns0:DepartedDate>
+            <ns0:OrderTypeCode>RETOUR</ns0:OrderTypeCode>
+            <ns0:SenderAddress>
+                <ns0:No></ns0:No>
+            </ns0:SenderAddress>
+            <ns0:Attribute02>LOSSEN</ns0:Attribute02>
+            <ns0:LocationAttribute02>Mervielde</ns0:LocationAttribute02>
+            <ns0:GrossWeight>171.696</ns0:GrossWeight>
+            <ns0:NetWeight>0</ns0:NetWeight>
+            <ns0:VolumeWeight>0</ns0:VolumeWeight>
+            <ns0:Volume>0</ns0:Volume>
+            <ns0:Quantity>0</ns0:Quantity>
+            <ns0:TotalCubage>0</ns0:TotalCubage>
+            <ns0:CarrierQuantity>1</ns0:CarrierQuantity>
+            <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+            <ns0:InvoiceValue>0</ns0:InvoiceValue>
+            <ns0:CarriageValue>0</ns0:CarriageValue>
+            <ns0:InsuranceValue>0</ns0:InsuranceValue>
+            <ns0:Destination>0</ns0:Destination>
+            <ns0:DocumentLines>
+                <ns0:DocumentLine>
+                    <ns0:DocumentType>1</ns0:DocumentType>
+                    <ns0:LineNo>10000</ns0:LineNo>
+                    <ns0:Sell-toCustomerNo>20438</ns0:Sell-toCustomerNo>
+                    <ns0:CarrierTypeCode>CT MONO</ns0:CarrierTypeCode>
+                    <ns0:CarrierTypeTransportCode>CT MONO</ns0:CarrierTypeTransportCode>
+                    <ns0:Type>1</ns0:Type>
+                    <ns0:No>0542120438</ns0:No>
+                    <ns0:ExternalNo>5421</ns0:ExternalNo>
+                    <ns0:ItemNo>STD</ns0:ItemNo>
+                    <ns0:Description>4406 HYDRAULIC HV ISO 46</ns0:Description>
+                    <ns0:BaseUnitofMeasureCode>L</ns0:BaseUnitofMeasureCode>
+                    <ns0:UnitofMeasureCode>L</ns0:UnitofMeasureCode>
+                    <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+                    <ns0:Quantity>250</ns0:Quantity>
+                    <ns0:QtyCreated>196</ns0:QtyCreated>
+                    <ns0:QuantityBase>250</ns0:QuantityBase>
+                    <ns0:QtyBaseCreated>196</ns0:QtyBaseCreated>
+                    <ns0:QtyOutstanding>54</ns0:QtyOutstanding>
+                    <ns0:QtyPosted>196</ns0:QtyPosted>
+                    <ns0:QtyBasePosted>196</ns0:QtyBasePosted>
+                    <ns0:QtyBaseOutstanding>54</ns0:QtyBaseOutstanding>
+                    <ns0:LineAmount>0</ns0:LineAmount>
+                    <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+                    <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+                    <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+                    <ns0:CarrierQuantity>1</ns0:CarrierQuantity>
+                    <ns0:CarrierQtyCreated>1</ns0:CarrierQtyCreated>
+                    <ns0:DefaultQtyPerCarrier>0</ns0:DefaultQtyPerCarrier>
+                    <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+                    <ns0:CarrierQtyPosted>1</ns0:CarrierQtyPosted>
+                    <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+                    <ns0:OrderUnitofMeasureCode>L</ns0:OrderUnitofMeasureCode>
+                    <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+                    <ns0:OrderQuantity>0</ns0:OrderQuantity>
+                    <ns0:PostedOrderQuantity>196</ns0:PostedOrderQuantity>
+                    <ns0:ProductGroupCode>OLIE</ns0:ProductGroupCode>
+                    <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+                    <ns0:GrossWeightperUoM>0.876</ns0:GrossWeightperUoM>
+                    <ns0:NetWeightperUoM>0.876</ns0:NetWeightperUoM>
+                    <ns0:VolumeWeight>0</ns0:VolumeWeight>
+                    <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+                    <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+                    <ns0:TareWeight>0</ns0:TareWeight>
+                    <ns0:GrossWeight>219</ns0:GrossWeight>
+                    <ns0:NetWeight>219</ns0:NetWeight>
+                    <ns0:BatchNo>B2500009198</ns0:BatchNo>
+                    <ns0:ExternalBatchNo>WSVU 214007-2</ns0:ExternalBatchNo>
+                    <ns0:GrossWeightPosted>171.696</ns0:GrossWeightPosted>
+                    <ns0:NetWeightPosted>171.696</ns0:NetWeightPosted>
+                    <ns0:GrossWeightOutstanding>47.304</ns0:GrossWeightOutstanding>
+                    <ns0:NetWeightOutstanding>47.304</ns0:NetWeightOutstanding>
+                    <ns0:LocationNo>WOLF C1</ns0:LocationNo>
+                    <ns0:BuildingCode>MERVIELDE</ns0:BuildingCode>
+                    <ns0:MaterialType>0</ns0:MaterialType>
+                    <ns0:Attribute06>LOSSEN</ns0:Attribute06>
+                    <ns0:SearchDescriptionItemNo>4406 HYDRAULIC HV ISO 46</ns0:SearchDescriptionItemNo>
+                    <ns0:Attributes>
+                        <ns0:Attribute>
+                            <ns0:Code>WOLFMSGID</ns0:Code>
+                            <ns0:Description>Lifting In/Lossen</ns0:Description>
+                            <ns0:Value>OPD-2026-000189</ns0:Value>
+                        </ns0:Attribute>
+                    </ns0:Attributes>
+                    <ns0:DocumentDetailLines>
+                        <ns0:DocumentDetailLine>
+                            <ns0:DocumentNo>I260001747</ns0:DocumentNo>
+                            <ns0:DocumentLineNo>10000</ns0:DocumentLineNo>
+                            <ns0:LineNo>100000</ns0:LineNo>
+                            <ns0:CarrierTypeCode>CT MONO</ns0:CarrierTypeCode>
+                            <ns0:CarrierTypeTransportCode>CT MONO</ns0:CarrierTypeTransportCode>
+                            <ns0:CustomerItemNo>0542120438</ns0:CustomerItemNo>
+                            <ns0:ExternalNo>5421</ns0:ExternalNo>
+                            <ns0:UnitofMeasureCode>L</ns0:UnitofMeasureCode>
+                            <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+                            <ns0:Quantity>98</ns0:Quantity>
+                            <ns0:QuantityBase>98</ns0:QuantityBase>
+                            <ns0:CarrierNo>WSVU 214007-2</ns0:CarrierNo>
+                            <ns0:CarrierLineNo>3</ns0:CarrierLineNo>
+                            <ns0:OrderQuantity>98</ns0:OrderQuantity>
+                            <ns0:TareWeight>0</ns0:TareWeight>
+                            <ns0:GrossWeight>171.696</ns0:GrossWeight>
+                            <ns0:NetWeight>171.696</ns0:NetWeight>
+                            <ns0:BatchNo>B2500009198</ns0:BatchNo>
+                            <ns0:ExternalBatchNo>WSVU 214007-2</ns0:ExternalBatchNo>
+                            <ns0:BuildingCode>MERVIELDE</ns0:BuildingCode>
+                            <ns0:LocationNo>WOLF C1</ns0:LocationNo>
+                            <ns0:Posted>1</ns0:Posted>
+                            <ns0:Length>0</ns0:Length>
+                            <ns0:Width>0</ns0:Width>
+                            <ns0:Height>0</ns0:Height>
+                            <ns0:Volume>0</ns0:Volume>
+                            <ns0:AlcoholByVolume>0</ns0:AlcoholByVolume>
+                            <ns0:AlcoholLiters>0</ns0:AlcoholLiters>
+                            <ns0:Attributes />
+                        </ns0:DocumentDetailLine>
+                        <ns0:DocumentDetailLine>
+                            <ns0:DocumentNo>I260001747</ns0:DocumentNo>
+                            <ns0:DocumentLineNo>10000</ns0:DocumentLineNo>
+                            <ns0:LineNo>200000</ns0:LineNo>
+                            <ns0:CarrierTypeCode>CT MONO</ns0:CarrierTypeCode>
+                            <ns0:CarrierTypeTransportCode>CT MONO</ns0:CarrierTypeTransportCode>
+                            <ns0:CustomerItemNo>0542120438</ns0:CustomerItemNo>
+                            <ns0:ExternalNo>5421</ns0:ExternalNo>
+                            <ns0:UnitofMeasureCode>L</ns0:UnitofMeasureCode>
+                            <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+                            <ns0:Quantity>98</ns0:Quantity>
+                            <ns0:QuantityBase>98</ns0:QuantityBase>
+                            <ns0:CarrierNo>WSVU 214007-4</ns0:CarrierNo>
+                            <ns0:CarrierLineNo>3</ns0:CarrierLineNo>
+                            <ns0:OrderQuantity>98</ns0:OrderQuantity>
+                            <ns0:TareWeight>0</ns0:TareWeight>
+                            <ns0:GrossWeight>171.696</ns0:GrossWeight>
+                            <ns0:NetWeight>171.696</ns0:NetWeight>
+                            <ns0:BatchNo>B2500009198</ns0:BatchNo>
+                            <ns0:ExternalBatchNo>WSVU 214007-2</ns0:ExternalBatchNo>
+                            <ns0:BuildingCode>MERVIELDE</ns0:BuildingCode>
+                            <ns0:LocationNo>WOLF C1</ns0:LocationNo>
+                            <ns0:Posted>1</ns0:Posted>
+                            <ns0:Length>0</ns0:Length>
+                            <ns0:Width>0</ns0:Width>
+                            <ns0:Height>0</ns0:Height>
+                            <ns0:Volume>0</ns0:Volume>
+                            <ns0:AlcoholByVolume>0</ns0:AlcoholByVolume>
+                            <ns0:AlcoholLiters>0</ns0:AlcoholLiters>
+                            <ns0:Attributes />
+                        </ns0:DocumentDetailLine>
+                    </ns0:DocumentDetailLines>
+                    <ns0:DocumentLineConditions>
+                        <ns0:DocumentLineCondition>
+                            <ns0:ConditionCode>1 CUSTITEM</ns0:ConditionCode>
+                            <ns0:ConditionValue>true</ns0:ConditionValue>
+                        </ns0:DocumentLineCondition>
+                    </ns0:DocumentLineConditions>
+                </ns0:DocumentLine>
+            </ns0:DocumentLines>
+            <ns0:Carriers>
+                <ns0:Carrier>
+                    <ns0:No>WSVU 214007-2</ns0:No>
+                    <ns0:CarrierTypeCode>CT MONO</ns0:CarrierTypeCode>
+                    <ns0:CarrierTypeTransportCode>CT MONO</ns0:CarrierTypeTransportCode>
+                    <ns0:NetWeight>10680.316</ns0:NetWeight>
+                    <ns0:GrossWeight>10680.316</ns0:GrossWeight>
+                    <ns0:Length>0</ns0:Length>
+                    <ns0:Width>0</ns0:Width>
+                    <ns0:Height>0</ns0:Height>
+                    <ns0:Cubage>0</ns0:Cubage>
+                    <ns0:Type>2</ns0:Type>
+                    <ns0:StatusCode>20-VRIJ</ns0:StatusCode>
+                    <ns0:GroundCarrier>WSVU 214007-2</ns0:GroundCarrier>
+                    <ns0:BuildingCode>MERVIELDE</ns0:BuildingCode>
+                    <ns0:BuildingCodeGLN>MERVIELDE</ns0:BuildingCodeGLN>
+                    <ns0:Attribute01>1</ns0:Attribute01>
+                    <ns0:Attribute02>31000</ns0:Attribute02>
+                    <ns0:Attribute06>29450</ns0:Attribute06>
+                    <ns0:Contents>
+                        <ns0:Content>
+                            <ns0:DocumentLineNo>10000</ns0:DocumentLineNo>
+                            <ns0:CarrierNo>WSVU 214007-2</ns0:CarrierNo>
+                            <ns0:CarrierTypeCode>CT MONO</ns0:CarrierTypeCode>
+                            <ns0:CarrierTypeTransportCode>CT MONO</ns0:CarrierTypeTransportCode>
+                            <ns0:CustomerItemNo>0542120438</ns0:CustomerItemNo>
+                            <ns0:ExternalNo>5421</ns0:ExternalNo>
+                            <ns0:UnitofMeasureCode>L</ns0:UnitofMeasureCode>
+                            <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+                            <ns0:Quantity>196</ns0:Quantity>
+                            <ns0:OrderQuantity>0</ns0:OrderQuantity>
+                            <ns0:Temperature>0</ns0:Temperature>
+                            <ns0:TareWeight>0</ns0:TareWeight>
+                            <ns0:GrossWeight>171.696</ns0:GrossWeight>
+                            <ns0:NetWeight>171.696</ns0:NetWeight>
+                            <ns0:Posted>1</ns0:Posted>
+                            <ns0:BatchNo>B2500009198</ns0:BatchNo>
+                            <ns0:ExternalBatchNo>WSVU 214007-2</ns0:ExternalBatchNo>
+                            <ns0:CreationDateTime>2026-03-17T15:34:02</ns0:CreationDateTime>
+                            <ns0:ModifiedDateTime>2026-03-17T15:34:03</ns0:ModifiedDateTime>
+                            <ns0:Length>0</ns0:Length>
+                            <ns0:Width>0</ns0:Width>
+                            <ns0:Height>0</ns0:Height>
+                            <ns0:Volume>0</ns0:Volume>
+                            <ns0:BaseUnitofMeasureCode>L</ns0:BaseUnitofMeasureCode>
+                            <ns0:QuantityBase>196</ns0:QuantityBase>
+                            <ns0:AlcoholByVolume>0</ns0:AlcoholByVolume>
+                            <ns0:AlcoholLiters>0</ns0:AlcoholLiters>
+                            <ns0:Attributes />
+                            <ns0:CustItemAttribute01>0,876</ns0:CustItemAttribute01>
+                        </ns0:Content>
+                    </ns0:Contents>
+                </ns0:Carrier>
+            </ns0:Carriers>
+        </ns0:Document>
+    </ns0:Documents>
+</ns0:Message>
