@@ -7,10 +7,18 @@
                 exclude-result-prefixes="msxsl var s0 MyScript" 
                 version="3.0">
     <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+    
     <xsl:key name="UniqueSourceCarrierBySSCC" match="//s0:Carrier" use="s0:SSCCNo" />
+    
+    <xsl:key
+        name="kByEdiLineNo"
+        match="s0:DocumentDetailLine[s0:Posted = '1']"
+        use="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+    
     <xsl:template match="/">
         <xsl:apply-templates select="/s0:Message/s0:Documents/s0:Document" />
     </xsl:template>
+    
     <xsl:template match="/s0:Message/s0:Documents/s0:Document">
         <ns0:EFACT_D97A_RECADV>
             <UNH>
@@ -90,47 +98,65 @@
                     <CPS01>1</CPS01>
                 </ns0:CPS>
                 
-                <xsl:if test="count(s0:DocumentLines/s0:DocumentLine[s0:Type='1']) &gt; 0">
-                    <xsl:for-each select="s0:DocumentLines/s0:DocumentLine[s0:Type='1']">                    
-                        <ns0:LINLoop1>
-                            <ns0:LIN>
-                                <LIN01>
-                                    <xsl:value-of select="position()"/>
-                                </LIN01>
-                                <ns0:C212>
-                                    <C21201>
-                                        <xsl:value-of select="s0:EANCode" />
-                                    </C21201>
-                                    <C21202>MF</C21202>
-                                    <C21204>90</C21204>
-                                </ns0:C212>
-                            </ns0:LIN>
-                            
-                            <ns0:PIA>
-                                <PIA01>1</PIA01>
-                                <ns0:C212_2>
-                                    <C21201>
-                                        <xsl:value-of select="s0:ExternalNo" />
-                                    </C21201>
-                                    <C21202>ZZZ</C21202>
-                                    <C21204>91</C21204>
-                                </ns0:C212_2>
-                            </ns0:PIA>
-                            
-                            <ns0:QTY>
-                                <ns0:C186>
-                                    <C18601>48</C18601>
-                                    <C18602>
-                                        <xsl:value-of select="s0:OrderQuantity"/>
-                                    </C18602>
-                                    <C18603>
-                                        <xsl:text>PCE</xsl:text>
-                                    </C18603>
-                                </ns0:C186>
-                            </ns0:QTY>
-                        </ns0:LINLoop1>
-                    </xsl:for-each>
-                </xsl:if>
+                <xsl:for-each
+                    select="s0:DocumentLines/s0:DocumentLine[s0:Type='1']
+                        /s0:DocumentDetailLines/s0:DocumentDetailLine[s0:Posted = '1']
+                        [generate-id()
+                            =
+                            generate-id(
+                                key(
+                                    'kByEdiLineNo',
+                                    s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value
+                                )[1]
+                            )
+                        ]">
+                    
+                    <!-- Cache the group key -->
+                    <xsl:variable name="ediLineNo"
+                        select="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+                    
+                    <!-- All lines in this group -->
+                    <xsl:variable name="group"
+                        select="key('kByEdiLineNo', $ediLineNo)"/>
+                    
+                    <ns0:LINLoop1>
+                        <ns0:LIN>
+                            <LIN01>
+                                <xsl:value-of select="position()"/>
+                            </LIN01>
+                            <ns0:C212>
+                                <C21201>
+                                    <xsl:value-of select="s0:EANCode" />
+                                </C21201>
+                                <C21202>MF</C21202>
+                                <C21204>90</C21204>
+                            </ns0:C212>
+                        </ns0:LIN>
+                        
+                        <ns0:PIA>
+                            <PIA01>1</PIA01>
+                            <ns0:C212_2>
+                                <C21201>
+                                    <xsl:value-of select="s0:ExternalNo" />
+                                </C21201>
+                                <C21202>ZZZ</C21202>
+                                <C21204>91</C21204>
+                            </ns0:C212_2>
+                        </ns0:PIA>
+                        
+                        <ns0:QTY>
+                            <ns0:C186>
+                                <C18601>48</C18601>
+                                <C18602>
+                                    <xsl:value-of select="sum($group/s0:OrderQuantity)"/>
+                                </C18602>
+                                <C18603>
+                                    <xsl:text>PCE</xsl:text>
+                                </C18603>
+                            </ns0:C186>
+                        </ns0:QTY>
+                    </ns0:LINLoop1>
+                </xsl:for-each>
             </ns0:CPSLoop1>
         </ns0:EFACT_D97A_RECADV>
     </xsl:template>

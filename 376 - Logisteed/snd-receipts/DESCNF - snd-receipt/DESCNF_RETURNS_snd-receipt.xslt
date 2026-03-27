@@ -6,9 +6,16 @@
                 exclude-result-prefixes="msxsl var s0"
                 version="3.0"  > 
     <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+    
     <xsl:template match="/">
         <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
     </xsl:template>
+    
+    <xsl:key
+        name="kByEdiLineNo"
+        match="s0:DocumentLine[s0:Type='1']"
+        use="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+    
     <xsl:template match="//s0:Message/s0:Documents/s0:Document">
         <ns0:EFACT_D97A_DESADV>
             <UNH>
@@ -87,7 +94,7 @@
                     </ns0:C082>
                 </ns0:NAD>
             </ns0:NADLoop1>
-
+            
             <ns0:NADLoop1>
                 <ns0:NAD>
                     <NAD01>CZ</NAD01>
@@ -105,9 +112,26 @@
                     <CPS01>
                         <xsl:text>1</xsl:text>
                     </CPS01>
-                    
                 </ns0:CPS>
-                <xsl:for-each select="//s0:Carriers/s0:Carrier/s0:Contents/s0:Content">
+                
+                <xsl:for-each
+                    select="s0:DocumentLines/s0:DocumentLine[s0:Type='1']
+                        [generate-id() = generate-id(
+                                key('kByEdiLineNo',
+                                    s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value
+                                )[1]
+                            )]">
+                    
+                    <xsl:variable name="ediLineNo"
+                        select="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+                    
+                    <xsl:variable name="groupLines"
+                        select="key('kByEdiLineNo', $ediLineNo)"/>
+                    
+                    <xsl:variable name="groupDetailLines"
+                        select="$groupLines/s0:DocumentDetailLines
+                            /s0:DocumentDetailLine[s0:Posted='1']"/>
+                    
                     <ns0:LINLoop1>
                         <ns0:LIN>
                             <LIN01>
@@ -126,20 +150,28 @@
                             <PIA01>1</PIA01>
                             <ns0:C212_2>
                                 <C21201>
-                                    <xsl:variable name="QualIndicator" select="s0:Attribute01" />
+                                    <xsl:variable name="QualIndicator" select="$groupDetailLines/s0:Attribute01" />
                                     
                                     <xsl:variable name="MappedCode">
                                         <xsl:choose>
                                             <xsl:when test="$QualIndicator = 'AVAILABLE'">1</xsl:when>
                                             <xsl:when test="$QualIndicator = 'OUT OF WARRANTY'">10</xsl:when>
                                             <xsl:when test="$QualIndicator = 'DAMAGED CARTONS'">11</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'DAMAGED'">15</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'GOOD STOCK TBC'">12</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'NON-ROHS'">15</xsl:when> <!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'NON ROHS'">15</xsl:when>
                                             <xsl:when test="$QualIndicator = 'RETURN'">20</xsl:when>
                                             <xsl:when test="$QualIndicator = 'AWAITING SCRAP'">30</xsl:when>
                                             <xsl:when test="$QualIndicator = 'INSURANCE STOCK'">35</xsl:when>
                                             <xsl:when test="$QualIndicator = 'EXHIBITION STOCK'">40</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">50</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">60</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">50</xsl:when><!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'RE-WORK HACE'">50</xsl:when><!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'RE WORK HACE'">50</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">60</xsl:when><!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'SERVICE HACE'">60</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SHORTAGE'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'STOCK DISCREPANCY'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SURPLUS'">SK99</xsl:when>
                                             <xsl:when test="$QualIndicator = 'JCI SOUTH AND EXPORT'">S&amp;E</xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:value-of select="$QualIndicator"/>
@@ -154,12 +186,12 @@
                                 <C21204>90</C21204>
                             </ns0:C212_2>
                         </ns0:PIA>
-                       
+                        
                         <ns0:QTY_2>
                             <ns0:C186_2>
                                 <C18601>12</C18601>
                                 <C18602>
-                                    <xsl:value-of select="sum(s0:Quantity)" />
+                                    <xsl:value-of select="sum($groupDetailLines/s0:Quantity)" />
                                 </C18602>
                                 <C18603>
                                     <xsl:text>PCE</xsl:text>

@@ -153,7 +153,9 @@
                             <PIA01>1</PIA01>
                             <ns0:C212_2>
                                 <C21201>
-                                    <xsl:variable name="QualIndicator" >
+                                    <xsl:variable name="QualIndicator" select="s0:Attribute01" />
+                                    
+                                    <xsl:variable name="MappedCode">
                                         <xsl:choose>
                                             <xsl:when test="s0:Attribute01 = 'AVAILABLE'">1</xsl:when>
                                             <xsl:when test="s0:Attribute01 = 'AWAITING SCRAP'">AS01</xsl:when>
@@ -185,7 +187,9 @@
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>
-                                    <xsl:value-of select="concat(s0:Attribute03, $QualIndicator)" />
+                                    
+                                    <xsl:value-of select="concat(s0:Attribute03, $MappedCode)" />
+                                    
                                 </C21201>
                                 <C21202>ZZZ</C21202>
                                 <C21204>90</C21204>
