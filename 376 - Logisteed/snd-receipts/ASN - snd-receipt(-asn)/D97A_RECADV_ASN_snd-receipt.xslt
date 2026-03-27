@@ -146,27 +146,33 @@
                                     
                                     <xsl:variable name="MappedCode">
                                         <xsl:choose>
-                                            <xsl:when test="$QualIndicator = 'AVAILABLE'">1</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'OUT OF WARRANTY'">10</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'DAMAGED CARTONS'">11</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'GOOD STOCK TBC'">12</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'NON-ROHS'">15</xsl:when> <!--OBSOLETE -->
-                                            <xsl:when test="$QualIndicator = 'NON ROHS'">15</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'RETURN'">20</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'AWAITING SCRAP'">30</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'INSURANCE STOCK'">35</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'EXHIBITION STOCK'">40</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">50</xsl:when><!--OBSOLETE -->
-                                            <xsl:when test="$QualIndicator = 'RE-WORK HACE'">50</xsl:when><!--OBSOLETE -->
-                                            <xsl:when test="$QualIndicator = 'RE WORK HACE'">50</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">60</xsl:when><!--OBSOLETE -->
-                                            <xsl:when test="$QualIndicator = 'SERVICE HACE'">60</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'SHORTAGE'">SK99</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'STOCK DISCREPANCY'">SK99</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'SURPLUS'">SK99</xsl:when>
-                                            <xsl:when test="$QualIndicator = 'JCI SOUTH AND EXPORT'">S&amp;E</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'AVAILABLE'">0001</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'AWAITING SCRAP'">AS01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'BLOCKED'"></xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'DAMAGED'">DA01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'DAMAGED CARTONS'">0028</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'EXHIBITION STOCK'">0040</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'FAULTY LOAN'">SA02</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'GRADED STOCK'">0014</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'INSURANCE NO STOCK'">IN02</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'INSURANCE STOCK'">IN01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'INVESTIGATE/RE-WORK'">TE01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'JCI SOUTH AND EXPORT'">140S&amp;E</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'NON-ROHS'">15</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'OLD SPECS'">0002</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'OLD STOCK'">0014</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'OUT OF WARRANTY'">WA01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'RESERVED STOCK'">XX01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'RETURNS'">RE01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'RE-WORK (HACE)'">TE02</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'ROHS: AVAILABLE'"></xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'SAMPLE STOCK'">SA01</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'SERVICE (HACE)'">TE03</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'SHORTAGE'">SK99</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'STOCK DISCREPANCY'">SK99</xsl:when>
+                                            <xsl:when test="s0:Attribute01 = 'SURPLUS'">SK99</xsl:when>
                                             <xsl:otherwise>
-                                                <xsl:value-of select="$QualIndicator"/>
+                                                <xsl:value-of select="s0:Attribute01"/>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>

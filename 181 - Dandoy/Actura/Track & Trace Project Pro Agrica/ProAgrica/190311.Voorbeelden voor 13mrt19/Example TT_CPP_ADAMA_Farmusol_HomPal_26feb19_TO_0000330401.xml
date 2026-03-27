@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Example TransportOrder homogenius pallet from ADAMA to Farmusol-->
+<ttord:MessageHeader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ttord="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_Order_v2018p01" xsi:schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_Order_v2018p01 http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_Order_v2018p01.xsd">
+   <ttord:MessageID schemeID="REF">TO0000330401</ttord:MessageID>
+   <ttord:SendingDateTime>2019-02-28T15:42:11Z</ttord:SendingDateTime>
+   <ttord:SendingPartyID schemeID="GLN">8718077000008</ttord:SendingPartyID><!--GLN ADAMA-->
+   <ttord:ReceivingPartyID schemeID="GLN">8719333007229</ttord:ReceivingPartyID><!--GLN Farmusol-->
+   <ttord:MessageType>103</ttord:MessageType><!--= Transport Order-->
+   <ttord:MessagePurposeCode>53</ttord:MessagePurposeCode><!--= voor test-->
+   <ttord:Order>
+      <ttord:OrderID schemeID="REF">TO0000330401</ttord:OrderID>
+      <ttord:OrderStatusCode>101</ttord:OrderStatusCode><!--= original-->
+      <ttord:OrderDateTime>2019-02-28T15:42:11Z</ttord:OrderDateTime>
+      <ttord:DeliveryTypeCode>102</ttord:DeliveryTypeCode><!--= Speed-->
+      <ttord:CurrencyID>EUR</ttord:CurrencyID>   
+	<ttord:TradeParty>
+		<ttord:GlobalID schemeID="GLN">8718077000008</ttord:GlobalID><!--GLN ADAMA-->
+		<ttord:TradePartyRoleCode>OB</ttord:TradePartyRoleCode><!--= OrderedBy-->
+		<ttord:TradePartyName>ADAMA</ttord:TradePartyName>
+		<ttord:StreetNameAndNumber>Arnhemseweg 87</ttord:StreetNameAndNumber>
+		<ttord:PostalCodeLocation>3832GK</ttord:PostalCodeLocation>
+		<ttord:CityName>LEUSDEN</ttord:CityName>
+		<ttord:CountryCode>NL</ttord:CountryCode>
+		<ttord:PersonToContact>Annika Goudswaard-Blankert</ttord:PersonToContact>
+	</ttord:TradeParty>
+	<ttord:TradeParty>
+		<ttord:GlobalID schemeID="GLN">8719333007229</ttord:GlobalID><!--GLN Farmusol-->
+		<ttord:TradePartyRoleCode>OS</ttord:TradePartyRoleCode><!--= ShippedBy-->
+		<ttord:TradePartyName>Farmusol B.V</ttord:TradePartyName>
+	</ttord:TradeParty>	
+	<ttord:TradeParty>
+		<ttord:GlobalID schemeID="GLN">8719333007229</ttord:GlobalID><!--GLN Farmusol-->
+		<ttord:TradePartyRoleCode>SF</ttord:TradePartyRoleCode><!--= ShippedFrom-->
+		<ttord:TradePartyName>Farmusol B.V.</ttord:TradePartyName>
+		<ttord:StreetNameAndNumber>Industriestraat 10</ttord:StreetNameAndNumber>
+		<ttord:PostalCodeLocation>6827BD</ttord:PostalCodeLocation>
+		<ttord:CityName>Arnhem</ttord:CityName>
+		<ttord:CountryCode>NL</ttord:CountryCode>
+		<ttord:PersonToContact>Floris Rhemrev</ttord:PersonToContact>
+	</ttord:TradeParty>	
+      <ttord:TradeParty>
+         <ttord:GlobalID schemeID="GLN">8719324290012</ttord:GlobalID><!--GLN Profyto-->
+         <ttord:TradePartyRoleCode>ST</ttord:TradePartyRoleCode><!--= ShippedTo-->
+         <ttord:TradePartyName>Profytodsd</ttord:TradePartyName>
+         <ttord:StreetNameAndNumber>Revisieweg 3</ttord:StreetNameAndNumber>
+         <ttord:PostalCodeLocation>8304 BE</ttord:PostalCodeLocation>
+         <ttord:CityName>EMMELOORD</ttord:CityName>
+         <ttord:CountryCode>NLD</ttord:CountryCode>
+         <ttord:VATNumber>NL808842432B01</ttord:VATNumber>
+      </ttord:TradeParty>      
+      <ttord:TradeParty>
+         <ttord:GlobalID schemeID="GLN">8719324290005</ttord:GlobalID><!--GLN Holland Fyto-->
+         <ttord:TradePartyRoleCode>IV</ttord:TradePartyRoleCode><!--= ToBeInvoiced-->
+         <ttord:TradePartyName>Holland Fyto</ttord:TradePartyName>
+         <ttord:PostBoxNumber>Postbus 1077</ttord:PostBoxNumber>
+         <ttord:PostalCodePostBox>8300 BB</ttord:PostalCodePostBox>
+         <ttord:CityNamePostBox>EMMELOORD</ttord:CityNamePostBox>
+         <ttord:CountryCodePostBox>NLD</ttord:CountryCodePostBox>
+         <ttord:VATNumber>NL009578468B01</ttord:VATNumber>
+      </ttord:TradeParty>
+      <ttord:OrderLine>
+         <ttord:OrderLineID schemeID="REF">TO0000330401-0001</ttord:OrderLineID>
+         <ttord:OrderedQuantity unitCode="NBR">1</ttord:OrderedQuantity><!--1 pallet-->
+         <ttord:ProductUnit>
+            <ttord:ProductUnitTypeCode>101</ttord:ProductUnitTypeCode><!--= LogisticUnit-->
+            <ttord:ProductUnitName>Uniforme pallet pallet Goltix SC (600 liter/30 trade units/120 consumer units)</ttord:ProductUnitName>
+			<ttord:PackageTypeCode>PA</ttord:PackageTypeCode><!--= pallet-->
+         </ttord:ProductUnit>
+		<ttord:PackageProductUnitFirstLevel>
+			<ttord:Quantity>30</ttord:Quantity><!--number of TradeUnits on the pallet-->
+			<ttord:ProductUnit>
+				<ttord:ProductUnitID_GTIN schemeID="GTIN">08718077002156</ttord:ProductUnitID_GTIN>
+				<ttord:ProductUnitTypeCode>102</ttord:ProductUnitTypeCode><!-- = TradeUnit-->
+				<ttord:BatchID>1901030567</ttord:BatchID>
+				<ttord:ProductUnitName>Goltix SC</ttord:ProductUnitName>
+				<ttord:ProductionDate>2019-01-10T09:30:47Z</ttord:ProductionDate>
+				<ttord:PackageTypeCode>JY</ttord:PackageTypeCode><!--= Jerrican, cylindrical-->
+			</ttord:ProductUnit>
+		</ttord:PackageProductUnitFirstLevel>            
+      </ttord:OrderLine>
+      <ttord:OrderLine>
+         <ttord:OrderLineID schemeID="REF">TO0000330401-0002</ttord:OrderLineID>
+         <ttord:OrderedQuantity unitCode="NBR">1</ttord:OrderedQuantity><!--1 pallet-->
+         <ttord:ProductUnit>
+            <ttord:ProductUnitTypeCode>101</ttord:ProductUnitTypeCode><!--= LogisticUnit-->
+            <ttord:ProductUnitName>Uniforme pallet Mirador Xtra (600 liter/30 trade units/120 consumer units)</ttord:ProductUnitName>
+			<ttord:PackageTypeCode>PA</ttord:PackageTypeCode><!--= pallet-->
+         </ttord:ProductUnit>
+		<ttord:PackageProductUnitFirstLevel>
+			<ttord:Quantity>30</ttord:Quantity><!--number of TradeUnits on the pallet-->
+			<ttord:ProductUnit>
+				<ttord:ProductUnitID_GTIN schemeID="GTIN">08718077012896</ttord:ProductUnitID_GTIN>
+				<ttord:ProductUnitTypeCode>102</ttord:ProductUnitTypeCode><!-- = TradeUnit-->
+				<ttord:BatchID>1901010032</ttord:BatchID>
+				<ttord:ProductUnitName>Mirador Xtra</ttord:ProductUnitName>
+				<ttord:ProductionDate>2019-01-24T09:30:47Z</ttord:ProductionDate>
+				<ttord:PackageTypeCode>JY</ttord:PackageTypeCode><!--= Jerrican, cylindrical-->
+			</ttord:ProductUnit>
+		</ttord:PackageProductUnitFirstLevel>            
+      </ttord:OrderLine>
+		<ttord:Timing>
+			<ttord:EventTypeCode>101</ttord:EventTypeCode><!-- = Load-->
+			<ttord:EventBeginDateTime>2019-02-28T08:00:47Z</ttord:EventBeginDateTime>
+			<ttord:EventEndDateTime>2019-02-28T09:30:47Z</ttord:EventEndDateTime>			
+		</ttord:Timing>		
+		<ttord:Timing>
+			<ttord:EventTypeCode>102</ttord:EventTypeCode><!-- = Deliver-->
+			<ttord:EventBeginDateTime>2019-02-28T13:00:47Z</ttord:EventBeginDateTime>
+			<ttord:EventEndDateTime>2019-02-28T14:30:47Z</ttord:EventEndDateTime><!-- moet uiterlijk om 14:30 uur zijn afgeleverd-->		
+		</ttord:Timing>		
+		<ttord:Remark>
+			<ttord:TextFunctionTypeCode>103</ttord:TextFunctionTypeCode><!-- = DeliverInstruction-->
+			<ttord:TextLines>Loods nr. 10 van Profyto</ttord:TextLines>
+		</ttord:Remark>
+		<ttord:MeansOfTransportation>
+			<ttord:transportMeansTypeCode>3105</ttord:transportMeansTypeCode><!--3105= Lorry, articulated, flat bed, 25 tonne-->
+		</ttord:MeansOfTransportation>      
+   </ttord:Order>
+</ttord:MessageHeader>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example Invoice mixed pallet from ADAMA to Holland Fyto-->
+<ttinv:MessageHeader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ttinv="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_Invoice_v2018p01" 
+xsi:schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_Invoice_v2018p01 http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_Invoice_v2018p01.xsd">
+	<ttinv:MessageID schemeID="REF">IV0000330399</ttinv:MessageID>
+	<ttinv:SendingDateTime>2019-03-10T00:00:00Z</ttinv:SendingDateTime>
+	<ttinv:SendingPartyID schemeID="GLN">8718077000008</ttinv:SendingPartyID><!--GLN ADAMA-->
+	<ttinv:ReceivingPartyID schemeID="GLN">8719324290005</ttinv:ReceivingPartyID><!--GLN Holland Fyto>-->
+	<ttinv:MessageType>106</ttinv:MessageType><!--106= Invoice-->
+	<ttinv:MessagePurposeCode>53</ttinv:MessagePurposeCode><!--= voor test-->
+	<ttinv:Invoice>
+		<ttinv:InvoiceID schemeID="REF">IV0000330399</ttinv:InvoiceID>
+		<ttinv:InvoiceStatusCode>101</ttinv:InvoiceStatusCode><!--= original-->
+		<ttinv:OrderReferenceID schemeID="REF">IO0000330366</ttinv:OrderReferenceID>
+		<ttinv:InvoiceDateTime>2019-03-10T00:00:00Z</ttinv:InvoiceDateTime>
+		<ttinv:ToBePayedDateTime>2019-05-01T00:00:00Z</ttinv:ToBePayedDateTime>
+		<ttinv:CurrencyID>EUR</ttinv:CurrencyID>
+		<ttinv:TotalAmountTaxExcluded>10</ttinv:TotalAmountTaxExcluded>
+		<ttinv:TotalTax>
+			<ttinv:TaxPercentage>21</ttinv:TaxPercentage>
+			<ttinv:TaxAmount>2.10</ttinv:TaxAmount>
+		</ttinv:TotalTax>		
+		<ttinv:TotalAmountTaxIncluded>12.10</ttinv:TotalAmountTaxIncluded>
+		<ttinv:TradeParty>
+			<ttinv:GlobalID schemeID="GLN">8719324290005</ttinv:GlobalID><!--GLN Holland Fyto>-->
+			<ttinv:LocalID schemeID="REF">1271152</ttinv:LocalID>
+			<ttinv:TradePartyRoleCode>IV</ttinv:TradePartyRoleCode><!--IV=ToBeInvoiced-->
+			<ttinv:TradePartyName>Holland Fyto U.A.</ttinv:TradePartyName>
+			<ttinv:StreetNameAndNumber>String</ttinv:StreetNameAndNumber>
+			<ttinv:PostalCodeLocation>String</ttinv:PostalCodeLocation>
+			<ttinv:CityName>String</ttinv:CityName>
+			<ttinv:CountryCode>String</ttinv:CountryCode>
+			<ttinv:PostBoxNumber>Postbus 1077</ttinv:PostBoxNumber>
+			<ttinv:PostalCodePostBox>8300 BB</ttinv:PostalCodePostBox>
+			<ttinv:CityNamePostBox>EMMELOORD</ttinv:CityNamePostBox>
+			<ttinv:CountryCodePostBox>NLD</ttinv:CountryCodePostBox>
+			<ttinv:VATNumber>NL009578468B01</ttinv:VATNumber>
+			<ttinv:IBAN>NL25ABNA0509240216</ttinv:IBAN>
+		</ttinv:TradeParty>
+		<ttinv:TradeParty>
+			<ttinv:GlobalID schemeID="GLN">8718077000008</ttinv:GlobalID><!--GLN ADAMA-->
+			<ttinv:TradePartyRoleCode>II</ttinv:TradePartyRoleCode><!--II=InvoiceIssuer-->
+			<ttinv:TradePartyName>ADAMA</ttinv:TradePartyName>
+			<ttinv:StreetNameAndNumber>Arnhemseweg 87</ttinv:StreetNameAndNumber>
+			<ttinv:PostalCodeLocation>3832GK</ttinv:PostalCodeLocation>
+			<ttinv:CityName>LEUSDEN</ttinv:CityName>
+			<ttinv:CountryCode>NL</ttinv:CountryCode>
+			<ttinv:VATNumber>String</ttinv:VATNumber>
+			<ttinv:IBAN>String</ttinv:IBAN>
+		</ttinv:TradeParty>
+		<ttinv:TradeParty>
+			<ttinv:GlobalID schemeID="GLN">8719324290012</ttinv:GlobalID><!--GLN Profyto-->
+			<ttinv:TradePartyRoleCode>ST</ttinv:TradePartyRoleCode><!--= ShippedTo-->
+			<ttinv:TradePartyName>Profyto DSD EMMELOORD</ttinv:TradePartyName>
+			<ttinv:StreetNameAndNumber>Revisieweg 3</ttinv:StreetNameAndNumber>
+			<ttinv:PostalCodeLocation>38304BE</ttinv:PostalCodeLocation>
+			<ttinv:CityName>EMMELOORD</ttinv:CityName>
+			<ttinv:CountryCode>NL</ttinv:CountryCode>
+			<ttinv:VATNumber>SNL009578468B01</ttinv:VATNumber>
+			<ttinv:IBAN>String</ttinv:IBAN>
+		</ttinv:TradeParty>		
+		<ttinv:InvoiceLine>
+			<ttinv:InvoiceLineID schemeID="REF">IV0000330399_1</ttinv:InvoiceLineID>
+			<ttinv:InvoicedQuantity unitCode="NBR">4</ttinv:InvoicedQuantity>
+			<ttinv:OrderLineReferenceID schemeID="REF">0000330366-0001</ttinv:OrderLineReferenceID>
+			<ttinv:OrderLineDate>2019-02-26T15:42:11Z</ttinv:OrderLineDate>
+			<ttinv:DeliveryDate>2019-03-05T15:42:11Z</ttinv:DeliveryDate>
+			<ttinv:TaxPercentage>21</ttinv:TaxPercentage>
+			<ttinv:InvoiceLineTotalAmount>4</ttinv:InvoiceLineTotalAmount>
+			<ttinv:ProductUnit>
+				<ttinv:ProductUnitID_GTIN schemeID="GTIN">08718077002156</ttinv:ProductUnitID_GTIN>
+				<ttinv:ProductUnitTypeCode>102</ttinv:ProductUnitTypeCode><!-- = TradeUnit-->
+				<ttinv:ProductUnitName>Goltix SC</ttinv:ProductUnitName>
+				<ttinv:ProductUnitPrice>1</ttinv:ProductUnitPrice>
+				<ttinv:PacketSize unitCode="LTR">5</ttinv:PacketSize>
+			</ttinv:ProductUnit>
+		</ttinv:InvoiceLine>
+		<ttinv:InvoiceLine>
+			<ttinv:InvoiceLineID schemeID="REF">IV0000330399_2</ttinv:InvoiceLineID>
+			<ttinv:InvoicedQuantity unitCode="NBR">4</ttinv:InvoicedQuantity>
+			<ttinv:OrderLineReferenceID schemeID="REF">0000330366-0001</ttinv:OrderLineReferenceID>
+			<ttinv:OrderLineDate>2019-02-26T15:42:11Z</ttinv:OrderLineDate>
+			<ttinv:DeliveryDate>2019-03-05T15:42:11Z</ttinv:DeliveryDate>
+			<ttinv:TaxPercentage>21</ttinv:TaxPercentage>
+			<ttinv:InvoiceLineTotalAmount>6</ttinv:InvoiceLineTotalAmount>
+			<ttinv:ProductUnit>
+				<ttinv:ProductUnitID_GTIN schemeID="GTIN">08718077012896</ttinv:ProductUnitID_GTIN>
+				<ttinv:ProductUnitTypeCode>102</ttinv:ProductUnitTypeCode>
+				<ttinv:BatchID schemeID="REF">123453456</ttinv:BatchID>
+				<ttinv:ProductUnitName>Mirador Xtra</ttinv:ProductUnitName>
+				<ttinv:ProductUnitPrice>1.5</ttinv:ProductUnitPrice>
+				<ttinv:PacketSize unitCode="LTR">10</ttinv:PacketSize>
+			</ttinv:ProductUnit>
+		</ttinv:InvoiceLine>
+	</ttinv:Invoice>
+</ttinv:MessageHeader>

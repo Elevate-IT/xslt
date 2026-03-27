@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+  <ns0:Message xmlns:ns0="www.boltrics.nl/receiveshipment:v1.00">
+    <ns0:Header>
+      <ns0:MessageID>44</ns0:MessageID>
+      <ns0:CreationDateTime>2020-11-06T10:53:36</ns0:CreationDateTime>
+      <ns0:ProcesAction>INSERT</ns0:ProcesAction>
+      <ns0:FromTradingPartner>0860808880000</ns0:FromTradingPartner>
+      <ns0:ToTradingPartner>5314626200000</ns0:ToTradingPartner>
+      <ns0:Information>RCV-SHIPMENT</ns0:Information>
+    </ns0:Header>
+    <ns0:Documents>
+      <ns0:Document>
+        <ns0:No>5002000000002</ns0:No>
+        <ns0:ExternalDocumentNo>5002000000002</ns0:ExternalDocumentNo>
+        <ns0:DeliveryDate>2020-11-06</ns0:DeliveryDate>
+        <ns0:ShipToAddress>
+          <ns0:ExternalNo>50050</ns0:ExternalNo>
+          <ns0:Name>MONSEU SA</ns0:Name>
+          <ns0:Address>RUE BARONNE LEMONNIER 122</ns0:Address>
+          <ns0:CountryCode>BE</ns0:CountryCode>
+        </ns0:ShipToAddress>
+        <ns0:SenderReference>5002000000002</ns0:SenderReference>
+        <ns0:DocumentComments>
+          <ns0:DocumentComment>
+            <ns0:Code>DELIVCOMM</ns0:Code>
+            <ns0:Comment>(+32)084388309</ns0:Comment>
+          </ns0:DocumentComment>
+        </ns0:DocumentComments>
+        <ns0:DocumentLines>
+          <ns0:DocumentLine>
+            <ns0:LineNo>1</ns0:LineNo>
+            <ns0:No>100495</ns0:No>
+            <ns0:ExternalNo>100495</ns0:ExternalNo>
+            <ns0:Description>AMISTAR SC (5 L)</ns0:Description>
+            <ns0:OrderQuantity>12</ns0:OrderQuantity>
+            <ns0:Attributes>
+              <ns0:Attribute>
+                <ns0:Code>LINENO</ns0:Code>
+                <ns0:Value>001</ns0:Value>
+              </ns0:Attribute>
+            </ns0:Attributes>
+          </ns0:DocumentLine>
+        </ns0:DocumentLines>
+      </ns0:Document>
+    </ns0:Documents>
+  </ns0:Message>

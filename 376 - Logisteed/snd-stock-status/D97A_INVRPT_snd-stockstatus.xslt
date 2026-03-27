@@ -92,170 +92,124 @@
                             <!-- <xsl:choose>
                                  <xsl:when test="(position()<=5)"> -->
                             
-                            <ns0:LINLoop1>
-                                <ns0:LIN>
-                                    <LIN01>
-                                        <xsl:value-of select="format-number(position(), '000000')"/>
-                                    </LIN01>
-                                    <ns0:C212>
-                                        <C21201>
-                                            <xsl:value-of select="s0:ExternalCustomerItemNo" />
-                                        </C21201>
-                                        <C21204>90</C21204>
-                                    </ns0:C212>
-                                </ns0:LIN>
-                                <!-- <ns0:PIA>
-                                     <PIA01>5</PIA01>
-                                     <ns0:C212_2>
-                                     <C21201>
-                                     <xsl:value-of select="s0:ExternalCustomerItemNo" />
-                                     </C21201>
-                                     <C21202>SA</C21202>
-                                     </ns0:C212_2>
-                                     </ns0:PIA> -->
-                                <ns0:INVLoop1>
-                                    <ns0:INV>
-                                        <INV04>
-                                            <xsl:text>2</xsl:text>
-                                        </INV04> 
-                                    </ns0:INV>
-                                    
-                                    <ns0:QTY_2>
-                                        <ns0:C186_2>
-                                            <C18601>145</C18601>
-                                            <C18602>
-                                                <xsl:value-of select="sum(key('Group-by-PLANT-MATNO-QUAL', $LineKey)/s0:Quantity)" />
-                                            </C18602>
-                                            <C18603>PCE</C18603>
-                                        </ns0:C186_2>
-                                    </ns0:QTY_2>
-                                    
-                                    <!-- <ns0:GIN_2>
-                                         <GIN01>BJ</GIN01>
-                                         <ns0:C208_6>
-                                         <C20801>
-                                         <xsl:value-of select="../../s0:No" />
-                                         </C20801>
-                                         </ns0:C208_6>
-                                         </ns0:GIN_2> -->
-                                    
-                                    <!-- <ns0:GIN_2>
-                                         <GIN01>BX</GIN01>
-                                         <ns0:C208_6>
-                                         <C20801>
-                                         <xsl:value-of select="s0:ExBatchNo" />
-                                         </C20801>
-                                         </ns0:C208_6>
-                                         </ns0:GIN_2> -->
-                                    
-                                    <!-- <ns0:DTM_8>
-                                         <ns0:C507_8>
-                                         <C50701>361</C50701>
-                                         <C50702>
-                                         <xsl:value-of select="format-date(s0:ExpirationDate,'[Y0001][M01][D01]')" />
-                                         </C50702>
-                                         <C50703>102</C50703>
-                                         </ns0:C507_8>
-                                         </ns0:DTM_8> -->
-                                    
-                                    <ns0:RFFLoop4>
-                                        <ns0:RFF_4>
-                                            <ns0:C506_4>
-                                                <C50601>ZZR</C50601>
-                                                <C50602>
-                                                    <xsl:variable name="QualIndicator" select="s0:Attribute01" />
-                                                    
-                                                    <xsl:variable name="MappedCode">
-                                                        <xsl:choose>
-                                                            <xsl:when test="$QualIndicator = 'AVAILABLE'">1</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'OUT OF WARRANTY'">TE01</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'DAMAGED CARTONS'">14</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'GOOD STOCK TBC'">11027</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'NON-ROHS'">15</xsl:when> <!--OBSOLETE -->
-                                                            <xsl:when test="$QualIndicator = 'NON ROHS'">15</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'RETURN'">28</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'AWAITING SCRAP'">DA01</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'INSURANCE STOCK'">IN01</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'EXHIBITION STOCK'">40</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">TE02</xsl:when><!--OBSOLETE -->
-                                                            <xsl:when test="$QualIndicator = 'RE-WORK HACE'">TE02</xsl:when><!--OBSOLETE -->
-                                                            <xsl:when test="$QualIndicator = 'RE WORK HACE'">TE02</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">TE03</xsl:when><!--OBSOLETE -->
-                                                            <xsl:when test="$QualIndicator = 'SERVICE HACE'">TE03</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'SHORTAGE'">SK99</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'STOCK DISCREPANCY'">SK99</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'SURPLUS'">SK99</xsl:when>
-                                                            <xsl:when test="$QualIndicator = 'JCI SOUTH AND EXPORT'">140S&amp;E</xsl:when>
-                                                            <xsl:otherwise>
-                                                                <xsl:value-of select="$QualIndicator"/>
-                                                            </xsl:otherwise>
-                                                        </xsl:choose>
-                                                    </xsl:variable>
-                                                    
-                                                    <xsl:choose>
-                                                        <xsl:when test="string-length($MappedCode) = 0">
-                                                            <xsl:text>0001</xsl:text>
-                                                        </xsl:when>
-                                                        <xsl:when test="string-length($MappedCode) &lt;= 4">
-                                                            <xsl:value-of select="substring(concat('0000', $MappedCode), (string-length($MappedCode) + 1), (string-length($MappedCode) + 4))"/>
-                                                        </xsl:when>
-                                                        <xsl:otherwise>
-                                                            <xsl:value-of select="$MappedCode"/>
-                                                        </xsl:otherwise>
-                                                    </xsl:choose>
-                                                </C50602>
-                                            </ns0:C506_4>
-                                        </ns0:RFF_4>  
-                                    </ns0:RFFLoop4>                
-                                </ns0:INVLoop1>
-                                
-                                <!-- </ns0:INVLoop1>
-                                     <ns0:QTYLoop2>
-                                     <ns0:QTY_2>
-                                     <ns0:C186_2>
-                                     <C18601>145</C18601>
-                                     <C18602>
-                                     <xsl:value-of select="s0:Quantity" />
-                                     </C18602>
-                                     <C18603>
-                                     <xsl:value-of select="s0:UnitofMeasureCode" />
-                                     </C18603>
-                                     </ns0:C186_2>
-                                     </ns0:QTY_2>
-                                     <ns0:GIN_2>
-                                     <GIN01>BJ</GIN01>
-                                     <ns0:C208_6>
-                                     <C20801>
-                                     <xsl:value-of select="../../s0:No" />
-                                     </C20801>
-                                     </ns0:C208_6>
-                                     </ns0:GIN_2>
-                                     <ns0:GIN_2>
-                                     <GIN01>BX</GIN01>
-                                     <ns0:C208_6>
-                                     <C20801>
-                                     <xsl:value-of select="s0:ExBatchNo" />
-                                     </C20801>
-                                     </ns0:C208_6>
-                                     </ns0:GIN_2>
-                                     <ns0:DTM_8>
-                                     <ns0:C507_8>
-                                     <C50701>361</C50701>
-                                     <C50702>
-                                     <xsl:value-of select="format-date(s0:ExpirationDate,'[Y0001][M01][D01]')" />
-                                     </C50702>
-                                     <C50703>102</C50703>
-                                     </ns0:C507_8>
-                                     </ns0:DTM_8>
-                                     </ns0:QTYLoop2> -->
-                             </ns0:LINLoop1>
-                            <!-- </xsl:when>
-                                 </xsl:choose> -->
-                         </xsl:if>
-                    </xsl:for-each>
-                </ns0:EFACT_D97A_INVRPT>
-                <!-- </ns0:EANCOM_D01B_INVRPT> -->
-            </Message>
-        </xsl:for-each>
+                            <!-- <ns0:GIN_2>
+                                 <GIN01>BX</GIN01>
+                                 <ns0:C208_6>
+                                 <C20801>
+                                 <xsl:value-of select="s0:ExBatchNo" />
+                                 </C20801>
+                                 </ns0:C208_6>
+                                 </ns0:GIN_2> -->
+                            
+                            <!-- <ns0:DTM_8>
+                                 <ns0:C507_8>
+                                 <C50701>361</C50701>
+                                 <C50702>
+                                 <xsl:value-of select="format-date(s0:ExpirationDate,'[Y0001][M01][D01]')" />
+                                 </C50702>
+                                 <C50703>102</C50703>
+                                 </ns0:C507_8>
+                                 </ns0:DTM_8> -->
+                            
+                            <ns0:RFFLoop4>
+                                <ns0:RFF_4>
+                                    <ns0:C506_4>
+                                        <C50601>ZZR</C50601>
+                                        <C50602>
+                                            <xsl:variable name="QualIndicator" >
+                                                <xsl:choose>
+                                                    <xsl:when test="s0:Attribute01 = 'AVAILABLE'">1</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'AWAITING SCRAP'">AS01</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'BLOCKED'"></xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'DAMAGED'">DA01</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'DAMAGED CARTONS'">28</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'EXHIBITION STOCK'">40</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'FAULTY LOAN'">SA02</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'GRADED STOCK'">14</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'INSURANCE NO STOCK'">IN02</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'INSURANCE STOCK'">IN01</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'INVESTIGATE/RE-WORK'">TE01</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'JCI SOUTH AND EXPORT'">140S&amp;E</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'NON-ROHS'">15</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'OLD SPECS'">2</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'OLD STOCK'">14</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'OUT OF WARRANTY'">WA01</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'RESERVED STOCK'">XX01</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'RETURNS'">RE01</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'RE-WORK (HACE)'">TE02</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'ROHS: AVAILABLE'"></xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'SAMPLE STOCK'">SA01</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'SERVICE (HACE)'">TE03</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'SHORTAGE'">SK99</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'STOCK DISCREPANCY'">SK99</xsl:when>
+                                                    <xsl:when test="s0:Attribute01 = 'SURPLUS'">SK99</xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:value-of select="s0:Attribute01"/>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:variable>
+                                            <xsl:choose>
+                                                <xsl:when test="string-length($QualIndicator) = 0">
+                                                    <xsl:text>0001</xsl:text>
+                                                </xsl:when>
+                                                <xsl:when test="string-length($QualIndicator) &lt;= 4">
+                                                    <xsl:value-of select="substring(concat('0000', $QualIndicator), (string-length($QualIndicator) + 1), (string-length($QualIndicator) + 4))"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:value-of select="$QualIndicator"/>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </C50602>
+                                    </ns0:C506_4>
+                                </ns0:RFF_4>  
+                            </ns0:RFFLoop4>                
+                        </ns0:INVLoop1>
+                        
+                        <!-- </ns0:INVLoop1>
+                             <ns0:QTYLoop2>
+                             <ns0:QTY_2>
+                             <ns0:C186_2>
+                             <C18601>145</C18601>
+                             <C18602>
+                             <xsl:value-of select="s0:Quantity" />
+                             </C18602>
+                             <C18603>
+                             <xsl:value-of select="s0:UnitofMeasureCode" />
+                             </C18603>
+                             </ns0:C186_2>
+                             </ns0:QTY_2>
+                             <ns0:GIN_2>
+                             <GIN01>BJ</GIN01>
+                             <ns0:C208_6>
+                             <C20801>
+                             <xsl:value-of select="../../s0:No" />
+                             </C20801>
+                             </ns0:C208_6>
+                             </ns0:GIN_2>
+                             <ns0:GIN_2>
+                             <GIN01>BX</GIN01>
+                             <ns0:C208_6>
+                             <C20801>
+                             <xsl:value-of select="s0:ExBatchNo" />
+                             </C20801>
+                             </ns0:C208_6>
+                             </ns0:GIN_2>
+                             <ns0:DTM_8>
+                             <ns0:C507_8>
+                             <C50701>361</C50701>
+                             <C50702>
+                             <xsl:value-of select="format-date(s0:ExpirationDate,'[Y0001][M01][D01]')" />
+                             </C50702>
+                             <C50703>102</C50703>
+                             </ns0:C507_8>
+                             </ns0:DTM_8>
+                             </ns0:QTYLoop2> -->
+                     </ns0:LINLoop1>
+                    <!-- </xsl:when>
+                         </xsl:choose> -->
+                 </xsl:if>
+            </xsl:for-each>
+        </ns0:EFACT_D97A_INVRPT>
+        <!-- </ns0:EANCOM_D01B_INVRPT> -->
     </xsl:template>
 </xsl:stylesheet>
