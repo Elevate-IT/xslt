@@ -6,7 +6,7 @@
   xmlns:eit="http://www.elevate-it.be"
   xmlns:ns0="www.boltrics.nl/materialmasterdata:v1.00"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  exclude-result-prefixes="xs fn eit"
+  exclude-result-prefixes="#all"
   expand-text="yes">
   
   <xsl:output method="xml" indent="yes" encoding="utf-8"/>
@@ -16,18 +16,9 @@
        ============================================================ -->
   
   <!-- Preferred language for primary Description field -->
-  <xsl:param name="primaryLang"   as="xs:string" select="'E'"/>
+  <xsl:param name="primaryLang"   as="xs:string" select="'EN'"/>
   <!-- Fallback language if primary not found -->
-  <xsl:param name="fallbackLang"  as="xs:string" select="'N'"/>
-  <!-- Preferred valuation area for UnitCost -->
-  <xsl:param name="preferredBwkey" as="xs:string" select="'P101'"/>
-  
-  <!-- ============================================================
-       VARIABLES — document-level shortcuts
-       ============================================================ -->
-  <xsl:variable name="idoc"     select="/ZMATMAS05/IDOC"/>
-  <xsl:variable name="dc40"     select="$idoc/EDI_DC40"/>
-  <xsl:variable name="maram"    select="$idoc/E1MARAM"/>
+  <xsl:param name="fallbackLang"  as="xs:string" select="'NL'"/>
   
   <!-- ============================================================
        NAMED FUNCTIONS
@@ -60,25 +51,12 @@
   <xsl:function name="eit:sapLangToIso" as="xs:string">
     <xsl:param name="sapLang" as="xs:string"/>
     <xsl:choose>
-      <xsl:when test="$sapLang = 'E'">ENU</xsl:when>
-      <xsl:when test="$sapLang = 'D'">DEU</xsl:when>
-      <xsl:when test="$sapLang = 'F'">FRA</xsl:when>
-      <xsl:when test="$sapLang = 'N'">NLD</xsl:when>
-      <xsl:when test="$sapLang = 'S'">ESP</xsl:when>
-      <xsl:when test="$sapLang = 'I'">ITA</xsl:when>
-      <xsl:when test="$sapLang = 'P'">PTG</xsl:when>
+      <xsl:when test="$sapLang = 'EN'">ENU</xsl:when>
+      <xsl:when test="$sapLang = 'DE'">DEU</xsl:when>
+      <xsl:when test="$sapLang = 'FR'">FRA</xsl:when>
+      <xsl:when test="$sapLang = 'NL'">NLD</xsl:when>
+      <xsl:when test="$sapLang = 'ES'">ESP</xsl:when>
       <xsl:otherwise>{$sapLang}</xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
-  
-  <!-- Determine ProcesAction from MSGFN function code -->
-  <xsl:function name="eit:procesAction" as="xs:string">
-    <xsl:param name="msgfn" as="xs:string"/>
-    <xsl:choose>
-      <xsl:when test="$msgfn = '009'">INSERT</xsl:when>  <!-- original/create -->
-      <xsl:when test="$msgfn = '005'">MODIFY</xsl:when>  <!-- change          -->
-      <xsl:when test="$msgfn = '006'">DELETE</xsl:when>  <!-- delete          -->
-      <xsl:otherwise>MODIFY</xsl:otherwise>               <!-- safe default    -->
     </xsl:choose>
   </xsl:function>
   
@@ -86,16 +64,14 @@
   <xsl:function name="eit:getCharact" as="xs:string">
     <xsl:param name="maram"   as="element()"/>
     <xsl:param name="charact" as="xs:string"/>
-    <xsl:value-of select="
-      ($maram/Z1AUSPM[CHARACT = $charact]/VALUE_CHAR)[1]
-                    "/>
+    <xsl:value-of select="($maram/Z1AUSPM[CHARACT = $charact]/VALUE_CHAR)[1]"/>
   </xsl:function>
   
   <!-- ============================================================
        ROOT TEMPLATE
        ============================================================ -->
   <xsl:template match="/">
-    <xsl:apply-templates select="$idoc"/>
+    <xsl:apply-templates select="/ZMATMAS05/IDOC"/>
   </xsl:template>
   
   <!-- ============================================================
@@ -116,30 +92,15 @@
        HEADER
        ============================================================ -->
   <xsl:template name="Header">
-    <!-- MessageID from IDoc document number -->
-    <ns0:MessageID>{$dc40/DOCNUM}</ns0:MessageID>
+    <ns0:MessageID>{EDI_DC40/DOCNUM}</ns0:MessageID>
     
-    <!-- CreationDateTime: combine CREDAT + CRETIM -->
     <ns0:CreationDateTime>{eit:sapDateTime(
-        xs:string($dc40/CREDAT),
-        xs:string($dc40/CRETIM)
+        xs:string(EDI_DC40/CREDAT),
+        xs:string(EDI_DC40/CRETIM)
       )}</ns0:CreationDateTime>
     
-    <!-- ProcesAction derived from E1MARAM MSGFN -->
-    <ns0:ProcesAction>{eit:procesAction(xs:string($maram/MSGFN))}</ns0:ProcesAction>
-    
-    <!-- Trading partners -->
-    <ns0:FromTradingPartner>{$dc40/SNDPRN}</ns0:FromTradingPartner>
-    <ns0:ToTradingPartner>{$dc40/RCVPRN}</ns0:ToTradingPartner>
-    
-    <!-- CompanyName from Z_BRAND classification -->
-    <xsl:variable name="brand" select="eit:getCharact($maram, 'Z_BRAND')"/>
-    <xsl:if test="$brand != ''">
-      <ns0:CompanyName>{$brand}</ns0:CompanyName>
-    </xsl:if>
-    
-    <!-- UniqueMessageNumber from IDoc serial -->
-    <ns0:UniqueMessageNumber>{$dc40/SERIAL}</ns0:UniqueMessageNumber>
+    <ns0:ProcesAction>INSERT</ns0:ProcesAction>
+    <ns0:FromTradingPartner>AGRISTO</ns0:FromTradingPartner>
   </xsl:template>
   
   <!-- ============================================================
@@ -149,90 +110,53 @@
     
     <!-- Resolve preferred long-text description (EN, fallback NL) -->
     <xsl:variable name="longTextEN"
-      select="(E1MTXHM[TDSPRAS = $primaryLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1]"/>
+      select="(E1MTXHM[SPRAS_ISO = $primaryLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1]"/>
     <xsl:variable name="longTextNL"
-      select="(E1MTXHM[TDSPRAS = $fallbackLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1]"/>
-    <xsl:variable name="shortTextEN"
-      select="(E1MAKTM[SPRAS = $primaryLang]/MAKTX)[1]"/>
-    
-    <!-- Preferred valuation area for pricing; fallback to first available -->
-    <xsl:variable name="mbew"
-      select="(E1MBEWM[BWKEY = $preferredBwkey], E1MBEWM)[1]"/>
+      select="(E1MTXHM[SPRAS_ISO = $fallbackLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1]"/>
     
     <ns0:CustomerItem>
+      <ns0:ExternalNo>{eit:stripLeadingZeros(xs:string(MATNR))}</ns0:ExternalNo>
+      <ns0:No2>{eit:stripLeadingZeros(xs:string(MATNR))}</ns0:No2>
       
-      <!-- Material number (leading zeros stripped) -->
-      <ns0:No>{eit:stripLeadingZeros(xs:string(MATNR))}</ns0:No>
-      
-      <!-- Primary description: EN long text preferred -->
       <ns0:Description>
-        <xsl:value-of select="
-          if ($longTextEN != '') then $longTextEN
-          else $shortTextEN
-                        "/>
+        <xsl:value-of select="$longTextEN"/>
       </ns0:Description>
       
-      <!-- SearchDescription: short text (E1MAKTM) -->
-      <xsl:if test="$shortTextEN != ''">
-        <ns0:SearchDescription>{$shortTextEN}</ns0:SearchDescription>
-      </xsl:if>
-      
-      <!-- Description2: NL long text -->
       <xsl:if test="$longTextNL != ''">
         <ns0:Description2>{$longTextNL}</ns0:Description2>
       </xsl:if>
       
-      <!-- Base unit of measure -->
+      <ns0:SearchDescription>
+        <xsl:choose>
+          <xsl:when test="$longTextNL != ''">
+            <xsl:value-of select="$longTextNL"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$longTextEN"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </ns0:SearchDescription>
+      
       <ns0:BaseUnitofMeasure>{MEINS}</ns0:BaseUnitofMeasure>
+      <xsl:variable name="BaseUoM" select="MEINS"/>
+      <ns0:OrderUnitofMeasure>{MEINS}</ns0:OrderUnitofMeasure>
+      <ns0:UnitofMeasureatReceipt>{MEINS}</ns0:UnitofMeasureatReceipt>
+      <ns0:UnitofMeasureatShipment>{MEINS}</ns0:UnitofMeasureatShipment>
+      <ns0:UnitofMeasureatStorage>{MEINS}</ns0:UnitofMeasureatStorage>
       
-      <!-- Blocked: true when MSTAE is filled (material status set) -->
-      <ns0:Blocked>{if (normalize-space(MSTAE) != '' and MSTAE != '  ')
-          then 'true' else 'false'}</ns0:Blocked>
-      
-      <!-- Material group → ProductGroupCode -->
-      <xsl:if test="normalize-space(MATKL) != ''">
-        <ns0:ProductGroupCode>{MATKL}</ns0:ProductGroupCode>
-      </xsl:if>
+      <!-- <ns0:ProductGroupCode>{MATKL}</ns0:ProductGroupCode> -->
       
       <!-- Customs tariff number from plant data -->
-      <xsl:variable name="stawn" select="(E1MARCM/STAWN[normalize-space(.) != ''])[1]"/>
-      <xsl:if test="$stawn">
-        <ns0:TariffNo>{$stawn}</ns0:TariffNo>
-      </xsl:if>
+      <!-- <xsl:variable name="stawn" select="(E1MARCM/STAWN[normalize-space(.) != ''])[1]"/>
+           <xsl:if test="$stawn">
+           <ns0:TariffNo>{$stawn}</ns0:TariffNo>
+           </xsl:if> -->
       
       <!-- Carrier type from WMS classification -->
-      <xsl:variable name="carrierMatnr" select="eit:getCharact(., 'Z_WMS_DRAGER_MATNR')"/>
-      <xsl:if test="$carrierMatnr != ''">
-        <ns0:CarrierTypeCodeReceipt>{$carrierMatnr}</ns0:CarrierTypeCodeReceipt>
-        <ns0:CarrierTypeCodeShipment>{$carrierMatnr}</ns0:CarrierTypeCodeShipment>
-      </xsl:if>
-      
-      <!-- Unit cost: standard price from preferred valuation area -->
-      <xsl:if test="$mbew/STPRS != '' and number($mbew/STPRS) != 0">
-        <ns0:UnitCost>{$mbew/STPRS}</ns0:UnitCost>
-      </xsl:if>
-      
-      <!-- ExternalNo: same as No (SAP material number) -->
-      <ns0:ExternalNo>{eit:stripLeadingZeros(xs:string(MATNR))}</ns0:ExternalNo>
-      
-      <!-- Batch management: XCHPF=X → BatchNos=1 -->
-      <xsl:if test="XCHPF = 'X'">
-        <ns0:BatchNos>1</ns0:BatchNos>
-        <ns0:ExpirationDateMandatory>true</ns0:ExpirationDateMandatory>
-      </xsl:if>
-      
-      <!-- ReservationMethod: SLED_BBD=B (best before) → 3 = Expiration Date -->
-      <xsl:variable name="reservationMethod" select="
-        if      (SLED_BBD = 'B') then '3'
-        else if (SLED_BBD = 'P') then '2'
-        else                          '0'
-                      "/>
-      <ns0:ReservationMethod>{$reservationMethod}</ns0:ReservationMethod>
-      
-      <!-- Country of origin from plant data -->
-      <xsl:variable name="herkl" select="(E1MARCM/HERKL[normalize-space(.) != ''])[1]"/>
-      <xsl:if test="$herkl">
-        <ns0:CountryofOriginCode>{$herkl}</ns0:CountryofOriginCode>
+      <xsl:variable name="carrierType" select="eit:getCharact(., 'Z_WMS_DRAGER_MATNR')"/>
+      <xsl:if test="$carrierType != ''">
+        <ns0:CarrierTypeCodeReceipt>{$carrierType}</ns0:CarrierTypeCodeReceipt>
+        <ns0:CarrierTypeCodeShipment>{$carrierType}</ns0:CarrierTypeCodeShipment>
       </xsl:if>
       
       <!-- DefaultCarrierQuantity from WMS classification Z_WMS_PALHOEVH -->
@@ -241,48 +165,43 @@
         <ns0:DefaultCarrierQuantity>{$palQty}</ns0:DefaultCarrierQuantity>
       </xsl:if>
       
-      <!-- Reorder point / quantity from plant MRP data -->
-      <xsl:variable name="marcm" select="E1MARCM[1]"/>
-      <xsl:if test="$marcm/MINBE != ''">
-        <ns0:ReorderPoint>{$marcm/MINBE}</ns0:ReorderPoint>
-      </xsl:if>
-      <xsl:if test="$marcm/BSTMI != '' and number($marcm/BSTMI) != 0">
-        <ns0:ReorderQuantity>{$marcm/BSTMI}</ns0:ReorderQuantity>
-      </xsl:if>
+      <ns0:Status>1</ns0:Status>
+      <ns0:ConditionatReceipt>BEVROREN</ns0:ConditionatReceipt>
+      <ns0:ConditionatShipment>BEVROREN</ns0:ConditionatShipment>
+      <ns0:ConditionatStorage>BEVROREN</ns0:ConditionatStorage>
+      <ns0:ReservationMethod>3</ns0:ReservationMethod> <!-- Expiration Date  -->
+      <ns0:ReservationMethodCarrier>METHOD_8</ns0:ReservationMethodCarrier>
+      <ns0:ShptCarrierCalcMethod>METHOD05</ns0:ShptCarrierCalcMethod>
+      <ns0:ExtBatchNoMandatoryPost>1</ns0:ExtBatchNoMandatoryPost>
+      <ns0:ExpirationDateMandatory>1</ns0:ExpirationDateMandatory>
+      <ns0:ExtBatchNoEqualBatchNo>1</ns0:ExtBatchNoEqualBatchNo>
       
       <!-- ==================== UNITS OF MEASURE ==================== -->
       <xsl:if test="E1MARMM">
         <ns0:UnitOfMeasures>
-          <xsl:apply-templates select="E1MARMM">
+          <xsl:apply-templates select="E1MARMM[MEINH = $BaseUoM]">
             <xsl:with-param name="maram" select="."/>
           </xsl:apply-templates>
         </ns0:UnitOfMeasures>
       </xsl:if>
       
       <!-- ==================== TRANSLATIONS ==================== -->
-      <xsl:if test="E1MAKTM">
+      <xsl:if test="E1MTXHM">
         <ns0:Translations>
-          <xsl:apply-templates select="E1MAKTM"/>
+          <xsl:apply-templates select="E1MTXHM"/>
         </ns0:Translations>
       </xsl:if>
       
       <!-- ==================== TAX DATA PER COUNTRY ==================== -->
-      <xsl:if test="E1MLANM">
-        <ns0:CustomerItemTaxDatas>
-          <xsl:apply-templates select="E1MLANM">
-            <xsl:with-param name="maram" select="."/>
-          </xsl:apply-templates>
-        </ns0:CustomerItemTaxDatas>
-      </xsl:if>
-      
-      <!-- ==================== ATTRIBUTES (Z1AUSPM) ==================== -->
-      <xsl:if test="Z1AUSPM">
-        <ns0:Attributes>
-          <xsl:apply-templates select="Z1AUSPM"/>
-        </ns0:Attributes>
-      </xsl:if>
-      
-    </ns0:CustomerItem>
+      <!-- <xsl:if test="E1MLANM">
+           <ns0:CustomerItemTaxDatas>
+           <xsl:apply-templates select="E1MLANM">
+           <xsl:with-param name="maram" select="."/>
+           </xsl:apply-templates>
+           </ns0:CustomerItemTaxDatas>
+           </xsl:if> -->
+           
+     </ns0:CustomerItem>
   </xsl:template>
   
   <!-- ============================================================
@@ -292,14 +211,12 @@
     <xsl:param name="maram" as="element()"/>
     
     <!-- Conversion factor: prefer UMREZ (numerator) when > 1, else UMREN (denominator) -->
-    <xsl:variable name="qty" select="
-      if (number(UMREZ) gt 1) then UMREZ
-      else                         UMREN
-                    "/>
-    
     <ns0:UnitOfMeasure>
       <ns0:Code>{MEINH}</ns0:Code>
-      <ns0:QtyperUnitofMeasure>{$qty}</ns0:QtyperUnitofMeasure>
+      
+      <ns0:QtyperUnitofMeasure>{UMREZ div UMREN}</ns0:QtyperUnitofMeasure>
+      
+      <ns0:EANCode>{EAN11}</ns0:EANCode>
       
       <!-- Dimensions (0.000 when not provided) -->
       <xsl:if test="number(LAENG) != 0"><ns0:Length>{LAENG}</ns0:Length></xsl:if>
@@ -316,21 +233,18 @@
         <ns0:NetWeight>{$maram/NTGEW}</ns0:NetWeight>
       </xsl:if>
       
-      <!-- EAN code: E1MEANM not present in this IDoc, emit nil -->
-      <ns0:EANCode xsi:nil="true"/>
-      
       <!-- Carrier info on the pallet UoM (PF = pallet) -->
-      <xsl:variable name="carrierMatnr"
+      <xsl:variable name="carrierType"
         select="eit:getCharact($maram, 'Z_WMS_DRAGER_MATNR')"/>
       <xsl:variable name="palQty"
         select="eit:getCharact($maram, 'Z_WMS_PALHOEVH')"/>
       <xsl:variable name="layers"
         select="eit:getCharact($maram, 'Z_WMS_LAYERS')"/>
       
-      <xsl:if test="$carrierMatnr != '' and (MEINH = 'PF' or MEINH = $maram/MEINS)">
+      <xsl:if test="$carrierType != '' and (MEINH = $maram/MEINS)">
         <ns0:UnitOfMeasureCarriers>
           <ns0:UnitOfMeasureCarrier>
-            <ns0:CarrierTypeCode>{$carrierMatnr}</ns0:CarrierTypeCode>
+            <ns0:CarrierTypeCode>{$carrierType}</ns0:CarrierTypeCode>
             <xsl:if test="$palQty != ''">
               <ns0:QtyperUOMCode>{$palQty}</ns0:QtyperUOMCode>
             </xsl:if>
@@ -346,23 +260,19 @@
   </xsl:template>
   
   <!-- ============================================================
-       E1MAKTM → Translation
+       E1MTXHM → Translation
        ============================================================ -->
-  <xsl:template match="E1MAKTM">
+  <xsl:template match="E1MTXHM">
     <!-- Resolve matching long text for same language -->
-    <xsl:variable name="spras" select="xs:string(SPRAS)"/>
     <xsl:variable name="longText"
-      select="(../E1MTXHM[TDSPRAS = $spras]/E1MTXLM[TDFORMAT = '*']/TDLINE)[1]"/>
+      select="(E1MTXLM[TDFORMAT = '*']/TDLINE)[1]"/>
     
-    <ns0:Translation>
-      <ns0:LanguageCode>{eit:sapLangToIso($spras)}</ns0:LanguageCode>
-      <!-- Short description (MAKTX) as Description -->
-      <ns0:Description>{MAKTX}</ns0:Description>
-      <!-- Long text as Description2 when available -->
-      <xsl:if test="$longText != ''">
-        <ns0:Description2>{$longText}</ns0:Description2>
-      </xsl:if>
-    </ns0:Translation>
+    <xsl:if test="$longText != ''">
+      <ns0:Translation>
+        <ns0:LanguageCode>{eit:sapLangToIso(SPRAS_ISO)}</ns0:LanguageCode>
+        <ns0:Description>{substring($longText, 1, 50)}</ns0:Description>
+      </ns0:Translation>
+    </xsl:if>
   </xsl:template>
   
   <!-- ============================================================
