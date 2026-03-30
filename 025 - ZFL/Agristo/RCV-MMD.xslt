@@ -153,7 +153,7 @@
            </xsl:if> -->
       
       <!-- Carrier type from WMS classification -->
-      <xsl:variable name="carrierType" select="eit:getCharact(., 'Z_WMS_DRAGER_MATNR')"/>
+      <xsl:variable name="carrierType" select="substring(replace(eit:getCharact(., 'Z_WMS_DRAGER_MATNR'), 'PAL_', ''), 1, 10)"/>
       <xsl:if test="$carrierType != ''">
         <ns0:CarrierTypeCodeReceipt>{$carrierType}</ns0:CarrierTypeCodeReceipt>
         <ns0:CarrierTypeCodeShipment>{$carrierType}</ns0:CarrierTypeCodeShipment>
@@ -235,7 +235,7 @@
       
       <!-- Carrier info on the pallet UoM (PF = pallet) -->
       <xsl:variable name="carrierType"
-        select="eit:getCharact($maram, 'Z_WMS_DRAGER_MATNR')"/>
+        select="substring(replace(eit:getCharact(., 'Z_WMS_DRAGER_MATNR'), 'PAL_', ''), 1, 10)"/>
       <xsl:variable name="palQty"
         select="eit:getCharact($maram, 'Z_WMS_PALHOEVH')"/>
       <xsl:variable name="layers"

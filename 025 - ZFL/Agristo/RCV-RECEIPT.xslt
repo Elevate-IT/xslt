@@ -257,7 +257,7 @@
       
       <!-- Carrier type from parent HU -->
       <xsl:variable name="vhilm"
-        select="../E1EDL37[E1EDL44/POSNR = current()/POSNR][1]/VHILM"/>
+        select="substring(replace(../E1EDL37[E1EDL44/POSNR = current()/POSNR][1]/VHILM, 'PAL_', ''), 1, 10)"/>
       <xsl:if test="normalize-space($vhilm) != ''">
         <ns0:CarrierTypeCode>{$vhilm}</ns0:CarrierTypeCode>
       </xsl:if>
