@@ -129,6 +129,8 @@
       <xsl:if test="normalize-space(LIFEX) != ''">
         <ns0:ExternalReference>{LIFEX}</ns0:ExternalReference>
       </xsl:if>
+      
+      <ns0:OrderTypeCode>VRIJ</ns0:OrderTypeCode>
 
       <!-- ==================== SENDER ADDRESS (supplier) ==================== -->
       <xsl:if test="$addrLF">
@@ -150,13 +152,9 @@
 
       <!-- ==================== DOCUMENT LINES ==================== -->
       <!-- Ignore Packaging lines: E1EDL24[E1EDL26/PSTYV = 'ELP']"-->
-      <xsl:variable name="delivLines"
-        select="E1EDL24[E1EDL26/PSTYV != 'ELP']"/>
-      <xsl:if test="$delivLines">
-        <ns0:DocumentLines>
-          <xsl:apply-templates select="$delivLines"/>
-        </ns0:DocumentLines>
-      </xsl:if>
+      <ns0:DocumentLines>
+        <xsl:apply-templates select="E1EDL24[E1EDL26/PSTYV != 'ELP']"/>
+      </ns0:DocumentLines>
 
     </ns0:Document>
   </xsl:template>
@@ -261,6 +259,11 @@
       <xsl:if test="normalize-space($vhilm) != ''">
         <ns0:CarrierTypeCode>{$vhilm}</ns0:CarrierTypeCode>
       </xsl:if>
+      
+      <xsl:variable name="palQty" select="count(../E1EDL37[E1EDL44/POSNR = current()/POSNR])"/>
+      <xsl:if test="$palQty &gt; 0">
+        <ns0:CarrierQuantity>{$palQty}</ns0:CarrierQuantity>
+      </xsl:if>
 
       <!-- Country of origin -->
       <!-- <xsl:if test="$herkl">
@@ -284,7 +287,7 @@
         </ns0:Attributes>
       </xsl:if>
 
-      <!-- ==================== DOCUMENT DETAIL LINES (E1EDL44 carrier links) ==================== -->
+      <!-- ==================== DOCUMENT DETAIL LINES ==================== -->
       <xsl:if test="count(../E1EDL37[E1EDL44/POSNR = current()/POSNR]) &gt; 0">
         <ns0:DocumentDetailLines>
           <xsl:apply-templates select="../E1EDL37[E1EDL44/POSNR = current()/POSNR]" />
@@ -322,6 +325,13 @@
       <xsl:if test="number(E1EDL44/VEMNG) != 0">
         <ns0:OrderQuantity>{E1EDL44/VEMNG}</ns0:OrderQuantity>
       </xsl:if>
+      
+      <ns0:Attributes>
+        <ns0:Attribute>
+          <ns0:Code>CUSTQUAL</ns0:Code>
+          <ns0:Value>{E1EDL44/LGORT}</ns0:Value>
+        </ns0:Attribute>  
+      </ns0:Attributes>
     </ns0:DocumentDetailLine>
   </xsl:template>
 
