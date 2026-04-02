@@ -114,6 +114,9 @@
     <xsl:variable name="longTextNL"
       select="(E1MTXHM[SPRAS_ISO = $fallbackLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1]"/>
     
+    <xsl:variable name="shortTextEN"
+      select="(E1MAKTM[SPRAS_ISO = $primaryLang]/MAKTX)[1]"/>
+    
     <ns0:CustomerItem>
       <ns0:ExternalNo>{eit:stripLeadingZeros(xs:string(MATNR))}</ns0:ExternalNo>
       <ns0:No2>{eit:stripLeadingZeros(xs:string(MATNR))}</ns0:No2>
@@ -122,8 +125,8 @@
         <xsl:value-of select="$longTextEN"/>
       </ns0:Description>
       
-      <xsl:if test="$longTextNL != ''">
-        <ns0:Description2>{$longTextNL}</ns0:Description2>
+      <xsl:if test="$shortTextEN != ''">
+        <ns0:Description2>{$shortTextEN}</ns0:Description2>
       </xsl:if>
       
       <ns0:SearchDescription>
