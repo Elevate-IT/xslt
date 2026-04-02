@@ -25,27 +25,27 @@
                                   select="sum(for $line in current-group() return xs:decimal(normalize-space($line/ns0:Quantity)))"/>
 
                     <map>
-                        <string key="editype">I</string>
+                        <string key="operation">CREATE</string>
                         <!-- <string key="opdrachtId">
                             <xsl:value-of select="$wolf-msg-id"/>
                         </string> -->
-                        <string key="responseId">
+                        <string key="response_id">
                             <xsl:value-of select="$wolf-msg-id"/>
                         </string>
-                        <number key="AantalLitersBev">
+                        <number key="quantity_liters_delivered">
                             <xsl:value-of select="$aantal-liters"/>
                         </number>
-                        <!-- <string key="FinaleStock"/> -->
-                        <string key="Tank">
+                        <!-- <string key="final_stock"/> -->
+                        <string key="tank">
                             <xsl:value-of select="normalize-space($first-detail/ns0:CarrierNo)"/>
                         </string>
-                        <string key="DatumUitgevoerd">
+                        <string key="execution_date">
                             <xsl:value-of select="normalize-space($document/ns0:PostingDate)"/>
                         </string>
-                        <string key="MoederProduct">
+                        <string key="parent_product_code">
                             <xsl:value-of select="normalize-space($document-line/ns0:ExternalNo)"/>
                         </string>
-                        <string key="referentieMervielde">
+                        <string key="mervielde_reference">
                             <xsl:value-of select="normalize-space($document/ns0:No)"/>
                         </string>
                     </map>

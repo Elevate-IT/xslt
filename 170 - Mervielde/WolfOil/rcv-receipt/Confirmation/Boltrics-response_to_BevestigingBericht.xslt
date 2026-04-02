@@ -46,19 +46,19 @@
                       select="normalize-space($response/Response/Status) = 'Succeeded'"/>
         <xsl:variable name="json-output">
             <map>
-                <string key="editype">I</string>
-                <string key="responseId">
+                <string key="operation">CREATE</string>
+                <string key="response_id">
                     <xsl:value-of select="$responseId"/>
                 </string>
-                <string key="Feedback">
+                <string key="feedback">
                     <xsl:value-of select="if ($is-success) then 'OK' else 'error'"/>
                 </string>
                 <xsl:if test="not($is-success)">
-                    <string key="Exception">
+                    <string key="exception">
                         <xsl:value-of select="normalize-space($response/Response/Exception)"/>
                     </string>
                 </xsl:if>
-                <string key="referentieMervielde"/>
+                <string key="mervielde_reference"/>
             </map>
         </xsl:variable>
 
