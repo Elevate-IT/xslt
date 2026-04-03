@@ -2,7 +2,7 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/2005/xpath-functions"
-                xmlns:ns0="www.boltrics.nl/sendreceipt:v1.00"
+                xmlns:ns0="www.boltrics.nl/sendreceiptwolf:v1.00"
                 exclude-result-prefixes="xs ns0">
     <xsl:output method="text" encoding="UTF-8"/>
 
@@ -35,7 +35,7 @@
                         <number key="quantity_liters_delivered">
                             <xsl:value-of select="$aantal-liters"/>
                         </number>
-                        <!-- <string key="final_stock"/> -->
+                        <string key="final_stock"/>
                         <string key="tank">
                             <xsl:value-of select="normalize-space($first-detail/ns0:CarrierNo)"/>
                         </string>

@@ -1,23 +1,10 @@
-[{
-  "editype": "I",
-  "opdrachtId": "OPD-2026-000189",
-  "responseId": "OPD-2026-000187",
-  "AantalLitersBev": 23000,
-  "FinaleStock": 300000,
-  "Tank": "ST120",
-  "DatumUitgevoerd":"2026-01-22T",
-  "MoederProduct":"WOC75601",
-  "referentieMervielde": "MER-1234"
-},
 {
-  "editype": "I",
-  "opdrachtId": "OPD-2026-000189",
-  "responseId": "OPD-2026-000187",
-  "AantalLitersBev": 23000,
-  "FinaleStock": 300000,
-  "Tank": "ST120",
-  "DatumUitgevoerd":"2026-01-22T",
-  "MoederProduct":"WOC75601",
-  "referentieMervielde": "MER-1234"
+  "operation": "CREATE",
+  "response_id": "OPD-2026-000187",
+  "quantity_liters_delivered": 23000,
+  "final_stock": 300000,
+  "tank": "ST120",
+  "execution_date": "2026-01-22T",
+  "parent_product_code": "WOC75601",
+  "mervielde_reference": "MER-1234"
 }
-]
