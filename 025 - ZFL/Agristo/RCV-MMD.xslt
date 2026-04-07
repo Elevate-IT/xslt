@@ -122,7 +122,14 @@
       <ns0:No2>{eit:stripLeadingZeros(xs:string(MATNR))}</ns0:No2>
       
       <ns0:Description>
-        <xsl:value-of select="$longTextEN"/>
+        <xsl:choose>
+          <xsl:when test="$longTextEN != ''">
+            <xsl:value-of select="$longTextEN"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$shortTextEN"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </ns0:Description>
       
       <xsl:if test="$shortTextEN != ''">
