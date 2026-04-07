@@ -271,7 +271,6 @@
       </xsl:if> -->
 
       <!-- ==================== ATTRIBUTES (E1EDL15 classification) ==================== -->
-      <!-- Exclude LOBM_HSDAT and LOBM_VFDAT (already mapped to dedicated fields) -->
       <xsl:variable name="attrs"
         select="E1EDL15[ATNAM != 'LOBM_HSDAT' and ATNAM != 'LOBM_VFDAT']"/>
       <xsl:if test="$attrs">
@@ -301,7 +300,6 @@
        E1EDL15 → Attribute
        ============================================================ -->
   <xsl:template match="E1EDL15">
-    <!-- Truncate Code to 10 chars (schema maxLength) -->
     <xsl:variable name="code" select="substring(xs:string(ATNAM), 1, 10)"/>
     <ns0:Attribute>
       <ns0:Code>{$code}</ns0:Code>
@@ -317,7 +315,6 @@
        ============================================================ -->
   <xsl:template match="E1EDL37">
     <ns0:DocumentDetailLine>
-      <!-- SSCC of the handling unit this line belongs to -->
       <xsl:if test="normalize-space(EXIDV) != ''">
         <ns0:NVESSCC18No>{substring(EXIDV, string-length(EXIDV) - 17)}</ns0:NVESSCC18No>
       </xsl:if>
