@@ -16,24 +16,34 @@
             <IDOC BEGIN="1">
                 <EDI_DC40 SEGMENT="1">
                     <TABNAM>EDI_DC40</TABNAM>
-                    <DIRECT>1</DIRECT>
+                    <DIRECT>2</DIRECT>
                     <DOCNUM>
                         <xsl:value-of select="concat(format-dateTime(../../ns0:Header/ns0:CreationDateTime, '[Y0001][M01][D01][H01][m01][s01]'), substring(../../ns0:Header/ns0:MessageID, string-length(../../ns0:Header/ns0:MessageID) - 1))"/>
                     </DOCNUM>
                     <IDOCTYP>DELVRY05</IDOCTYP>
                     <MESTYP>WHSCON</MESTYP>
-                    <MESCOD>IN</MESCOD>
+                    <!-- <MESCOD>IN</MESCOD> -->
                     <SNDPOR>
                         <xsl:choose>
                             <xsl:when test="contains(../../ns0:Header/ns0:Database, 'PROD')">POP</xsl:when>
                             <xsl:otherwise>POD</xsl:otherwise>
-                        </xsl:choose>    
+                        </xsl:choose>
                     </SNDPOR>
                     <SNDPRT>LS</SNDPRT>
                     <SNDPRN>ZFL</SNDPRN>
-                    <RCVPOR>PIDCLNT001</RCVPOR>
+                    <RCVPOR>
+                        <xsl:choose>
+                            <xsl:when test="contains(../../ns0:Header/ns0:Database, 'PROD')">SAPPRD</xsl:when>
+                            <xsl:otherwise>SAPQAS</xsl:otherwise>
+                        </xsl:choose>
+                    </RCVPOR>
                     <RCVPRT>LS</RCVPRT>
-                    <RCVPRN>GENERIX</RCVPRN>
+                    <RCVPRN>
+                        <xsl:choose>
+                            <xsl:when test="contains(../../ns0:Header/ns0:Database, 'PROD')">PRDCLNT400</xsl:when>
+                            <xsl:otherwise>QASCLNT400</xsl:otherwise>
+                        </xsl:choose>    
+                    </RCVPRN>
                     <CREDAT>
                         <xsl:value-of select="format-dateTime(../../ns0:Header/ns0:CreationDateTime, '[Y0001][M01][D01]')"/>
                     </CREDAT>
