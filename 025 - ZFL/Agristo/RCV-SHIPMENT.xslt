@@ -228,12 +228,12 @@
       </xsl:if>
 
       <!-- Weights -->
-      <xsl:if test="number(BRGEW) != 0">
+      <!-- <xsl:if test="number(BRGEW) != 0">
         <ns0:GrossWeight>{BRGEW}</ns0:GrossWeight>
       </xsl:if>
       <xsl:if test="number(NTGEW) != 0">
         <ns0:NetWeight>{NTGEW}</ns0:NetWeight>
-      </xsl:if>
+      </xsl:if> -->
 
       <!-- Country of origin -->
       <!-- <xsl:if test="$herkl">
