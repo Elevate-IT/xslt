@@ -92,7 +92,7 @@
     <!-- Resolve key dates from E1EDT13 -->
     <xsl:variable name="dateOrder"   select="(E1EDT13[QUALF = '001']/NTANF)[1]"/>
     <xsl:variable name="dateGI"      select="(E1EDT13[QUALF = '006']/NTANF)[1]"/>
-    <xsl:variable name="dateDeliv"   select="(E1EDT13[QUALF = '015']/NTANF)[1]"/>
+    <xsl:variable name="dateDoc"   select="(E1EDT13[QUALF = '015']/NTANF)[1]"/>
 
     <!-- Customer PO from E1EDL41 (QUALI=001) -->
     <xsl:variable name="custPO"   select="(E1EDL24/E1EDL41[QUALI = '001'])[1]"/>
@@ -110,15 +110,15 @@
       </xsl:if>
 
       <!-- Order / document date -->
-      <xsl:variable name="orderDateFmt" select="eit:sapDate(xs:string($dateOrder))"/>
-      <xsl:if test="$orderDateFmt != ''">
-        <ns0:DocumentDate>{$orderDateFmt}</ns0:DocumentDate>
+      <xsl:variable name="docDateFmt" select="eit:sapDate(xs:string($dateDoc))"/>
+      <xsl:if test="$docDateFmt != ''">
+        <ns0:DocumentDate>{$docDateFmt}</ns0:DocumentDate>
       </xsl:if>
 
       <!-- Delivery date -->
-      <xsl:variable name="delivDateFmt" select="eit:sapDate(xs:string($dateDeliv))"/>
-      <xsl:if test="$delivDateFmt != ''">
-        <ns0:DeliveryDate>{$delivDateFmt}</ns0:DeliveryDate>
+      <xsl:variable name="giDateFmt" select="eit:sapDate(xs:string($dateGI))"/>
+      <xsl:if test="$giDateFmt != ''">
+        <ns0:DeliveryDate>{$giDateFmt}</ns0:DeliveryDate>
       </xsl:if>
 
       <!-- Goods issue date used as posting date -->
