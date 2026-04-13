@@ -120,6 +120,8 @@
       <xsl:if test="$giDateFmt != ''">
         <ns0:DeliveryDate>{$giDateFmt}</ns0:DeliveryDate>
       </xsl:if>
+      
+      <ns0:OrderTypeCode>VRIJ</ns0:OrderTypeCode>
 
       <!-- Goods issue date used as posting date -->
       <!-- <xsl:variable name="giFmt" select="eit:sapDate(xs:string($dateGI))"/>
