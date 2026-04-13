@@ -245,7 +245,7 @@
       
       <!-- Carrier info on the pallet UoM (PF = pallet) -->
       <xsl:variable name="carrierType"
-        select="substring(replace(eit:getCharact(., 'Z_WMS_DRAGER_MATNR'), 'PAL_', ''), 1, 10)"/>
+        select="substring(replace(eit:getCharact($maram, 'Z_WMS_DRAGER_MATNR'), 'PAL_', ''), 1, 10)"/>
       <xsl:variable name="palQty"
         select="eit:getCharact($maram, 'Z_WMS_PALHOEVH')"/>
       <xsl:variable name="layers"
