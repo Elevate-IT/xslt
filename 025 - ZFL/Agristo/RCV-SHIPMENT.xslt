@@ -118,7 +118,9 @@
       <!-- Delivery date -->
       <xsl:variable name="giDateFmt" select="eit:sapDate(xs:string($dateGI))"/>
       <xsl:if test="$giDateFmt != ''">
-        <ns0:DeliveryDate>{$giDateFmt}</ns0:DeliveryDate>
+        <ns0:ArrivedDate>{$giDateFmt}</ns0:ArrivedDate>
+        <ns0:DepartedDate>{$giDateFmt}</ns0:DepartedDate>
+        <ns0:PostingDate>{$giDateFmt}</ns0:PostingDate>
       </xsl:if>
       
       <ns0:OrderTypeCode>VRIJ</ns0:OrderTypeCode>
