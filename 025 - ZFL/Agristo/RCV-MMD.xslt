@@ -175,16 +175,18 @@
         <ns0:DefaultCarrierQuantity>{$palQty}</ns0:DefaultCarrierQuantity>
       </xsl:if>
       
-      <ns0:Status>1</ns0:Status>
+      <ns0:TemplateName>AGRISTO CI</ns0:TemplateName>
+      <!-- Moved to TemplateName logic (Configuration Templates) -->
+      <!-- <ns0:Status>1</ns0:Status>
       <ns0:ConditionatReceipt>BEVROREN</ns0:ConditionatReceipt>
       <ns0:ConditionatShipment>BEVROREN</ns0:ConditionatShipment>
       <ns0:ConditionatStorage>BEVROREN</ns0:ConditionatStorage>
-      <ns0:ReservationMethod>3</ns0:ReservationMethod> <!-- Expiration Date  -->
+      <ns0:ReservationMethod>3</ns0:ReservationMethod>
       <ns0:ReservationMethodCarrier>METHOD_8</ns0:ReservationMethodCarrier>
       <ns0:ShptCarrierCalcMethod>METHOD05</ns0:ShptCarrierCalcMethod>
       <ns0:ExtBatchNoMandatoryPost>1</ns0:ExtBatchNoMandatoryPost>
       <ns0:ExpirationDateMandatory>1</ns0:ExpirationDateMandatory>
-      <ns0:ExtBatchNoEqualBatchNo>1</ns0:ExtBatchNoEqualBatchNo>
+      <ns0:ExtBatchNoEqualBatchNo>1</ns0:ExtBatchNoEqualBatchNo> -->
       
       <!-- ==================== UNITS OF MEASURE ==================== -->
       <xsl:if test="E1MARMM">
