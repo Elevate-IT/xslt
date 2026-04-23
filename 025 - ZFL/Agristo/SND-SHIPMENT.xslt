@@ -75,7 +75,37 @@
                     </CRETIM>
                 </EDI_DC40>
                 
-                <!-- RETURNABLE_PACKAGINGS -->
+                <RETURNABLE_PACKAGINGS>
+                    <xsl:if test="count(ns0:Carriers/ns0:Carrier[starts-with(ns0:CarrierTypeCode, 'EUR')]) &gt; 0">
+                        <RETURNABLE_PACKAGING SEGMENT="1">
+                            <CONTAINER_TYPE>EURO</CONTAINER_TYPE>
+                            <CONTAINERS_IN>0</CONTAINERS_IN>
+                            <CONTAINERS_IN_REFUSED>0</CONTAINERS_IN_REFUSED>
+                            <CONTAINERS_OUT>{count(ns0:Carriers/ns0:Carrier[starts-with(ns0:CarrierTypeCode, 'EUR')])}</CONTAINERS_OUT>
+                            <TRUCK_LIC>{ns0:VehicleNo}</TRUCK_LIC>
+                            <TRAILER_LIC>{ns0:TrailerContainerNo}</TRAILER_LIC>
+                            <CONTAINER_NR>{ns0:ContainerNo}</CONTAINER_NR>
+                            <SEAL>{ns0:SealNo}</SEAL>
+                            <TARRA>{ns0:Attributes/ns0:Attribute[ns0:Code = 'TAREWEIGHT']/ns0:Value}</TARRA>
+                            <TEMPLOG1>{ns0:Attributes/ns0:Attribute[ns0:Code = 'TMD_NO']/ns0:Value}</TEMPLOG1>
+                        </RETURNABLE_PACKAGING>
+                    </xsl:if>
+                    
+                    <xsl:if test="count(ns0:Carriers/ns0:Carrier[not(starts-with(ns0:CarrierTypeCode, 'EUR'))]) &gt; 0">
+                        <RETURNABLE_PACKAGING SEGMENT="1">
+                            <CONTAINER_TYPE>UNKNOWN</CONTAINER_TYPE>
+                            <CONTAINERS_IN>0</CONTAINERS_IN>
+                            <CONTAINERS_IN_REFUSED>0</CONTAINERS_IN_REFUSED>
+                            <CONTAINERS_OUT>{count(ns0:Carriers/ns0:Carrier[not(starts-with(ns0:CarrierTypeCode, 'EUR'))])}</CONTAINERS_OUT>
+                            <TRUCK_LIC>{ns0:VehicleNo}</TRUCK_LIC>
+                            <TRAILER_LIC>{ns0:TrailerContainerNo}</TRAILER_LIC>
+                            <CONTAINER_NR>{ns0:ContainerNo}</CONTAINER_NR>
+                            <SEAL>{ns0:SealNo}</SEAL>
+                            <TARRA>{ns0:Attributes/ns0:Attribute[ns0:Code = 'TAREWEIGHT']/ns0:Value}</TARRA>
+                            <TEMPLOG1>{ns0:Attributes/ns0:Attribute[ns0:Code = 'TMD_NO']/ns0:Value}</TEMPLOG1>
+                        </RETURNABLE_PACKAGING>
+                    </xsl:if>
+                </RETURNABLE_PACKAGINGS>
                 
                 <E1EDL20 SEGMENT="1">
                     <VBELN>{ns0:ExternalDocumentNo}</VBELN>
