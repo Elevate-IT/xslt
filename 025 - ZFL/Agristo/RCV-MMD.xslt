@@ -110,12 +110,12 @@
     
     <!-- Resolve preferred long-text description (EN, fallback NL) -->
     <xsl:variable name="longTextEN"
-      select="(E1MTXHM[SPRAS_ISO = $primaryLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1]"/>
+      select="substring((E1MTXHM[SPRAS_ISO = $primaryLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1], 1, 50)"/>
     <xsl:variable name="longTextNL"
-      select="(E1MTXHM[SPRAS_ISO = $fallbackLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1]"/>
+      select="substring((E1MTXHM[SPRAS_ISO = $fallbackLang]/E1MTXLM[TDFORMAT='*']/TDLINE)[1], 1, 50)"/>
     
     <xsl:variable name="shortTextEN"
-      select="(E1MAKTM[SPRAS_ISO = $primaryLang]/MAKTX)[1]"/>
+      select="substring((E1MAKTM[SPRAS_ISO = $primaryLang]/MAKTX)[1], 1, 50)"/>
     
     <ns0:CustomerItem>
       <ns0:ExternalNo>{eit:stripLeadingZeros(xs:string(MATNR))}</ns0:ExternalNo>
