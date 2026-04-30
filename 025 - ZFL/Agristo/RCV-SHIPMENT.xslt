@@ -227,9 +227,10 @@
       </xsl:if>
 
       <!-- GTIN / EAN barcode -->
-      <xsl:if test="normalize-space(EAN11) != ''">
+      <!-- skipped because of multiple articles with same EAN -->
+      <!-- <xsl:if test="normalize-space(EAN11) != ''">
         <ns0:GTIN>{EAN11}</ns0:GTIN>
-      </xsl:if>
+      </xsl:if> -->
 
       <!-- Weights -->
       <!-- <xsl:if test="number(BRGEW) != 0">
