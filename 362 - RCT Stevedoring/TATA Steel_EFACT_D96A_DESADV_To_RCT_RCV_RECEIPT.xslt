@@ -66,6 +66,12 @@
             </ns0:Name>
           </ns0:SenderAddress>
           
+          <ns0:ShippingAgent>
+            <ns0:No>
+              <xsl:value-of select="s0:TDTLoop1[s0:TDT/s0:C220/C22001 = '80']/s0:TDT/s0:C222/C22204" />
+            </ns0:No>
+          </ns0:ShippingAgent>
+          
           <ns0:Attributes>
             <ns0:Attribute>
               <ns0:Code>EDI_TDT1</ns0:Code>
@@ -94,7 +100,24 @@
                 <xsl:if test="$LineKey != '--'">
                   <ns0:DocumentLine>
                     <ns0:No>
+                      
+                      <xsl:variable name="loc11" select="lower-case(normalize-space(../../s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C517/C51701))" />
                       <xsl:choose>
+                        <xsl:when test="contains($loc11, 'duffel')">
+                          <xsl:text>RCTTATA-0004</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="contains($loc11, 'ds')">
+                          <xsl:text>RCTTATA-0001</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="contains($loc11, 'uni')">
+                          <xsl:text>RCTTATA-0005</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="../s0:LINLoop1/s0:LIN/s0:C212/C21201" />
+                        </xsl:otherwise>
+                      </xsl:choose>
+
+                      <!-- <xsl:choose>
                         <xsl:when test="../../s0:NADLoop1[s0:NAD/NAD01 = 'CZ']/s0:LOC/s0:C517/C51701 = 'IJMUIDEN' and ../s0:LINLoop1/s0:LIN/s0:C212/C21201 = 'CBD105700223'">
                           <xsl:text>RCTTATA-0004</xsl:text>
                         </xsl:when>
@@ -104,7 +127,7 @@
                         <xsl:otherwise>
                           <xsl:value-of select="../s0:LINLoop1/s0:LIN/s0:C212/C21201" />
                         </xsl:otherwise>
-                      </xsl:choose>
+                      </xsl:choose> -->
                     </ns0:No>
                     <ns0:Description>
                       <xsl:value-of select="../s0:LINLoop1/s0:IMD[IMD01 = 'A']/s0:C273/C27304" />
