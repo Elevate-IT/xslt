@@ -105,8 +105,14 @@
       <ns0:ExternalDocumentNo>{VBELN}</ns0:ExternalDocumentNo>
       
       <!-- Customer purchase order number as external reference -->
-      <xsl:if test="normalize-space($custPO/BSTNR) != ''">
-        <ns0:ExternalReference>{$custPO/BSTNR}</ns0:ExternalReference>
+      <xsl:if test="normalize-space($custPO/BSTNR) != '' or normalize-space($salesRef/BELNR) != ''">
+        <ns0:ExternalReference>
+          <xsl:value-of select="$custPO/BSTNR"/>
+          <xsl:if test="normalize-space($custPO/BSTNR) != '' and normalize-space($salesRef/BELNR) != ''">
+            <xsl:text> </xsl:text>
+          </xsl:if>
+          <xsl:value-of select="$salesRef/BELNR"/>
+        </ns0:ExternalReference>
       </xsl:if>
 
       <!-- Order / document date -->
