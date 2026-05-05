@@ -41,7 +41,7 @@
             <RCVPFC>LS</RCVPFC>
             <RCVPRN>SAPGPR</RCVPRN>
             <CREDAT>
-                <xsl:value-of select="format-date(ns0:PostingDate, '[Y0001][M01][D01]')"/>
+                <xsl:value-of select="format-date(//ns0:PostingDate, '[Y0001][M01][D01]')"/>
             </CREDAT>
             <CRETIM>
                 <xsl:value-of select="format-dateTime(ns0:CreationDateTime, '[H01][m01][s01]')"/>
