@@ -41,7 +41,7 @@
             <RCVPFC>LS</RCVPFC>
             <RCVPRN>SAPGPR</RCVPRN>
             <CREDAT>
-                <xsl:value-of select="format-date(//ns0:PostingDate, '[Y0001][M01][D01]')"/>
+                <xsl:value-of select="format-dateTime(ns0:CreationDateTime, '[Y0001][M01][D01]')"/>
             </CREDAT>
             <CRETIM>
                 <xsl:value-of select="format-dateTime(ns0:CreationDateTime, '[H01][m01][s01]')"/>
@@ -58,7 +58,7 @@
         <Z1ZMBGMCR SEGMENT="1">
             <E1BP2017_GM_HEAD_01 SEGMENT="1">
                 <PSTNG_DATE>
-                    <xsl:value-of select="format-date(ns0:PostingDate, '[Y0001][M01][D01]')"/>
+                    <xsl:value-of select="format-dateTime(//ns0:Header/ns0:CreationDateTime, '[Y0001][M01][D01]')"/>
                 </PSTNG_DATE>
                 <DOC_DATE>
                     <xsl:value-of select="format-date(ns0:DocumentDate, '[Y0001][M01][D01]')"/>
