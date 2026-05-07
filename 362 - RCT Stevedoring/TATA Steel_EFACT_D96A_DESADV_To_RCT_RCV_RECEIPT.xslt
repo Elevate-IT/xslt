@@ -66,11 +66,22 @@
             </ns0:Name>
           </ns0:SenderAddress>
           
-          <ns0:ShippingAgent>
-            <ns0:No>
-              <xsl:value-of select="s0:TDTLoop1[s0:TDT/s0:C220/C22001 = '80']/s0:TDT/s0:C222/C22204" />
-            </ns0:No>
-          </ns0:ShippingAgent>
+          <xsl:if test="string(s0:TDTLoop1[s0:TDT/s0:C220/C22001 = '80']/s0:TDT/s0:C222/C22204)">
+            <ns0:ShippingAgent>
+              <ns0:Name>
+                <xsl:value-of select="s0:TDTLoop1[s0:TDT/s0:C220/C22001 = '80']/s0:TDT/s0:C222/C22204" />
+              </ns0:Name>
+            </ns0:ShippingAgent>
+          </xsl:if>
+          
+          <xsl:choose>
+            <xsl:when test="string(s0:TDTLoop1[s0:TDT/s0:C220/C22001 = '80']/s0:TDT/s0:C222/C22204)">
+              <ns0:Attribute02>SCHIP</ns0:Attribute02>
+            </xsl:when>
+            <xsl:otherwise>
+              <ns0:Attribute02>VRACHTWAGEN</ns0:Attribute02>
+            </xsl:otherwise>
+          </xsl:choose>
           
           <ns0:Attributes>
             <ns0:Attribute>
@@ -100,34 +111,72 @@
                 <xsl:if test="$LineKey != '--'">
                   <ns0:DocumentLine>
                     <ns0:No>
-                      
-                      <xsl:variable name="loc11" select="lower-case(normalize-space(../../s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C517/C51701))" />
-                      <xsl:choose>
-                        <xsl:when test="contains($loc11, 'duffel')">
-                          <xsl:text>RCTTATA-0004</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="contains($loc11, 'ds')">
-                          <xsl:text>RCTTATA-0001</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="contains($loc11, 'uni')">
-                          <xsl:text>RCTTATA-0005</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <xsl:value-of select="../s0:LINLoop1/s0:LIN/s0:C212/C21201" />
-                        </xsl:otherwise>
-                      </xsl:choose>
+                    
 
-                      <!-- <xsl:choose>
-                        <xsl:when test="../../s0:NADLoop1[s0:NAD/NAD01 = 'CZ']/s0:LOC/s0:C517/C51701 = 'IJMUIDEN' and ../s0:LINLoop1/s0:LIN/s0:C212/C21201 = 'CBD105700223'">
-                          <xsl:text>RCTTATA-0004</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="s0:PAC[PAC01 = '1']/s0:C202/C20201 = 'CL'">
-                          <xsl:text>RCTTATA-0001</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <xsl:value-of select="../s0:LINLoop1/s0:LIN/s0:C212/C21201" />
-                        </xsl:otherwise>
-                      </xsl:choose> -->
+                    <!--
+                      Determine the DocumentLine No based on LOC/LOC01 = '11'.
+                      1. Try to match keywords in C517/C51701 (case-insensitive, normalized)
+                      2. If no match, try the same logic on C519/C51901
+                      3. If still no match, fall back to the old logic (PAC, IJMUIDEN, or default)
+                    -->
+                    <xsl:variable name="loc11_c517" select="lower-case(normalize-space(../../s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C517/C51701))" />
+                    <xsl:variable name="loc11_c519" select="lower-case(normalize-space(../../s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C519/C51901))" />
+                      
+                      <!-- <ns0:DebugLoc11C517>
+                        <xsl:value-of select="$loc11_c517"/>
+                      </ns0:DebugLoc11C517>
+                      <ns0:DebugLoc11C519>
+                        <xsl:value-of select="$loc11_c519"/>
+                      </ns0:DebugLoc11C519> -->
+
+                    <xsl:choose>
+                      <!-- 1. Try C517 matches -->
+                      <xsl:when test="contains($loc11_c517, 'ds')">
+                        <xsl:text>RCTTATA-0001</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="contains($loc11_c517, 'duffel')">
+                        <xsl:text>RCTTATA-0004</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="contains($loc11_c517, 'uni')">
+                        <xsl:text>RCTTATA-0005</xsl:text>
+                      </xsl:when>
+                      <xsl:when test="contains($loc11_c517, 'evr')">
+                        <xsl:text>RCTTATA-0005</xsl:text>
+                      </xsl:when>
+                      <!-- 2. If no match in C517, try C519 -->
+                      <xsl:when test="not(contains($loc11_c517, 'ds') or contains($loc11_c517, 'duffel') or contains($loc11_c517, 'uni') or contains($loc11_c517, 'evr'))">
+                        <xsl:choose>
+                          <xsl:when test="contains($loc11_c519, 'ds')">
+                            <xsl:text>RCTTATA-0001</xsl:text>
+                          </xsl:when>
+                          <xsl:when test="contains($loc11_c519, 'duffel')">
+                            <xsl:text>RCTTATA-0004</xsl:text>
+                          </xsl:when>
+                          <xsl:when test="contains($loc11_c519, 'uni')">
+                            <xsl:text>RCTTATA-0005</xsl:text>
+                          </xsl:when>
+                          <xsl:when test="contains($loc11_c519, 'evr')">
+                            <xsl:text>RCTTATA-0005</xsl:text>
+                          </xsl:when>
+                          <!-- 3. If still no match, use old logic -->
+                          <xsl:otherwise>
+                            <!-- oude werking -->
+                            <xsl:choose>
+                              <xsl:when test="s0:PAC[PAC01 = '1']/s0:C202/C20201 = 'CL'">
+                                <xsl:text>RCTTATA-0001</xsl:text>
+                              </xsl:when>
+                              <xsl:when test="../../s0:NADLoop1[s0:NAD/NAD01 = 'CZ']/s0:LOC/s0:C517/C51701 = 'IJMUIDEN' and ../s0:LINLoop1/s0:LIN/s0:C212/C21201 = 'CBD105700223'">
+                                <xsl:text>RCTTATA-0004</xsl:text>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:value-of select="../s0:LINLoop1/s0:LIN/s0:C212/C21201" />
+                              </xsl:otherwise>
+                            </xsl:choose>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </xsl:when>
+                    </xsl:choose>
+                      
                     </ns0:No>
                     <ns0:Description>
                       <xsl:value-of select="../s0:LINLoop1/s0:IMD[IMD01 = 'A']/s0:C273/C27304" />
