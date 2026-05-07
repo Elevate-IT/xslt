@@ -40,17 +40,7 @@
 					</Description>
 					
 					<BaseUnitofMeasure>
-						<xsl:choose>
-							<xsl:when test="Column2 = 'ST'">
-								<xsl:text>PCS</xsl:text>
-							</xsl:when>
-							<xsl:when test="Column2 = 'PC'">
-								<xsl:text>PCS</xsl:text>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:value-of select="Column2"/>
-							</xsl:otherwise>
-						</xsl:choose>
+						<xsl:value-of select="Column2"/>
 					</BaseUnitofMeasure>
 					
 					<TemplateName>
