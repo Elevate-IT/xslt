@@ -1,0 +1,668 @@
+﻿<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+                xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
+                xmlns:s0="www.boltrics.nl/sendshipment:v1.00"
+                xmlns:ns0="http://schemas.microsoft.com/BizTalk/EDI/EDIFACT/2006"
+                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
+                exclude-result-prefixes="msxsl var s0 MyScript" version="1.0">
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+
+  <xsl:key name="GroupedLIN" match="//s0:Message/s0:Documents/s0:Document/s0:Carriers/s0:Carrier[s0:Contents/s0:Content/s0:Posted = '1']"
+           use="concat(s0:Contents/s0:Content/s0:Attribute03, '-', s0:Contents/s0:Content/s0:Attribute02)" />
+
+  <xsl:template match="/">
+    <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
+  </xsl:template>
+
+  <xsl:template match="//s0:Message/s0:Documents/s0:Document">
+    <ns0:EFACT_D96A_INVRPT>
+      <UNH>
+        <UNH1>1</UNH1>
+        <UNH2>
+          <UNH2.1>INVRPT</UNH2.1>
+          <UNH2.2>D</UNH2.2>
+          <UNH2.3>96A</UNH2.3>
+          <UNH2.4>UN</UNH2.4>
+        </UNH2>
+      </UNH>
+
+      <ns0:BGM>
+        <ns0:C002>
+          <C00201>35</C00201>
+        </ns0:C002>
+        <BGM02>
+          <xsl:value-of select="//s0:Header/s0:MessageID" />
+        </BGM02>
+        <BGM03>9</BGM03>
+      </ns0:BGM>
+
+      <ns0:DTM>
+        <ns0:C507>
+          <C50701>182</C50701>
+          <C50702>
+            <xsl:value-of select="MyScript:ParseDate(s0:PostingDate, 'yyyy-MM-dd', 'yyyyMMdd')" />
+          </C50702>
+          <C50703>102</C50703>
+        </ns0:C507>
+      </ns0:DTM>
+
+      <ns0:RFFLoop1>
+        <ns0:RFF>
+          <ns0:C506>
+            <C50601>AAS</C50601>
+            <C50602>
+              <xsl:value-of select="s0:ExternalDocumentNo" />
+            </C50602>
+          </ns0:C506>
+        </ns0:RFF>
+      </ns0:RFFLoop1>
+
+      <ns0:NADLoop1>
+        <ns0:NAD>
+          <NAD01>WH</NAD01>
+          <ns0:C082>
+            <C08201>RCT-WILLEBROEK</C08201>
+            <C08203>91</C08203>
+          </ns0:C082>
+        </ns0:NAD>
+      </ns0:NADLoop1>
+
+      <ns0:NADLoop1>
+        <ns0:NAD>
+          <NAD01>CN</NAD01>
+          <ns0:C082>
+            <C08201>
+              <xsl:choose>
+                <xsl:when test="s0:ShipToAddress/s0:ExternalNo != ''">
+                  <xsl:value-of select="s0:ShipToAddress/s0:ExternalNo" />
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>RCT-WILLEBROEK</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </C08201>
+            <C08203>91</C08203>
+          </ns0:C082>
+        </ns0:NAD>
+
+        <ns0:LOC>
+          <LOC01>11</LOC01>
+          <ns0:C517>
+            <C51701>
+              <xsl:choose>
+                <xsl:when test="s0:ShipToAddress/s0:Name != ''">
+                  <xsl:value-of select="s0:ShipToAddress/s0:Name" />
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="s0:BuildingCode" />
+                </xsl:otherwise>
+              </xsl:choose>
+            </C51701>
+          </ns0:C517>
+          <ns0:C519>
+            <C51901>
+              <xsl:choose>
+                <xsl:when test="s0:ShipToAddress/s0:Name2 != ''">
+                  <xsl:value-of select="s0:ShipToAddress/s0:Name2" />
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="s0:LocationNo" />
+                </xsl:otherwise>
+              </xsl:choose>
+            </C51901>
+          </ns0:C519>
+        </ns0:LOC>
+      </ns0:NADLoop1>
+
+      <xsl:for-each select="s0:Carriers/s0:Carrier[s0:Contents/s0:Content/s0:Posted = '1'][count(. | key('GroupedLIN', concat(s0:Contents/s0:Content/s0:Attribute03, '-', s0:Contents/s0:Content/s0:Attribute02))[1]) = 1]">
+        <xsl:variable name="LineKey" select="concat(s0:Contents/s0:Content/s0:Attribute03, '-', s0:Contents/s0:Content/s0:Attribute02)" />
+        <xsl:if test="$LineKey != '-'">
+          <ns0:LINLoop1>
+            <ns0:LIN>
+              <ns0:C212>
+                <C21201>
+                  <xsl:choose>
+                    <xsl:when test="s0:Contents/s0:Content/s0:Attribute03 != ''">
+                      <xsl:value-of select="s0:Contents/s0:Content/s0:Attribute03" />
+                    </xsl:when>
+                    <xsl:when test="s0:Contents/s0:Content/s0:Attributes/s0:Attribute[s0:Code = 'EXTART']/s0:Value != ''">
+                      <xsl:value-of select="s0:Contents/s0:Content/s0:Attributes/s0:Attribute[s0:Code = 'EXTART']/s0:Value" />
+                    </xsl:when>
+                  </xsl:choose>
+                </C21201>
+                <C21202>IN</C21202>
+              </ns0:C212>
+            </ns0:LIN>
+
+            <ns0:QTYLoop2>
+              <ns0:QTY_2>
+                <ns0:C186_2>
+                  <C18601>156</C18601>
+                  <C18602>
+                    <xsl:value-of select="count(key('GroupedLIN', $LineKey)/s0:Contents/s0:Content[s0:Posted = '1'])" />
+                  </C18602>
+                  <C18603>PCE</C18603>
+                </ns0:C186_2>
+              </ns0:QTY_2>
+
+              <ns0:INV>
+                <INV01>1</INV01>
+                <INV02>1</INV02>
+                <INV03>2</INV03>
+              </ns0:INV>
+
+              <ns0:DTM_8>
+                <ns0:C507_8>
+                  <C50701>179</C50701>
+                  <C50702>
+                    <xsl:value-of select="MyScript:ParseDate(//s0:PostingDate, 'yyyy-MM-dd', 'yyyyMMdd')" />
+                  </C50702>
+                  <C50703>102</C50703>
+                </ns0:C507_8>
+              </ns0:DTM_8>
+
+              <ns0:NADLoop2>
+                <ns0:NAD_2>
+                  <NAD01>CA</NAD01>
+                  <ns0:C082_2>
+                    <C08201>RCT-WILLEBROEK</C08201>
+                  </ns0:C082_2>
+                  <xsl:variable name="EDI_TDT1" select="//s0:Attributes/s0:Attribute[s0:Code = 'EDI_TDT1']/s0:Value" />
+                  <xsl:if test="$EDI_TDT1 != ''">
+                    <ns0:C058_2>
+                      <C05801>
+                        <xsl:choose>
+                          <xsl:when test="$EDI_TDT1 = '10'">
+                            <xsl:text>1</xsl:text>
+                          </xsl:when>
+                          <xsl:when test="$EDI_TDT1 = '20'">
+                            <xsl:text>2</xsl:text>
+                          </xsl:when>
+                          <xsl:when test="$EDI_TDT1 = '30'">
+                            <xsl:text>3</xsl:text>
+                          </xsl:when>
+                          <xsl:when test="$EDI_TDT1 = '80'">
+                            <xsl:text>8</xsl:text>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="$EDI_TDT1"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </C05801>
+                      <C05802>
+                        <xsl:value-of select="//s0:Attributes/s0:Attribute[s0:Code = 'EDI_TDT2']/s0:Value"/>
+                      </C05802>
+                    </ns0:C058_2>
+                  </xsl:if>
+                </ns0:NAD_2>
+              </ns0:NADLoop2>
+
+              <ns0:RFFLoop4>
+                <ns0:RFF_4>
+                  <ns0:C506_4>
+                    <C50601>AAK</C50601>
+                    <C50602>
+                      <xsl:value-of select="translate(//s0:No, translate(//s0:No, '0123456789', ''), '')"/>
+                    </C50602>
+                  </ns0:C506_4>
+                </ns0:RFF_4>
+
+                <ns0:DTM_10>
+                  <ns0:C507_10>
+                    <C50701>171</C50701>
+                    <C50702>
+                      <xsl:value-of select="MyScript:ParseDate(//s0:PostingDate, 'yyyy-MM-dd', 'yyyyMMdd')"/>
+                    </C50702>
+                    <!--<C50703>203</C50703>-->
+                    <C50703>102</C50703>
+                  </ns0:C507_10>
+                </ns0:DTM_10>
+              </ns0:RFFLoop4>
+
+              <ns0:RFFLoop4>
+                <ns0:RFF_4>
+                  <ns0:C506_4>
+
+                    <xsl:variable name="VISInfo">
+                      <xsl:choose>
+                        <xsl:when test="s0:Contents/s0:Content/s0:Attribute02 != ''">
+                          <xsl:value-of select="s0:Contents/s0:Content/s0:Attribute02" />
+                        </xsl:when>
+                        <xsl:when test="s0:Contents/s0:Content/s0:Attributes/s0:Attribute[s0:Code = 'REF2']/s0:Value != ''">
+                          <xsl:value-of select="s0:Contents/s0:Content/s0:Attributes/s0:Attribute[s0:Code = 'REF2']/s0:Value" />
+                        </xsl:when>
+                      </xsl:choose>
+                    </xsl:variable>
+
+                    <xsl:variable name="VISOrder">
+                      <xsl:value-of select="substring($VISInfo, 1, string-length($VISInfo) - 1)" />
+                    </xsl:variable>
+
+                    <xsl:variable name="VISItem">
+                      <xsl:value-of select="substring($VISInfo, string-length($VISInfo))" />
+                    </xsl:variable>
+
+                    <C50601>VN</C50601>
+                    <C50602>
+                      <xsl:value-of select="$VISOrder"/>
+                    </C50602>
+                    <C50603>
+                      <xsl:value-of select="$VISItem"/>
+                    </C50603>
+                  </ns0:C506_4>
+                </ns0:RFF_4>
+              </ns0:RFFLoop4>
+
+              <ns0:CPSLoop2>
+                <ns0:CPS_2>
+                  <CPS01>
+                    <xsl:value-of select="MyScript:GetCPSCounter()"/>
+                  </CPS01>
+                </ns0:CPS_2>
+
+                <xsl:for-each select="key('GroupedLIN', $LineKey)/s0:Contents/s0:Content[s0:Posted = '1']">
+                  <ns0:PACLoop2>
+                    <ns0:PAC_2>
+                      <PAC01>
+                        <xsl:text>1</xsl:text>
+                      </PAC01>
+                      <!--To describe the number and type of packages/physical units-->
+                    </ns0:PAC_2>
+
+                    <ns0:MEA_2>
+                      <MEA01>AAY</MEA01>
+                      <ns0:C502_2>
+                        <C50201>G</C50201>
+                      </ns0:C502_2>
+                      <ns0:C174_2>
+                        <C17401>KGM</C17401>
+                        <C17402>
+                          <xsl:value-of select="s0:GrossWeight"/>
+                        </C17402>
+                      </ns0:C174_2>
+                    </ns0:MEA_2>
+
+                    <ns0:MEA_2>
+                      <MEA01>AAY</MEA01>
+                      <ns0:C502_2>
+                        <C50201>AAL</C50201>
+                      </ns0:C502_2>
+                      <ns0:C174_2>
+                        <C17401>KGM</C17401>
+                        <C17402>
+                          <xsl:value-of select="s0:NetWeight"/>
+                        </C17402>
+                      </ns0:C174_2>
+                    </ns0:MEA_2>
+
+                    <ns0:PCILoop1>
+                      <ns0:PCI_2>
+                        <PCI01>17</PCI01>
+                        <ns0:C827_2>
+                          <C82701>S</C82701>
+                        </ns0:C827_2>
+                      </ns0:PCI_2>
+
+                      <ns0:GIN_3>
+                        <GIN01>ML</GIN01>
+                        <ns0:C208_11>
+                          <C20801>
+                            <xsl:value-of select="s0:CarrierNo"/>
+                          </C20801>
+                        </ns0:C208_11>
+                      </ns0:GIN_3>
+                    </ns0:PCILoop1>
+                  </ns0:PACLoop2>
+                </xsl:for-each>
+              </ns0:CPSLoop2>
+            </ns0:QTYLoop2>
+          </ns0:LINLoop1>
+        </xsl:if>
+      </xsl:for-each>
+
+      <xsl:for-each select="s0:Carriers/s0:Carrier/s0:Contents/s0:Content[s0:Posted = '1'][count(s0:Attribute03) = 0][count(s0:Attribute02) = 0]">
+        <xsl:variable name="LineNo">
+          <xsl:value-of select="s0:DocumentLineNo" />
+        </xsl:variable>
+        <xsl:variable name="CarrierNo">
+          <xsl:value-of select="s0:CarrierNo" />
+        </xsl:variable>
+        <ns0:LINLoop1>
+          <ns0:LIN>
+            <ns0:C212>
+              <C21201>
+                <xsl:choose>
+                  <xsl:when test="s0:Attributes/s0:Attribute[s0:Code = 'EXTART']/s0:Value != ''">
+                    <xsl:value-of select="s0:Attributes/s0:Attribute[s0:Code = 'EXTART']/s0:Value" />
+                  </xsl:when>
+                  <xsl:when test="//s0:DocumentDetailLine[s0:DocumentLineNo = $LineNo][s0:CarrierNo = $CarrierNo]/s0:Attributes/s0:Attribute[s0:Code = 'EXTART']/s0:Value != ''">
+                    <xsl:value-of select="//s0:DocumentDetailLine[s0:DocumentLineNo = $LineNo][s0:CarrierNo = $CarrierNo]/s0:Attributes/s0:Attribute[s0:Code = 'EXTART']/s0:Value" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="//s0:DocumentLine[s0:LineNo = $LineNo]/s0:Attributes/s0:Attribute[s0:Code = 'EXTART']/s0:Value" />
+                  </xsl:otherwise>
+                </xsl:choose>
+              </C21201>
+              <C21202>IN</C21202>
+            </ns0:C212>
+          </ns0:LIN>
+
+          <ns0:QTYLoop2>
+            <ns0:QTY_2>
+              <ns0:C186_2>
+                <C18601>156</C18601>
+                <C18602>
+                  <xsl:text>1</xsl:text>
+                </C18602>
+                <C18603>PCE</C18603>
+              </ns0:C186_2>
+            </ns0:QTY_2>
+
+            <ns0:INV>
+              <INV01>1</INV01>
+              <INV02>1</INV02>
+              <INV03>2</INV03>
+            </ns0:INV>
+
+            <ns0:DTM_8>
+              <ns0:C507_8>
+                <C50701>179</C50701>
+                <C50702>
+                  <xsl:value-of select="MyScript:ParseDate(//s0:PostingDate, 'yyyy-MM-dd', 'yyyyMMdd')" />
+                </C50702>
+                <C50703>102</C50703>
+              </ns0:C507_8>
+            </ns0:DTM_8>
+
+            <ns0:NADLoop2>
+              <ns0:NAD_2>
+                <NAD01>CA</NAD01>
+                <ns0:C082_2>
+                  <C08201>RCT-WILLEBROEK</C08201>
+                </ns0:C082_2>
+                <xsl:variable name="EDI_TDT1" select="//s0:Attributes/s0:Attribute[s0:Code = 'EDI_TDT1']/s0:Value" />
+                <xsl:if test="$EDI_TDT1 != ''">
+                  <ns0:C058_2>
+                    <C05801>
+                      <xsl:choose>
+                        <xsl:when test="$EDI_TDT1 = '10'">
+                          <xsl:text>1</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="$EDI_TDT1 = '20'">
+                          <xsl:text>2</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="$EDI_TDT1 = '30'">
+                          <xsl:text>3</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="$EDI_TDT1 = '80'">
+                          <xsl:text>8</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="$EDI_TDT1"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </C05801>
+                    <C05802>
+                      <xsl:value-of select="//s0:Attributes/s0:Attribute[s0:Code = 'EDI_TDT2']/s0:Value"/>
+                    </C05802>
+                  </ns0:C058_2>
+                </xsl:if>
+              </ns0:NAD_2>
+            </ns0:NADLoop2>
+
+            <ns0:RFFLoop4>
+              <ns0:RFF_4>
+                <ns0:C506_4>
+                  <C50601>AAK</C50601>
+                  <C50602>
+                    <xsl:value-of select="translate(//s0:No, translate(//s0:No, '0123456789', ''), '')"/>
+                  </C50602>
+                </ns0:C506_4>
+              </ns0:RFF_4>
+
+              <ns0:DTM_10>
+                <ns0:C507_10>
+                  <C50701>171</C50701>
+                  <C50702>
+                    <xsl:value-of select="MyScript:ParseDate(//s0:PostingDate, 'yyyy-MM-dd', 'yyyyMMdd')"/>
+                  </C50702>
+                  <!--<C50703>203</C50703>-->
+                  <C50703>102</C50703>
+                </ns0:C507_10>
+              </ns0:DTM_10>
+            </ns0:RFFLoop4>
+
+            <ns0:RFFLoop4>
+              <ns0:RFF_4>
+                <ns0:C506_4>
+                  <xsl:variable name="VISInfo">
+                    <xsl:choose>
+                      <xsl:when test="s0:Attributes/s0:Attribute[s0:Code = 'REF2']/s0:Value != ''">
+                        <xsl:value-of select="s0:Attributes/s0:Attribute[s0:Code = 'REF2']/s0:Value" />
+                      </xsl:when>
+                      <xsl:when test="//s0:DocumentDetailLine[s0:DocumentLineNo = $LineNo][s0:CarrierNo = $CarrierNo]/s0:Attributes/s0:Attribute[s0:Code = 'REF2']/s0:Value != ''">
+                        <xsl:value-of select="//s0:DocumentDetailLine[s0:DocumentLineNo = $LineNo][s0:CarrierNo = $CarrierNo]/s0:Attributes/s0:Attribute[s0:Code = 'REF2']/s0:Value" />
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="//s0:DocumentLine[s0:LineNo = $LineNo]/s0:Attributes/s0:Attribute[s0:Code = 'REF2']/s0:Value" />
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:variable>
+                  <xsl:variable name="VISOrder">
+                    <xsl:value-of select="substring($VISInfo, 1, string-length($VISInfo) - 1)" />
+                  </xsl:variable>
+                  <xsl:variable name="VISItem">
+                    <xsl:value-of select="substring($VISInfo, string-length($VISInfo))" />
+                  </xsl:variable>
+                  <C50601>VN</C50601>
+                  <C50602>
+                    <xsl:value-of select="$VISOrder"/>
+                  </C50602>
+                  <C50603>
+                    <xsl:value-of select="$VISItem"/>
+                  </C50603>
+                </ns0:C506_4>
+              </ns0:RFF_4>
+            </ns0:RFFLoop4>
+
+            <ns0:CPSLoop2>
+              <ns0:CPS_2>
+                <CPS01>
+                  <xsl:value-of select="MyScript:GetCPSCounter()"/>
+                </CPS01>
+              </ns0:CPS_2>
+
+              <ns0:PACLoop2>
+                <ns0:PAC_2>
+                  <PAC01>
+                    <xsl:text>1</xsl:text>
+                  </PAC01>
+                  <!--To describe the number and type of packages/physical units-->
+                </ns0:PAC_2>
+
+                <ns0:MEA_2>
+                  <MEA01>AAY</MEA01>
+                  <ns0:C502_2>
+                    <C50201>G</C50201>
+                  </ns0:C502_2>
+                  <ns0:C174_2>
+                    <C17401>KGM</C17401>
+                    <C17402>
+                      <xsl:value-of select="s0:GrossWeight"/>
+                    </C17402>
+                  </ns0:C174_2>
+                </ns0:MEA_2>
+
+                <ns0:MEA_2>
+                  <MEA01>AAY</MEA01>
+                  <ns0:C502_2>
+                    <C50201>AAL</C50201>
+                  </ns0:C502_2>
+                  <ns0:C174_2>
+                    <C17401>KGM</C17401>
+                    <C17402>
+                      <xsl:value-of select="s0:NetWeight"/>
+                    </C17402>
+                  </ns0:C174_2>
+                </ns0:MEA_2>
+
+                <ns0:PCILoop1>
+                  <ns0:PCI_2>
+                    <PCI01>17</PCI01>
+                    <ns0:C827_2>
+                      <C82701>S</C82701>
+                    </ns0:C827_2>
+                  </ns0:PCI_2>
+
+                  <ns0:GIN_3>
+                    <GIN01>ML</GIN01>
+                    <ns0:C208_11>
+                      <C20801>
+                        <xsl:value-of select="s0:CarrierNo"/>
+                      </C20801>
+                    </ns0:C208_11>
+                  </ns0:GIN_3>
+                </ns0:PCILoop1>
+              </ns0:PACLoop2>
+            </ns0:CPSLoop2>
+          </ns0:QTYLoop2>
+        </ns0:LINLoop1>
+      </xsl:for-each>
+
+    </ns0:EFACT_D96A_INVRPT>
+  </xsl:template>
+  <msxsl:script language="C#" implements-prefix="MyScript">
+    <![CDATA[			
+      int CPSCounter = 0;
+      public string GetCPSCounter()
+      {
+        return (++CPSCounter).ToString();
+      }
+      
+      public int NRCounter2 = 1;
+      public string GetNRCounter2(bool increment)
+      {
+        if (increment)
+          NRCounter2 += 1;
+        return (NRCounter2).ToString();
+      }
+      
+      public string GetNRCounter3()
+      {
+        return (NRCounter2 - 1).ToString();
+      }
+            
+      public int NRCounter = 0;
+      public string GetNRCounter(bool increment)
+      {
+        if (increment){
+          NRCounter2 = 1;
+          NRCounter += 1;
+        }        
+        return (NRCounter).ToString();
+      }
+      
+      public int LINCounter = 0;
+      public string GetLinCounter()
+      {
+          LINCounter = LINCounter + 1;
+          return LINCounter.ToString();
+      }
+      
+      public string ToUpper(string input)
+			{
+				return input.ToUpper();
+			}
+      
+      public string Replace(string input, string toReplace, string replaceTo)
+			{
+				return input.Replace(toReplace,replaceTo);
+			}
+      
+      public int Abs(int input)
+			{
+				return Math.Abs(input);
+			}
+      
+			public string GetCurrentDate(string formatOut)
+			{
+				return System.DateTime.Now.ToString(formatOut);
+			}
+      
+      public string ParseDate(string input, string formatIn, string formatOut)
+
+      {
+        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
+        return dateT.ToString(formatOut);
+      }
+      
+      public string GetGUID()
+      {
+        return "{"+Guid.NewGuid().ToString()+"}";
+      }
+      
+     public string ConvertStatusCode(string StatusCode)
+      {
+        switch (StatusCode)
+        {
+          case "10-NIEUW":
+          return "FREE";
+          
+          case "15-WIJZIG":
+          return "FREE";
+          
+          case "20-VRIJ":
+          return "FREE";
+          
+          case "30-ORDERPICK":
+          return "FREE";
+          
+          case "40-KLAARGEZET":
+          return "FREE";
+          
+          case "50-QUARANTAINE":
+          return "QUALITY";
+          
+          case "90-GEBLOKKEERD":
+          return "BLOCKED";
+          
+          default:
+          return "FREE";
+        }
+      }
+     
+    public int QtyOnCarrier {get;set;}
+    public void AddToQtyOnCarrier(int qtyOnCarrier)
+	  {       
+       QtyOnCarrier = QtyOnCarrier + qtyOnCarrier;             
+    }
+    
+    public void SetQtyOnCarrier(int qtyOnCarrier)
+	  {       
+       QtyOnCarrier = qtyOnCarrier;             
+    }
+    
+    public int GetQtyOnCarrier()
+	  {       
+       return QtyOnCarrier;             
+    }
+             
+    public int QtyOnCarrierRetour {get;set;}
+    public void AddToQtyOnCarrierRetour(int qtyOnCarrierRetour)
+	  {       
+       QtyOnCarrierRetour = QtyOnCarrierRetour + qtyOnCarrierRetour;             
+    }
+    
+    public void SetQtyOnCarrierRetour(int qtyOnCarrierRetour)
+	  {       
+       QtyOnCarrierRetour = qtyOnCarrierRetour;             
+    }
+    
+    public int GetQtyOnCarrierRetour()
+	  {       
+       return QtyOnCarrierRetour;             
+    }
+      
+		]]>
+  </msxsl:script>
+</xsl:stylesheet>
