@@ -39,9 +39,22 @@
 						<xsl:value-of select="substring(Column1, 1, 50)"/>
 					</Description>
 					
+					<SearchDescription>
+						<xsl:value-of select="substring(Column1, 1, 50)"/>
+					</SearchDescription>
+					
 					<BaseUnitofMeasure>
 						<xsl:value-of select="Column2"/>
 					</BaseUnitofMeasure>
+					<UnitofMeasureatReceipt>
+						<xsl:value-of select="Column2"/>
+					</UnitofMeasureatReceipt>
+					<UnitofMeasureatShipment>
+						<xsl:value-of select="Column2"/>
+					</UnitofMeasureatShipment>
+					<UnitofMeasureatStorage>
+						<xsl:value-of select="Column2"/>
+					</UnitofMeasureatStorage>
 					
 					<TemplateName>
 						<xsl:text>JANSITEM</xsl:text>
