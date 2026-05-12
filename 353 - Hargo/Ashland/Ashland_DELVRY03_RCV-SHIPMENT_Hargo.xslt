@@ -273,18 +273,29 @@
                                                         <xsl:value-of select="substring(../E1EDL24[LFIMG = 0]/Z1EDLTM/PALLET_TYPE, 1, 2)" />
                                                     </xsl:when>
                                                     <xsl:when test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[PALLET_TYPE != '']) &gt; 1">
-                                                        <xsl:if test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[substring(PALLET_TYPE, 1, 2) = 'IB']) &gt; 0">
-                                                            <xsl:choose>
-                                                                <xsl:when test="VRKME = 'IBC'">
-                                                                    <xsl:text>IB</xsl:text>
-                                                                </xsl:when>
-                                                                <xsl:otherwise>
-                                                                    <xsl:if test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[not(starts-with(PALLET_TYPE, 'IB'))][PALLET_TYPE != '']) = 1">
-                                                                        <xsl:value-of select="substring(../E1EDL24[LFIMG = 0]/Z1EDLTM[not(starts-with(PALLET_TYPE, 'IB'))]/PALLET_TYPE, 1, 2)" />
-                                                                    </xsl:if>
-                                                                </xsl:otherwise>
-                                                            </xsl:choose>
-                                                        </xsl:if>
+                                                        <xsl:variable name="distinctTypes" select="distinct-values(for $pt in ../E1EDL24[LFIMG = 0]/Z1EDLTM[PALLET_TYPE != ''] return substring($pt/PALLET_TYPE, 1, 2))" />
+                                                        <xsl:choose>
+                                                            <xsl:when test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[substring(PALLET_TYPE, 1, 2) = 'IB']) &gt; 0">
+                                                                <xsl:choose>
+                                                                    <xsl:when test="VRKME = 'IBC'">
+                                                                        <xsl:text>IB</xsl:text>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:if test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[not(starts-with(PALLET_TYPE, 'IB'))][PALLET_TYPE != '']) = 1">
+                                                                            <xsl:value-of select="substring(../E1EDL24[LFIMG = 0]/Z1EDLTM[not(starts-with(PALLET_TYPE, 'IB'))]/PALLET_TYPE, 1, 2)" />
+                                                                        </xsl:if>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </xsl:when>
+                                                            <xsl:when test="count($distinctTypes) = 1">
+                                                                <!-- All pallet types have the same first 2 chars, merge and use that -->
+                                                                <xsl:value-of select="$distinctTypes" />
+                                                            </xsl:when>
+                                                            <xsl:otherwise>
+                                                                <!-- TODO if we get this scenario: Multiple different pallet types (first 2 chars differ). Business rule needed. -->
+                                                                <!-- Place your handling logic here if needed. -->
+                                                            </xsl:otherwise>
+                                                        </xsl:choose>
                                                     </xsl:when>
                                                 </xsl:choose>
                                             </xsl:otherwise>
