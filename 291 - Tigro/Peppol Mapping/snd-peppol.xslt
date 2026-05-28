@@ -15,6 +15,24 @@
     </xsl:copy>
   </xsl:template>
   
+  <!-- Override BuyerReference with value after 'CC-' from a CC- InvoiceLine, if present -->
+  <xsl:template match="cbc:BuyerReference">
+    <xsl:variable name="ccLine" select="/inv:Invoice/cac:InvoiceLine[starts-with(cac:Item/cbc:Name, 'CC-')]"/>
+    <xsl:copy>
+      <xsl:choose>
+        <xsl:when test="$ccLine">
+          <xsl:value-of select="substring-after($ccLine/cac:Item/cbc:Name, 'CC-')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="@*|node()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- Remove InvoiceLines whose Item/Name starts with 'CC-' -->
+  <xsl:template match="cac:InvoiceLine[starts-with(cac:Item/cbc:Name, 'CC-')]"/>
+
   <!-- Conditionally override payment account ID based on customer name -->
   <xsl:template match="cac:PaymentMeans/cac:PayeeFinancialAccount/cbc:ID">
     <xsl:copy>
