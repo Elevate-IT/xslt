@@ -182,7 +182,16 @@
             
             <VRKME></VRKME>
             
-            <MEINS>{$content/ns0:BaseUnitofMeasureCode}</MEINS>
+            <MEINS>
+                <xsl:choose>
+                    <xsl:when test="$content/ns0:BaseUnitofMeasureCode = 'CRT'">
+                        <xsl:text>CT</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$content/ns0:BaseUnitofMeasureCode"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </MEINS>
             
             <HIPOS>{$doc/ns0:DocumentLines/ns0:DocumentLine[ns0:LineNo = $docLineNo]/ns0:Attributes/ns0:Attribute[ns0:Code = 'LINENO']/ns0:Value}</HIPOS>
             
@@ -227,7 +236,16 @@
                     </xsl:choose>    
                 </VEMNG>
                 
-                <VEMEH>{$content/ns0:BaseUnitofMeasureCode}</VEMEH>
+                <VEMEH>
+                    <xsl:choose>
+                        <xsl:when test="$content/ns0:BaseUnitofMeasureCode = 'CRT'">
+                            <xsl:text>CT</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$content/ns0:BaseUnitofMeasureCode"/>
+                        </xsl:otherwise>
+                    </xsl:choose>    
+                </VEMEH>
                 
                 <MATNR>{eit:padZeroLeft(xs:string($content/ns0:ExternalNo), 18)}</MATNR>
                 
