@@ -73,7 +73,7 @@
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
                             </ns0:Address>
                             <ns0:City>
-                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
+                                <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06, 1, 30)" />
                             </ns0:City>
                             <ns0:PostCode>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD08" />
@@ -105,7 +105,7 @@
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
                             </ns0:Address>
                             <ns0:City>
-                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
+                                <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06, 1, 30)" />
                             </ns0:City>
                             <ns0:PostCode>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD08" />
@@ -156,9 +156,11 @@
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="s0:LIN/s0:C212/C21201"/>
                                         </ns0:ExternalNo>
+                                        
                                         <ns0:OrderQuantity>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18602"/>
                                         </ns0:OrderQuantity>
+
                                         <ns0:OrderUnitofMeasureCode>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18603"/>
                                         </ns0:OrderUnitofMeasureCode>
