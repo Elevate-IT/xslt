@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2017 rel. 3 sp1 (http://www.altova.com) by Conny Graumans (AgroConnect) -->
+<!--xsd Track & trace Crop Protection Products, Despatch Advice Message, AgroConnect, version v2018p01, last update 9may22-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ttdesp="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_DespatchAdvice_v2018p01" xmlns:udt="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/UnqualifiedDataType_21p0" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_DataTypes_v2018p01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_DespatchAdvice_v2018p01" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.0">
+	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_DataTypes_v2018p01" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_DataTypes_v2018p01.xsd"/>
+	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/UnqualifiedDataType_21p0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/UnqualifiedDataType_21p0.xsd"/>
+	<xsd:element name="MessageHeader" type="ttdesp:MessageHeaderType"/>
+	<xsd:complexType name="MessageHeaderType">
+		<xsd:sequence>
+			<xsd:element name="MessageID" type="udt:IDType"/>
+			<xsd:element name="SendingDateTime" type="udt:DateTimeType"/>
+			<xsd:element name="SendingPartyID" type="udt:IDType"/>
+			<xsd:element name="ReceivingPartyID" type="udt:IDType"/>
+			<xsd:element name="MessageType" type="cdt:messageTypeCode"/>
+			<xsd:element name="MessagePurposeCode" type="cdt:messagePurposeCodeCode"/>
+			<xsd:element name="Delivery" type="ttdesp:DeliveryType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Delivery" type="ttdesp:DeliveryType"/>
+	<xsd:complexType name="DeliveryType">
+		<xsd:sequence>
+			<xsd:element name="DeliveryID" type="udt:IDType"/>
+			<xsd:element name="DeliveryStatusCode" type="cdt:documentStatusCode"/>
+			<xsd:element name="OriginalDeliveryReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="DeliveryDateTime" type="udt:DateTimeType"/>
+			<xsd:element name="GrossWeight" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="NetWeight" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="Volume" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="Timing" type="ttdesp:TimingType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Remark" type="ttdesp:RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="MeansOfTransportation" type="ttdesp:MeansOfTransportationType" minOccurs="0"/>
+			<xsd:element name="InternationalCommercialTerms" type="ttdesp:InternationalCommercialTermsType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="TradeParty" type="ttdesp:TradePartyType" maxOccurs="unbounded"/>
+			<xsd:element name="DeliveryLine" type="ttdesp:DeliveryLineType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="TradeParty" type="ttdesp:TradePartyType"/>
+	<xsd:complexType name="TradePartyType">
+		<xsd:sequence>
+			<xsd:element name="GlobalID" type="udt:IDType"/>
+			<xsd:element name="LocalID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="ChamberOfCommerceNumber" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="TradePartyRoleCode" type="cdt:tradePartyRoleCode"/>
+			<xsd:element name="TradePartyName" type="udt:TextType"/>
+			<xsd:element name="StreetNameAndNumber" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="PostalCodeLocation" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CityName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CountyDistrictName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CountryCode" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="PostBoxNumber" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="PostalCodePostBox" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CityNamePostBox" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CountryCodePostBox" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="PhoneNumber" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="MobilePhoneNumber" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="TelefaxNumber" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="EmailAddress" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="PersonToContact" type="udt:TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="InternationalCommercialTerms" type="ttdesp:InternationalCommercialTermsType"/>
+	<xsd:complexType name="InternationalCommercialTermsType">
+		<xsd:sequence>
+			<xsd:element name="ICT_ReferenceID" type="udt:TextType"/>
+			<xsd:element name="ICT_Description" type="udt:TextType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="MeansOfTransportation" type="ttdesp:MeansOfTransportationType"/>
+	<xsd:complexType name="MeansOfTransportationType">
+		<xsd:sequence>
+			<xsd:element name="TransportMeansID" type="udt:IDType"/>
+			<xsd:element name="TransportMeansTypeCode" type="cdt:transportMeansTypeCode"/>
+			<xsd:element name="TransportMeansName" type="udt:TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Timing" type="ttdesp:TimingType"/>
+	<xsd:complexType name="TimingType">
+		<xsd:sequence>
+			<xsd:element name="EventTypeCode" type="cdt:eventTypeCode"/>
+			<xsd:element name="EventDateTime" type="udt:DateTimeType" minOccurs="0"/>
+			<xsd:element name="EventBeginDateTime" type="udt:DateTimeType" minOccurs="0"/>
+			<xsd:element name="EventEndDateTime" type="udt:DateTimeType" minOccurs="0"/>
+			<xsd:element name="EventSequenceNumber" type="udt:NumericType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="DeliveryLine" type="ttdesp:DeliveryLineType"/>
+	<xsd:complexType name="DeliveryLineType">
+		<xsd:sequence>
+			<xsd:element name="DeliveryLineID" type="udt:IDType"/>
+			<xsd:element name="DeliveryLineQuantity" type="udt:MeasureType"/>
+			<xsd:element name="OrderReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="OrderLineReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="EndCustomerOrderReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="EndCustomerOrderLineReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="Remark" type="ttdesp:RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ProductUnit" type="ttdesp:ProductUnitType"/>
+			<xsd:element name="Timing" type="ttdesp:TimingType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="PackageProductUnitFirstLevel" type="ttdesp:PackageProductUnitFirstLevelType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ProductUnit" type="ttdesp:ProductUnitType"/>
+	<xsd:complexType name="ProductUnitType">
+		<xsd:sequence>
+			<xsd:element name="ProductUnitID_SSCC" type="udt:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Is not relevant for the Order message, only for the Delivery message.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProductUnitID_GTIN" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="ProductUnitTypeCode" type="cdt:productUnitTypeCode"/>
+			<xsd:element name="BatchID" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="SupplierProductUnitID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="OrdererProductUnitID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="ProductUnitName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="PackageTypeCode" type="cdt:packageTypeCode" minOccurs="0"/>
+			<xsd:element name="SerialNumber" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ProductionDate" type="udt:DateTimeType" minOccurs="0"/>
+			<xsd:element name="PacketSize" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrossWeight" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="NetWeight" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="ExpiryDate" type="udt:DateTimeType" minOccurs="0"/>
+			<xsd:element name="RegionalRegistrationID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PackageProductUnitFirstLevelType">
+		<xsd:sequence>
+			<xsd:element name="Quantity" type="udt:NumericType" minOccurs="0"/>
+			<xsd:element name="OrderReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="OrderLineReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="Remark" type="ttdesp:RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ProductUnit" type="ttdesp:ProductUnitType" minOccurs="1"/>
+			<xsd:element name="PackageProductUnitSecondLevel" type="ttdesp:PackageProductUnitSecondLevelType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PackageProductUnitSecondLevelType">
+		<xsd:sequence>
+			<xsd:element name="Quantity" type="udt:NumericType" minOccurs="0"/>
+			<xsd:element name="OrderReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="OrderLineReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="Remark" type="ttdesp:RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ProductUnit" type="ttdesp:ProductUnitType" minOccurs="1"/>
+			<xsd:element name="PackageProductUnitThirdLevel" type="ttdesp:PackageProductUnitThirdLevelType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PackageProductUnitThirdLevelType">
+		<xsd:sequence>
+			<xsd:element name="Quantity" type="udt:NumericType" minOccurs="0"/>
+			<xsd:element name="OrderReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="OrderLineReferenceID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="Remark" type="ttdesp:RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ProductUnit" type="ttdesp:ProductUnitType" minOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Remark" type="ttdesp:RemarkType"/>
+	<xsd:complexType name="RemarkType">
+		<xsd:sequence>
+			<xsd:element name="TextFunctionTypeCode" type="cdt:textFunctionTypeCode"/>
+			<xsd:element name="TextLines" type="udt:TextType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

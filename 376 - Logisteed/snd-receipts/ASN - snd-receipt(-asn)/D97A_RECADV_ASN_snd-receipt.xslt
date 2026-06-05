@@ -9,9 +9,15 @@
     
     <xsl:key name="average" match="s0:DocumentLines/s0:DocumentLine/s0:CarrierTypeCode" use="text()"/>
     
+    <xsl:key
+        name="kByEdiLineNo"
+        match="s0:DocumentDetailLine[s0:Posted = '1']"
+        use="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+    
     <xsl:template match="/">
         <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
     </xsl:template>
+    
     <xsl:template match="//s0:Message/s0:Documents/s0:Document">
         <ns0:EFACT_D97A_RECADV>
             <UNH>
@@ -84,25 +90,6 @@
                         </C08201>
                         <C08203>91</C08203>
                     </ns0:C082>
-                    <!-- <ns0:C080>
-                         <C08001>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:Name)" />
-                         </C08001>
-                         </ns0:C080>
-                         <ns0:C059>
-                         <C05901>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:Address)" />
-                         </C05901>
-                         <C05902>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:City)" />
-                         </C05902>
-                         <C05903>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:PostCode)" />
-                         </C05903>
-                         <C05904>
-                         <xsl:value-of select="upper-case(s0:Customer/s0:CountryName)" />
-                         </C05904>
-                         </ns0:C059> -->
                  </ns0:NAD>
             </ns0:NADLoop1>
             
@@ -114,7 +101,27 @@
                 </ns0:CPS>        
                 <!--</ns0:CPSLoop1> -->
                 
-                <xsl:for-each select="s0:DocumentLines/s0:DocumentLine[s0:Type='1']/s0:DocumentDetailLines/s0:DocumentDetailLine[s0:Posted = '1']">
+                <xsl:for-each
+                    select="s0:DocumentLines/s0:DocumentLine[s0:Type='1']
+                        /s0:DocumentDetailLines/s0:DocumentDetailLine[s0:Posted = '1']
+                        [generate-id()
+                            =
+                            generate-id(
+                                key(
+                                    'kByEdiLineNo',
+                                    s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value
+                                )[1]
+                            )
+                        ]">
+                    
+                    <!-- Cache the group key -->
+                    <xsl:variable name="ediLineNo"
+                        select="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+                    
+                    <!-- All lines in this group -->
+                    <xsl:variable name="group"
+                        select="key('kByEdiLineNo', $ediLineNo)"/>
+                    
                     <ns0:LINLoop1>
                         <ns0:LIN>
                             <LIN01>
@@ -122,8 +129,9 @@
                             </LIN01>
                             <C212>
                                 <C21201>
-                                    <xsl:value-of select="s0:ExternalNo" />
+                                    <!-- <xsl:value-of select="s0:ExternalNo" /> -->
                                     <!-- <xsl:value-of select="s0:EANCode" /> -->
+                                    <xsl:value-of select="s0:ExternalNo"/>
                                 </C21201>
                                 <C21202>MF</C21202>
                                 <C21204>90</C21204>
@@ -134,7 +142,9 @@
                             <PIA01>1</PIA01>
                             <ns0:C212_2>
                                 <C21201>
-                                    <xsl:variable name="QualIndicator" >
+                                    <xsl:variable name="QualIndicator" select="s0:Attribute01" />
+                                    
+                                    <xsl:variable name="MappedCode">
                                         <xsl:choose>
                                             <xsl:when test="s0:Attribute01 = 'AVAILABLE'">0001</xsl:when>
                                             <xsl:when test="s0:Attribute01 = 'AWAITING SCRAP'">AS01</xsl:when>
@@ -161,9 +171,13 @@
                                             <xsl:when test="s0:Attribute01 = 'SHORTAGE'">SK99</xsl:when>
                                             <xsl:when test="s0:Attribute01 = 'STOCK DISCREPANCY'">SK99</xsl:when>
                                             <xsl:when test="s0:Attribute01 = 'SURPLUS'">SK99</xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="s0:Attribute01"/>
+                                            </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>
-                                    <xsl:value-of select="concat(s0:Attribute03, $QualIndicator)" />
+                                    
+                                    <xsl:value-of select="concat(s0:Attribute03, $MappedCode)" />
                                 </C21201>
                                 <C21202>ZZZ</C21202>
                                 <C21204>91</C21204>
@@ -174,7 +188,7 @@
                             <ns0:C186>
                                 <C18601>48</C18601>
                                 <C18602>
-                                    <xsl:value-of select="sum(s0:Quantity)" />
+                                    <xsl:value-of select="sum($group/s0:Quantity)" />
                                 </C18602>
                                 <C18603>
                                     <xsl:text>PCE</xsl:text>

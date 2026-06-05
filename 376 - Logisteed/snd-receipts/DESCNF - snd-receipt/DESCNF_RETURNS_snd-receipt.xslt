@@ -6,9 +6,16 @@
                 exclude-result-prefixes="msxsl var s0"
                 version="3.0"  > 
     <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+    
     <xsl:template match="/">
         <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
     </xsl:template>
+    
+    <xsl:key
+        name="kByEdiLineNo"
+        match="s0:DocumentLine[s0:Type='1']"
+        use="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+    
     <xsl:template match="//s0:Message/s0:Documents/s0:Document">
         <ns0:EFACT_D97A_DESADV>
             <UNH>
@@ -23,7 +30,7 @@
                     <UNH2.5>EDDS05</UNH2.5>
                 </UNH2>
                 <UNH4>
-                    <UNH4.1>1</UNH4.1>
+                    <UNH4.2>1</UNH4.2>
                 </UNH4>
             </UNH>
             
@@ -33,7 +40,7 @@
                     <C00204>RETURNS</C00204>
                 </ns0:C002>
                 <ns0:C106>
-                    <C10601> <xsl:value-of select="s0:No"/></C10601>
+                    <C10601> <xsl:value-of select="s0:ExternalDocumentNo"/></C10601>
                 </ns0:C106>
                 <BGM03>9</BGM03>
             </ns0:BGM>
@@ -63,177 +70,68 @@
                     <ns0:C506>
                         <C50601>SRN</C50601>
                         <C50602>
-                            <xsl:value-of select="s0:ExternalDocumentNo"/>
+                            <xsl:value-of select="s0:No"/>
                         </C50602>
                     </ns0:C506>
                 </ns0:RFF>
             </ns0:RFFLoop1>
             
-            <!-- <ns0:RFFLoop1>
-                 <ns0:RFF>
-                 <ns0:C506>
-                 <C50601>DQ</C50601>
-                 <C50602>
-                 <xsl:value-of select="s0:ExternalReference"/>
-                 </C50602>
-                 </ns0:C506>
-                 </ns0:RFF>
-                 </ns0:RFFLoop1> -->
-            
-            <!-- <ns0:RFFLoop1>
-                 <ns0:RFF>
-                 <ns0:C506>
-                 <C50601>VM</C50601>
-                 <C50602>
-                 Your so/to/po order nr ERP
-                 </C50602>
-                 </ns0:C506>
-                 </ns0:RFF>
-                 </ns0:RFFLoop1>			 -->
-            <!-- <ns0:RFFLoop1>
-                 <ns0:RFF>
-                 <ns0:C506>
-                 <C50601>ZZZ</C50601>
-                 <C50602>
-                 
-                 </C50602>
-                 </ns0:C506>
-                 </ns0:RFF>
-                 </ns0:RFFLoop1> -->
-            
-            <!-- Party info Supplier -->
             <ns0:NADLoop1>
                 <ns0:NAD>
-                    <NAD01>CN</NAD01> <!-- was SU -->
+                    <NAD01>CN</NAD01>
                     <ns0:C082>
                         <C08201>
-                            <xsl:value-of select="upper-case(//s0:ToTradingPartner)" />
+                            <xsl:choose>
+                                <xsl:when test="s0:SenderAddress/s0:EANCode != ''">
+                                    <xsl:value-of select="substring(translate(normalize-space(s0:SenderAddress/s0:EANCode),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text>ONE TIME</xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </C08201>
-                        <C08202>9</C08202>
+                        <C08203>91</C08203>
                     </ns0:C082>
-                    <ns0:C080>
-                        <C08001>
-                            <!-- supplier name Customer-->
-                            <xsl:value-of select="upper-case(s0:Customer/s0:Name)"/>
-                        </C08001>
-                    </ns0:C080>
-                    <ns0:C059>
-                        <C05901>
-                            <!-- StreetCustomer -->
-                            <xsl:value-of select="upper-case(s0:Customer/s0:Address)"/>
-                        </C05901>
-                        <C05902>
-                            <!-- city Customer-->
-                            <xsl:value-of select="upper-case(s0:Customer/s0:City)"/>
-                        </C05902>
-                        <C05903>
-                            <!-- Postal  Customer-->
-                            <xsl:value-of select="upper-case(s0:Customer/s0:PostCode)"/>
-                        </C05903>
-                        <C05904>
-                            <!-- Country Customer-->
-                            <xsl:value-of select="upper-case(s0:Customer/s0:CountryRegionCode)"/>
-                        </C05904>
-                    </ns0:C059>
                 </ns0:NAD>
             </ns0:NADLoop1>
             
-            
-            <!-- Party info DP -->
             <ns0:NADLoop1>
                 <ns0:NAD>
                     <NAD01>CZ</NAD01>
                     <ns0:C082>
                         <C08201>
-                            <xsl:value-of select="upper-case(s0:ShipToAddress/s0:ExternalNo)" />
+                            <xsl:value-of select="substring(translate(normalize-space(s0:Attribute03),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,35)" />
                         </C08201>
-                        <C08202>9</C08202>
+                        <C08203>91</C08203>
                     </ns0:C082>
-                    <ns0:C080>
-                        <C08001>
-                            <xsl:value-of select="upper-case(s0:ShipToAddress/s0:Name)" />
-                        </C08001>
-                    </ns0:C080>
-                    <ns0:C059>
-                        <C05901>
-                            <xsl:value-of select="upper-case(s0:ShipToAddress/s0:Address)" />
-                        </C05901>
-                        <C05902>
-                            <xsl:value-of select="upper-case(s0:ShipToAddress/s0:City)" />
-                        </C05902>
-                        <C05903>
-                            <xsl:value-of select="upper-case(s0:ShipToAddress/s0:PostCode)" />
-                        </C05903>
-                        <C05904>
-                            <xsl:value-of select="upper-case(s0:ShipToAddress/s0:CountryRegionCode)" />
-                        </C05904>
-                    </ns0:C059>
                 </ns0:NAD>
             </ns0:NADLoop1>
-            
-            <!-- <ns0:TDTLoop1>
-                 <TDT>
-                 <ns0:TDT01>20</ns0:TDT01>
-                 <ns0:C040>
-                 <ns0:C04001>
-                 carrier gln/code
-                 </ns0:C04001>
-                 <ns0:C04002>ZZ</ns0:C04002>
-                 <ns0:C04003></ns0:C04003>
-                 <ns0:C04004>
-                 Carrier name
-                 </ns0:C04004>
-                 </ns0:C040>
-                 </TDT>
-                 </ns0:TDTLoop1> -->
-            
-            <!-- <ns0:CPSLoop1>
-                 <ns0:CPS>
-                 <CPS01>1</CPS01>
-                 </ns0:CPS>
-                 <ns0:PACLoop1>
-                 <ns0:PAC>
-                 <PAC01>
-                 <xsl:value-of select="s0:CarrierQuantity"/>
-                 </PAC01>
-                 </ns0:PAC>
-                 </ns0:PACLoop1>
-                 </ns0:CPSLoop1> -->
             
             <ns0:CPSLoop1>
                 <ns0:CPS>
                     <CPS01>
                         <xsl:text>1</xsl:text>
                     </CPS01>
-                    
                 </ns0:CPS>
-                <xsl:for-each select="//s0:Carriers/s0:Carrier/s0:Contents/s0:Content">
+                
+                <xsl:for-each
+                    select="s0:DocumentLines/s0:DocumentLine[s0:Type='1']
+                        [generate-id() = generate-id(
+                                key('kByEdiLineNo',
+                                    s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value
+                                )[1]
+                            )]">
                     
-                    <!-- <ns0:PACLoop1>
-                         <ns0:PAC>
-                         <PAC01>1</PAC01>
-                         <ns0:C202>
-                         <C20201>
-                         <xsl:value-of select="s0:CarrierTypeCode"/>
-                         </C20201>
-                         </ns0:C202>
-                         </ns0:PAC>
-                         <ns0:PCILoop1>
-                         <ns0:PCI>
-                         <PCI01>33E</PCI01>
-                         </ns0:PCI>
-                         <ns0:GINLoop1>
-                         <ns0:GIN>
-                         <GIN01>BJ</GIN01>
-                         <ns0:C208_2>
-                         <C20801>
-                         <xsl:value-of select="../../s0:No"/>
-                         </C20801>
-                         </ns0:C208_2>
-                         </ns0:GIN>
-                         </ns0:GINLoop1>
-                         </ns0:PCILoop1>
-                         </ns0:PACLoop1> -->
+                    <xsl:variable name="ediLineNo"
+                        select="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+                    
+                    <xsl:variable name="groupLines"
+                        select="key('kByEdiLineNo', $ediLineNo)"/>
+                    
+                    <xsl:variable name="groupDetailLines"
+                        select="$groupLines/s0:DocumentDetailLines
+                            /s0:DocumentDetailLine[s0:Posted='1']"/>
+                    
                     <ns0:LINLoop1>
                         <ns0:LIN>
                             <LIN01>
@@ -241,54 +139,59 @@
                             </LIN01>
                             <ns0:C212>
                                 <C21201>
-                                    <!-- Item no GTIN EANCodeBaseUnitofMeasure-->
-                                    <xsl:value-of select="s0:EANCodeBaseUnitofMeasure"/>
+                                    <xsl:value-of select="s0:ExternalNo" />
                                 </C21201>
                                 <C21202>MF</C21202>
                                 <C21203>92</C21203>
                             </ns0:C212>
                         </ns0:LIN>
+                        
                         <ns0:PIA>
-                            <PIA01><xsl:value-of select="position()"/></PIA01>
+                            <PIA01>1</PIA01>
                             <ns0:C212_2>
                                 <C21201>
-                                    <!-- your erp art no -->
-                                    <xsl:value-of select="s0:ExternalNo"/>
+                                    <xsl:variable name="QualIndicator" select="$groupDetailLines/s0:Attribute01" />
+                                    
+                                    <xsl:variable name="MappedCode">
+                                        <xsl:choose>
+                                            <xsl:when test="$QualIndicator = 'AVAILABLE'">1</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'OUT OF WARRANTY'">10</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'DAMAGED CARTONS'">11</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'GOOD STOCK TBC'">12</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'NON-ROHS'">15</xsl:when> <!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'NON ROHS'">15</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'RETURN'">20</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'AWAITING SCRAP'">30</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'INSURANCE STOCK'">35</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'EXHIBITION STOCK'">40</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'RE-WORK (HACE)'">50</xsl:when><!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'RE-WORK HACE'">50</xsl:when><!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'RE WORK HACE'">50</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SERVICE (HACE)'">60</xsl:when><!--OBSOLETE -->
+                                            <xsl:when test="$QualIndicator = 'SERVICE HACE'">60</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SHORTAGE'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'STOCK DISCREPANCY'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'SURPLUS'">SK99</xsl:when>
+                                            <xsl:when test="$QualIndicator = 'JCI SOUTH AND EXPORT'">S&amp;E</xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="$QualIndicator"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
+                                    
+                                    <xsl:value-of select="concat(s0:Attribute03, $MappedCode)" />
+                                    
                                 </C21201>
                                 <C21202>ZZZ</C21202>
+                                <C21204>90</C21204>
                             </ns0:C212_2>
                         </ns0:PIA>
-                        <!-- <ns0:PIA>
-                             <PIA01>1</PIA01>
-                             <ns0:C212_2>
-                             <C21201>                                  
-                             <xsl:value-of select="//s0:DocumentLine[s0:LineNo = $LineNo]/s0:Attributes/s0:Attribute[s0:Code = 'LINENO']/s0:Value" />
-                             </C21201>
-                             <C21202>LI</C21202>
-                             </ns0:C212_2>
-                             </ns0:PIA> -->
-                        
-                        <!-- <ns0:QTY_3>
-                             <ns0:C186_3>
-                             <C18601>12</C18601>
-                             <C18602>
-                             <xsl:value-of select="s0:Quantity"/>        
-                             </C18602>
-                             <C18603>                                  
-                             <xsl:if test="s0:UnitofMeasureCode = 'CRT'">
-                             <xsl:text>TU</xsl:text>
-                             </xsl:if>
-                             </C18603>
-                             </ns0:C186_3>
-                             </ns0:QTY_3> -->
-                        
-                      
                         
                         <ns0:QTY_2>
                             <ns0:C186_2>
                                 <C18601>12</C18601>
                                 <C18602>
-                                    <xsl:value-of select="sum(s0:Quantity)" />
+                                    <xsl:value-of select="sum($groupDetailLines/s0:Quantity)" />
                                 </C18602>
                                 <C18603>
                                     <xsl:text>PCE</xsl:text>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ns0:Message xmlns:ns0="www.boltrics.nl/receiveshipment:v1.00">	<!-- namespace needs to be adjusted -->
+	<ns0:Header>
+		<ns0:MessageID>PL0000003</ns0:MessageID>
+		<ns0:CreationDateTime>0001-01-01T00:00:00</ns0:CreationDateTime>
+		<ns0:ProcesAction>INSERT</ns0:ProcesAction>
+		<ns0:FromTradingPartner>8720299932401</ns0:FromTradingPartner>	<!-- needs to be added -->
+		<ns0:ToTradingPartner>C00021</ns0:ToTradingPartner>
+	</ns0:Header>
+	<ns0:Documents>
+		<ns0:Document>
+			<ns0:No>101001</ns0:No>	<!-- value important? is lost like this -->
+			<ns0:DocumentDate>0001-01-01</ns0:DocumentDate>	<!-- empty value overwritten to today -->
+			<ns0:PostingDate>0001-01-01</ns0:PostingDate>	<!-- empty value overwritten to today -->
+			<ns0:ExternalDocumentNo>PL0000003</ns0:ExternalDocumentNo>
+			<ns0:ExternalReference />
+			<ns0:DeliveryDate>2023-05-24</ns0:DeliveryDate>
+			<ns0:ConsigneeAddress>	<!-- preferred to use ShipToAddress instead -->
+				<ns0:No />
+				<ns0:Name>Meatless B.V.</ns0:Name>
+				<ns0:Address>Meatless B.V.</ns0:Address>
+				<ns0:Address2>Gebr. Spykerstraat 1</ns0:Address2>
+				<ns0:City>Goes</ns0:City>
+				<ns0:PostCode>4462 GJ</ns0:PostCode>
+				<ns0:CountryCode>NL</ns0:CountryCode>
+				<ns0:PhoneNo>+31 113 271 288</ns0:PhoneNo>
+				<ns0:E-Mail p6:nil="true" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance" />
+			</ns0:ConsigneeAddress>
+			<ns0:TripNo>EXW</ns0:TripNo>	<!-- value of importance? if not please remove-->
+			<ns0:BillToCustomer>	<!-- please remove -->
+				<ns0:No>C00021</ns0:No>
+				<ns0:Name>Meatless B.V.</ns0:Name>
+				<ns0:Address>Meatless B.V.</ns0:Address>
+				<ns0:Address2>Gebr. Spykerstraat 1</ns0:Address2>
+				<ns0:City>Goes</ns0:City>
+				<ns0:PostCode>4462 GJ</ns0:PostCode>
+				<ns0:CountryRegionCode>NL</ns0:CountryRegionCode>
+				<ns0:PhoneNo>+31 113 271 288</ns0:PhoneNo>
+			</ns0:BillToCustomer>
+			<ns0:Attribute01>SALESORDER</ns0:Attribute01>	<!-- incorrect element, see ns0:Attributes below -->
+			<ns0:Attributes>
+                <ns0:Attribute>
+                    <ns0:Code>DOCTYPE</ns0:Code>
+                    <ns0:Value>SALESORDER</ns0:Value>
+                </ns0:Attribute>
+            </ns0:Attributes>
+			<ns0:DocumentLines>
+				<ns0:DocumentLine>
+					<ns0:LineNo>10000</ns0:LineNo>	<!-- value important? is lost like this, see ns0:Attributes below -->
+					<ns0:ExternalNo>ABUNDA FROZEN</ns0:ExternalNo>
+					<ns0:Description>Abunda Frozen - Mycoprotein</ns0:Description>
+					<ns0:UnitofMeasureCode>XBG</ns0:UnitofMeasureCode>	<!-- all parties need to align/match their UoMs -->
+					<ns0:OrderQuantity>102.0</ns0:OrderQuantity>
+					<ns0:Attribute01>IsStockArticle:True</ns0:Attribute01>	<!-- value of importance? if not please remove -->
+					<ns0:Attributes>
+						<ns0:Attribute>
+							<ns0:Code>LINENO</ns0:Code>
+							<ns0:Value>10000</ns0:Value>
+						</ns0:Attribute>
+					</ns0:Attributes>
+				</ns0:DocumentLine>
+			</ns0:DocumentLines>
+		</ns0:Document>
+	</ns0:Documents>
+</ns0:Message>

@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ns0:Message xmlns:ns0="www.boltrics.nl/sendreceipt:v1.00">
+  <ns0:Header>
+    <ns0:MessageID>265217</ns0:MessageID>
+    <ns0:CreationDateTime>2020-02-10T15:20:15</ns0:CreationDateTime>
+    <ns0:ProcesAction>INSERT</ns0:ProcesAction>
+    <ns0:FromTradingPartner>ZFL</ns0:FromTradingPartner>
+    <ns0:ToTradingPartner>5413476000002</ns0:ToTradingPartner>
+    <ns0:Database>Dynamics_RAPP</ns0:Database>
+    <ns0:CompanyName>Zeebrugge Food Logistics</ns0:CompanyName>
+    <ns0:Information>SND-RECEIPT</ns0:Information>
+  </ns0:Header>
+  <ns0:Documents>
+    <ns0:Document>
+      <ns0:DocumentType>1</ns0:DocumentType>
+      <ns0:No>I20001521</ns0:No>
+      <ns0:Customer>
+        <ns0:No>K000309</ns0:No>
+        <ns0:EANCode>5413476000002</ns0:EANCode>
+        <ns0:Name>VAMIX NV</ns0:Name>
+        <ns0:No2 />
+        <ns0:Name2 />
+        <ns0:Address>Ottergemsesteenweg-Zuid 816</ns0:Address>
+        <ns0:Address2 />
+        <ns0:City>Gent</ns0:City>
+        <ns0:PostCode>9000</ns0:PostCode>
+        <ns0:County />
+        <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+        <ns0:CountryName>Belgie</ns0:CountryName>
+        <ns0:Contact>Ruben Geurts van Kessel</ns0:Contact>
+        <ns0:PhoneNo>0477964408</ns0:PhoneNo>
+        <ns0:VATRegistrationNo />
+        <ns0:E-Mail>ruben.geurtsvankessel@vandenmoortele.com</ns0:E-Mail>
+        <ns0:HomePage />
+        <ns0:PostalAddress />
+        <ns0:PostalCity />
+        <ns0:PostalCountryRegionCode />
+        <ns0:PostalPostCode />
+        <ns0:PaymentTermsCode>60DEM</ns0:PaymentTermsCode>
+        <ns0:Attribute01 />
+        <ns0:Attribute02 />
+        <ns0:Attribute03 />
+        <ns0:Attribute04 />
+        <ns0:Attribute05 />
+        <ns0:Attribute06 />
+        <ns0:Attribute07 />
+        <ns0:Attribute08 />
+        <ns0:Attribute09 />
+        <ns0:Attribute10 />
+      </ns0:Customer>
+      <ns0:BuildingCode>ZFL-VERS</ns0:BuildingCode>
+      <ns0:LanguageCode />
+      <ns0:LocationNo>8</ns0:LocationNo>
+      <ns0:DocumentDate>2020-02-10</ns0:DocumentDate>
+      <ns0:OrderDate>2020-02-07</ns0:OrderDate>
+      <ns0:PostingDate>2020-02-10</ns0:PostingDate>
+      <ns0:StatusCode>50-DIENSTEN</ns0:StatusCode>
+      <ns0:ExternalDocumentNo>4502104291</ns0:ExternalDocumentNo>
+      <ns0:ExternalReference />
+      <ns0:ShippingAgentCode />
+      <ns0:ShippingAgentServices />
+      <ns0:VehicleNo />
+      <ns0:TrailerContainerNo />
+      <ns0:DockNo />
+      <ns0:AnnouncedDate>2020-02-10</ns0:AnnouncedDate>
+      <ns0:AnnouncedTime>00:00:00</ns0:AnnouncedTime>
+      <ns0:ArrivedDate>2020-02-10</ns0:ArrivedDate>
+      <ns0:ArrivedTime>00:00:00</ns0:ArrivedTime>
+      <ns0:DepartedDate>2020-02-10</ns0:DepartedDate>
+      <ns0:DepartedTime>00:00:00</ns0:DepartedTime>
+      <ns0:PlannedStartDate />
+      <ns0:PlannedEndDate />
+      <ns0:PlannedStartTime>00:00:00</ns0:PlannedStartTime>
+      <ns0:PlannedEndTime>00:00:00</ns0:PlannedEndTime>
+      <ns0:DeliveryDate />
+      <ns0:DeliveryTime>00:00:00</ns0:DeliveryTime>
+      <ns0:CustomsCode />
+      <ns0:IncotermCode />
+      <ns0:IncotermCity />
+      <ns0:CalculatedTripNo />
+      <ns0:CalculatedTripLineNo>0</ns0:CalculatedTripLineNo>
+      <ns0:OrderTypeCode>SSUP</ns0:OrderTypeCode>
+      <ns0:NCTSMRNDocumentNo />
+      <ns0:AdditionalDocumentNo />
+      <ns0:BillofLadingNo />
+      <ns0:CheckDocumentNo />
+      <ns0:TradeDocumentNo />
+      <ns0:CertificateNo />
+      <ns0:Eur1DocumentNo />
+      <ns0:BorderDocumentNo />
+      <ns0:T5DocumentNo />
+      <ns0:SenderAddress>
+        <ns0:No>ADR25999</ns0:No>
+        <ns0:EANCode>0000057742</ns0:EANCode>
+      </ns0:SenderAddress>
+      <ns0:ShipToAddress>
+        <ns0:No>ZFL-VERS</ns0:No>
+        <ns0:ExternalNo>ZFL</ns0:ExternalNo>
+        <ns0:Name>Zeebrugge Food Logistics Vers</ns0:Name>
+        <ns0:Address>Noordzeestraat 201</ns0:Address>
+        <ns0:City>Zeebrugge</ns0:City>
+        <ns0:PostCode>8380</ns0:PostCode>
+        <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+      </ns0:ShipToAddress>
+      <ns0:SenderReference />
+      <ns0:Ship-ToReference />
+      <ns0:ShortcutDimension1Code />
+      <ns0:ShortcutDimension2Code />
+      <ns0:TMSOrderNo />
+      <ns0:TripNo />
+      <ns0:SealNo />
+      <ns0:Attribute01 />
+      <ns0:Attribute02 />
+      <ns0:Attribute03 />
+      <ns0:Attribute04 />
+      <ns0:Attribute05 />
+      <ns0:Attribute06 />
+      <ns0:Attribute07 />
+      <ns0:Attribute08 />
+      <ns0:Attribute09 />
+      <ns0:Attribute10 />
+      <ns0:GrossWeight>3520</ns0:GrossWeight>
+      <ns0:NetWeight>0</ns0:NetWeight>
+      <ns0:VolumeWeight>0</ns0:VolumeWeight>
+      <ns0:Volume>0</ns0:Volume>
+      <ns0:Quantity>0</ns0:Quantity>
+      <ns0:CarrierQuantity>1</ns0:CarrierQuantity>
+      <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+      <ns0:InvoiceValue>0</ns0:InvoiceValue>
+      <ns0:AssignedUserID />
+      <ns0:ModalityCode />
+      <ns0:ContainerNo />
+      <ns0:VesselNo />
+      <ns0:ContainerSizeCode />
+      <ns0:CurrencyCodeCharges />
+      <ns0:CarriageValue>0</ns0:CarriageValue>
+      <ns0:InsuranceValue>0</ns0:InsuranceValue>
+      <ns0:AirwayBillNo />
+      <ns0:DocumentLines>
+        <ns0:DocumentLine>
+          <ns0:DocumentType>1</ns0:DocumentType>
+          <ns0:LineNo>10000</ns0:LineNo>
+          <ns0:AttachedtoLineNo>0</ns0:AttachedtoLineNo>
+          <ns0:Sell-toCustomerNo>K000309</ns0:Sell-toCustomerNo>
+          <ns0:CarrierTypeCode>EUR</ns0:CarrierTypeCode>
+          <ns0:InitialCarrierStatusCode />
+          <ns0:WarehouseStrategyCode />
+          <ns0:Type>1</ns0:Type>
+          <ns0:No>A5519</ns0:No>
+          <ns0:ExternalNo>23459</ns0:ExternalNo>
+          <ns0:ItemNo>STD</ns0:ItemNo>
+          <ns0:UnitCost>0</ns0:UnitCost>
+          <ns0:No2>23459</ns0:No2>
+          <ns0:EANCode />
+          <ns0:ProductVariant />
+          <ns0:EANCodeBaseUnitofMeasure />
+          <ns0:OrderEANCode />
+          <ns0:Description>C331 CCO PREPR.DAN.CUST.FINGER 100G 4KG</ns0:Description>
+          <ns0:Description2>23459 - Suisse lang (glazuur) - C331</ns0:Description2>
+          <ns0:BaseUnitofMeasureCode>CRT</ns0:BaseUnitofMeasureCode>
+          <ns0:UnitofMeasureCode>CRT</ns0:UnitofMeasureCode>
+          <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+          <ns0:Quantity>880</ns0:Quantity>
+          <ns0:QtyCreated>880</ns0:QtyCreated>
+          <ns0:QuantityBase>880</ns0:QuantityBase>
+          <ns0:QtyBaseCreated>880</ns0:QtyBaseCreated>
+          <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
+          <ns0:QtyPosted>880</ns0:QtyPosted>
+          <ns0:QtyBasePosted>880</ns0:QtyBasePosted>
+          <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
+          <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+          <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+          <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+          <ns0:CarrierQuantity>1</ns0:CarrierQuantity>
+          <ns0:CarrierQtyCreated>1</ns0:CarrierQtyCreated>
+          <ns0:DefaultQtyPerCarrier>88</ns0:DefaultQtyPerCarrier>
+          <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+          <ns0:CarrierQtyPosted>1</ns0:CarrierQtyPosted>
+          <ns0:SortingOrder>0</ns0:SortingOrder>
+          <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+          <ns0:WeightRegistration>0</ns0:WeightRegistration>
+          <ns0:OrderUnitofMeasureCode>CRT</ns0:OrderUnitofMeasureCode>
+          <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+          <ns0:OrderQuantity>880</ns0:OrderQuantity>
+          <ns0:DefaultPackageCode />
+          <ns0:ItemCategoryCode>DEEGWAREN</ns0:ItemCategoryCode>
+          <ns0:ProductGroupCode />
+          <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+          <ns0:GrossWeightperUoM>4</ns0:GrossWeightperUoM>
+          <ns0:NetWeightperUoM>4</ns0:NetWeightperUoM>
+          <ns0:VolumeWeight>0</ns0:VolumeWeight>
+          <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+          <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+          <ns0:TareWeight>0</ns0:TareWeight>
+          <ns0:GrossWeight>3520</ns0:GrossWeight>
+          <ns0:NetWeight>3520</ns0:NetWeight>
+          <ns0:VeterinaryNo />
+          <ns0:ProductionDate />
+          <ns0:ExpirationDate>2025-02-10</ns0:ExpirationDate>
+          <ns0:BatchNo>B20002468</ns0:BatchNo>
+          <ns0:ProductionPeriod />
+          <ns0:InitialBatchStatusCode />
+          <ns0:ExternalBatchNo>ZERT</ns0:ExternalBatchNo>
+          <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
+          <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
+          <ns0:FreezingDate />
+          <ns0:LocationNo>8</ns0:LocationNo>
+          <ns0:BuildingCode>ZFL-VERS</ns0:BuildingCode>
+          <ns0:TaricCode />
+          <ns0:CustomsCode />
+          <ns0:TariffNo />
+          <ns0:CountryofOriginCode />
+          <ns0:CountryPurchasedCode />
+          <ns0:CustomsValue>0</ns0:CustomsValue>
+          <ns0:CustomsValueper>0</ns0:CustomsValueper>
+          <ns0:NCTSDocumentNo />
+          <ns0:AdditionalDocumentNo />
+          <ns0:LicenseNrSender />
+          <ns0:SkalNo />
+          <ns0:IncotermCode />
+          <ns0:CustomsCurrencyCode />
+          <ns0:CalculatedTripNo />
+          <ns0:CalculatedTripLineNo>0</ns0:CalculatedTripLineNo>
+          <ns0:ItemCondition>BEVROREN</ns0:ItemCondition>
+          <ns0:ItemHandling />
+          <ns0:EntrepotStorage>0</ns0:EntrepotStorage>
+          <ns0:PrivateStorage>0</ns0:PrivateStorage>
+          <ns0:Cross-docking>0</ns0:Cross-docking>
+          <ns0:ProductionCode />
+          <ns0:DueDate />
+          <ns0:ExternalDocumentNo>4502104291</ns0:ExternalDocumentNo>
+          <ns0:ShortcutDimension1Code />
+          <ns0:ShortcutDimension2Code />
+          <ns0:SenderAddressNo>ADR25999</ns0:SenderAddressNo>
+          <ns0:Ship-ToAddressNo>ZFL-VERS</ns0:Ship-ToAddressNo>
+          <ns0:ActivityDate />
+          <ns0:ActivityTime>00:00:00</ns0:ActivityTime>
+          <ns0:TMSOrderNo />
+          <ns0:TripNo />
+          <ns0:ReasonCode />
+          <ns0:CurrencyCode />
+          <ns0:ContainerNo />
+          <ns0:VesselNo />
+          <ns0:FeatureRecognition />
+          <ns0:MaterialType>0</ns0:MaterialType>
+          <ns0:RecipeNo />
+          <ns0:Attribute01 />
+          <ns0:Attribute02 />
+          <ns0:Attribute03 />
+          <ns0:Attribute04 />
+          <ns0:Attribute05 />
+          <ns0:Attribute06 />
+          <ns0:Attribute07 />
+          <ns0:Attribute08 />
+          <ns0:Attribute09 />
+          <ns0:Attribute10 />
+          <ns0:SenderAddress>
+            <ns0:No>ADR25999</ns0:No>
+            <ns0:EANCode>0000057742</ns0:EANCode>
+          </ns0:SenderAddress>
+          <ns0:ShipToAddress>
+            <ns0:No>ZFL-VERS</ns0:No>
+            <ns0:ExternalNo>ZFL</ns0:ExternalNo>
+            <ns0:Name>Zeebrugge Food Logistics Vers</ns0:Name>
+            <ns0:Address>Noordzeestraat 201</ns0:Address>
+            <ns0:City>Zeebrugge</ns0:City>
+            <ns0:PostCode>8380</ns0:PostCode>
+            <ns0:CountryRegionCode>BE</ns0:CountryRegionCode>
+          </ns0:ShipToAddress>
+          <ns0:DocumentDetailLines>
+            <ns0:DocumentDetailLine>
+              <ns0:DocumentLineNo>10000</ns0:DocumentLineNo>
+              <ns0:LineNo>100000</ns0:LineNo>
+              <ns0:DossierNo />
+              <ns0:CarrierTypeCode>EUR</ns0:CarrierTypeCode>
+              <ns0:CustomerItemNo>A5519</ns0:CustomerItemNo>
+              <ns0:ExternalNo>23459</ns0:ExternalNo>
+              <ns0:EANCode />
+              <ns0:ProductVariant />
+              <ns0:UnitofMeasureCode>CRT</ns0:UnitofMeasureCode>
+              <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+              <ns0:Quantity>880</ns0:Quantity>
+              <ns0:QuantityBase>880</ns0:QuantityBase>
+              <ns0:CarrierNo>200100000000014206</ns0:CarrierNo>
+              <ns0:CarrierLineNo>1</ns0:CarrierLineNo>
+              <ns0:CarrierStackID>0</ns0:CarrierStackID>
+              <ns0:OrderUnitofMeasureCode />
+              <ns0:OrderQuantity>0</ns0:OrderQuantity>
+              <ns0:Temperature>0</ns0:Temperature>
+              <ns0:TareWeight>0</ns0:TareWeight>
+              <ns0:GrossWeight>3520</ns0:GrossWeight>
+              <ns0:NetWeight>3520</ns0:NetWeight>
+              <ns0:ProductionDate />
+              <ns0:ExpirationDate>2025-02-10</ns0:ExpirationDate>
+              <ns0:BatchNo>B20002468</ns0:BatchNo>
+              <ns0:ProductionPeriod />
+              <ns0:FreezingDate />
+              <ns0:ExternalBatchNo>ZERT</ns0:ExternalBatchNo>
+              <ns0:BuildingCode>ZFL-VERS</ns0:BuildingCode>
+              <ns0:LocationNo>8</ns0:LocationNo>
+              <ns0:ExternalCarrierNo />
+              <ns0:NVESSCC-18No />
+              <ns0:DouaneCode />
+              <ns0:CalculatedTripNo />
+              <ns0:CalculatedTripLineNo>0</ns0:CalculatedTripLineNo>
+              <ns0:ItemCondition>BEVROREN</ns0:ItemCondition>
+              <ns0:ProductionCode />
+              <ns0:TMSOrderNo />
+              <ns0:TripNo />
+              <ns0:Posted>1</ns0:Posted>
+              <ns0:Length>0</ns0:Length>
+              <ns0:Width>0</ns0:Width>
+              <ns0:Height>0</ns0:Height>
+              <ns0:Volume>0</ns0:Volume>
+              <ns0:Attribute01 />
+              <ns0:Attribute02 />
+              <ns0:Attribute03 />
+              <ns0:Attribute04 />
+              <ns0:Attribute05 />
+              <ns0:Attribute06 />
+              <ns0:Attribute07 />
+              <ns0:Attribute08 />
+              <ns0:Attribute09 />
+              <ns0:Attribute10 />
+            </ns0:DocumentDetailLine>
+          </ns0:DocumentDetailLines>
+        </ns0:DocumentLine>
+      </ns0:DocumentLines>
+      <ns0:Carriers>
+        <ns0:Carrier>
+          <ns0:No>200100000000014206</ns0:No>
+          <ns0:ExternalCarrierNo />
+          <ns0:CarrierTypeCode>EUR</ns0:CarrierTypeCode>
+          <ns0:GTINCarrier />
+          <ns0:NetWeight>3520</ns0:NetWeight>
+          <ns0:GrossWeight>3520</ns0:GrossWeight>
+          <ns0:Length>120</ns0:Length>
+          <ns0:Width>80</ns0:Width>
+          <ns0:Height>0</ns0:Height>
+          <ns0:Cubage>0</ns0:Cubage>
+          <ns0:Type>0</ns0:Type>
+          <ns0:NVESSCC18No />
+          <ns0:StatusCode>20-VRIJ</ns0:StatusCode>
+          <ns0:GroundCarrier>200100000000014206</ns0:GroundCarrier>
+          <ns0:Blocked>0</ns0:Blocked>
+          <ns0:Attribute01 />
+          <ns0:Attribute02 />
+          <ns0:Attribute03 />
+          <ns0:Attribute04 />
+          <ns0:Attribute05 />
+          <ns0:Attribute06 />
+          <ns0:Attribute07 />
+          <ns0:Attribute08 />
+          <ns0:Attribute09 />
+          <ns0:Attribute10 />
+          <ns0:Contents>
+            <ns0:Content>
+              <ns0:DocumentLineNo>10000</ns0:DocumentLineNo>
+              <ns0:CarrierNo>200100000000014206</ns0:CarrierNo>
+              <ns0:SSCCNo />
+              <ns0:CarrierTypeCode>EUR</ns0:CarrierTypeCode>
+              <ns0:CustomerItemNo>A5519</ns0:CustomerItemNo>
+              <ns0:ExternalNo>23459</ns0:ExternalNo>
+              <ns0:EANCode />
+              <ns0:ProductVariant />
+              <ns0:UnitofMeasureCode>CRT</ns0:UnitofMeasureCode>
+              <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+              <ns0:Quantity>880</ns0:Quantity>
+              <ns0:OrderUnitofMeasureCode />
+              <ns0:OrderQuantity>0</ns0:OrderQuantity>
+              <ns0:Temperature>0</ns0:Temperature>
+              <ns0:TareWeight>0</ns0:TareWeight>
+              <ns0:GrossWeight>3520</ns0:GrossWeight>
+              <ns0:NetWeight>3520</ns0:NetWeight>
+              <ns0:Posted>1</ns0:Posted>
+              <ns0:ProductionDate />
+              <ns0:ExpirationDate>2025-02-10</ns0:ExpirationDate>
+              <ns0:LastShipmentDate />
+              <ns0:BatchNo>B20002468</ns0:BatchNo>
+              <ns0:ProductionPeriod />
+              <ns0:FreezingDate />
+              <ns0:ExternalBatchNo>ZERT</ns0:ExternalBatchNo>
+              <ns0:ExternalCarrierNo />
+              <ns0:CalculatedTripNo />
+              <ns0:CalculatedTripLineNo>0</ns0:CalculatedTripLineNo>
+              <ns0:ItemCondition>BEVROREN</ns0:ItemCondition>
+              <ns0:ProductionCode />
+              <ns0:DossierNo />
+              <ns0:TMSOrderNo />
+              <ns0:TripNo />
+              <ns0:CreationDateTime>2020-02-10T15:14:00</ns0:CreationDateTime>
+              <ns0:Length>0</ns0:Length>
+              <ns0:Width>0</ns0:Width>
+              <ns0:Height>0</ns0:Height>
+              <ns0:Volume>0</ns0:Volume>
+              <ns0:Attribute01 />
+              <ns0:Attribute02 />
+              <ns0:Attribute03 />
+              <ns0:Attribute04 />
+              <ns0:Attribute05 />
+              <ns0:Attribute06 />
+              <ns0:Attribute07 />
+              <ns0:Attribute08 />
+              <ns0:Attribute09 />
+              <ns0:Attribute10 />
+              <ns0:CustItemAttribute01 />
+              <ns0:CustItemAttribute02 />
+              <ns0:CustItemAttribute03 />
+              <ns0:CustItemAttribute04 />
+              <ns0:CustItemAttribute05 />
+              <ns0:CustItemAttribute06 />
+              <ns0:CustItemAttribute07 />
+              <ns0:CustItemAttribute08 />
+              <ns0:CustItemAttribute09 />
+              <ns0:CustItemAttribute10 />
+            </ns0:Content>
+          </ns0:Contents>
+        </ns0:Carrier>
+      </ns0:Carriers>
+    </ns0:Document>
+  </ns0:Documents>
+</ns0:Message>

@@ -1,0 +1,10 @@
+{
+  "operation": "CREATE",
+  "response_id": "OPD-2026-000187",
+  "quantity_liters_delivered": 23000,
+  "final_stock": 300000,
+  "tank": "ST120",
+  "execution_date": "2026-01-22T",
+  "parent_product_code": "WOC75601",
+  "mervielde_reference": "MER-1234"
+}

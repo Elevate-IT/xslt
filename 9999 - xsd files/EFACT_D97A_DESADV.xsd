@@ -164,14 +164,14 @@
                 </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="UNH4.1">
+                    <xs:element minOccurs="0" nillable="true" name="UNH4.1">
                       <xs:annotation>
                         <xs:appinfo>
                           <b:fieldInfo notes="Sequence Message Transfer Number_0070" />
                         </xs:appinfo>
                       </xs:annotation>
                       <xs:simpleType>
-                        <xs:restriction base="EDIFACT_N">
+                        <xs:restriction base="EDIFACT_AN">
                           <xs:minLength value="1" />
                           <xs:maxLength value="2" />
                         </xs:restriction>
@@ -184,8 +184,9 @@
                         </xs:appinfo>
                       </xs:annotation>
                       <xs:simpleType>
-                        <xs:restriction base="EDIFACT_A">
-                          <xs:length value="1" />
+                        <xs:restriction base="EDIFACT_AN">
+                          <xs:minLength value="1" />
+                          <xs:maxLength value="2" />
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
@@ -1244,7 +1245,7 @@
             </xs:appinfo>
           </xs:annotation>
         </xs:element>
-        <xs:element minOccurs="0" maxOccurs="100" ref="GIN_2">
+        <xs:element minOccurs="0" maxOccurs="1000" ref="GIN_2">
           <xs:annotation>
             <xs:appinfo>
               <b:recordInfo structure="delimited" field_order="prefix" tag_name="GIN" delimiter_type="inherit_field" count_ignore="no" escape_type="inherit_escape" xmlns:b="http://schemas.microsoft.com/BizTalk/2003" notes="GOODS IDENTITY NUMBER" />
@@ -5128,7 +5129,7 @@
           <xs:simpleType>
             <xs:restriction base="EDIFACT_AN">
               <xs:minLength value="1" />
-              <xs:maxLength value="35" />
+              <xs:maxLength value="70" />
             </xs:restriction>
           </xs:simpleType>
         </xs:element>
