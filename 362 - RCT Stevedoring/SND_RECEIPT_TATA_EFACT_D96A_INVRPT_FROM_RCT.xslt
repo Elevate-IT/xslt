@@ -1,10 +1,10 @@
 ﻿<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:msxsl="urn:schemas-microsoft-com:xslt"
-                xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
-                xmlns:s0="www.boltrics.nl/sendreceipt:v1.00"
-                xmlns:ns0="http://schemas.microsoft.com/BizTalk/EDI/EDIFACT/2006"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
-                exclude-result-prefixes="msxsl var s0 MyScript" version="1.0">
+				xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
+				xmlns:s0="www.boltrics.nl/sendreceipt:v1.00"
+				xmlns:ns0="http://schemas.microsoft.com/BizTalk/EDI/EDIFACT/2006"
+				xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				exclude-result-prefixes="var s0 xs"
+				version="3.0">
 	<xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
 	<xsl:template match="/">
 		<xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
@@ -36,7 +36,7 @@
 					<C50701>182</C50701>
 					<C50702>
 						<!--<xsl:value-of select="MyScript:ParseDate(//s0:Header/s0:CreationDateTime, 'yyyy-MM-ddThh:mm:ss', 'yyyyMMddhhmm')" />-->
-						<xsl:value-of select="MyScript:ParseDate(s0:PostingDate, 'yyyy-MM-dd', 'yyyyMMdd')" />
+						<xsl:value-of select="format-date(xs:date(s0:PostingDate), '[Y0001][M01][D01]')" />
 					</C50702>
 					<C50703>102</C50703>
 				</ns0:C507>
@@ -138,7 +138,7 @@
 							<ns0:C507_8>
 								<C50701>179</C50701>
 								<C50702>
-									<xsl:value-of select="MyScript:ParseDate(//s0:PostingDate, 'yyyy-MM-dd', 'yyyyMMdd')" />
+									<xsl:value-of select="format-date(xs:date(//s0:PostingDate), '[Y0001][M01][D01]')" />
 								</C50702>
 								<C50703>102</C50703>
 							</ns0:C507_8>
@@ -185,7 +185,7 @@
 								<ns0:C506_4>
 									<C50601>AAK</C50601>
 									<C50602>
-										<xsl:value-of select="//s0:ExternalReference"/>
+											<xsl:value-of select="//s0:ExternalReference"/>
 									</C50602>
 								</ns0:C506_4>
 							</ns0:RFF_4>
@@ -194,7 +194,7 @@
 								<ns0:C507_10>
 									<C50701>171</C50701>
 									<C50702>
-										<xsl:value-of select="MyScript:ParseDate(//s0:DocumentDate, 'yyyy-MM-dd', 'yyyyMMdd')"/>
+										<xsl:value-of select="format-date(xs:date(//s0:DocumentDate), '[Y0001][M01][D01]')"/>
 									</C50702>
 									<C50703>102</C50703>
 								</ns0:C507_10>
@@ -240,7 +240,7 @@
 						<ns0:CPSLoop2>
 							<ns0:CPS_2>
 								<CPS01>
-									<xsl:value-of select="MyScript:GetCPSCounter()"/>
+									<xsl:value-of select="position()"/>
 								</CPS01>
 							</ns0:CPS_2>
 
@@ -302,138 +302,4 @@
 			</xsl:for-each>
 		</ns0:EFACT_D96A_INVRPT>
 	</xsl:template>
-	<msxsl:script language="C#" implements-prefix="MyScript">
-		<![CDATA[			
-      int CPSCounter = 0;
-      public string GetCPSCounter()
-      {
-        return (++CPSCounter).ToString();
-      }
-      
-      public int NRCounter2 = 1;
-      public string GetNRCounter2(bool increment)
-      {
-        if (increment)
-          NRCounter2 += 1;
-        return (NRCounter2).ToString();
-      }
-      
-      public string GetNRCounter3()
-      {
-        return (NRCounter2 - 1).ToString();
-      }
-            
-      public int NRCounter = 0;
-      public string GetNRCounter(bool increment)
-      {
-        if (increment){
-          NRCounter2 = 1;
-          NRCounter += 1;
-        }        
-        return (NRCounter).ToString();
-      }
-      
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 1;
-          return LINCounter.ToString();
-      }
-      
-      public string ToUpper(string input)
-			{
-				return input.ToUpper();
-			}
-      
-      public string Replace(string input, string toReplace, string replaceTo)
-			{
-				return input.Replace(toReplace,replaceTo);
-			}
-      
-      public int Abs(int input)
-			{
-				return Math.Abs(input);
-			}
-      
-			public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }
-      
-     public string ConvertStatusCode(string StatusCode)
-      {
-        switch (StatusCode)
-        {
-          case "10-NIEUW":
-          return "FREE";
-          
-          case "15-WIJZIG":
-          return "FREE";
-          
-          case "20-VRIJ":
-          return "FREE";
-          
-          case "30-ORDERPICK":
-          return "FREE";
-          
-          case "40-KLAARGEZET":
-          return "FREE";
-          
-          case "50-QUARANTAINE":
-          return "QUALITY";
-          
-          case "90-GEBLOKKEERD":
-          return "BLOCKED";
-          
-          default:
-          return "FREE";
-        }
-      }
-     
-    public int QtyOnCarrier {get;set;}
-    public void AddToQtyOnCarrier(int qtyOnCarrier)
-	  {       
-       QtyOnCarrier = QtyOnCarrier + qtyOnCarrier;             
-    }
-    
-    public void SetQtyOnCarrier(int qtyOnCarrier)
-	  {       
-       QtyOnCarrier = qtyOnCarrier;             
-    }
-    
-    public int GetQtyOnCarrier()
-	  {       
-       return QtyOnCarrier;             
-    }
-             
-    public int QtyOnCarrierRetour {get;set;}
-    public void AddToQtyOnCarrierRetour(int qtyOnCarrierRetour)
-	  {       
-       QtyOnCarrierRetour = QtyOnCarrierRetour + qtyOnCarrierRetour;             
-    }
-    
-    public void SetQtyOnCarrierRetour(int qtyOnCarrierRetour)
-	  {       
-       QtyOnCarrierRetour = qtyOnCarrierRetour;             
-    }
-    
-    public int GetQtyOnCarrierRetour()
-	  {       
-       return QtyOnCarrierRetour;             
-    }
-      
-		]]>
-	</msxsl:script>
 </xsl:stylesheet>
