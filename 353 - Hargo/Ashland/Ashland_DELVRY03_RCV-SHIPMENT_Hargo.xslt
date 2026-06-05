@@ -10,8 +10,8 @@
     
     <xsl:variable name="OrderType">
         <xsl:choose>
-            <xsl:when test="E1EDL20/E1EDL24[LFIMG &gt; 0][1]/WERKS = '5623'">
-                <xsl:text>ZENDING</xsl:text>
+            <xsl:when test="/ZDLVRY/IDOC/E1EDL20/E1EDL24[LFIMG &gt; 0][1]/WERKS = '5623'">
+                <xsl:text>ZENDING OUT</xsl:text>
             </xsl:when>
             <xsl:when test="upper-case(/ZDLVRY/IDOC/E1EDL20/E1EDL22/VSBED_BEZ) = 'MARINE'">
                 <xsl:text>SEA</xsl:text>
@@ -100,7 +100,7 @@
                             <xsl:value-of select="E1EDL20/E1EDT13[QUALF = 'xxx']/NTANF"/>
                         </ns0:DeliveryDate>
                         
-                        <xsl:if test="E1EDL20/INCO1 != 'FCA' and $OrderType != 'SEA'">
+                        <xsl:if test="E1EDL20/INCO1 != 'FCA' and not(contains(':SEA:LUCHTVRACHT:', concat(':', $OrderType, ':')))">
                             <ns0:EstimatedDepartureDate>
                                 <xsl:value-of select="E1EDL20/E1EDT13[QUALF = '003']/NTANF"/>
                             </ns0:EstimatedDepartureDate>
@@ -159,21 +159,61 @@
                         
                         <ns0:DocumentComments>
                             <xsl:for-each select="E1EDL20/E1EDL24[LFIMG = 0]/Z1EDLTM[PALLET_TYPE != '']">
+                                <xsl:variable name="PalTypeHeader">
+                                    <xsl:choose>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'C1'">
+                                            <xsl:text>CP1</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'C3'">
+                                            <xsl:text>CP3</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'EU'">
+                                            <xsl:text>EUR</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'IB'">
+                                            <xsl:text>IBC</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 1) = 'P'">
+                                            <xsl:text>P</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'T4'">
+                                            <xsl:text>CP4</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'T7'">
+                                            <xsl:text>CP7</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 2) = 'US'">
+                                            <xsl:text>ORI</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="substring(PALLET_TYPE, 1, 1) = 'W'">
+                                            <xsl:text>ORI</xsl:text>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="substring(PALLET_TYPE, 1, 2)" />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:variable>
                                 <ns0:DocumentComment>
                                     <ns0:Code>INSTRUCTIES</ns0:Code>
                                     <ns0:Comment>
-                                        <xsl:value-of select="concat('Type: ', substring(PALLET_TYPE, 1, 2), ', Qty: ', PALLET_NOS, ', Stackable: ', STACKBLE, ', Height: ', substring(PALLET_TYPE, 3))" />
+                                        <xsl:value-of select="concat('Type: ', $PalTypeHeader, ', Qty: ', PALLET_NOS, ', Stackable: ', STACKBLE, ', Height: ', substring(PALLET_TYPE, 3))" />
                                     </ns0:Comment>
                                 </ns0:DocumentComment>
                             </xsl:for-each>
                         </ns0:DocumentComments>
                         
+                        <xsl:variable name="AANTALPALS" select="sum(E1EDL20/E1EDL24/Z1EDLTM[PALLET_NOS != '']/PALLET_NOS)"/>
+                        <xsl:if test="$AANTALPALS &gt; 0">
+                            <ns0:Attribute10>
+                                <xsl:value-of select="$AANTALPALS" />    
+                            </ns0:Attribute10>
+                        </xsl:if>
                         <ns0:Attributes>
-                            <xsl:if test="count(E1EDL20/E1EDL24/Z1EDLTM[PALLET_NOS != '']) &gt; 0">
+                            <xsl:if test="$AANTALPALS &gt; 0">
                                 <ns0:Attribute>
                                     <ns0:Code>AANTALPALS</ns0:Code>
                                     <ns0:Value>
-                                        <xsl:value-of select="sum(E1EDL20/E1EDL24/Z1EDLTM[PALLET_NOS != '']/PALLET_NOS)" />
+                                        <xsl:value-of select="$AANTALPALS" />
                                     </ns0:Value>
                                 </ns0:Attribute>
                             </xsl:if>
@@ -233,18 +273,29 @@
                                                         <xsl:value-of select="substring(../E1EDL24[LFIMG = 0]/Z1EDLTM/PALLET_TYPE, 1, 2)" />
                                                     </xsl:when>
                                                     <xsl:when test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[PALLET_TYPE != '']) &gt; 1">
-                                                        <xsl:if test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[substring(PALLET_TYPE, 1, 2) = 'IB']) &gt; 0">
-                                                            <xsl:choose>
-                                                                <xsl:when test="VRKME = 'IBC'">
-                                                                    <xsl:text>IB</xsl:text>
-                                                                </xsl:when>
-                                                                <xsl:otherwise>
-                                                                    <xsl:if test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[not(starts-with(PALLET_TYPE, 'IB'))][PALLET_TYPE != '']) = 1">
-                                                                        <xsl:value-of select="substring(../E1EDL24[LFIMG = 0]/Z1EDLTM[not(starts-with(PALLET_TYPE, 'IB'))]/PALLET_TYPE, 1, 2)" />
-                                                                    </xsl:if>
-                                                                </xsl:otherwise>
-                                                            </xsl:choose>
-                                                        </xsl:if>
+                                                        <xsl:variable name="distinctTypes" select="distinct-values(for $pt in ../E1EDL24[LFIMG = 0]/Z1EDLTM[PALLET_TYPE != ''] return substring($pt/PALLET_TYPE, 1, 2))" />
+                                                        <xsl:choose>
+                                                            <xsl:when test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[substring(PALLET_TYPE, 1, 2) = 'IB']) &gt; 0">
+                                                                <xsl:choose>
+                                                                    <xsl:when test="VRKME = 'IBC'">
+                                                                        <xsl:text>IB</xsl:text>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:if test="count(../E1EDL24[LFIMG = 0]/Z1EDLTM[not(starts-with(PALLET_TYPE, 'IB'))][PALLET_TYPE != '']) = 1">
+                                                                            <xsl:value-of select="substring(../E1EDL24[LFIMG = 0]/Z1EDLTM[not(starts-with(PALLET_TYPE, 'IB'))]/PALLET_TYPE, 1, 2)" />
+                                                                        </xsl:if>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </xsl:when>
+                                                            <xsl:when test="count($distinctTypes) = 1">
+                                                                <!-- All pallet types have the same first 2 chars, merge and use that -->
+                                                                <xsl:value-of select="$distinctTypes" />
+                                                            </xsl:when>
+                                                            <xsl:otherwise>
+                                                                <!-- TODO if we get this scenario: Multiple different pallet types (first 2 chars differ). Business rule needed. -->
+                                                                <!-- Place your handling logic here if needed. -->
+                                                            </xsl:otherwise>
+                                                        </xsl:choose>
                                                     </xsl:when>
                                                 </xsl:choose>
                                             </xsl:otherwise>
