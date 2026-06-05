@@ -73,7 +73,7 @@
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
                             </ns0:Address>
                             <ns0:City>
-                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
+                                <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06, 1, 30)" />
                             </ns0:City>
                             <ns0:PostCode>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD08" />
@@ -105,7 +105,7 @@
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05804" />
                             </ns0:Address>
                             <ns0:City>
-                                <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
+                                <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06, 1, 30)" />
                             </ns0:City>
                             <ns0:PostCode>
                                 <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD08" />
@@ -126,6 +126,10 @@
                             </xsl:otherwise>
                         </xsl:choose>                        
                     </ns0:IncotermCode>
+                    
+                    <ns0:Attribute01>
+                        <xsl:value-of select="replace(s0:FTX[FTX01 = 'SIN'][starts-with(s0:C108/C10801, 'Created by:')]/s0:C108/C10801, 'Created by:', '')" />
+                    </ns0:Attribute01>
 
                     <ns0:Attribute03>
                         <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C082/C08201" />
@@ -152,9 +156,11 @@
                                         <ns0:ExternalNo>
                                             <xsl:value-of select="s0:LIN/s0:C212/C21201"/>
                                         </ns0:ExternalNo>
+                                        
                                         <ns0:OrderQuantity>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18602"/>
                                         </ns0:OrderQuantity>
+
                                         <ns0:OrderUnitofMeasureCode>
                                             <xsl:value-of select="s0:QTYLoop1/s0:QTY/s0:C186/C18603"/>
                                         </ns0:OrderUnitofMeasureCode>

@@ -9,7 +9,7 @@
     <Message>
       <Header>
         <InvoiceNumber>
-          <xsl:value-of select="normalize-space(substring(Lines[1]/Line, 1, 35))"/>
+          <xsl:value-of select="normalize-space(substring(Lines[1]/Line, 26, 10))"/>
         </InvoiceNumber>
         <InvoiceDate>
           <xsl:value-of select="normalize-space(substring(Lines[1]/Line, 36, 8))"/>

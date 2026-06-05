@@ -84,7 +84,7 @@
                             <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/s0:C058/C05802" />
                         </ns0:Address>
                         <ns0:City>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD06" />
+                            <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD06, 1, 30)" />
                         </ns0:City>
                         <ns0:PostCode>
                             <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'SU']/NAD08" />
