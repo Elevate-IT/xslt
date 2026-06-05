@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+    <soap12:Body>
+        <ImportSalesInvoices xmlns="http://websrv.adsolut.be/webservices">
+            <xml>
+                <!-- <?xml version="1.0" encoding="utf-8"?> -->
+                <salesinvoices>
+                    <invoice> <!--factuur,1 of meerdere-->
+                        <blrela> <!--factuurdetails, verplicht-->
+                            <boekjaar_boekjaar>2011</boekjaar_boekjaar> <!-- boekjaar,Verplicht -->
+                            <dagboek_dagboek>VK</dagboek_dagboek> <!-- dagboek,Verplicht -->
+                            <codefcbd_codefcbd>F</codefcbd_codefcbd> <!--betaling,creditnota,divers,facuur,Verplicht -->
+                            <periode_periode>10</periode_periode> <!-- periode,Verplicht -->
+                            <factuur>2016000170</factuur> <!-- factuurnummer, Verplicht -->
+                            <factdat>16/04/2010</factdat> <!-- factuurdatum,Verplicht -->
+                            <vervdat>16/05/2010</vervdat> <!-- vervaldatum,Optioneel -->
+                            <relaties_code>0002351</relaties_code> <!--relatiecode(klantcode/leverancier),Verplicht,moet bestaan-->
+                            <btwregimes_btwregime>H</btwregimes_btwregime> <!--particulier,handerlaar,... zie menuadsolut:parameters,boekhouding,btwregimes=Optioneel -->
+                            <valuta_code>EUR</valuta_code> <!-- Optioneel -->
+                            <koers>1,0</koers> <!-- Optioneel -->
+                            <tebet>121,00</tebet> <!-- totaal te betalen,Verplicht -->
+                            <basis>100,00</basis> <!-- basis bedrag,Optioneel -->
+                            <btwtebet>21,00</btwtebet> <!-- te betalen btw,Optioneel-->
+                            <statusfact_status>OK</statusfact_status> <!-- ok,geblokkeerd,betwist,...
+                            zie menu adsolut:parameters,boekhouding,factuur= Optioneel -->
+                            <bedragkc>0,00</bedragkc> <!-- bedrag korting contant,Optioneel -->
+                            <kortcont>0,00</kortcont> <!-- korting kontant,Optioneel -->
+                            <ogm></ogm> <!-- overschrijving gestructureerde mededeling,Optioneel -->
+                            <omschrijving>importfactuur</omschrijving> <!-- Optioneel -->
+                            <vertegenw_code></vertegenw_code> <!-- code vertegenwoordiger, Optioneel -->
+                        </blrela>
+                        <blboekhpl> <!--lijnen in boekhoudplan, 1 of meerdere-->
+                            <datum>16/04/2010</datum> <!-- Optioneel -->
+                            <boekhpl_reknr>705000</boekhpl_reknr> <!-- rekeningnummer,Verplicht -->
+                            <bedrag>100,00</bedrag> <!-- Verplicht -->
+                            <codedc>C</codedc> <!-- debet,credit,Optioneel -->
+                            <hoeveelh>1,000</hoeveelh> <!-- Optioneel -->
+                            <valuta_code>EUR</valuta_code> <!-- Optioneel -->
+                            <koers>1,0</koers> <!-- Optioneel -->
+                            <btwregimes_btwregime>H</btwregimes_btwregime> <!-- Optioneel -->
+                            <btwcodes_btwcode>4</btwcodes_btwcode> <!-- 0%,12%,21%,Vrij ,... zie menu
+                            adsolut:parameters,boekhouding,btwcodes=Verplicht -->
+                        </blboekhpl>
+                    </invoice>
+                </salesinvoices>
+            </xml>
+        </ImportSalesInvoices>
+    </soap12:Body>
+</soap12:Envelope>
