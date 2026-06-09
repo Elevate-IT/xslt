@@ -38,7 +38,7 @@
         <xsl:value-of select="functx:stringField('Filenummer HELEN', ((//ns0:PostedSalesInvoices/ns0:PostedSalesInvoice/ns0:WMSPostedDocNo)[1]), $sC, 40)"/>
         <xsl:value-of select="functx:stringField('Factuurdatum', $PostingDateInvoice, $sC, 8)"/>
         <xsl:value-of select="functx:stringField('Grootboekrekening','', $sC, 5)"/>
-        <xsl:value-of select="functx:stringField('Klantnummer', $CustomerNo, $sC, 7)"/>
+        <xsl:value-of select="functx:stringField('Klantnummer', $CustomerNo, $sC, 10)"/>
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 17)"/>
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <xsl:value-of select="functx:stringField('Factuurbedrag', translate(ns0:AmountIncludingVAT, '.', ','), $sC, 0)"/>
@@ -83,7 +83,7 @@
         <xsl:value-of select="functx:stringField('Filenummer HELEN', ns0:WMSPostedDocNo, $sC, 40)"/>
         <xsl:value-of select="functx:stringField('Factuurdatum', $PostingDateInvoice, $sC, 8)"/>
         <xsl:value-of select="functx:stringField('Grootboekrekening', ns0:GeneralPostingGroup/ns0:SalesAccount, $sC, 5)"/>
-        <xsl:value-of select="functx:stringField('Klantnummer', $CustomerNo, $sC, 7)"/>
+        <xsl:value-of select="functx:stringField('Klantnummer', $CustomerNo, $sC, 10)"/>
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 17)"/>
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <xsl:value-of select="functx:stringField('Factuurbedrag', translate(ns0:LineAmount, '.', ','), $sC, 0)"/>

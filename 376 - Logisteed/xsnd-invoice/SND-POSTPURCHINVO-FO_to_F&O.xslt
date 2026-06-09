@@ -40,7 +40,7 @@
         <!--08--><xsl:value-of select="functx:stringField('Factuurdatum', $PostingDateInvoice, $sC, 8)"/>
         <!--09--><xsl:value-of select="functx:stringField('Grootboekrekening','', $sC, 5)"/>
         <!--10--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
-        <!--11--><xsl:value-of select="functx:stringField('Crediteurnummer', $VendorNo, $sC, 7)"/>
+        <!--11--><xsl:value-of select="functx:stringField('Crediteurnummer', $VendorNo, $sC, 10)"/>
         <!--12--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <!--13--><xsl:value-of select="functx:stringField('Factuurbedrag', translate(ns0:AmountIncludingVAT, '.', ','), $sC, 0)"/>
         <!--14--><xsl:value-of select="functx:stringField('Standaard veld', 'J', $sC, 0)"/>
@@ -85,7 +85,7 @@
         <!--08--><xsl:value-of select="functx:stringField('Factuurdatum', $PostingDateInvoice, $sC, 8)"/>
         <!--09--><xsl:value-of select="functx:stringField('Grootboekrekening', ns0:GeneralPostingGroup/ns0:PurchAccount, $sC, 5)"/>
         <!--10--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
-        <!--11--><xsl:value-of select="functx:stringField('Crediteurnummer', $VendorNo, $sC, 7)"/>
+        <!--11--><xsl:value-of select="functx:stringField('Crediteurnummer', $VendorNo, $sC, 10)"/>
         <!--12--><xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <!--13--><xsl:value-of select="functx:stringField('Factuurbedrag', translate(ns0:LineAmount, '.', ','), $sC, 0)"/>
         <!--14--><xsl:value-of select="functx:stringField('Standaard veld', 'J', $sC, 0)"/>
