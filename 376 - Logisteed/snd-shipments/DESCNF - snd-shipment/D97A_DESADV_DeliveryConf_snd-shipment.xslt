@@ -6,12 +6,15 @@
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
                 exclude-result-prefixes="msxsl var s0 MyScript" version="1.0">
     <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
-    
-    <xsl:key name="Group-by-MATNO-PLANT-QUAL" match="//s0:Carriers/s0:Carrier/s0:Contents/s0:Content" use="concat(s0:ExternalNo,'-',s0:Attribute03,'-',s0:Attribute01)" />
-    
+     
     <xsl:template match="/">
         <xsl:apply-templates select="/s0:Message/s0:Documents/s0:Document" />
     </xsl:template>
+    
+    <xsl:key
+        name="kByEdiLineNo"
+        match="s0:DocumentLine[s0:Type='1']"
+        use="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
     
     <xsl:template match="/s0:Message/s0:Documents/s0:Document">
         <ns0:EFACT_D97A_DESADV>
@@ -109,9 +112,26 @@
                     <CPS01>1</CPS01>
                 </ns0:CPS>
                 
-                <xsl:for-each select="//s0:Carriers/s0:Carrier/s0:Contents/s0:Content[count(. | key('Group-by-MATNO-PLANT-QUAL', concat(s0:ExternalNo,'-',s0:Attribute03,'-',s0:Attribute01))[1]) = 1]">
-                    <xsl:variable name="LineKey" select="concat(s0:ExternalNo,'-',s0:Attribute03,'-',s0:Attribute01)" />
-                    <xsl:if test="$LineKey != '--'">                 
+                <xsl:for-each
+                    select="s0:DocumentLines/s0:DocumentLine[s0:Type='1']
+                        [generate-id() = generate-id(
+                                key('kByEdiLineNo',
+                                    s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value
+                                )[1]
+                            )]">
+                    
+                    
+                    <xsl:variable name="ediLineNo"
+                        select="s0:Attributes/s0:Attribute[s0:Code='EDILINENO']/s0:Value"/>
+                    
+                    <xsl:variable name="groupLines"
+                        select="key('kByEdiLineNo', $ediLineNo)"/>
+                    
+                    <xsl:variable name="groupDetailLines"
+                        select="$groupLines/s0:DocumentDetailLines
+                            /s0:DocumentDetailLine[s0:Posted='1']"/>
+
+                    
                         <ns0:LINLoop1>
                             <ns0:LIN>
                                 <LIN01>
@@ -173,7 +193,7 @@
                                 <ns0:C186_2>
                                     <C18601>12</C18601>
                                     <C18602>
-                                        <xsl:value-of select="sum(key('Group-by-MATNO-PLANT-QUAL',$LineKey)/s0:Quantity)"/>
+                                    <xsl:value-of select="sum($groupDetailLines/s0:Quantity)"/>
                                     </C18602>
                                     <C18603>
                                         <xsl:text>PCE</xsl:text>
@@ -181,7 +201,7 @@
                                 </ns0:C186_2>
                             </ns0:QTY_2>
                             
-                            <xsl:for-each select="s0:SpecificationSets/s0:SpecificationSet[s0:SpecificationTypeCode='PCE']">
+                            <xsl:for-each select="$groupDetailLines/s0:SpecificationSets/s0:SpecificationSet[s0:SpecificationTypeCode='PCE']">
                                 <ns0:GIN_2>
                                     <GIN01>BN</GIN01>
                                     <C208_6>
@@ -191,9 +211,7 @@
                                     </C208_6>          
                                 </ns0:GIN_2>
                             </xsl:for-each>
-                            
                         </ns0:LINLoop1>
-                    </xsl:if>
                 </xsl:for-each>
             </ns0:CPSLoop1>
         </ns0:EFACT_D97A_DESADV>

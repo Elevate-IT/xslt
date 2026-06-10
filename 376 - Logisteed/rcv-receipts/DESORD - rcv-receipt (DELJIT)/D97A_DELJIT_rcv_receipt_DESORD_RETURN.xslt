@@ -74,7 +74,7 @@
                             <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/s0:C058/C05802" />
                         </ns0:Address>
                         <ns0:City>
-                            <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06" />
+                            <xsl:value-of select="substring(//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD06, 1, 30)" />
                         </ns0:City>
                         <ns0:PostCode>
                             <xsl:value-of select="//s0:NADLoop1/s0:NAD[NAD01 = 'DP']/NAD08" />
@@ -140,13 +140,15 @@
                                                 <xsl:when test="$cleanValue = '1'">AVAILABLE</xsl:when>
                                                 <xsl:when test="$cleanValue = '10'">OUT OF WARRANTY</xsl:when>
                                                 <xsl:when test="$cleanValue = '11'">DAMAGED CARTONS</xsl:when>
-                                                <xsl:when test="$cleanValue = '15'">DAMAGED</xsl:when>
+                                                <xsl:when test="$cleanValue = '12'">GOOD STOCK TBC</xsl:when>
+                                                <xsl:when test="$cleanValue = '15'">NON ROHS</xsl:when>
                                                 <xsl:when test="$cleanValue = '20'">RETURN</xsl:when>
                                                 <xsl:when test="$cleanValue = '30'">AWAITING SCRAP</xsl:when>
                                                 <xsl:when test="$cleanValue = '35'">INSURANCE STOCK</xsl:when>
                                                 <xsl:when test="$cleanValue = '40'">EXHIBITION STOCK</xsl:when>
-                                                <xsl:when test="$cleanValue = '50'">RE-WORK (HACE)</xsl:when>
-                                                <xsl:when test="$cleanValue = '60'">SERVICE (HACE)</xsl:when>
+                                                <xsl:when test="$cleanValue = '50'">RE WORK HACE</xsl:when>
+                                                <xsl:when test="$cleanValue = '60'">SERVICE HACE</xsl:when>
+                                                <xsl:when test="$cleanValue = 'NA'">STOCK DISCREPANCY</xsl:when>
                                                 <xsl:when test="$cleanValue = 'S&amp;E'">JCI SOUTH AND EXPORT</xsl:when>
                                                 <xsl:otherwise>
                                                     <xsl:value-of select="$cleanValue"/>
@@ -173,3 +175,4 @@
         </ns0:Message>
     </xsl:template>
 </xsl:stylesheet>
+

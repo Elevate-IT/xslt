@@ -8,123 +8,89 @@
                 version="3.0">
     <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
     
-    <xsl:key name="Group-by-MATNO-QUAL" match="//s0:Carriers/s0:Carrier/s0:ContentLines/s0:CarrierContent" use="concat(s0:ExternalCustomerItemNo, '-', s0:Attribute01)" />
+    <!-- Output: env:StockStatusEnvelope with one env:Message per Attribute03 (plant 121/129).
+         SplitXML: configure split on env:Message to get one file per plant. -->
+    
+    <!-- Distinct plant codes (Attribute03) per customer, for envelope split -->
+    <xsl:key name="Plant-only" match="//s0:Carriers/s0:Carrier/s0:ContentLines/s0:CarrierContent" use="concat(generate-id(ancestor::s0:Customer[1]), '|', s0:Attribute03)" />
+    <!-- Line grouping per customer and plant (Attribute03 + ExternalCustomerItemNo + Attribute01) -->
+    <xsl:key name="Group-by-PLANT-MATNO-QUAL" match="//s0:Carriers/s0:Carrier/s0:ContentLines/s0:CarrierContent" use="concat(generate-id(ancestor::s0:Customer[1]), '|', s0:Attribute03, '|', s0:ExternalCustomerItemNo, '-', s0:Attribute01)" />
     
     <xsl:template match="/">
-        <xsl:apply-templates select="//s0:Message/s0:Customers/s0:Customer"/>
+        <StockStatusEnvelope>
+            <xsl:apply-templates select="//s0:Message/s0:Customers/s0:Customer"/>
+        </StockStatusEnvelope>
     </xsl:template>
     
     <xsl:template match="//s0:Message/s0:Customers/s0:Customer">
-        <!-- <ns0:EANCOM_D01B_INVRPT> -->
-        <ns0:EFACT_D97A_INVRPT>
-            <!-- <UNB></UNB> -->
-            <UNH>
-                <UNH1>
-                    <xsl:value-of select="//s0:Header/s0:MessageID" />
-                </UNH1>
-                <UNH2>
-                    <UNH2.1>INVRPT</UNH2.1>
-                    <UNH2.2>D</UNH2.2>
-                    <UNH2.3>97A</UNH2.3>
-                    <UNH2.4>UN</UNH2.4>
-                </UNH2>
-            </UNH>
-            <ns0:BGM>
-                <ns0:C106>    
-                    <C10601>               
-                        <xsl:value-of select="//s0:Header/s0:MessageID" />
-                    </C10601>               
-                </ns0:C106>
-            </ns0:BGM>
-            <!-- <ns0:DTM>
-                 <ns0:C507>
-                 <C50701>137</C50701>
-                 <C50702>
-                 <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime,'[Y0001][M01][D01]')" />
-                 </C50702>
-                 <C50703>102</C50703>
-                 </ns0:C507>
-                 </ns0:DTM> -->
-            <ns0:DTM>
-                <ns0:C507>
-                    <C50701>366</C50701>
-                    <C50702>
-                        <xsl:value-of select="format-dateTime(current-dateTime(), '[Y][M,2][D,2][H,2][m,2]')"/>
-                    </C50702>
-                    <C50703>203</C50703>
-                </ns0:C507>
-            </ns0:DTM>
-            <ns0:NADLoop1>
-                <ns0:NAD>
-                    <NAD01>GM</NAD01>
-                    <ns0:C082>
-                        <C08201>129</C08201>
-                        <C08203>91</C08203>
-                    </ns0:C082>
-                </ns0:NAD>
-                
-                <ns0:LOC>
-                    <LOC01>18</LOC01>
-                    <ns0:C517>
-                        <C51701>129</C51701>
-                        <C51703>91</C51703>
-                    </ns0:C517>
-                </ns0:LOC>
-            </ns0:NADLoop1>
-            
-            <xsl:for-each select="//s0:Carriers/s0:Carrier/s0:ContentLines/s0:CarrierContent[count(. | key('Group-by-MATNO-QUAL', concat(s0:ExternalCustomerItemNo, '-', s0:Attribute01))[1]) = 1]">
-                <xsl:variable name="LineKey" select="concat(s0:ExternalCustomerItemNo, '-', s0:Attribute01)" />
-                <xsl:if test="$LineKey != '-'">
+        <!-- Per plant (Attribute03): one env:Message for SplitXML, containing one full INVRPT -->
+        <xsl:variable name="CustomerId" select="generate-id(.)" />
+        <xsl:for-each select=".//s0:Carriers/s0:Carrier/s0:ContentLines/s0:CarrierContent[generate-id() = generate-id(key('Plant-only', concat($CustomerId, '|', s0:Attribute03))[1])]">
+            <xsl:variable name="PlantCode" select="s0:Attribute03" />
+            <Message PlantCode="{$PlantCode}">
+                <!-- <ns0:EANCOM_D01B_INVRPT> -->
+                <ns0:EFACT_D97A_INVRPT>
+                    <!-- <UNB></UNB> -->
+                    <UNH>
+                        <UNH1>
+                            <xsl:value-of select="//s0:Header/s0:MessageID" />
+                        </UNH1>
+                        <UNH2>
+                            <UNH2.1>INVRPT</UNH2.1>
+                            <UNH2.2>D</UNH2.2>
+                            <UNH2.3>97A</UNH2.3>
+                            <UNH2.4>UN</UNH2.4>
+                        </UNH2>
+                    </UNH>
+                    <ns0:BGM>
+                        <ns0:C106>    
+                            <C10601>               
+                                <xsl:value-of select="//s0:Header/s0:MessageID + position()" />
+                            </C10601>               
+                        </ns0:C106>
+                    </ns0:BGM>
+                    <!-- <ns0:DTM>
+                         <ns0:C507>
+                         <C50701>137</C50701>
+                         <C50702>
+                         <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime,'[Y0001][M01][D01]')" />
+                         </C50702>
+                         <C50703>102</C50703>
+                         </ns0:C507>
+                         </ns0:DTM> -->
+                    <ns0:DTM>
+                        <ns0:C507>
+                            <C50701>366</C50701>
+                            <C50702>
+                                <xsl:value-of select="format-dateTime(current-dateTime(), '[Y][M,2][D,2][H,2][m,2]')"/>
+                            </C50702>
+                            <C50703>203</C50703>
+                        </ns0:C507>
+                    </ns0:DTM>
+                    <ns0:NADLoop1>
+                        <ns0:NAD>
+                            <NAD01>GM</NAD01>
+                            <ns0:C082>
+                                <C08201><xsl:value-of select="$PlantCode"/></C08201>
+                                <C08203>91</C08203>
+                            </ns0:C082>
+                        </ns0:NAD>
+                        
+                        <ns0:LOC>
+                            <LOC01>18</LOC01>
+                            <ns0:C517>
+                                <C51701><xsl:value-of select="$PlantCode"/></C51701>
+                                <C51703>91</C51703>
+                            </ns0:C517>
+                        </ns0:LOC>
+                    </ns0:NADLoop1>
                     
-                    <!-- <xsl:choose>
-                         <xsl:when test="(position()<=5)"> -->
-                    
-                    <ns0:LINLoop1>
-                        <ns0:LIN>
-                            <LIN01>
-                                <xsl:value-of select="format-number(position(), '000000')"/>
-                            </LIN01>
-                            <ns0:C212>
-                                <C21201>
-                                    <xsl:value-of select="s0:ExternalCustomerItemNo" />
-                                </C21201>
-                                <C21204>90</C21204>
-                            </ns0:C212>
-                        </ns0:LIN>
-                        <!-- <ns0:PIA>
-                             <PIA01>5</PIA01>
-                             <ns0:C212_2>
-                             <C21201>
-                             <xsl:value-of select="s0:ExternalCustomerItemNo" />
-                             </C21201>
-                             <C21202>SA</C21202>
-                             </ns0:C212_2>
-                             </ns0:PIA> -->
-                        <ns0:INVLoop1>
-                            <ns0:INV>
-                                <INV04>
-                                    <xsl:text>2</xsl:text>
-                                </INV04> 
-                            </ns0:INV>
+                    <xsl:for-each select="ancestor::s0:Customer[1]//s0:Carriers/s0:Carrier/s0:ContentLines/s0:CarrierContent[s0:Attribute03 = $PlantCode and generate-id() = generate-id(key('Group-by-PLANT-MATNO-QUAL', concat($CustomerId, '|', $PlantCode, '|', s0:ExternalCustomerItemNo, '-', s0:Attribute01))[1])]">
+                        <xsl:variable name="LineKey" select="concat($CustomerId, '|', $PlantCode, '|', s0:ExternalCustomerItemNo, '-', s0:Attribute01)" />
+                        <xsl:if test="$LineKey != '-'">
                             
-                            <ns0:QTY_2>
-                                <ns0:C186_2>
-                                    <C18601>145</C18601>
-                                    <C18602>
-                                        <xsl:value-of select="sum(key('Group-by-MATNO-QUAL', $LineKey)/s0:Quantity)" />
-                                    </C18602>
-                                    <C18603>PCE</C18603>
-                                </ns0:C186_2>
-                            </ns0:QTY_2>
-                            
-                            <!-- <ns0:GIN_2>
-                                 <GIN01>BJ</GIN01>
-                                 <ns0:C208_6>
-                                 <C20801>
-                                 <xsl:value-of select="../../s0:No" />
-                                 </C20801>
-                                 </ns0:C208_6>
-                                 </ns0:GIN_2> -->
+                            <!-- <xsl:choose>
+                                 <xsl:when test="(position()<=5)"> -->
                             
                             <!-- <ns0:GIN_2>
                                  <GIN01>BX</GIN01>
