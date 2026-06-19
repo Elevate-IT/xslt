@@ -172,7 +172,16 @@
                 <MATERIAL>
                     <xsl:value-of select="substring(concat('000000000000000000', $DocLine/ns0:ExternalNo), string-length($DocLine/ns0:ExternalNo) + 1, 18)"/>
                 </MATERIAL>
-                <PLANT>5622</PLANT>
+                <PLANT>
+                    <xsl:choose>
+                        <xsl:when test="$DocLine/ns0:CustomsCode = 'BONDED'">
+                            <xsl:text>5610</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>5622</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>    
+                </PLANT>
                 <STGE_LOC>A100</STGE_LOC>
                 <BATCH>
                     <xsl:value-of select="$DocLine/ns0:ExternalBatchNo"/>
