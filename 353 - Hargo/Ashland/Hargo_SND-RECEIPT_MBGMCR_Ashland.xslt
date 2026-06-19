@@ -198,7 +198,13 @@
                     </xsl:choose>
                 </ENTRY_QNT>
                 <ENTRY_UOM>
-                    <xsl:value-of select="$OrigLine/ns0:OrderUnitofMeasureCode"/>
+                    <xsl:choose>
+                        <xsl:when test="$OrigLine/ns0:OrderUnitofMeasureCode = 'CA'">CAN</xsl:when>
+                        <xsl:when test="$OrigLine/ns0:OrderUnitofMeasureCode = 'BG'">BAG</xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$OrigLine/ns0:OrderUnitofMeasureCode"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </ENTRY_UOM>
                 <PO_NUMBER>
                     <xsl:value-of select="$OrigLine/ns0:Attribute06"/>
