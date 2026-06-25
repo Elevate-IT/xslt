@@ -1,12 +1,14 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:s0="www.boltrics.nl/sendshipment:v1.00"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
-                exclude-result-prefixes="msxsl MyScript s0" version="1.0">
-  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+                exclude-result-prefixes="msxsl s0" version="3.0">
+  
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0"  indent="yes"/>
+  
   <xsl:template match="/">
     <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
   </xsl:template>
+  
   <xsl:template match="//s0:Message/s0:Documents/s0:Document">
     <Dossiers>
       <Dossier>
@@ -14,7 +16,7 @@
           <xsl:value-of select="s0:Customer/s0:No" />
         </Customer>
         <Date>
-          <xsl:value-of select="MyScript:ParseDate(s0:DeliveryDate, 'yyyy-MM-dd', 'yyyy/MM/dd')" />
+          <xsl:value-of select="format-date(s0:DeliveryDate, '[Y]/[M,2]/[D,2]')" />
         </Date>
         <Reference>
           <xsl:choose>
@@ -73,7 +75,7 @@
                 <xsl:value-of select="substring(s0:SenderAddress/s0:City, 1, 100)" />
               </City>
               <Date>
-                <xsl:value-of select="MyScript:ParseDate(s0:EstimatedDepartureDate, 'yyyy-MM-dd', 'yyyy/MM/dd')" />
+                <xsl:value-of select="format-date(s0:EstimatedDepartureDate, '[Y]/[M,2]/[D,2]')" />
               </Date>
               <Reference>
                 <xsl:value-of select="s0:No" />
@@ -112,7 +114,7 @@
                 <xsl:value-of select="substring(s0:ShipToAddress/s0:City, 1, 100)" />
               </City>
               <Date>
-                <xsl:value-of select="MyScript:ParseDate(s0:DeliveryDate, 'yyyy-MM-dd', 'yyyy/MM/dd')" />
+                <xsl:value-of select="format-date(s0:DeliveryDate, '[Y]/[M,2]/[D,2]')" />
               </Date>
               <Reference>
                 <xsl:value-of select="substring(s0:ExternalDocumentNo, 1, 100)" />
@@ -149,13 +151,4 @@
       </Dossier>
     </Dossiers>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
