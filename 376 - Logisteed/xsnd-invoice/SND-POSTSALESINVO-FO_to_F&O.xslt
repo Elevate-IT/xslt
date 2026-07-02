@@ -101,7 +101,7 @@
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <xsl:value-of select="functx:stringField('Costcenter', ns0:DimensionsSet/ns0:DimensionSet[ns0:DimensionCode='COSTCENTRE']/ns0:DimensionValueCode, $sC, 16)"/>
-        <xsl:value-of select="functx:stringField('Costunit', ns0:DimensionsSet/ns0:DimensionSet[ns0:DimensionCode='COSTUNIT']/ns0:DimensionValueCode, $sC, 7)"/>
+        <xsl:value-of select="functx:stringField('Costunit', ns0:DimensionsSet/ns0:DimensionSet[ns0:DimensionCode='COSTUNIT']/ns0:DimensionValueCode, $sC, 10)"/>
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
         <xsl:value-of select="functx:stringField('leeg', '', $sC, 0)"/>
