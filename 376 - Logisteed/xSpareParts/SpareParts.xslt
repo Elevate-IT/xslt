@@ -1,10 +1,19 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
-                exclude-result-prefixes="msxsl var MyScript" version="3.0"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:local="urn:local"
+                exclude-result-prefixes="msxsl var MyScript xs local" version="3.0"
                 xmlns:ns0="www.boltrics.nl/receiveshipment:v1.00"
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript">
     <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+    
+    <xsl:function name="local:strip-leading-zeros" as="xs:string">
+        <xsl:param name="value" as="xs:string?"/>
+        <xsl:variable name="trimmed" select="normalize-space($value)"/>
+        <xsl:sequence select="if ($trimmed = '') then '' else if (matches($trimmed, '^0+$')) then '0' else replace($trimmed, '^0+', '')"/>
+    </xsl:function>
+    
     <xsl:template match="/">
         <ns0:Message>
             <ns0:Header>
@@ -38,6 +47,10 @@
                             <ns0:PostingDate>
                                 <xsl:value-of select="replace(substring(Line, 764, 8),'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
                             </ns0:PostingDate>
+                            
+                            <ns0:OrderDate>
+                                <xsl:value-of select="replace(substring(Line, 756, 8),'(\d{4})(\d{2})(\d{2})','$1-$2-$3')"/>
+                            </ns0:OrderDate>
                             
                             <ns0:ExternalDocumentNo>
                                 <xsl:value-of select="normalize-space(substring(Line, 16, 20))"/>
@@ -157,14 +170,14 @@
                                  <xsl:value-of select="normalize-space(substring(Line, 674, 4))"/> -->
                             
                             <!-- <xsl:if test="substring(Line, 678, 5)!='     '">
-                                <ns0:DocumentConditions>
-                                    <ns0:DocumentCondition>
-                                        <ns0:ConditionCode>
-                                            <xsl:value-of select="normalize-space(substring(Line, 678, 5))"/>
-                                        </ns0:ConditionCode>
-                                    </ns0:DocumentCondition>
-                                </ns0:DocumentConditions>
-                            </xsl:if> -->
+                                 <ns0:DocumentConditions>
+                                 <ns0:DocumentCondition>
+                                 <ns0:ConditionCode>
+                                 <xsl:value-of select="normalize-space(substring(Line, 678, 5))"/>
+                                 </ns0:ConditionCode>
+                                 </ns0:DocumentCondition>
+                                 </ns0:DocumentConditions>
+                                 </xsl:if> -->
                             
                             <ns0:IncotermCode>
                                 <xsl:value-of select="normalize-space(substring(Line, 678, 5))"/>
@@ -188,31 +201,41 @@
                                  <xsl:value-of select="normalize-space(substring(Line, 726, 30))"/>  -->
                             
                             <ns0:DocumentPackages>
-                                <ns0:DocumentPackage>
+                                <ns0:DocumentPackage> 
                                     <ns0:NumberofPackages>
-                                        <xsl:value-of select="normalize-space(substring(Line, 772, 6))"/>
+                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 772, 6))"/>
                                     </ns0:NumberofPackages>
+                                    
                                     <ns0:PackageCode>
                                         <xsl:value-of select="normalize-space(substring(Line, 778, 4))"/>
                                     </ns0:PackageCode>
+                                    
+                                    <!-- <ns0:NumberofPieces>
+                                         <xsl:value-of select="normalize-space(substring(Line, 772, 6))"/>
+                                         </ns0:NumberofPieces> -->
+                                    
                                     <ns0:GrossWeight>
-                                        <xsl:value-of select="normalize-space(substring(Line, 782, 11))"/>
+                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 782, 11))"/>
                                     </ns0:GrossWeight>
-                                    <ns0:Cubage>
-                                        <xsl:value-of select="normalize-space(substring(Line, 793, 11))"/>
-                                    </ns0:Cubage>
+                                    
+                                    <!-- <ns0:Cubage>
+                                         <xsl:value-of select="local:strip-leading-zeros(substring(Line, 793, 11))"/>
+                                         </ns0:Cubage> -->
+                                    <ns0:VolumeWeight>
+                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 793, 11))"/>
+                                    </ns0:VolumeWeight>
+                                    
                                     <ns0:Length>
-                                        <xsl:value-of select="normalize-space(substring(Line, 804, 4))"/>
+                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 804, 4))"/>
                                     </ns0:Length>
                                     <ns0:Width>
-                                        <xsl:value-of select="normalize-space(substring(Line, 808, 4))"/>
+                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 808, 4))"/>
                                     </ns0:Width>
+                                    <ns0:Height>
+                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 812, 4))"/>
+                                    </ns0:Height>
                                 </ns0:DocumentPackage>
                             </ns0:DocumentPackages>
-                            
-                            <ns0:Quantity>
-                                <xsl:value-of select="normalize-space(substring(Line, 812, 4))"/>
-                            </ns0:Quantity>
                             
                             <ns0:Attributes>
                                 <ns0:Attribute>
