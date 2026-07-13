@@ -58,15 +58,26 @@
             <xsl:value-of select="eit:createDate(s0:DTM/s0:C507[C50701=11]/C50702)" />
           </ns0:DeliveryDate>
           <ns0:ShipToAddress>
-            <ns0:ExternalNo>
-              <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01 = 'CN']/s0:NAD/s0:C082/C08201" />
-            </ns0:ExternalNo>
-            <ns0:Name>
-              <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01 = 'CN']/s0:LOC/s0:C517/C51701" />
-            </ns0:Name>
-            <ns0:Name2>
-              <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01 = 'CN']/s0:LOC/s0:C519/C51901" />
-            </ns0:Name2>
+            <!-- req 9343 - if templ is in the address, then No = A0000023, else use the old logic (ExternalNo, Name, Name2) -->
+            <xsl:choose>
+              <xsl:when test="contains(lower-case(normalize-space(s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C519/C51901)), 'tepl') or contains(lower-case(normalize-space(s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C517/C51701)), 'tepl')">
+                <ns0:No>
+                  <xsl:text>A0000023</xsl:text>
+                </ns0:No>
+              </xsl:when>
+
+              <xsl:otherwise>
+                <ns0:ExternalNo>
+                  <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01 = 'CN']/s0:NAD/s0:C082/C08201" />
+                </ns0:ExternalNo>
+                <ns0:Name>
+                  <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01 = 'CN']/s0:LOC/s0:C517/C51701" />
+                </ns0:Name>
+                <ns0:Name2>
+                  <xsl:value-of select="s0:NADLoop1[s0:NAD/NAD01 = 'CN']/s0:LOC/s0:C519/C51901" />
+                </ns0:Name2>
+              </xsl:otherwise>
+            </xsl:choose>
           </ns0:ShipToAddress>
           
           <xsl:if test="string(s0:TDTLoop1[s0:TDT/s0:C220/C22001 = '80']/s0:TDT/s0:C222/C22204)">
@@ -115,10 +126,10 @@
                   <ns0:DocumentLine>
                     <ns0:No>
                       <!--
-                        Determine the DocumentLine No based on LOC/LOC01 = '11'.
-                        1. Try to match keywords in C519/C51901 (case-insensitive, normalized)
-                        2. If no match, try the same logic on C517/C51701
-                        3. If still no match, fall back to the old logic (PAC or default)
+                           Determine the DocumentLine No based on LOC/LOC01 = '11'.
+                           1. Try to match keywords in C519/C51901 (case-insensitive, normalized)
+                           2. If no match, try the same logic on C517/C51701
+                           3. If still no match, fall back to the old logic (PAC or default)
                       -->
                       <xsl:variable name="loc11_c519" select="lower-case(normalize-space(../../s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C519/C51901))" />
                       <xsl:variable name="loc11_c517" select="lower-case(normalize-space(../../s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C517/C51701))" />
@@ -136,6 +147,9 @@
                         <xsl:when test="contains($loc11_c519, 'evr')">
                           <xsl:text>RCTTATA-0005</xsl:text>
                         </xsl:when>
+                        <xsl:when test="contains($loc11_c519, 'tepl')">
+                          <xsl:text>RCTTATA-0007</xsl:text>
+                        </xsl:when>
                         <!-- 2. If no match in C519, try C517 -->
                         <xsl:when test="not(contains($loc11_c519, 'ds') or contains($loc11_c519, 'duffel') or contains($loc11_c519, 'uni') or contains($loc11_c519, 'evr'))">
                           <xsl:choose>
@@ -150,6 +164,9 @@
                             </xsl:when>
                             <xsl:when test="contains($loc11_c517, 'evr')">
                               <xsl:text>RCTTATA-0005</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="contains($loc11_c517, 'tepl')">
+                              <xsl:text>RCTTATA-0007</xsl:text>
                             </xsl:when>
                             <!-- 3. If still no match, use old logic -->
                             <xsl:otherwise>
