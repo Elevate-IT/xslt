@@ -1,10 +1,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
-                exclude-result-prefixes="msxsl MyScript ttord" version="1.0"
                 xmlns:ns0="www.boltrics.nl/receiveshipment:v1.00"
                 xmlns:ttord="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_Order_v2018p01"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript">
-  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+                exclude-result-prefixes="msxsl ttord" version="3.0">
+  
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" indent="yes" />
   
   <xsl:template match="ttord:MessageHeader">
     <xsl:apply-templates select="ttord:Order" />
@@ -34,17 +34,11 @@
         </ns0:FromTradingPartner>
         <ns0:ToTradingPartner>DANDOY</ns0:ToTradingPartner>
       </ns0:Header>
+      
       <ns0:Documents>
         <ns0:Document>
           <ns0:DocumentDate>
-            <xsl:choose>
-              <xsl:when test="contains(//ttord:SendingDateTime, 'Z')">
-                <xsl:value-of select="MyScript:ParseDate(//ttord:SendingDateTime, 'yyyy-MM-ddThh:mm:ssZ', 'yyyy-MM-dd')" />
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="MyScript:ParseDate(//ttord:SendingDateTime, 's', 'yyyy-MM-dd')" />
-              </xsl:otherwise>
-            </xsl:choose>
+            <xsl:value-of select="format-dateTime(//ttord:SendingDateTime, '[Y]-[M01]-[D01]')"/>
           </ns0:DocumentDate>
           <ns0:ExternalDocumentNo>
             <xsl:value-of select="ttord:OrderReferenceID" />
@@ -53,79 +47,37 @@
             <xsl:value-of select="ttord:OrderID" />
           </ns0:ExternalReference>
           
-          <xsl:if test="count(//ttord:Timing[ttord:EventTypeCode = '101']) &gt; 0">
+          <xsl:if test="count(ttord:Timing[ttord:EventTypeCode = '101']) &gt; 0">
             <xsl:choose>
-              <xsl:when test="//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventBeginDateTime != ''">
-                <xsl:choose>
-                  <xsl:when test="contains(//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventBeginDateTime, 'Z')">
-                    <ns0:PlannedStartDate>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventBeginDateTime,'yyyy-MM-ddTHH:mm:ssZ','yyyy-MM-dd')" />
-                    </ns0:PlannedStartDate>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <ns0:PlannedStartDate>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventBeginDateTime,'yyyy-MM-ddTHH:mm:ss','yyyy-MM-dd')" />
-                    </ns0:PlannedStartDate>
-                  </xsl:otherwise>
-                </xsl:choose>
+              <xsl:when test="ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventBeginDateTime != ''">
+                <ns0:PlannedStartDate>
+                  <xsl:value-of select="format-dateTime(ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventBeginDateTime, '[Y]-[M01]-[D01]')" />
+                </ns0:PlannedStartDate>
               </xsl:when>
-              <xsl:when test="//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventDateTime != ''">
-                <xsl:choose>
-                  <xsl:when test="contains(//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventDateTime, 'Z')">
-                    <ns0:PlannedStartDate>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventDateTime,'yyyy-MM-ddTHH:mm:ssZ','yyyy-MM-dd')" />
-                    </ns0:PlannedStartDate>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <ns0:PlannedStartDate>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventDateTime,'yyyy-MM-ddTHH:mm:ss','yyyy-MM-dd')" />
-                    </ns0:PlannedStartDate>
-                  </xsl:otherwise>
-                </xsl:choose>
+              <xsl:when test="ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventDateTime != ''">
+                <ns0:PlannedStartDate>
+                  <xsl:value-of select="format-dateTime(ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventDateTime, '[Y]-[M01]-[D01]')" />
+                </ns0:PlannedStartDate>
               </xsl:when>
             </xsl:choose>
           </xsl:if>
-          <xsl:if test="count(//ttord:Timing[ttord:EventTypeCode = '102']) &gt; 0">
+          <xsl:if test="count(ttord:Timing[ttord:EventTypeCode = '102']) &gt; 0">
             <xsl:choose>
-              <xsl:when test="//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime != ''">
-                <xsl:choose>
-                  <xsl:when test="contains(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime, 'Z')">
-                    <ns0:DeliveryDate>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime,'yyyy-MM-ddTHH:mm:ssZ','yyyy-MM-dd')" />
-                    </ns0:DeliveryDate>
-                    <ns0:DeliveryTime>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime,'yyyy-MM-ddTHH:mm:ssZ','HH:mm:ss')" />
-                    </ns0:DeliveryTime>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <ns0:DeliveryDate>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime,'yyyy-MM-ddTHH:mm:ss','yyyy-MM-dd')" />
-                    </ns0:DeliveryDate>
-                    <ns0:DeliveryTime>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime,'yyyy-MM-ddTHH:mm:ss','HH:mm:ss')" />
-                    </ns0:DeliveryTime>
-                  </xsl:otherwise>
-                </xsl:choose>
+              <xsl:when test="ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime != ''">
+                <ns0:DeliveryDate>
+                  <xsl:value-of select="format-dateTime(ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime, '[Y]-[M01]-[D01]')" />
+                </ns0:DeliveryDate>
+                <ns0:DeliveryTime>
+                  <xsl:value-of select="format-dateTime(ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventBeginDateTime, '[H01]:[m01]:[s01]')" />
+                </ns0:DeliveryTime>
               </xsl:when>
-              <xsl:when test="//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime != ''">
-                <xsl:choose>
-                  <xsl:when test="contains(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime, 'Z')">
-                    <ns0:DeliveryDate>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime,'yyyy-MM-ddTHH:mm:ssZ','yyyy-MM-dd')" />
-                    </ns0:DeliveryDate>
-                    <ns0:DeliveryTime>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime,'yyyy-MM-ddTHH:mm:ssZ','HH:mm:ss')" />
-                    </ns0:DeliveryTime>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <ns0:DeliveryDate>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime,'yyyy-MM-ddTHH:mm:ss','yyyy-MM-dd')" />
-                    </ns0:DeliveryDate>
-                    <ns0:DeliveryTime>
-                      <xsl:value-of select="MyScript:ParseDate(//ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime,'yyyy-MM-ddTHH:mm:ss','HH:mm:ss')" />
-                    </ns0:DeliveryTime>
-                  </xsl:otherwise>
-                </xsl:choose>
+              <xsl:when test="ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime != ''">
+                <ns0:DeliveryDate>
+                  <xsl:value-of select="format-dateTime(ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime, '[Y]-[M01]-[D01]')" />
+                </ns0:DeliveryDate>
+                <ns0:DeliveryTime>
+                  <xsl:value-of select="format-dateTime(ttord:Timing[ttord:EventTypeCode = '102']/ttord:EventDateTime, '[H01]:[m01]:[s01]')" />
+                </ns0:DeliveryTime>
               </xsl:when>
             </xsl:choose>
           </xsl:if>
@@ -234,51 +186,5 @@
         </ns0:Document>
       </ns0:Documents>
     </ns0:Message>
-  </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 1;
-          return LINCounter.ToString();
-      }   
-      
-			public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-      
-      public string ParseEOMDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        DateTime endOfMonth = new DateTime(dateT.Year, dateT.Month, DateTime.DaysInMonth(dateT.Year, dateT.Month));
-        return endOfMonth.ToString(formatOut);
-      }
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }    
-      
-      public string AddDays(string inputDate, string formulaText, string formatIn, string formatOut)
-      {
-        DateTime Date = DateTime.ParseExact(inputDate, formatIn, null);
-        Double formula = System.Convert.ToDouble(formulaText);
-        DateTime OutputDate = Date.AddDays(formula);
-        
-        return OutputDate.ToString(formatOut);
-      }
-
-		]]>
-  </msxsl:script>
+  </xsl:template> 
 </xsl:stylesheet>
