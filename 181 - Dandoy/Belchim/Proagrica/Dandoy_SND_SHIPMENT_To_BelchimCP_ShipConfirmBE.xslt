@@ -1,33 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:ttdesp="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_DespatchAdvice_v2018p01"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:s0="www.boltrics.nl/sendshipment:v1.00"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
-                exclude-result-prefixes="msxsl MyScript s0"
-  >
-  <xsl:output omit-xml-declaration="no" method="xml" version="1.0" />
+                exclude-result-prefixes="msxsl s0 xs" version="3.0" >
+  
+  <xsl:output omit-xml-declaration="no" method="xml" version="1.0" indent="yes" />
+  
   <xsl:key name="Group-by-LineNo-BatchNo" match="//s0:Message/s0:Documents/s0:Document/s0:DocumentLines/s0:DocumentLine/s0:DocumentDetailLines/s0:DocumentDetailLine" use="concat(s0:DocumentLineNo,'-',s0:ExternalBatchNo)" />
+  
   <xsl:template match="/">
     <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
   </xsl:template>
+  
   <xsl:template match="//s0:Message/s0:Documents/s0:Document">
     <ttdesp:MessageHeader xsi:schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_DespatchAdvice_v2018p01 http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_DespatchAdvice_v2018p01.xsd">
       <ttdesp:MessageID schemeID="REF">
-        <xsl:value-of select="//s0:MessageID" />
+        <xsl:value-of select="../../s0:Header/s0:MessageID" />
       </ttdesp:MessageID>
       <ttdesp:SendingDateTime>
-        <xsl:value-of select="//s0:CreationDateTime" />
+        <xsl:value-of select="../../s0:Header/s0:CreationDateTime" />
       </ttdesp:SendingDateTime>
       <ttdesp:SendingPartyID schemeID="GLN">
         <xsl:text>5488888010642</xsl:text>
       </ttdesp:SendingPartyID>
       <ttdesp:ReceivingPartyID schemeID="GLN">
-        <xsl:value-of select="//s0:ToTradingPartner" />
+        <xsl:value-of select="../../s0:Header/s0:ToTradingPartner" />
       </ttdesp:ReceivingPartyID>
       <ttdesp:MessageType>102</ttdesp:MessageType>
       <ttdesp:MessagePurposeCode>47</ttdesp:MessagePurposeCode>
+      
       <ttdesp:Delivery>
         <ttdesp:DeliveryID schemeID="REF">
           <xsl:value-of select="s0:ExternalDocumentNo" />
@@ -35,7 +38,7 @@
         <ttdesp:DeliveryStatusCode>101</ttdesp:DeliveryStatusCode>
         <!--101= original-->
         <ttdesp:DeliveryDateTime>
-          <xsl:value-of select="//s0:CreationDateTime" />
+          <xsl:value-of select="../../s0:Header/s0:CreationDateTime" />
         </ttdesp:DeliveryDateTime>
         <xsl:if test="s0:GrossWeight != 0">
           <ttdesp:GrossWeight unitCode="KGM">
@@ -51,14 +54,14 @@
           <ttdesp:EventTypeCode>101</ttdesp:EventTypeCode>
           <!-- = Load-->
           <ttdesp:EventDateTime>
-            <xsl:value-of select="MyScript:ParseDate(s0:PostingDate, 'yyyy-MM-dd', 's')" />
+            <xsl:value-of select="xs:dateTime(xs:date(s0:PostingDate))" />
           </ttdesp:EventDateTime>
         </ttdesp:Timing>
         <ttdesp:Timing>
           <ttdesp:EventTypeCode>102</ttdesp:EventTypeCode>
           <!-- = Deliver-->
           <ttdesp:EventDateTime>
-            <xsl:value-of select="MyScript:ParseDate(s0:DeliveryDate, 'yyyy-MM-dd', 's')" />
+            <xsl:value-of select="xs:dateTime(xs:date(s0:DeliveryDate))" />
           </ttdesp:EventDateTime>
         </ttdesp:Timing>
         <!--<ttdesp:MeansOfTransportation>
@@ -74,6 +77,7 @@
              <ttdesp:ICT_ReferenceID>Ref EU2356</ttdesp:ICT_ReferenceID>
              <ttdesp:ICT_Description>Volgens Europese regelgeving.</ttdesp:ICT_Description>
              </ttdesp:InternationalCommercialTerms>-->
+        
         <xsl:if test="s0:SenderAddress/s0:No != ''">
           <ttdesp:TradeParty>
             <ttdesp:GlobalID>
@@ -99,6 +103,7 @@
             <!--<ttdesp:PersonToContact>Floris Rhemrev</ttdesp:PersonToContact>-->
           </ttdesp:TradeParty>
         </xsl:if>
+        
         <ttdesp:TradeParty>
           <ttdesp:GlobalID>
             <xsl:value-of select="s0:ShipToAddress/s0:No" />
@@ -121,6 +126,7 @@
             <xsl:value-of select="s0:ShipToAddress/s0:CountryRegionCode" />
           </ttdesp:CountryCode>
         </ttdesp:TradeParty>
+        
         <xsl:for-each select="s0:DocumentLines/s0:DocumentLine/s0:DocumentDetailLines/s0:DocumentDetailLine[s0:Posted = '1'][count(. | key('Group-by-LineNo-BatchNo', concat(s0:DocumentLineNo,'-',s0:ExternalBatchNo))[1]) = 1]">
           <xsl:variable name="LineKey" select="concat(s0:DocumentLineNo,'-',s0:ExternalBatchNo)" />
           <xsl:if test="concat(s0:DocumentLineNo,'-',s0:ExternalBatchNo) != '-'">
@@ -139,7 +145,7 @@
                 <xsl:value-of select="sum(key('Group-by-LineNo-BatchNo',$LineKey)/s0:OrderQuantity)" />
               </ttdesp:DeliveryLineQuantity>
               <ttdesp:OrderReferenceID schemeID="REF">
-                <xsl:value-of select="//s0:ExternalReference" />
+                <xsl:value-of select="../../../../s0:ExternalReference" />
               </ttdesp:OrderReferenceID>
               <ttdesp:OrderLineReferenceID schemeID="REF">
                 <xsl:choose>
@@ -184,18 +190,4 @@
       </ttdesp:Delivery>
     </ttdesp:MessageHeader>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
