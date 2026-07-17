@@ -5,11 +5,11 @@
                 xmlns:ttord="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_Order_v2018p01"
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript">
   <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
-
+  
   <xsl:template match="ttord:MessageHeader">
     <xsl:apply-templates select="ttord:Order" />
   </xsl:template>
-
+  
   <xsl:template match="ttord:Order">
     <ns0:Message>
       <ns0:Header>
@@ -39,7 +39,7 @@
           <ns0:DocumentDate>
             <xsl:choose>
               <xsl:when test="contains(//ttord:SendingDateTime, 'Z')">
-                <xsl:value-of select="MyScript:ParseDate(//ttord:SendingDateTime, 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-dd')" />
+                <xsl:value-of select="MyScript:ParseDate(//ttord:SendingDateTime, 'yyyy-MM-ddThh:mm:ssZ', 'yyyy-MM-dd')" />
               </xsl:when>
               <xsl:otherwise>
                 <xsl:value-of select="MyScript:ParseDate(//ttord:SendingDateTime, 's', 'yyyy-MM-dd')" />
@@ -47,21 +47,12 @@
             </xsl:choose>
           </ns0:DocumentDate>
           <ns0:ExternalDocumentNo>
-            <!--<xsl:choose>
-              <xsl:when test="ttord:OrderReferenceID != ''">
-                <xsl:value-of select="ttord:OrderReferenceID" />
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="ttord:OrderID" />
-              </xsl:otherwise>
-            </xsl:choose>-->
-
             <xsl:value-of select="ttord:OrderReferenceID" />
           </ns0:ExternalDocumentNo>
           <ns0:ExternalReference>
             <xsl:value-of select="ttord:OrderID" />
           </ns0:ExternalReference>
-
+          
           <xsl:if test="count(//ttord:Timing[ttord:EventTypeCode = '101']) &gt; 0">
             <xsl:choose>
               <xsl:when test="//ttord:Timing[ttord:EventTypeCode = '101']/ttord:EventBeginDateTime != ''">
@@ -138,7 +129,7 @@
               </xsl:when>
             </xsl:choose>
           </xsl:if>
-
+          
           <xsl:choose>
             <xsl:when test="count(ttord:TradeParty[ttord:TradePartyRoleCode = 'ST']) &gt; 0">
               <ns0:ShipToAddress>
@@ -185,27 +176,27 @@
               </ns0:ShipToAddress>
             </xsl:when>
           </xsl:choose>
-
+          
           <!--<xsl:if test="ShippingAgentCode != ''">
-            <ns0:CarrierAddress>
-              <ns0:ExternalNo>
-                <xsl:value-of select="ShippingAgentCode" />
-              </ns0:ExternalNo>
-              <ns0:Name>
-                <xsl:value-of select="ShippingAgentCode" />
-              </ns0:Name>
-            </ns0:CarrierAddress>
-          </xsl:if>-->
-
+               <ns0:CarrierAddress>
+               <ns0:ExternalNo>
+               <xsl:value-of select="ShippingAgentCode" />
+               </ns0:ExternalNo>
+               <ns0:Name>
+               <xsl:value-of select="ShippingAgentCode" />
+               </ns0:Name>
+               </ns0:CarrierAddress>
+               </xsl:if>-->
+          
           <!--<ns0:Attributes>
-            <ns0:Attribute>
-              <ns0:Code>SHIPAGENT</ns0:Code>
-              <ns0:Value>
-                <xsl:value-of select="ShippingAgentCode" />
-              </ns0:Value>
-            </ns0:Attribute>
-          </ns0:Attributes>-->
-
+               <ns0:Attribute>
+               <ns0:Code>SHIPAGENT</ns0:Code>
+               <ns0:Value>
+               <xsl:value-of select="ShippingAgentCode" />
+               </ns0:Value>
+               </ns0:Attribute>
+               </ns0:Attributes>-->
+          
           <xsl:if test="count(ttord:OrderLine) &gt; 0">
             <ns0:DocumentLines>
               <xsl:for-each select="ttord:OrderLine">
@@ -239,7 +230,7 @@
               </xsl:for-each>
             </ns0:DocumentLines>
           </xsl:if>
-
+          
         </ns0:Document>
       </ns0:Documents>
     </ns0:Message>
