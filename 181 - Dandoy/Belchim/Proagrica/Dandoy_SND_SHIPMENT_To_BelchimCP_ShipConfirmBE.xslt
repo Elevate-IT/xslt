@@ -37,6 +37,11 @@
         </ttdesp:DeliveryID>
         <ttdesp:DeliveryStatusCode>101</ttdesp:DeliveryStatusCode>
         <!--101= original-->
+        <xsl:if test="s0:BillofLadingNo != ''">
+          <ttdesp:OriginalDeliveryReferenceID schemeID="REF">
+            <xsl:value-of select="s0:BillofLadingNo" />
+          </ttdesp:OriginalDeliveryReferenceID>
+        </xsl:if>
         <ttdesp:DeliveryDateTime>
           <xsl:value-of select="../../s0:Header/s0:CreationDateTime" />
         </ttdesp:DeliveryDateTime>
