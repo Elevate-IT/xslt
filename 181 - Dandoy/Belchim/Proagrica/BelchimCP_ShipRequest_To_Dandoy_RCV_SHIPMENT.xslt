@@ -46,6 +46,11 @@
           <ns0:ExternalReference>
             <xsl:value-of select="ttord:OrderID" />
           </ns0:ExternalReference>
+          <xsl:if test="count(ttord:Remark[ttord:TextFunctionTypeCode = '999'][starts-with(ttord:TextLines, 'ShipmentIdentifier:')]) &gt; 0">
+            <ns0:BillofLadingNo>
+              <xsl:value-of select="normalize-space(substring-after(ttord:Remark[ttord:TextFunctionTypeCode = '999'][starts-with(ttord:TextLines, 'ShipmentIdentifier:')][1], 'ShipmentIdentifier:'))" />
+            </ns0:BillofLadingNo>
+          </xsl:if>
           
           <xsl:if test="count(ttord:Timing[ttord:EventTypeCode = '101']) &gt; 0">
             <xsl:choose>
