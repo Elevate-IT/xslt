@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:ttdesp="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_DespatchAdvice_v2018p01"
-    xmlns:msxsl="urn:schemas-microsoft-com:xslt"
-    xmlns:s0="www.boltrics.nl/sendshipment:v1.00"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
-    exclude-result-prefixes="msxsl MyScript s0"
->
+                xmlns:ttdesp="http://www.agroconnect.nl/Portals/10/XSDs/TandT_CPP/v2018p01/TandT_CPP_DespatchAdvice_v2018p01"
+                xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+                xmlns:s0="www.boltrics.nl/sendshipment:v1.00"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
+                exclude-result-prefixes="msxsl MyScript s0"
+  >
   <xsl:output omit-xml-declaration="no" method="xml" version="1.0" />
   <xsl:key name="Group-by-LineNo-BatchNo" match="//s0:Message/s0:Documents/s0:Document/s0:DocumentLines/s0:DocumentLine/s0:DocumentDetailLines/s0:DocumentDetailLine" use="concat(s0:DocumentLineNo,'-',s0:ExternalBatchNo)" />
   <xsl:template match="/">
@@ -62,18 +62,18 @@
           </ttdesp:EventDateTime>
         </ttdesp:Timing>
         <!--<ttdesp:MeansOfTransportation>
-          <ttdesp:TransportMeansID schemeID="NUMMERPLAAT">
-            <xsl:value-of select="s0:VehicleNo" />
-          </ttdesp:TransportMeansID>
-          <ttdesp:TransportMeansTypeCode>36</ttdesp:TransportMeansTypeCode>
-          -->
+             <ttdesp:TransportMeansID schemeID="NUMMERPLAAT">
+             <xsl:value-of select="s0:VehicleNo" />
+             </ttdesp:TransportMeansID>
+             <ttdesp:TransportMeansTypeCode>36</ttdesp:TransportMeansTypeCode>
+        -->
         <!-- = Truck, dry bulk-->
         <!--
-        </ttdesp:MeansOfTransportation>-->
+             </ttdesp:MeansOfTransportation>-->
         <!--<ttdesp:InternationalCommercialTerms>
-          <ttdesp:ICT_ReferenceID>Ref EU2356</ttdesp:ICT_ReferenceID>
-          <ttdesp:ICT_Description>Volgens Europese regelgeving.</ttdesp:ICT_Description>
-        </ttdesp:InternationalCommercialTerms>-->
+             <ttdesp:ICT_ReferenceID>Ref EU2356</ttdesp:ICT_ReferenceID>
+             <ttdesp:ICT_Description>Volgens Europese regelgeving.</ttdesp:ICT_Description>
+             </ttdesp:InternationalCommercialTerms>-->
         <xsl:if test="s0:SenderAddress/s0:No != ''">
           <ttdesp:TradeParty>
             <ttdesp:GlobalID>
@@ -131,7 +131,7 @@
                     <xsl:value-of select="key('Group-by-LineNo-BatchNo',$LineKey)/../../s0:Attributes/s0:Attribute[s0:Code='LINENO']/s0:Value" />
                   </xsl:when>
                   <xsl:otherwise>
-                    <xsl:value-of select="key('Group-by-LineNo-BatchNo',$LineKey)/s0:DocumentLineNo" />
+                    <xsl:value-of select="key('Group-by-LineNo-BatchNo',$LineKey)/../../s0:DocumentLineNo" />
                   </xsl:otherwise>
                 </xsl:choose>
               </ttdesp:DeliveryLineID>
