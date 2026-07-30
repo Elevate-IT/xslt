@@ -27,7 +27,7 @@
                     <xsl:text>INSERT</xsl:text>
                 </ns0:ProcesAction>
                 <ns0:FromTradingPartner>
-                    <xsl:text>JCHEU</xsl:text>
+                    <xsl:text>HACE SAS</xsl:text>
                 </ns0:FromTradingPartner>
                 <ns0:ToTradingPartner>
                     <xsl:text>LOGISTEED</xsl:text>
@@ -183,6 +183,8 @@
                                 <xsl:value-of select="normalize-space(substring(Line, 678, 5))"/>
                             </ns0:IncotermCode>
                             
+                            <ns0:OrderTypeCode>SPAREPARTS</ns0:OrderTypeCode>
+                            
                             <xsl:if test="substring(Line, 683, 10)!='          '">
                                 <ns0:ShippingAgent>
                                     <ns0:EANCode>
@@ -199,32 +201,20 @@
                             
                             <!-- Transport account number > hoort bij Shipping agent ? 
                                  <xsl:value-of select="normalize-space(substring(Line, 726, 30))"/>  -->
-                            
-                            <ns0:DocumentPackages>
-                                <ns0:DocumentPackage> 
-                                    <ns0:NumberofPackages>
-                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 772, 6))"/>
-                                    </ns0:NumberofPackages>
-                                    
-                                    <ns0:PackageCode>
+                            <ns0:DocumentLines>
+                                <ns0:DocumentLine>
+                                    <ns0:ExternalNo>
                                         <xsl:value-of select="normalize-space(substring(Line, 778, 4))"/>
-                                    </ns0:PackageCode>
-                                    
-                                    <!-- <ns0:NumberofPieces>
-                                         <xsl:value-of select="normalize-space(substring(Line, 772, 6))"/>
-                                         </ns0:NumberofPieces> -->
-                                    
+                                    </ns0:ExternalNo>
+                                    <ns0:Quantity>
+                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 772, 6))"/>
+                                    </ns0:Quantity>
                                     <ns0:GrossWeight>
-                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 782, 11))"/>
+                                        <xsl:value-of select="number(local:strip-leading-zeros(substring(Line, 782, 11))) div 1000"/>
                                     </ns0:GrossWeight>
-                                    
-                                    <!-- <ns0:Cubage>
-                                         <xsl:value-of select="local:strip-leading-zeros(substring(Line, 793, 11))"/>
-                                         </ns0:Cubage> -->
                                     <ns0:VolumeWeight>
-                                        <xsl:value-of select="local:strip-leading-zeros(substring(Line, 793, 11))"/>
+                                        <xsl:value-of select="number(local:strip-leading-zeros(substring(Line, 793, 11))) div 1000"/>
                                     </ns0:VolumeWeight>
-                                    
                                     <ns0:Length>
                                         <xsl:value-of select="local:strip-leading-zeros(substring(Line, 804, 4))"/>
                                     </ns0:Length>
@@ -234,9 +224,8 @@
                                     <ns0:Height>
                                         <xsl:value-of select="local:strip-leading-zeros(substring(Line, 812, 4))"/>
                                     </ns0:Height>
-                                </ns0:DocumentPackage>
-                            </ns0:DocumentPackages>
-                            
+                                </ns0:DocumentLine>
+                            </ns0:DocumentLines>
                             <ns0:Attributes>
                                 <ns0:Attribute>
                                     <ns0:Code>EDIMSGTYPE</ns0:Code>
