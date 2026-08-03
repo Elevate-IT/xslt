@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
                 exclude-result-prefixes="msxsl var MyScript" version="1.0"
                 xmlns:ns0="www.boltrics.nl/receiveshipment:v1.00"
@@ -63,11 +64,9 @@
   <xsl:template match="NAVIPWMS/HEADER">
     <ns0:Message>
       <ns0:Header>
-        <ns0:MessageID>
-          <xsl:value-of select="MyScript:GetGUID()" />
-        </ns0:MessageID>
+        <ns0:MessageID>1</ns0:MessageID>
         <ns0:CreationDateTime>
-          <xsl:value-of select="MyScript:GetCurrentDate('yyyy-MM-ddThh:mm:ss')" />
+          <xsl:value-of select="format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')" />
         </ns0:CreationDateTime>
         <ns0:ProcesAction>
           <xsl:text>INSERT</xsl:text>
@@ -82,10 +81,10 @@
       <ns0:Documents>
         <ns0:Document>
           <ns0:DocumentDate>
-            <xsl:value-of select="MyScript:ParseDate(DATE,'yyyyMMdd','yyyy-MM-dd')" />
+            <xsl:value-of select="format-date(xs:date(DATE), '[D01]-[M01]-[Y0001]')" />
           </ns0:DocumentDate>
           <ns0:PostingDate>
-            <xsl:value-of select="MyScript:ParseDate(UNLOADDATE,'yyyyMMdd','yyyy-MM-dd')" />
+            <xsl:value-of select="format-date(xs:date(UNLOADDATE), '[D01]-[M01]-[Y0001]')" />
           </ns0:PostingDate>
           <ns0:ExternalDocumentNo>
             <xsl:value-of select="CUSTREFDOC" />
@@ -120,31 +119,31 @@
             <xsl:value-of select="TRAILER"/>
           </ns0:TrailerContainerNo>
           <ns0:AnnouncedDate>
-            <xsl:value-of select="MyScript:ParseDate(UNLOADDATE,'yyyyMMdd','yyyy-MM-dd')"/>
+            <xsl:value-of select="format-date(xs:date(UNLOADDATE), '[Y0001][M01][D01]')" />
           </ns0:AnnouncedDate>
           <xsl:if test="UNLOADHOURFROM != ''">
             <ns0:AnnouncedTime>
-              <xsl:value-of select="MyScript:ParseDate(UNLOADHOURFROM,'HHmm','HH:mm:ss')"/>
+              <xsl:value-of select="format-time(xs:time(concat(substring(UNLOADHOURFROM, 1, 2), ':', substring(UNLOADHOURFROM, 3, 2), ':00')), '[H01]:[m01]:[s01]')"/>
             </ns0:AnnouncedTime>
           </xsl:if>
           <ns0:DepartedDate>
-            <xsl:value-of select="MyScript:ParseDate(UNLOADDATE,'yyyyMMdd','yyyy-MM-dd')"/>
+            <xsl:value-of select="format-date(xs:date(UNLOADDATE), '[D01]-[M01]-[Y0001]')" />
           </ns0:DepartedDate>
           <ns0:PlannedStartDate>
-            <xsl:value-of select="MyScript:ParseDate(UNLOADDATE,'yyyyMMdd','yyyy-MM-dd')"/>
+            <xsl:value-of select="format-date(xs:date(UNLOADDATE), '[D01]-[M01]-[Y0001]')" />
           </ns0:PlannedStartDate>
           <xsl:if test="UNLOADHOURFROM != ''">
             <ns0:PlannedStartTime>
-              <xsl:value-of select="MyScript:ParseDate(UNLOADHOURFROM,'HHmm','HH:mm:ss')"/>
+              <xsl:value-of select="format-time(xs:time(concat(substring(UNLOADHOURFROM, 1, 2), ':', substring(UNLOADHOURFROM, 3, 2), ':00')), '[H01]:[m01]:[s01]')"/>
             </ns0:PlannedStartTime>
           </xsl:if>
           <xsl:if test="UNLOADHOURTILL != ''">
             <ns0:PlannedEndTime>
-              <xsl:value-of select="MyScript:ParseDate(UNLOADHOURTILL,'HHmm','HH:mm:ss')"/>
+              <xsl:value-of select="format-time(xs:time(concat(substring(UNLOADHOURTILL, 1, 2), ':', substring(UNLOADHOURFROM, 3, 2), ':00')), '[H01]:[m01]:[s01]')"/>
             </ns0:PlannedEndTime>
           </xsl:if>
           <ns0:DeliveryDate>
-            <xsl:value-of select="MyScript:ParseDate(UNLOADDATE,'yyyyMMdd','yyyy-MM-dd')" />
+            <xsl:value-of select="format-date(xs:date(UNLOADDATE), '[D01]-[M01]-[Y0001]')" />
           </ns0:DeliveryDate>
           <ns0:SenderAddress>
             <ns0:No>
@@ -249,41 +248,4 @@
       </ns0:Documents>
     </ns0:Message>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 1;
-          return LINCounter.ToString();
-      }   
-      
-		public string GetCurrentDate(string formatOut)
-		{
-			return System.DateTime.Now.ToString(formatOut);
-		}
-      
-      public string ParseEOMDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        DateTime endOfMonth = new DateTime(dateT.Year, dateT.Month, DateTime.DaysInMonth(dateT.Year, dateT.Month));
-        return endOfMonth.ToString(formatOut);
-      }
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }            
-
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>

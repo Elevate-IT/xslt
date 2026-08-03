@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl"
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript">
   
@@ -122,7 +123,7 @@
               <xsl:value-of select="Lotnr" />
             </xsl:element>
             <xsl:element name="THT">
-              <xsl:value-of select="MyScript:ParseDateTime(THT,'yyyy-MM-dd','dd/MM/yy')" />
+              <xsl:value-of select="format-date(xs:date(THT), '[D01]/[M01]/[Y01]')" />
             </xsl:element>
             <xsl:element name="Colli">
               <xsl:value-of select="sum(key('GroupBy-Actie_ActieCode_Productcode_Redencode_SSCC_Lotnr_THT',$LineKey)/Colli)" />
@@ -131,7 +132,7 @@
               <xsl:value-of select="Behandelaar" />
             </xsl:element>
             <xsl:element name="Datum_creatie">
-              <xsl:value-of select="MyScript:ParseDateTime(Datum_creatie,'yyyy-MM-dd','dd/MM/yy')" />
+              <xsl:value-of select="format-date(xs:date(Datum_creatie), '[D01]/[M01]/[Y01]')" />
             </xsl:element>
             <xsl:element name="Tijd_creatie">
               <xsl:value-of select="Tijd_creatie" />
@@ -141,16 +142,4 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:template>
-  
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-      public string ParseDateTime(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>

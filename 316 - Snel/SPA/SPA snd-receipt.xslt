@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
                 exclude-result-prefixes="msxsl var MyScript ns0" version="1.0"
                 xmlns:ns0="www.boltrics.nl/sendreceipt:v1.00"
@@ -25,15 +26,15 @@
         <EXTDOCNO />
         <ORIGIN />
         <CREADATE>
-          <xsl:value-of select="MyScript:GetCurrentDate('yyyyMMdd')"/>
+          <xsl:value-of select="format-date(current-date(), '[Y0001][M01][D01]')" />
         </CREADATE>
         <CREATIME>
-          <xsl:value-of select="MyScript:GetCurrentDate('HHmmdd')"/>
+          <xsl:value-of select="format-dateTime(current-dateTime(), '[H01][m01][s01]')" />
         </CREATIME>
       </IDENTIFICATION>
       <HEADER>
         <DATE>
-          <xsl:value-of select="MyScript:ParseDate(ns0:DocumentDate,'yyyy-MM-dd','yyyyMMdd')"/>
+          <xsl:value-of select="format-date(xs:date(ns0:DocumentDate), '[Y0001][M01][D01]')" />
         </DATE>
         <CUSTNOEXT>
           <xsl:value-of select="ns0:Customer/ns0:No"/>
@@ -85,13 +86,13 @@
         <WEIGHT></WEIGHT>
         <WEIGHTUOM></WEIGHTUOM>
         <LOADDATE>
-          <xsl:value-of select="MyScript:ParseDate(ns0:PostingDate,'yyyy-MM-dd','yyyyMMdd')"/>
+          <xsl:value-of select="format-date(xs:date(ns0:PostingDate), '[Y0001][M01][D01]')" />
         </LOADDATE>
         <LOADHOURFROM></LOADHOURFROM>
         <LOADHOURTILL></LOADHOURTILL>
         <LOADMARGIN></LOADMARGIN>
         <UNLOADDATE>
-          <xsl:value-of select="MyScript:ParseDate(ns0:PostingDate,'yyyy-MM-dd','yyyyMMdd')"/>
+          <xsl:value-of select="format-date(xs:date(ns0:PostingDate), '[Y0001][M01][D01]')" />
         </UNLOADDATE>
         <UNLOADHOURFROM></UNLOADHOURFROM>
         <UNLOADHOURTILL></UNLOADHOURTILL>
@@ -302,10 +303,10 @@
                           </QUANT>
                           <EARLEXPDATE />
                           <REQEXPDATE>
-                            <xsl:value-of select="MyScript:ParseDate(ns0:ExpirationDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                            <xsl:value-of select="format-date(xs:date(ns0:ExpirationDate), '[Y0001][M01][D01]')" />
                           </REQEXPDATE>
                           <PRODUCTIONDATE>
-                            <xsl:value-of select="MyScript:ParseDate(ns0:ProductionDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                            <xsl:value-of select="format-date(xs:date(ns0:ProductionDate), '[Y0001][M01][D01]')" />
                           </PRODUCTIONDATE>
                           <REQPALLET />
                           <REQSSCC></REQSSCC>
@@ -352,10 +353,10 @@
                               </LOT>
                               <PALLET></PALLET>
                               <EXPDATE>
-                                <xsl:value-of select="MyScript:ParseDate(ns0:ExpirationDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                                <xsl:value-of select="format-date(xs:date(ns0:ExpirationDate), '[Y0001][M01][D01]')" />
                               </EXPDATE>
                               <PRODUCTIONDATE>
-                                <xsl:value-of select="MyScript:ParseDate(ns0:ProductionDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                                <xsl:value-of select="format-date(xs:date(ns0:ProductionDate), '[Y0001][M01][D01]')" />
                               </PRODUCTIONDATE>
                               <SSCC></SSCC>
                               <EXTPALLETNO></EXTPALLETNO>
@@ -544,10 +545,10 @@
                           </QUANT>
                           <EARLEXPDATE />
                           <REQEXPDATE>
-                            <xsl:value-of select="MyScript:ParseDate(ns0:ExpirationDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                            <xsl:value-of select="format-date(xs:date(ns0:ExpirationDate), '[Y0001][M01][D01]')" />
                           </REQEXPDATE>
                           <PRODUCTIONDATE>
-                            <xsl:value-of select="MyScript:ParseDate(ns0:ProductionDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                            <xsl:value-of select="format-date(xs:date(ns0:ProductionDate), '[Y0001][M01][D01]')" />
                           </PRODUCTIONDATE>
                           <REQPALLET />
                           <REQSSCC>
@@ -600,10 +601,10 @@
                                 <xsl:value-of select="ns0:CarrierNo"/>
                               </PALLET>
                               <EXPDATE>
-                                <xsl:value-of select="MyScript:ParseDate(ns0:ExpirationDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                                <xsl:value-of select="format-date(xs:date(ns0:ExpirationDate), '[Y0001][M01][D01]')" />
                               </EXPDATE>
                               <PRODUCTIONDATE>
-                                <xsl:value-of select="MyScript:ParseDate(ns0:ProductionDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                                <xsl:value-of select="format-date(xs:date(ns0:ProductionDate), '[Y0001][M01][D01]')" />
                               </PRODUCTIONDATE>
                               <SSCC>
                                 <xsl:value-of select="ns0:CarrierNo"/>
@@ -697,10 +698,10 @@
                     </QUANT>
                     <EARLEXPDATE />
                     <REQEXPDATE>
-                      <xsl:value-of select="MyScript:ParseDate(ns0:ExpirationDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                      <xsl:value-of select="format-date(xs:date(ns0:ExpirationDate), '[Y0001][M01][D01]')" />
                     </REQEXPDATE>
-                    <PRODUCTIONDATE>
-                      <xsl:value-of select="MyScript:ParseDate(ns0:ProductionDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                    <PRODUCTIONDATE>         
+                      <xsl:value-of select="format-date(xs:date(ns0:ProductionDate), '[Y0001][M01][D01]')" />
                     </PRODUCTIONDATE>
                     <REQPALLET />
                     <REQSSCC>
@@ -794,10 +795,10 @@
                     </QUANT>
                     <EARLEXPDATE />
                     <REQEXPDATE>
-                      <xsl:value-of select="MyScript:ParseDate(ns0:ExpirationDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                      <xsl:value-of select="format-date(xs:date(ns0:PostingDate), '[Y0001][M01][D01]')" />
                     </REQEXPDATE>
                     <PRODUCTIONDATE>
-                      <xsl:value-of select="MyScript:ParseDate(ns0:ProductionDate,'yyyy-MM-dd','yyyyMMdd')"/>
+                      <xsl:value-of select="format-date(xs:date(ns0:PostingDate), '[Y0001][M01][D01]')" />
                     </PRODUCTIONDATE>
                     <REQPALLET />
                     <REQSSCC>
@@ -851,51 +852,5 @@
         </xsl:if>
       </HEADER>
     </NAVIPWMS>
-    
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 1;
-          return LINCounter.ToString();
-      }   
-      
-		public string GetCurrentDate(string formatOut)
-		{
-			return System.DateTime.Now.ToString(formatOut);
-		}
-      
-      public string ParseEOMDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        DateTime endOfMonth = new DateTime(dateT.Year, dateT.Month, DateTime.DaysInMonth(dateT.Year, dateT.Month));
-        return endOfMonth.ToString(formatOut);
-      }
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }
-	  
-	  public string Divide(double a, double b)
-	  {
-		return String.Format("{0:0.00}",a/b);
-	  }
-	  
-	  public string Substring(string input, int i){
-		return input.Substring(i);
-	  }
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
