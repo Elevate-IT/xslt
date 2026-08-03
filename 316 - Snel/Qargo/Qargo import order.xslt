@@ -1,6 +1,6 @@
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:ns0="www.boltrics.nl/sendtrip:v1.00">
+                xmlns:ns0="www.boltrics.nl/sendtripqargo:v1.00">
   <xsl:output method="text" encoding="UTF-8" omit-xml-declaration="yes" />
   
   <xsl:template match="/">
@@ -11,23 +11,6 @@
     <xsl:variable name="firstDoc" select="ns0:TripLines/ns0:TripLine[1]/ns0:Documents/ns0:Document[1]" />
     
     <xsl:text>{</xsl:text>
-    <xsl:text>"transport_service":{"name":"Transport"},</xsl:text>
-    <xsl:text>"customer_reference_number":"</xsl:text>
-    <xsl:call-template name="escape-json">
-      <xsl:with-param name="text" select="normalize-space(ns0:No)" />
-    </xsl:call-template>
-    <xsl:text>",</xsl:text>
-    <xsl:text>"department":{"name":"</xsl:text>
-    <xsl:call-template name="to-title-case">
-      <xsl:with-param name="text" select="normalize-space(ns0:BuildingCode)" />
-    </xsl:call-template>
-    <xsl:text>"},</xsl:text>
-    <xsl:text>"neutral_order_type":"NO_NEUTRAL_ORDER",</xsl:text>
-    <xsl:text>"planning_group":{"name":"</xsl:text>
-    <xsl:call-template name="to-title-case">
-      <xsl:with-param name="text" select="normalize-space(ns0:BuildingCode)" />
-    </xsl:call-template>
-    <xsl:text>"},</xsl:text>
     <xsl:text>"operation":"CREATE",</xsl:text>
     
     <!-- Mapping uncertain: output sample uses a W* identifier not found in this XML, so Document No is used as practical fallback. -->
@@ -36,6 +19,13 @@
       <xsl:with-param name="text" select="normalize-space($firstDoc/ns0:No)" />
     </xsl:call-template>
     <xsl:text>",</xsl:text>
+    <xsl:text>"import_configuration":{"code":"api"},</xsl:text>
+    <xsl:text>"customer":{"name":"</xsl:text>
+    <xsl:call-template name="escape-json">
+      <xsl:with-param name="text" select="normalize-space($firstDoc/ns0:Customer/ns0:Name)" />
+    </xsl:call-template>
+    <xsl:text>"},</xsl:text>
+    <xsl:text>"transport_service":{"name":"Transport"},</xsl:text>
     
     <xsl:text>"consignments":[</xsl:text>
     <xsl:for-each select="ns0:TripLines/ns0:TripLine">
@@ -59,12 +49,6 @@
       </xsl:if>
     </xsl:for-each>
     <xsl:text>],</xsl:text>
-    
-    <xsl:text>"customer":{"name":"</xsl:text>
-    <xsl:call-template name="escape-json">
-      <xsl:with-param name="text" select="normalize-space($firstDoc/ns0:Customer/ns0:Name)" />
-    </xsl:call-template>
-    <xsl:text>"},</xsl:text>
     <xsl:text>"pricing":{}</xsl:text>
     <xsl:text>}</xsl:text>
   </xsl:template>
