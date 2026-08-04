@@ -29,20 +29,8 @@
     
     <xsl:text>"consignments":[</xsl:text>
     <xsl:for-each select="ns0:TripLines/ns0:TripLine">
+      <xsl:sort select="number(ns0:LoadOrder)" data-type="number" order="descending" />
       <xsl:call-template name="emit-forward-consignment" />
-      
-      <xsl:variable name="hasReturnHint" select="
-        contains(translate(normalize-space(ns0:Documents/ns0:Document[1]/ns0:ShipToAddress/ns0:Name2),
-            'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            'abcdefghijklmnopqrstuvwxyz'),
-          'bigbag')
-        or count(ns0:Documents/ns0:Document[1]/ns0:DocumentLines/ns0:DocumentLine[starts-with(normalize-space(ns0:CarrierTypeCode), '2DUSS')]) &gt; 0
-        or count(ns0:Documents/ns0:Document[1]/ns0:DocumentLines/ns0:DocumentLine[normalize-space(ns0:CarrierTypeCode) = 'CHEP7']) &gt; 0" />
-      
-      <xsl:if test="$hasReturnHint">
-        <xsl:text>,</xsl:text>
-        <xsl:call-template name="emit-return-consignment" />
-      </xsl:if>
       
       <xsl:if test="position() != last()">
         <xsl:text>,</xsl:text>
@@ -73,35 +61,13 @@
     <xsl:text>"time_window":{</xsl:text>
     <xsl:text>"name":"Afspraak",</xsl:text>
     <xsl:text>"start_time":"</xsl:text>
-    <xsl:choose>
-      <xsl:when test="normalize-space($doc/ns0:PlannedStartTime) != '' and normalize-space($doc/ns0:PlannedStartTime) != '00:00:00'">
-        <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- Mapping uncertain: sample output often uses 06:00:00 pickup window while source has 00:00:00. -->
-        <xsl:text>06:00:00</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
     <xsl:text>","end_time":"</xsl:text>
-    <xsl:choose>
-      <xsl:when test="normalize-space($doc/ns0:PlannedStartTime) != '' and normalize-space($doc/ns0:PlannedStartTime) != '00:00:00'">
-        <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>06:00:00</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
     <xsl:text>","use_location_opening_hours":false},</xsl:text>
     
     <xsl:text>"date":"</xsl:text>
-    <xsl:choose>
-      <xsl:when test="normalize-space($doc/ns0:PlannedStartDate) != ''">
-        <xsl:value-of select="normalize-space($doc/ns0:PlannedStartDate)" />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="normalize-space(../../ns0:PlannedStartDate)" />
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:value-of select="normalize-space($doc/ns0:PlannedStartDate)" />
     <xsl:text>",</xsl:text>
     
     <xsl:text>"location":</xsl:text>
@@ -122,31 +88,29 @@
     </xsl:if>
     <xsl:text>"reference_number":"</xsl:text>
     <xsl:call-template name="escape-json">
-      <xsl:with-param name="text" select="concat(normalize-space($doc/ns0:ExternalDocumentNo), ' / ', normalize-space($doc/ns0:ExternalReference))" />
+      <xsl:with-param name="text">
+        <xsl:choose>
+          <xsl:when test="normalize-space($doc/ns0:ExternalDocumentNo) != '' and normalize-space($doc/ns0:ExternalReference) != ''">
+            <xsl:value-of select="concat(normalize-space($doc/ns0:ExternalDocumentNo), ' / ', normalize-space($doc/ns0:ExternalReference))" />
+          </xsl:when>
+          <xsl:when test="normalize-space($doc/ns0:ExternalDocumentNo) != ''">
+            <xsl:value-of select="normalize-space($doc/ns0:ExternalDocumentNo)" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="normalize-space($doc/ns0:ExternalReference)" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
     </xsl:call-template>
     <xsl:text>",</xsl:text>
     
     <xsl:text>"time_window":{</xsl:text>
     <xsl:text>"start_time":"</xsl:text>
-    <xsl:choose>
-      <xsl:when test="normalize-space($doc/ns0:PlannedStartTime) != ''">
-        <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>00:00:00</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
     <xsl:text>","use_location_opening_hours":false},</xsl:text>
     
     <xsl:text>"date":"</xsl:text>
-    <xsl:choose>
-      <xsl:when test="normalize-space($doc/ns0:DeliveryDate) != ''">
-        <xsl:value-of select="normalize-space($doc/ns0:DeliveryDate)" />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="normalize-space($doc/ns0:PlannedStartDate)" />
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:value-of select="normalize-space($doc/ns0:DeliveryDate)" />
     <xsl:text>",</xsl:text>
     
     <xsl:text>"location":</xsl:text>
@@ -159,15 +123,10 @@
     <xsl:text>"goods":[{</xsl:text>
     <xsl:text>"quantity":</xsl:text>
     <xsl:value-of select="$lineCount" />
-    <xsl:text>,"total_pallet_spaces":</xsl:text>
-    <xsl:choose>
-      <xsl:when test="$expectedQty != ''">
-        <xsl:value-of select="$expectedQty" />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$lineCount" />
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:if test="$expectedQty != ''">
+      <xsl:text>,"total_pallet_spaces":</xsl:text>
+      <xsl:value-of select="$expectedQty" />
+    </xsl:if>
     <xsl:text>,"unit_pallet_spaces":1.0,</xsl:text>
     <xsl:text>"packaging_type":</xsl:text>
     <xsl:call-template name="emit-packaging-type">
