@@ -182,7 +182,9 @@
         <xsl:param name="invoice" as="element(ns0:PostedSalesInvoice)"/>
         <xsl:sequence select="normalize-space((
             $invoice/*[local-name() = 'WMSPostedDocNo'],
-            $invoice/ns0:SalesInvoiceLines/ns0:SalesInvoiceLine/*[local-name() = 'WMSPostedDocNo'][normalize-space() != '']
+            $invoice/ns0:SalesInvoiceLines/ns0:SalesInvoiceLine/*[local-name() = 'WMSPostedDocNo'][normalize-space() != ''],
+            $invoice/ns0:SalesInvoiceLines/ns0:SalesInvoiceLine/ns0:ParentDocumentNo[normalize-space() != ''],
+            $invoice/ns0:SalesInvoiceLines/ns0:SalesInvoiceLine/ns0:InvoiceInformation/ns0:InvoiceInformationLine/ns0:GeneratedFromDocumentNo[normalize-space() != '']
         )[1])"/>
     </xsl:function>
 
@@ -193,7 +195,7 @@
 
     <xsl:function name="f:format-dec" as="xs:string">
         <xsl:param name="value" as="item()?"/>
-        <xsl:sequence select="if (normalize-space(string($value)) = '') then '' else replace(format-number(xs:decimal($value), '0.00'), '\.', ',')"/>
+        <xsl:sequence select="if (normalize-space(string($value)) = '') then '' else format-number(xs:decimal($value), '0.00')"/>
     </xsl:function>
 
     <xsl:function name="f:line-account" as="xs:string">

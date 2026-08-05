@@ -25,7 +25,6 @@
                               )
                           ]"/>
             <xsl:if test="exists($source-lines)">
-                <xsl:variable name="first-logistics-doc" as="xs:string" select="f:first-logistics-doc($invoice, $source-lines)"/>
                 <xsl:variable name="posting-date" as="xs:string" select="f:format-date8(ns0:DocumentDate)"/>
                 <xsl:variable name="vendor-attribute" as="xs:string"
                               select="normalize-space((ns0:PayToVendor/ns0:Attribute01, ns0:Vendor/ns0:Attribute01)[1])"/>
@@ -36,11 +35,11 @@
 
                 <xsl:variable name="vat-groups" as="element(vat-group)*">
                     <xsl:for-each-group select="$source-lines"
-                                        group-by="concat(f:line-vat-code(current-group()[1]), '|', f:line-vat-account(current-group()[1]))">
+                                        group-by="concat(f:line-vat-code(.), '|', f:line-vat-account(.))">
                         <xsl:variable name="vat-amount" as="xs:decimal"
                                       select="sum(for $line in current-group() return xs:decimal($line/ns0:AmountIncludingVAT) - xs:decimal($line/ns0:LineAmount))"/>
                         <xsl:variable name="vat-account" as="xs:string" select="f:line-vat-account(current-group()[1])"/>
-                        <xsl:if test="$vat-amount != 0 or not($vat-account = ('112TK', '213TK'))">
+                        <xsl:if test="$vat-amount != 0">
                             <vat-group account="{$vat-account}"
                                        vat-id="{f:line-vat-code(current-group()[1])}"
                                        amount="{$vat-amount}"/>
@@ -55,7 +54,7 @@
                     '',
                     '',
                     $vendor-invoice-no,
-                    $first-logistics-doc,
+                    '',
                     $posting-date,
                     '',
                     '',
@@ -72,7 +71,7 @@
                     '',
                     '',
                     '',
-                    $first-logistics-doc,
+                    '',
                     '',
                     '',
                     '',
@@ -100,7 +99,7 @@
                         '',
                         '',
                         $vendor-invoice-no,
-                        f:line-logistics-doc(., $first-logistics-doc),
+                        f:line-logistics-doc(.),
                         $posting-date,
                         f:line-account(.),
                         '',
@@ -117,7 +116,7 @@
                         f:line-vat-code(.),
                         '',
                         '',
-                        f:line-logistics-doc(., $first-logistics-doc),
+                        f:line-logistics-doc(.),
                         '',
                         '',
                         f:dimension-value(., 'ShortcutDimension1Code', 'COSTCENTRE'),
@@ -146,7 +145,7 @@
                         '',
                         '',
                         $vendor-invoice-no,
-                        $first-logistics-doc,
+                        '',
                         $posting-date,
                         string(@account),
                         '',
@@ -163,7 +162,7 @@
                         string(@vat-id),
                         '',
                         '',
-                        $first-logistics-doc,
+                        '',
                         '',
                         '',
                         '',
@@ -187,21 +186,23 @@
         </xsl:for-each>
     </xsl:template>
 
-    <xsl:function name="f:first-logistics-doc" as="xs:string">
-        <xsl:param name="invoice" as="element(ns0:PostedPurchaseInvoice)"/>
-        <xsl:param name="lines" as="element(ns0:PurchaseInvoiceLine)*"/>
-        <xsl:sequence select="normalize-space((
-            $invoice/*[matches(local-name(), '(?i)(3pl.*doc.*no|wms.*doc.*no|logistics.*doc.*no)')],
-            $lines/*[matches(local-name(), '(?i)(3pl.*doc.*no|wms.*doc.*no|logistics.*doc.*no)')][normalize-space() != '']
-        )[1])"/>
-    </xsl:function>
-
     <xsl:function name="f:line-logistics-doc" as="xs:string">
         <xsl:param name="line" as="element(ns0:PurchaseInvoiceLine)"/>
-        <xsl:param name="fallback" as="xs:string"/>
         <xsl:variable name="line-value" as="xs:string"
-                      select="normalize-space(($line/*[matches(local-name(), '(?i)(3pl.*doc.*no|wms.*doc.*no|logistics.*doc.*no)')])[1])"/>
-        <xsl:sequence select="if ($line-value != '') then $line-value else $fallback"/>
+                      select="normalize-space(($line/*[matches(lower-case(local-name()), '(3pl.*doc.*no|wms.*doc.*no|logistics.*doc.*no)')])[1])"/>
+        <xsl:variable name="shipment-doc" as="xs:string"
+                      select="if (f:extract-shipment-doc($line/ns0:Description) != '')
+                              then f:extract-shipment-doc($line/ns0:Description)
+                              else f:extract-shipment-doc($line/preceding-sibling::ns0:PurchaseInvoiceLine[normalize-space(ns0:Type) = '0'][1]/ns0:Description)"/>
+        <xsl:sequence select="if ($line-value != '') then $line-value else $shipment-doc"/>
+    </xsl:function>
+
+    <xsl:function name="f:extract-shipment-doc" as="xs:string">
+        <xsl:param name="value" as="item()?"/>
+        <xsl:variable name="text" as="xs:string" select="normalize-space(string($value))"/>
+        <xsl:sequence select="if (matches(lower-case($text), '^shipment\s*:'))
+                              then normalize-space(replace($text, '^[^:]*:\s*', ''))
+                              else ''"/>
     </xsl:function>
 
     <xsl:function name="f:line-account" as="xs:string">
@@ -214,18 +215,25 @@
 
     <xsl:function name="f:line-vat-account" as="xs:string">
         <xsl:param name="line" as="element(ns0:PurchaseInvoiceLine)"/>
-        <xsl:sequence select="normalize-space((
-            $line/ns0:VATPostingGroup/*[matches(local-name(), '(?i)(purchase|purch).*vat.*account')],
-            $line/ns0:VATPostingGroup/*[matches(local-name(), '(?i)vat.*account')][1]
+        <xsl:variable name="source-account" as="xs:string" select="normalize-space((
+            $line/ns0:VATPostingGroup/*[matches(lower-case(local-name()), '(purchase|purch).*vat.*account')],
+            $line/ns0:VATPostingGroup/*[matches(lower-case(local-name()), 'vat.*account')][1]
         )[1])"/>
+        <xsl:sequence select="if ($source-account != '') then $source-account
+                              else if (f:line-vat-code($line) = 'AN') then '112TK'
+                              else if (f:line-vat-code($line) = '0A') then '213TK'
+                              else ''"/>
     </xsl:function>
 
     <xsl:function name="f:line-vat-code" as="xs:string">
         <xsl:param name="line" as="element(ns0:PurchaseInvoiceLine)"/>
-        <xsl:sequence select="normalize-space((
-            $line/*[matches(local-name(), '(?i)tax.*category')],
+        <xsl:variable name="source-code" as="xs:string" select="normalize-space((
+            $line/*[matches(lower-case(local-name()), 'tax.*category')],
             $line/ns0:VATIdentifier
         )[1])"/>
+        <xsl:sequence select="if ($source-code = 'KN') then 'AN'
+                              else if ($source-code = '5A') then '0A'
+                              else $source-code"/>
     </xsl:function>
 
     <xsl:function name="f:dimension-value" as="xs:string">
