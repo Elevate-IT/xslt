@@ -150,6 +150,9 @@
                         <xsl:when test="contains($loc11_c519, 'tepl')">
                           <xsl:text>RCTTATA-0007</xsl:text>
                         </xsl:when>
+                        <xsl:when test="contains($loc11_c519, 'ind')">
+                          <xsl:text>RCTTATA-0008</xsl:text>
+                        </xsl:when>
                         <!-- 2. If no match in C519, try C517 -->
                         <xsl:when test="not(contains($loc11_c519, 'ds') or contains($loc11_c519, 'duffel') or contains($loc11_c519, 'uni') or contains($loc11_c519, 'evr'))">
                           <xsl:choose>
@@ -167,6 +170,9 @@
                             </xsl:when>
                             <xsl:when test="contains($loc11_c517, 'tepl')">
                               <xsl:text>RCTTATA-0007</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="contains($loc11_c517, 'ind')">
+                              <xsl:text>RCTTATA-0008</xsl:text>
                             </xsl:when>
                             <!-- 3. If still no match, use old logic -->
                             <xsl:otherwise>

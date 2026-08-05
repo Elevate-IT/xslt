@@ -19,7 +19,7 @@
     <xsl:param name="inputTime"/>
     <xsl:value-of select="xs:time(concat(substring($inputTime, 1, 2), ':', substring($inputTime, 3, 2), ':00'))" />
   </xsl:function>
-  
+
   <xsl:key name="Group-By-Item_UoM_Batch_CorusNo" match="//s0:PACLoop1"
     use="concat(../s0:LINLoop1/s0:LIN/s0:C212/C21201, '-',
         s0:MEA_3[MEA01 = 'AAY'][s0:C502_3/C50201 = 'G']/s0:C174_3/C17401, '-',
@@ -146,6 +146,9 @@
                         <xsl:when test="contains($loc11_c517, 'tepl')">
                           <xsl:text>RCTTATA-0007</xsl:text>
                         </xsl:when>
+                        <xsl:when test="contains($loc11_c517, 'ind')">
+                          <xsl:text>RCTTATA-0008</xsl:text>
+                        </xsl:when>
                         
                         <!-- 2. If no match in C517, try C519 -->
                         <xsl:when test="not(contains($loc11_c517, 'ds') or contains($loc11_c517, 'duffel') or contains($loc11_c517, 'uni') or contains($loc11_c517, 'evr'))">
@@ -164,6 +167,9 @@
                             </xsl:when>
                             <xsl:when test="contains($loc11_c519, 'tepl')">
                               <xsl:text>RCTTATA-0007</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="contains($loc11_c519, 'ind')">
+                              <xsl:text>RCTTATA-0008</xsl:text>
                             </xsl:when>
                             <!-- 3. If still no match, use old logic -->
                             <xsl:otherwise>
