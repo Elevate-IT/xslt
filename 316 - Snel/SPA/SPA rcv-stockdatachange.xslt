@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
                 exclude-result-prefixes="msxsl var MyScript s0" version="1.0"
                 xmlns:s0="http://www.spadel.com/WATERFRONT/QAStatusChange"
@@ -17,7 +18,7 @@
           <xsl:value-of select="MessageID" />
         </ns0:MessageID>
         <ns0:CreationDateTime>
-          <xsl:value-of select="MyScript:GetCurrentDate('s')" />
+          <xsl:value-of select="format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')" />
         </ns0:CreationDateTime>
         <ns0:ProcesAction>
           <xsl:text>INSERT</xsl:text>
@@ -38,7 +39,7 @@
             <xsl:value-of select="GTIN" />
           </ns0:EANCode>
           <ns0:ExpirationDate>
-            <xsl:value-of select="MyScript:ParseDate(BestBeforeDate, 'yyyyMMdd', 'yyyy-MM-dd')" />
+            <xsl:value-of select="format-date(xs:date(BestBeforeDate), '[D01]-[M01]-[Y0001]')" />
           </ns0:ExpirationDate>
           <ns0:BatchNo>
             <xsl:value-of select="Lot" />
@@ -53,41 +54,4 @@
       </ns0:StockChanges>      
     </ns0:Message>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 1;
-          return LINCounter.ToString();
-      }   
-      
-		public string GetCurrentDate(string formatOut)
-		{
-			return System.DateTime.Now.ToString(formatOut);
-		}
-      
-      public string ParseEOMDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        DateTime endOfMonth = new DateTime(dateT.Year, dateT.Month, DateTime.DaysInMonth(dateT.Year, dateT.Month));
-        return endOfMonth.ToString(formatOut);
-      }
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }            
-
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
