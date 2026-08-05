@@ -222,7 +222,7 @@
                                         <xsl:value-of select="number(local:strip-leading-zeros(substring(Line, 793, 11))) div 1000000"/>
                                     </ns0:VolumeWeight>
                                     <ns0:Attribute10>
-                                        <xsl:value-of select="number(local:strip-leading-zeros(substring(Line, 793, 11))) div 1000"/>
+                                        <xsl:value-of select="replace(string(number(local:strip-leading-zeros(substring(Line, 793, 11))) div 1000000), '\\.', ',')"/>
                                     </ns0:Attribute10>
                                     <ns0:Length>
                                         <xsl:value-of select="local:strip-leading-zeros(substring(Line, 804, 4))"/>
