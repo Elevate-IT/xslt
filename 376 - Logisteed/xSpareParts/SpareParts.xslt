@@ -104,9 +104,9 @@
                                 <ns0:Name>
                                     <xsl:value-of select="normalize-space(substring(Line, 383, 35))"/>
                                 </ns0:Name>
-                                <ns0:Name2>
+                                <!-- <ns0:Name2>
                                     <xsl:value-of select="normalize-space(substring(Line, 418, 35))"/>
-                                </ns0:Name2>
+                                </ns0:Name2> -->
                                 <ns0:Address>
                                     <xsl:value-of select="normalize-space(substring(Line, 453, 35))"/>
                                 </ns0:Address>
@@ -126,7 +126,8 @@
                                     <xsl:value-of select="normalize-space(substring(Line, 570, 70))"/>
                                 </ns0:Contact>
                                 <ns0:PhoneNo>
-                                    <xsl:value-of select="normalize-space(substring(Line, 640, 30))"/>
+                                    <!-- <xsl:value-of select="normalize-space(substring(Line, 640, 30))"/> -->
+                                    <xsl:value-of select="normalize-space(substring(Line, 418, 35))"/>
                                 </ns0:PhoneNo>
                             </ns0:ShipToAddress>
                             
@@ -137,9 +138,9 @@
                                 <ns0:Name>
                                     <xsl:value-of select="normalize-space(substring(Line, 383, 35))"/>
                                 </ns0:Name>
-                                <ns0:Name2>
+                                <!-- <ns0:Name2>
                                     <xsl:value-of select="normalize-space(substring(Line, 418, 35))"/>
-                                </ns0:Name2>
+                                </ns0:Name2> -->
                                 <ns0:Address>
                                     <xsl:value-of select="normalize-space(substring(Line, 453, 35))"/>
                                 </ns0:Address>
@@ -159,7 +160,8 @@
                                     <xsl:value-of select="normalize-space(substring(Line, 570, 70))"/>
                                 </ns0:Contact>
                                 <ns0:PhoneNo>
-                                    <xsl:value-of select="normalize-space(substring(Line, 640, 30))"/>
+                                    <!-- <xsl:value-of select="normalize-space(substring(Line, 640, 30))"/> -->
+                                    <xsl:value-of select="normalize-space(substring(Line, 418, 35))"/>
                                 </ns0:PhoneNo>
                             </ns0:ConsigneeAddress>
                             
@@ -184,6 +186,10 @@
                             </ns0:IncotermCode>
                             
                             <ns0:OrderTypeCode>SPAREPARTS</ns0:OrderTypeCode>
+                            
+                            <ns0:Attribute01>
+                                <xsl:value-of select="normalize-space(substring(Line, 674, 4))"/>
+                            </ns0:Attribute01>
                             
                             <xsl:if test="substring(Line, 683, 10)!='          '">
                                 <ns0:ShippingAgent>
@@ -213,7 +219,7 @@
                                         <xsl:value-of select="number(local:strip-leading-zeros(substring(Line, 782, 11))) div 1000"/>
                                     </ns0:GrossWeight>
                                     <ns0:VolumeWeight>
-                                        <xsl:value-of select="number(local:strip-leading-zeros(substring(Line, 793, 11))) div 1000"/>
+                                        <xsl:value-of select="number(local:strip-leading-zeros(substring(Line, 793, 11))) div 1000000"/>
                                     </ns0:VolumeWeight>
                                     <ns0:Attribute10>
                                         <xsl:value-of select="number(local:strip-leading-zeros(substring(Line, 793, 11))) div 1000"/>
