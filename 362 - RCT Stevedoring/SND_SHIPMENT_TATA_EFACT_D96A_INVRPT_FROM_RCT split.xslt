@@ -20,6 +20,7 @@
   </xsl:template>
 
   <xsl:template match="//s0:Message/s0:Documents/s0:Document">
+    <xsl:variable name="currentDocument" select="."/>
     <!--  Loop-1 source nodes: distinct Carrier groups where LineKey != '-'  -->
     <xsl:variable name="loop1Items"
       select="s0:Carriers/s0:Carrier[s0:Contents/s0:Content/s0:Posted = '1']
@@ -62,7 +63,7 @@
               <ns0:C507>
                 <C50701>182</C50701>
                 <C50702>
-                  <xsl:value-of select="format-date(xs:date(s0:PostingDate), '[Y0001][M01][D01]')"/>
+                  <xsl:value-of select="format-date(xs:date($currentDocument/s0:PostingDate), '[Y0001][M01][D01]')"/>
                 </C50702>
                 <C50703>102</C50703>
               </ns0:C507>
@@ -73,7 +74,7 @@
                 <ns0:C506>
                   <C50601>AAS</C50601>
                   <C50602>
-                    <xsl:value-of select="s0:ExternalDocumentNo"/>
+                    <xsl:value-of select="$currentDocument/s0:ExternalDocumentNo"/>
                   </C50602>
                 </ns0:C506>
               </ns0:RFF>
@@ -95,8 +96,8 @@
                 <ns0:C082>
                   <C08201>
                     <xsl:choose>
-                      <xsl:when test="s0:ShipToAddress/s0:ExternalNo != ''">
-                        <xsl:value-of select="s0:ShipToAddress/s0:ExternalNo"/>
+                      <xsl:when test="$currentDocument/s0:ShipToAddress/s0:ExternalNo != ''">
+                        <xsl:value-of select="$currentDocument/s0:ShipToAddress/s0:ExternalNo"/>
                       </xsl:when>
                       <xsl:otherwise>
                         <xsl:text>RCT-WILLEBROEK</xsl:text>
@@ -112,11 +113,11 @@
                 <ns0:C517>
                   <C51701>
                     <xsl:choose>
-                      <xsl:when test="s0:ShipToAddress/s0:Name != ''">
-                        <xsl:value-of select="s0:ShipToAddress/s0:Name"/>
+                      <xsl:when test="$currentDocument/s0:ShipToAddress/s0:Name != ''">
+                        <xsl:value-of select="$currentDocument/s0:ShipToAddress/s0:Name"/>
                       </xsl:when>
                       <xsl:otherwise>
-                        <xsl:value-of select="s0:BuildingCode"/>
+                        <xsl:value-of select="$currentDocument/s0:BuildingCode"/>
                       </xsl:otherwise>
                     </xsl:choose>
                   </C51701>
@@ -124,11 +125,11 @@
                 <ns0:C519>
                   <C51901>
                     <xsl:choose>
-                      <xsl:when test="s0:ShipToAddress/s0:Name2 != ''">
-                        <xsl:value-of select="s0:ShipToAddress/s0:Name2"/>
+                      <xsl:when test="$currentDocument/s0:ShipToAddress/s0:Name2 != ''">
+                        <xsl:value-of select="$currentDocument/s0:ShipToAddress/s0:Name2"/>
                       </xsl:when>
                       <xsl:otherwise>
-                        <xsl:value-of select="s0:LocationNo"/>
+                        <xsl:value-of select="$currentDocument/s0:LocationNo"/>
                       </xsl:otherwise>
                     </xsl:choose>
                   </C51901>

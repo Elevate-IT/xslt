@@ -14,6 +14,7 @@
     <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document"/>
   </xsl:template>
   <xsl:template match="//s0:Message/s0:Documents/s0:Document">
+    <xsl:variable name="currentDocument" select="."/>
     <!--  Collect all Content items that will become LIN segments  -->
     <xsl:variable name="allLINItems" select="s0:Carriers/s0:Carrier/s0:Contents/s0:Content[s0:Posted = '1']"/>
     <DocumentSplitEnvelope>
@@ -46,7 +47,7 @@
                 <C50701>182</C50701>
                 <C50702>
                   <!--<xsl:value-of select="format-date(xs:dateTime(//s0:Header/s0:CreationDateTime), '[Y0001][M01][D01][H01][m01]')" />-->
-                  <xsl:value-of select="format-date(xs:date(s0:PostingDate), '[Y0001][M01][D01]')"/>
+                  <xsl:value-of select="format-date(xs:date($currentDocument/s0:PostingDate), '[Y0001][M01][D01]')"/>
                 </C50702>
                 <C50703>102</C50703>
               </ns0:C507>
@@ -56,7 +57,7 @@
                 <ns0:C506>
                   <C50601>AAS</C50601>
                   <C50602>
-                    <xsl:value-of select="s0:ExternalDocumentNo"/>
+                    <xsl:value-of select="$currentDocument/s0:ExternalDocumentNo"/>
                   </C50602>
                 </ns0:C506>
               </ns0:RFF>
@@ -82,12 +83,12 @@
                 <LOC01>11</LOC01>
                 <ns0:C517>
                   <C51701>
-                    <xsl:value-of select="s0:BuildingCode"/>
+                    <xsl:value-of select="$currentDocument/s0:BuildingCode"/>
                   </C51701>
                 </ns0:C517>
                 <ns0:C519>
                   <C51901>
-                    <xsl:value-of select="s0:LocationNo"/>
+                    <xsl:value-of select="$currentDocument/s0:LocationNo"/>
                   </C51901>
                 </ns0:C519>
               </ns0:LOC>
