@@ -150,6 +150,9 @@
             </ttdesp:OrderReferenceID>
             <ttdesp:OrderLineReferenceID schemeID="REF">
               <xsl:choose>
+                <xsl:when test="../../s0:Attributes/s0:Attribute[s0:Code='LINEREFID']/s0:Value != ''">
+                  <xsl:value-of select="../../s0:Attributes/s0:Attribute[s0:Code='LINEREFID']/s0:Value" />
+                </xsl:when>
                 <xsl:when test="../../s0:Attributes/s0:Attribute[s0:Code='LINENO']/s0:Value != ''">
                   <xsl:value-of select="../../s0:Attributes/s0:Attribute[s0:Code='LINENO']/s0:Value" />
                 </xsl:when>

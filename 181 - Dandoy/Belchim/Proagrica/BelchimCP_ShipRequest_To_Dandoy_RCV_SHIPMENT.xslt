@@ -177,6 +177,12 @@
                       </ns0:Value>
                     </ns0:Attribute>
                     <ns0:Attribute>
+                      <ns0:Code>LINEREFID</ns0:Code>
+                      <ns0:Value>
+                        <xsl:value-of select="ttord:OrderLineReferenceID" />
+                      </ns0:Value>
+                    </ns0:Attribute>
+                    <ns0:Attribute>
                       <ns0:Code>GTIN</ns0:Code>
                       <ns0:Value>
                         <xsl:value-of select="ttord:ProductUnit/ttord:ProductUnitID_GTIN" />
