@@ -31,6 +31,11 @@
     <xsl:for-each select="ns0:TripLines/ns0:TripLine">
       <xsl:sort select="number(ns0:LoadOrder)" data-type="number" order="descending" />
       <xsl:call-template name="emit-forward-consignment" />
+
+      <xsl:if test="ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000000030' or ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000000331' or ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000000332' or ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000070861' or ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000070864' or ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000070865' or ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000070866' or ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000070868' or ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = '0000070869'">
+        <xsl:text>,</xsl:text>
+        <xsl:call-template name="emit-return-consignment" />
+      </xsl:if>
       
       <xsl:if test="position() != last()">
         <xsl:text>,</xsl:text>
@@ -140,10 +145,9 @@
     <xsl:variable name="doc" select="ns0:Documents/ns0:Document[1]" />
     <xsl:variable name="pickup" select="$doc/ns0:ShipToAddress" />
     <xsl:variable name="delivery" select="$doc/ns0:SenderAddress" />
+    <xsl:variable name="returnQty" select="normalize-space($doc/ns0:ExpectedShipmentCarrierQty)" />
     <xsl:variable name="isStackable" select="count($doc/ns0:DocumentLines/ns0:DocumentLine[starts-with(normalize-space(ns0:CarrierTypeCode), '2DUSS')]) &gt; 0" />
-    <xsl:variable name="hasChep7" select="count($doc/ns0:DocumentLines/ns0:DocumentLine[normalize-space(ns0:CarrierTypeCode) = 'CHEP7']) &gt; 0" />
     
-    <!-- Mapping uncertain: return consignments are inferred from hints (BigBag/CHEP7/2DUSS) because no explicit return segment exists in source. -->
     <xsl:text>{</xsl:text>
     <xsl:text>"pickup_stop":{</xsl:text>
     <xsl:text>"activity_label":"PICKUP",</xsl:text>
@@ -189,8 +193,10 @@
     <xsl:if test="$isStackable">
       <xsl:text>"description":"emballage",</xsl:text>
     </xsl:if>
-    <xsl:if test="$isStackable or $hasChep7">
-      <xsl:text>"quantity":26,</xsl:text>
+    <xsl:if test="$returnQty != ''">
+      <xsl:text>"quantity":</xsl:text>
+      <xsl:value-of select="$returnQty" />
+      <xsl:text>,</xsl:text>
     </xsl:if>
     <xsl:text>"packaging_type":</xsl:text>
     <xsl:call-template name="emit-packaging-type">
