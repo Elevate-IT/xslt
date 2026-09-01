@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:Message xmlns:ns0="www.boltrics.nl/sendshipment:v1.00">
+   <ns0:Header>
+      <ns0:MessageID>332448</ns0:MessageID>
+      <ns0:CreationDateTime>2026-08-25T10:51:58</ns0:CreationDateTime>
+      <ns0:ProcesAction>INSERT</ns0:ProcesAction>
+      <ns0:FromTradingPartner>LOGISTEED</ns0:FromTradingPartner>
+      <ns0:ToTradingPartner>HACE SAS</ns0:ToTradingPartner>
+      <ns0:Database>Dynamics_WISH_376</ns0:Database>
+      <ns0:CompanyName>Logisteed Europe Masquefa</ns0:CompanyName>
+      <ns0:Information>SND-SHIPMENT</ns0:Information>
+   </ns0:Header>
+   <ns0:Documents>
+      <ns0:Document>
+         <ns0:DocumentType>2</ns0:DocumentType>
+         <ns0:No>O26009724</ns0:No>
+         <ns0:Customer>
+            <ns0:No>JCH-SPAREPARTS</ns0:No>
+            <ns0:EANCode>HACE SAS</ns0:EANCode>
+            <ns0:Name>Bosch Home Comfort Barcelona S.A.U.</ns0:Name>
+            <ns0:Address>2 RUE DE LOMBARDIE</ns0:Address>
+            <ns0:City>SAINT PRIEST</ns0:City>
+            <ns0:PostCode>69800</ns0:PostCode>
+            <ns0:CountryRegionCode>FR</ns0:CountryRegionCode>
+            <ns0:CountryName>France</ns0:CountryName>
+            <ns0:PhoneNo>0820202691</ns0:PhoneNo>
+            <ns0:PaymentTermsCode>30D</ns0:PaymentTermsCode>
+            <ns0:Attribute01>5000145829</ns0:Attribute01>
+         </ns0:Customer>
+         <ns0:BuildingCode>SPA</ns0:BuildingCode>
+         <ns0:LanguageCode>NLD</ns0:LanguageCode>
+         <ns0:LocationNo>SP-EXP-OUT</ns0:LocationNo>
+         <ns0:DocumentDate>2026-08-10</ns0:DocumentDate>
+         <ns0:OrderDate>2026-08-10</ns0:OrderDate>
+         <ns0:PostingDate>2026-08-10</ns0:PostingDate>
+         <ns0:StatusCode>70-LOADREADY</ns0:StatusCode>
+         <ns0:ExternalDocumentNo>331210207:0832073091</ns0:ExternalDocumentNo>
+         <ns0:CleanExternalDocumentNo>3312102070832073091</ns0:CleanExternalDocumentNo>
+         <ns0:ExternalReference>7660349130</ns0:ExternalReference>
+         <ns0:ShippingAgentCode>FEA</ns0:ShippingAgentCode>
+         <ns0:ShippingAgentName>FedEx</ns0:ShippingAgentName>
+         <ns0:ExternalShippingAgentCode>FEA</ns0:ExternalShippingAgentCode>
+         <ns0:ShippingAgentServices>REGE</ns0:ShippingAgentServices>
+         <ns0:ExternalShippingAgentServices>REGECONOMY</ns0:ExternalShippingAgentServices>
+         <ns0:ExternalShippingAgentServicesCode>REGE</ns0:ExternalShippingAgentServicesCode>
+         <ns0:DepartedDate>2026-08-25</ns0:DepartedDate>
+         <ns0:DepartedTime>10:51:57</ns0:DepartedTime>
+         <ns0:IncotermCode>DDP</ns0:IncotermCode>
+         <ns0:OrderTypeCode>SPAREPARTS</ns0:OrderTypeCode>
+         <ns0:BillofLadingNo>794855872046</ns0:BillofLadingNo>
+         <ns0:SenderAddress>
+            <ns0:No>SPA</ns0:No>
+            <ns0:Name>Logisteed Iberia SLU Spare Parts</ns0:Name>
+            <ns0:Address>Ronda Shimizu</ns0:Address>
+            <ns0:Address2>Polig. Ind. Can Torre</ns0:Address2>
+            <ns0:City>Vacarisses</ns0:City>
+            <ns0:Contact>Franciso Jove</ns0:Contact>
+            <ns0:PhoneNo>123456789</ns0:PhoneNo>
+            <ns0:PostCode>08233</ns0:PostCode>
+            <ns0:CountryRegionCode>ES</ns0:CountryRegionCode>
+         </ns0:SenderAddress>
+         <ns0:ShipToAddress>
+            <ns0:No>ADR0000076803</ns0:No>
+            <ns0:Name>BO2</ns0:Name>
+            <ns0:Address>16 RUE VICTOR GRIGNARD</ns0:Address>
+            <ns0:City>SAINT ETIENNE</ns0:City>
+            <ns0:PhoneNo>MR BEGON 0624594230</ns0:PhoneNo>
+            <ns0:PostCode>42000</ns0:PostCode>
+            <ns0:CountryRegionCode>FR</ns0:CountryRegionCode>
+         </ns0:ShipToAddress>
+         <ns0:ConsigneeAddress>
+            <ns0:No>ADR0000076803</ns0:No>
+            <ns0:Name>BO2</ns0:Name>
+            <ns0:Address>16 RUE VICTOR GRIGNARD</ns0:Address>
+            <ns0:City>SAINT ETIENNE</ns0:City>
+            <ns0:PhoneNo>MR BEGON 0624594230</ns0:PhoneNo>
+            <ns0:PostCode>42000</ns0:PostCode>
+            <ns0:CountryRegionCode>FR</ns0:CountryRegionCode>
+         </ns0:ConsigneeAddress>
+         <ns0:Ship-ToReference>ENERGECO PERCE NEIGE</ns0:Ship-ToReference>
+         <ns0:ShortcutDimension1Code>406001010503000</ns0:ShortcutDimension1Code>
+         <ns0:ShortcutDimension2Code>5000145018</ns0:ShortcutDimension2Code>
+         <ns0:Attribute01>HSTD</ns0:Attribute01>
+         <ns0:GrossWeight>0</ns0:GrossWeight>
+         <ns0:NetWeight>0</ns0:NetWeight>
+         <ns0:VolumeWeight>12.2875</ns0:VolumeWeight>
+         <ns0:Volume>0</ns0:Volume>
+         <ns0:Quantity>1</ns0:Quantity>
+         <ns0:TotalCubage>0</ns0:TotalCubage>
+         <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+         <ns0:InvoiceValue>0</ns0:InvoiceValue>
+         <ns0:CarriageValue>0</ns0:CarriageValue>
+         <ns0:InsuranceValue>0</ns0:InsuranceValue>
+         <ns0:AirwayBillNo>794855872046</ns0:AirwayBillNo>
+         <ns0:Destination>0</ns0:Destination>
+         <ns0:Attributes>
+            <ns0:Attribute>
+               <ns0:Code>CREATEDBY</ns0:Code>
+               <ns0:Description>Created By (EDI)</ns0:Description>
+               <ns0:Value>HSTD</ns0:Value>
+            </ns0:Attribute>
+            <ns0:Attribute>
+               <ns0:Code>EDIMSGTYPE</ns0:Code>
+               <ns0:Value>DELIVERY_DELJIT_DESORD</ns0:Value>
+            </ns0:Attribute>
+            <ns0:Attribute>
+               <ns0:Code>ST_10</ns0:Code>
+               <ns0:Description>Ship-to Address Name</ns0:Description>
+               <ns0:Value>BO2</ns0:Value>
+            </ns0:Attribute>
+            <ns0:Attribute>
+               <ns0:Code>ST_12</ns0:Code>
+               <ns0:Description>Ship-to Address Address</ns0:Description>
+               <ns0:Value>16 RUE VICTOR GRIGNARD</ns0:Value>
+            </ns0:Attribute>
+            <ns0:Attribute>
+               <ns0:Code>ST_14</ns0:Code>
+               <ns0:Description>Ship-to Address City</ns0:Description>
+               <ns0:Value>SAINT ETIENNE</ns0:Value>
+            </ns0:Attribute>
+            <ns0:Attribute>
+               <ns0:Code>ST_18</ns0:Code>
+               <ns0:Description>Ship-to Address Post Code</ns0:Description>
+               <ns0:Value>42000</ns0:Value>
+            </ns0:Attribute>
+            <ns0:Attribute>
+               <ns0:Code>ST_20</ns0:Code>
+               <ns0:Description>Ship-to Address Country/Region Code</ns0:Description>
+               <ns0:Value>FR</ns0:Value>
+            </ns0:Attribute>
+         </ns0:Attributes>
+         <DimensionsSet>
+            <DimensionSet>
+               <DimensionCode>COSTCENTRE</DimensionCode>
+               <DimensionName/>
+               <DimensionValueCode>406001010503000</DimensionValueCode>
+               <DimensionValueName/>
+            </DimensionSet>
+            <DimensionSet>
+               <DimensionCode>COSTUNIT</DimensionCode>
+               <DimensionName/>
+               <DimensionValueCode>5000145018</DimensionValueCode>
+               <DimensionValueName/>
+            </DimensionSet>
+         </DimensionsSet>
+         <ns0:DocumentPackages>
+            <ns0:DocumentPackage>
+               <ns0:LineNo>10000</ns0:LineNo>
+               <ns0:MarksNumbers>O26009724-1</ns0:MarksNumbers>
+               <ns0:PackageCode>BOX</ns0:PackageCode>
+               <ns0:NumberofPackages>1</ns0:NumberofPackages>
+               <ns0:NumberofPieces>1</ns0:NumberofPieces>
+               <ns0:Length>15</ns0:Length>
+               <ns0:Width>15</ns0:Width>
+               <ns0:Height>15</ns0:Height>
+               <ns0:Cubage>0.003375</ns0:Cubage>
+               <ns0:TareWeight>2.24</ns0:TareWeight>
+               <ns0:GrossWeight>2.24</ns0:GrossWeight>
+               <ns0:MeasuredWeight>2.24</ns0:MeasuredWeight>
+               <ns0:CarrierTypeCode>BOX</ns0:CarrierTypeCode>
+               <ns0:CarrierTypeTransportCode>BOX</ns0:CarrierTypeTransportCode>
+               <ns0:VolumeWeight>0.05</ns0:VolumeWeight>
+               <ns0:AirwayBillNo>794855872046</ns0:AirwayBillNo>
+               <ns0:ShipmentColli>1</ns0:ShipmentColli>
+               <ns0:LengthInch>5.90551181102362205</ns0:LengthInch>
+               <ns0:WidthInch>5.90551181102362205</ns0:WidthInch>
+               <ns0:HeightInch>5.90551181102362205</ns0:HeightInch>
+               <ns0:carrierStatusCode>NEW</ns0:carrierStatusCode>
+            </ns0:DocumentPackage>
+         </ns0:DocumentPackages>
+         <ns0:DocumentParties>
+            <ns0:DocumentParty>
+               <ns0:PartyType>2</ns0:PartyType>
+               <ns0:PartyTypeCode>TSRECV</ns0:PartyTypeCode>
+               <ns0:PartyCode>ADR0000076803</ns0:PartyCode>
+               <ns0:Name>BO2</ns0:Name>
+               <ns0:Address>16 RUE VICTOR GRIGNARD</ns0:Address>
+               <ns0:City>SAINT ETIENNE</ns0:City>
+               <ns0:PhoneNo>MR BEGON 0624594230</ns0:PhoneNo>
+               <ns0:Type>0</ns0:Type>
+               <ns0:Ship-toAddress>1</ns0:Ship-toAddress>
+               <ns0:PartyAddress>
+                  <ns0:No>ADR0000076803</ns0:No>
+                  <ns0:Name>BO2</ns0:Name>
+                  <ns0:Address>16 RUE VICTOR GRIGNARD</ns0:Address>
+                  <ns0:City>SAINT ETIENNE</ns0:City>
+                  <ns0:PhoneNo>MR BEGON 0624594230</ns0:PhoneNo>
+                  <ns0:PostCode>42000</ns0:PostCode>
+                  <ns0:CountryRegionCode>FR</ns0:CountryRegionCode>
+               </ns0:PartyAddress>
+            </ns0:DocumentParty>
+            <ns0:DocumentParty>
+               <ns0:PartyType>2</ns0:PartyType>
+               <ns0:PartyTypeCode>TSSEND</ns0:PartyTypeCode>
+               <ns0:PartyCode>SPA</ns0:PartyCode>
+               <ns0:Name>Logisteed Iberia SLU Spare Parts</ns0:Name>
+               <ns0:Address>Ronda Shimizu</ns0:Address>
+               <ns0:City>Vacarisses</ns0:City>
+               <ns0:PhoneNo>123456789</ns0:PhoneNo>
+               <ns0:Type>0</ns0:Type>
+               <ns0:SenderAddress>1</ns0:SenderAddress>
+               <ns0:PartyAddress>
+                  <ns0:No>SPA</ns0:No>
+                  <ns0:Name>Logisteed Iberia SLU Spare Parts</ns0:Name>
+                  <ns0:Address>Ronda Shimizu</ns0:Address>
+                  <ns0:Address2>Polig. Ind. Can Torre</ns0:Address2>
+                  <ns0:City>Vacarisses</ns0:City>
+                  <ns0:Contact>Franciso Jove</ns0:Contact>
+                  <ns0:PhoneNo>123456789</ns0:PhoneNo>
+                  <ns0:PostCode>08233</ns0:PostCode>
+                  <ns0:CountryRegionCode>ES</ns0:CountryRegionCode>
+               </ns0:PartyAddress>
+            </ns0:DocumentParty>
+         </ns0:DocumentParties>
+         <ns0:DocumentConditions>
+            <ns0:DocumentCondition>
+               <ns0:ConditionCode>SHIPADREF1</ns0:ConditionCode>
+               <ns0:ConditionValue>7660349130</ns0:ConditionValue>
+            </ns0:DocumentCondition>
+            <ns0:DocumentCondition>
+               <ns0:ConditionCode>SHIPADREF2</ns0:ConditionCode>
+               <ns0:ConditionValue>331210207:0832073091</ns0:ConditionValue>
+            </ns0:DocumentCondition>
+            <ns0:DocumentCondition>
+               <ns0:ConditionCode>SHIPADREF3</ns0:ConditionCode>
+            </ns0:DocumentCondition>
+            <ns0:DocumentCondition>
+               <ns0:ConditionCode>TSINSTR</ns0:ConditionCode>
+            </ns0:DocumentCondition>
+            <ns0:DocumentCondition>
+               <ns0:ConditionCode>TSREF</ns0:ConditionCode>
+               <ns0:ConditionValue>09724-331210207</ns0:ConditionValue>
+            </ns0:DocumentCondition>
+            <ns0:DocumentCondition>
+               <ns0:ConditionCode>TSSERCOST</ns0:ConditionCode>
+               <ns0:ConditionValue>TRANSPORTCOSTS</ns0:ConditionValue>
+            </ns0:DocumentCondition>
+         </ns0:DocumentConditions>
+         <CashOnDeliveryLines/>
+         <ns0:DocumentLines>
+            <ns0:DocumentLine>
+               <ns0:DocumentType>2</ns0:DocumentType>
+               <ns0:LineNo>10000</ns0:LineNo>
+               <ns0:Sell-toCustomerNo>JCH-SPAREPARTS</ns0:Sell-toCustomerNo>
+               <ns0:CarrierTypeCode>3249130201</ns0:CarrierTypeCode>
+               <ns0:CarrierTypeTransportCode>3249130201</ns0:CarrierTypeTransportCode>
+               <ns0:Type>1</ns0:Type>
+               <ns0:No>CRTN</ns0:No>
+               <ns0:ExternalNo>CRTN</ns0:ExternalNo>
+               <ns0:ItemNo>STD</ns0:ItemNo>
+               <ns0:Description>CARTON SPARE-PARTS</ns0:Description>
+               <ns0:BaseUnitofMeasureCode>CRTN</ns0:BaseUnitofMeasureCode>
+               <ns0:UnitofMeasureCode>CRTN</ns0:UnitofMeasureCode>
+               <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+               <ns0:Quantity>1</ns0:Quantity>
+               <ns0:QtyCreated>0</ns0:QtyCreated>
+               <ns0:QuantityBase>1</ns0:QuantityBase>
+               <ns0:QtyBaseCreated>0</ns0:QtyBaseCreated>
+               <ns0:QtyOutstanding>1</ns0:QtyOutstanding>
+               <ns0:QtyBaseOutstanding>1</ns0:QtyBaseOutstanding>
+               <ns0:LineAmount>0</ns0:LineAmount>
+               <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+               <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+               <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+               <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
+               <ns0:CarrierQtyCreated>0</ns0:CarrierQtyCreated>
+               <ns0:DefaultQtyPerCarrier>1</ns0:DefaultQtyPerCarrier>
+               <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+               <ns0:CarrierQtyPosted>0</ns0:CarrierQtyPosted>
+               <ns0:ExpectedShipmentCarrierQty>1</ns0:ExpectedShipmentCarrierQty>
+               <ns0:OrderUnitofMeasureCode>CRTN</ns0:OrderUnitofMeasureCode>
+               <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+               <ns0:OrderQuantity>1</ns0:OrderQuantity>
+               <ns0:PostedOrderQuantity>0</ns0:PostedOrderQuantity>
+               <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+               <ns0:GrossWeightperUoM>2.241</ns0:GrossWeightperUoM>
+               <ns0:NetWeightperUoM>0</ns0:NetWeightperUoM>
+               <ns0:VolumeWeight>0.04915</ns0:VolumeWeight>
+               <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+               <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+               <ns0:TareWeight>0</ns0:TareWeight>
+               <ns0:GrossWeight>2.241</ns0:GrossWeight>
+               <ns0:NetWeight>0</ns0:NetWeight>
+               <ns0:GrossWeightPosted>0</ns0:GrossWeightPosted>
+               <ns0:NetWeightPosted>0</ns0:NetWeightPosted>
+               <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
+               <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
+               <ns0:LocationNo>SP-EXP-OUT</ns0:LocationNo>
+               <ns0:BuildingCode>SPA</ns0:BuildingCode>
+               <ns0:ExternalDocumentNo>331210207:0832073091</ns0:ExternalDocumentNo>
+               <ns0:CleanExternalDocumentNo>3312102070832073091</ns0:CleanExternalDocumentNo>
+               <ns0:ShortcutDimension1Code>406001010503000</ns0:ShortcutDimension1Code>
+               <ns0:ShortcutDimension2Code>5000145018</ns0:ShortcutDimension2Code>
+               <ns0:SenderAddressNo>SPA</ns0:SenderAddressNo>
+               <ns0:Ship-ToAddressNo>ADR0000076803</ns0:Ship-ToAddressNo>
+               <ns0:MaterialType>0</ns0:MaterialType>
+               <ns0:Attribute10>0,04915</ns0:Attribute10>
+               <ns0:SearchDescriptionItemNo>CARTON SPARE-PARTS</ns0:SearchDescriptionItemNo>
+               <ns0:SenderAddress>
+                  <ns0:No>SPA</ns0:No>
+                  <ns0:Name>Logisteed Iberia SLU Spare Parts</ns0:Name>
+                  <ns0:Address>Ronda Shimizu</ns0:Address>
+                  <ns0:Address2>Polig. Ind. Can Torre</ns0:Address2>
+                  <ns0:City>Vacarisses</ns0:City>
+                  <ns0:Contact>Franciso Jove</ns0:Contact>
+                  <ns0:PhoneNo>123456789</ns0:PhoneNo>
+                  <ns0:PostCode>08233</ns0:PostCode>
+                  <ns0:CountryRegionCode>ES</ns0:CountryRegionCode>
+               </ns0:SenderAddress>
+               <ns0:ShipToAddress>
+                  <ns0:No>ADR0000076803</ns0:No>
+                  <ns0:Name>BO2</ns0:Name>
+                  <ns0:Address>16 RUE VICTOR GRIGNARD</ns0:Address>
+                  <ns0:City>SAINT ETIENNE</ns0:City>
+                  <ns0:PhoneNo>MR BEGON 0624594230</ns0:PhoneNo>
+                  <ns0:PostCode>42000</ns0:PostCode>
+                  <ns0:CountryRegionCode>FR</ns0:CountryRegionCode>
+               </ns0:ShipToAddress>
+               <ns0:Attributes>
+                  <ns0:Attribute>
+                     <ns0:Code>VOLUMECM3</ns0:Code>
+                     <ns0:Description>Volume m3</ns0:Description>
+                     <ns0:Value>0,04915</ns0:Value>
+                  </ns0:Attribute>
+               </ns0:Attributes>
+               <ns0:DocumentLineConditions>
+                  <ns0:DocumentLineCondition>
+                     <ns0:ConditionCode>TSSERCOST</ns0:ConditionCode>
+                     <ns0:ConditionValue>TRANSPORTCOSTS</ns0:ConditionValue>
+                  </ns0:DocumentLineCondition>
+               </ns0:DocumentLineConditions>
+            </ns0:DocumentLine>
+            <ns0:DocumentLine>
+               <ns0:DocumentType>2</ns0:DocumentType>
+               <ns0:LineNo>20000</ns0:LineNo>
+               <ns0:Sell-toCustomerNo>JCH-SPAREPARTS</ns0:Sell-toCustomerNo>
+               <ns0:Type>7</ns0:Type>
+               <ns0:No>TRANSPORTCOSTS</ns0:No>
+               <ns0:LineAmountLCY>17.89</ns0:LineAmountLCY>
+               <ns0:Description>Transport Cost</ns0:Description>
+               <ns0:BuyFromVendorNo>FEDEX SPAIN</ns0:BuyFromVendorNo>
+               <ns0:BuyFromVendorName>FEDEX Express spain, S.L.U.</ns0:BuyFromVendorName>
+               <ns0:UnitofMeasureCode>ORDER</ns0:UnitofMeasureCode>
+               <ns0:QtyperUnitofMeasure>1</ns0:QtyperUnitofMeasure>
+               <ns0:Quantity>1</ns0:Quantity>
+               <ns0:QtyCreated>0</ns0:QtyCreated>
+               <ns0:QuantityBase>1</ns0:QuantityBase>
+               <ns0:QtyBaseCreated>0</ns0:QtyBaseCreated>
+               <ns0:QtyOutstanding>0</ns0:QtyOutstanding>
+               <ns0:QtyBaseOutstanding>0</ns0:QtyBaseOutstanding>
+               <ns0:LineAmount>17.89</ns0:LineAmount>
+               <ns0:RemainingQuantity>0</ns0:RemainingQuantity>
+               <ns0:FinishedQtyBase>0</ns0:FinishedQtyBase>
+               <ns0:RemainingQtyBase>0</ns0:RemainingQtyBase>
+               <ns0:UnitPrice>17.89</ns0:UnitPrice>
+               <ns0:CarrierQuantity>0</ns0:CarrierQuantity>
+               <ns0:CarrierQtyCreated>0</ns0:CarrierQtyCreated>
+               <ns0:DefaultQtyPerCarrier>0</ns0:DefaultQtyPerCarrier>
+               <ns0:CarrierQtyOutstanding>0</ns0:CarrierQtyOutstanding>
+               <ns0:CarrierQtyPosted>0</ns0:CarrierQtyPosted>
+               <ns0:ExpectedShipmentCarrierQty>0</ns0:ExpectedShipmentCarrierQty>
+               <ns0:QtyperOrderUnitofMeasure>1</ns0:QtyperOrderUnitofMeasure>
+               <ns0:OrderQuantity>0</ns0:OrderQuantity>
+               <ns0:PostedOrderQuantity>0</ns0:PostedOrderQuantity>
+               <ns0:TareWeightperUoM>0</ns0:TareWeightperUoM>
+               <ns0:GrossWeightperUoM>0</ns0:GrossWeightperUoM>
+               <ns0:NetWeightperUoM>0</ns0:NetWeightperUoM>
+               <ns0:VolumeWeight>0</ns0:VolumeWeight>
+               <ns0:FinishedNetWeight>0</ns0:FinishedNetWeight>
+               <ns0:RemainingNetWeight>0</ns0:RemainingNetWeight>
+               <ns0:TareWeight>0</ns0:TareWeight>
+               <ns0:GrossWeight>0</ns0:GrossWeight>
+               <ns0:NetWeight>0</ns0:NetWeight>
+               <ns0:GrossWeightPosted>0</ns0:GrossWeightPosted>
+               <ns0:NetWeightPosted>0</ns0:NetWeightPosted>
+               <ns0:GrossWeightOutstanding>0</ns0:GrossWeightOutstanding>
+               <ns0:NetWeightOutstanding>0</ns0:NetWeightOutstanding>
+               <ns0:LocationNo>SP-EXP-OUT</ns0:LocationNo>
+               <ns0:BuildingCode>SPA</ns0:BuildingCode>
+               <ns0:ExternalDocumentNo>331210207:0832073091</ns0:ExternalDocumentNo>
+               <ns0:CleanExternalDocumentNo>3312102070832073091</ns0:CleanExternalDocumentNo>
+               <ns0:ShortcutDimension1Code>406001010503000</ns0:ShortcutDimension1Code>
+               <ns0:ShortcutDimension2Code>5000145018</ns0:ShortcutDimension2Code>
+               <ns0:SenderAddressNo>SPA</ns0:SenderAddressNo>
+               <ns0:Ship-ToAddressNo>ADR0000076803</ns0:Ship-ToAddressNo>
+               <ns0:MaterialType>0</ns0:MaterialType>
+               <ns0:SenderAddress>
+                  <ns0:No>SPA</ns0:No>
+                  <ns0:Name>Logisteed Iberia SLU Spare Parts</ns0:Name>
+                  <ns0:Address>Ronda Shimizu</ns0:Address>
+                  <ns0:Address2>Polig. Ind. Can Torre</ns0:Address2>
+                  <ns0:City>Vacarisses</ns0:City>
+                  <ns0:Contact>Franciso Jove</ns0:Contact>
+                  <ns0:PhoneNo>123456789</ns0:PhoneNo>
+                  <ns0:PostCode>08233</ns0:PostCode>
+                  <ns0:CountryRegionCode>ES</ns0:CountryRegionCode>
+               </ns0:SenderAddress>
+               <ns0:ShipToAddress>
+                  <ns0:No>ADR0000076803</ns0:No>
+                  <ns0:Name>BO2</ns0:Name>
+                  <ns0:Address>16 RUE VICTOR GRIGNARD</ns0:Address>
+                  <ns0:City>SAINT ETIENNE</ns0:City>
+                  <ns0:PhoneNo>MR BEGON 0624594230</ns0:PhoneNo>
+                  <ns0:PostCode>42000</ns0:PostCode>
+                  <ns0:CountryRegionCode>FR</ns0:CountryRegionCode>
+               </ns0:ShipToAddress>
+               <ns0:Attributes/>
+            </ns0:DocumentLine>
+         </ns0:DocumentLines>
+      </ns0:Document>
+   </ns0:Documents>
+</ns0:Message>
