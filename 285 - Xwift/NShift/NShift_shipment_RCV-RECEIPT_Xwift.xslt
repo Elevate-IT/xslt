@@ -22,7 +22,7 @@
                     <xsl:text>INSERT</xsl:text>
                 </ns0:ProcesAction>
                 <ns0:FromTradingPartner>
-                    <xsl:text>BMS</xsl:text>
+                    <xsl:value-of select="tbox:shipments/tbox:shipmentInfo/tbox:customerId"/>
                 </ns0:FromTradingPartner>
                 <ns0:ToTradingPartner>
                     <xsl:text>Xwift</xsl:text>
@@ -58,11 +58,11 @@
             </ns0:OrderTypeCode>
             
             <ns0:ShippingAgentCode>
-                <xsl:value-of select="tbox:carrier"/>    
+                <xsl:value-of select="tbox:carrier"/>
             </ns0:ShippingAgentCode>
             
             <ns0:DepartedDate>
-                <xsl:value-of select="tbox:pickupDate"/>    
+                <xsl:value-of select="tbox:pickupDate"/>
             </ns0:DepartedDate>
             
             <ns0:DeliveryDate>
@@ -70,8 +70,19 @@
             </ns0:DeliveryDate>
             
             <ns0:AirwayBillNo>
-                <xsl:value-of select="tbox:awb"/>    
+                <xsl:value-of select="tbox:awb"/>
             </ns0:AirwayBillNo>
+            
+            <ns0:Attribute03>
+                <xsl:choose>
+                    <xsl:when test="starts-with(lower-case(tbox:instruction), 'distri')">
+                        <xsl:text>DISTRIBUTION</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>WAREHOUSE</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </ns0:Attribute03>
             
             <xsl:apply-templates select="tbox:addresses/tbox:address[tbox:type = 'RECV']"/>
             <xsl:apply-templates select="tbox:addresses/tbox:address[tbox:type = 'SEND']"/>
