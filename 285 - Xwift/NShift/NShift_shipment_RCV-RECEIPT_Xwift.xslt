@@ -73,7 +73,7 @@
                 <xsl:value-of select="tbox:awb"/>
             </ns0:AirwayBillNo>
             
-            <ns0:Attribute03>
+            <ns0:Attribute04>
                 <xsl:choose>
                     <xsl:when test="starts-with(lower-case(tbox:instruction), 'distri')">
                         <xsl:text>DISTRIBUTION</xsl:text>
@@ -82,7 +82,7 @@
                         <xsl:text>WAREHOUSE</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
-            </ns0:Attribute03>
+            </ns0:Attribute04>
             
             <xsl:apply-templates select="tbox:addresses/tbox:address[tbox:type = 'RECV']"/>
             <xsl:apply-templates select="tbox:addresses/tbox:address[tbox:type = 'SEND']"/>
