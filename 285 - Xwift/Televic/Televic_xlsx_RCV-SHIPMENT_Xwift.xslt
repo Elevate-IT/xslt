@@ -48,11 +48,23 @@
                 <xsl:value-of select="$data/Colomn2"/>
             </ExternalDocumentNo>            
             <ExternalReference>
-                <xsl:value-of select="$data/Colomn2"/>
+                <xsl:value-of select="$data/Colomn5"/>
             </ExternalReference>
             <ShippingAgentCode>
                 <xsl:text>DISTRI</xsl:text>
             </ShippingAgentCode>
+            
+            <xsl:variable name="dateSerial" select="normalize-space($data/Colomn3)"/>
+            <xsl:if test="$dateSerial castable as xs:double">
+                <xsl:variable name="DeliveryDate"
+                    select="xs:date('1899-12-30') + xs:dayTimeDuration(concat('P', floor(xs:double($dateSerial)), 'D'))"/>
+                <EstimatedDepartureDate>
+                    <xsl:value-of select="$DeliveryDate"/>
+                </EstimatedDepartureDate>
+                <DeliveryDate>
+                    <xsl:value-of select="$DeliveryDate"/>
+                </DeliveryDate>
+            </xsl:if>
             
             <ShipToAddress>
                 <Name>
