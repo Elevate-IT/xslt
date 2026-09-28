@@ -134,6 +134,9 @@
                         <xsl:when test="contains($loc11_c517, 'ds')">
                           <xsl:text>RCTTATA-0001</xsl:text>
                         </xsl:when>
+                        <xsl:when test="contains($loc11_c517, 'mau')">
+                          <xsl:text>RCTTATA-0002</xsl:text>
+                        </xsl:when>
                         <xsl:when test="contains($loc11_c517, 'duffel')">
                           <xsl:text>RCTTATA-0004</xsl:text>
                         </xsl:when>
@@ -149,12 +152,18 @@
                         <xsl:when test="contains($loc11_c517, 'ind')">
                           <xsl:text>RCTTATA-0008</xsl:text>
                         </xsl:when>
+                        <xsl:when test="contains($loc11_c517, 'bam')">
+                          <xsl:text>RCTTATA-0009</xsl:text>
+                        </xsl:when>
                         
                         <!-- 2. If no match in C517, try C519 -->
-                        <xsl:when test="not(contains($loc11_c517, 'ds') or contains($loc11_c517, 'duffel') or contains($loc11_c517, 'uni') or contains($loc11_c517, 'evr'))">
+                        <xsl:when test="not(contains($loc11_c517, 'ds') or contains($loc11_c517, 'mau') or contains($loc11_c517, 'duffel') or contains($loc11_c517, 'uni') or contains($loc11_c517, 'evr') or contains($loc11_c517, 'tepl') or contains($loc11_c517, 'ind') or contains($loc11_c517, 'bam'))">
                           <xsl:choose>
                             <xsl:when test="contains($loc11_c519, 'ds')">
                               <xsl:text>RCTTATA-0001</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="contains($loc11_c519, 'mau')">
+                              <xsl:text>RCTTATA-0002</xsl:text>
                             </xsl:when>
                             <xsl:when test="contains($loc11_c519, 'duffel')">
                               <xsl:text>RCTTATA-0004</xsl:text>
@@ -170,6 +179,9 @@
                             </xsl:when>
                             <xsl:when test="contains($loc11_c519, 'ind')">
                               <xsl:text>RCTTATA-0008</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="contains($loc11_c519, 'bam')">
+                              <xsl:text>RCTTATA-0009</xsl:text>
                             </xsl:when>
                             <!-- 3. If still no match, use old logic -->
                             <xsl:otherwise>
