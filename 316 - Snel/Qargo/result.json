@@ -1,225 +1,58 @@
 {
+  "operation": "CREATE",
+  "order_identifier": "U26007297",
+  "import_configuration": {
+    "code": "api"
+  },
+  "customer": {
+    "name": "SPADEL NEDERLAND BV"
+  },
   "transport_service": {
     "name": "Transport"
   },
-  "customer_reference_number": "R25012462",
-  "department": {
-    "name": "Weert"
-  },
-  "neutral_order_type": "NO_NEUTRAL_ORDER",
-  "planning_group": {
-    "name": "Weert"
-  },
-  "operation": "CREATE",
-  "order_identifier": "W2600008",
   "consignments": [
     {
       "pickup_stop": {
         "activity_label": "PICKUP",
-        "reference_number": "R25012462",
+        "reference_number": "R25013443",
         "time_window": {
           "name": "Afspraak",
-          "start_time": "06:00:00",
-          "end_time": "06:00:00",
+          "start_time": "00:00:00",
+          "end_time": "00:00:00",
           "use_location_opening_hours": false
         },
-        "date": "2026-07-28",
+        "date": "2026-09-08",
         "location": {
-          "address": "Copernicusstraat 10",
+          "address": "COPERNICUSSTRAAT 10",
           "city": "Weert",
           "country": "NL",
           "postal_code": "6003 DE",
-          "name": "Waterfront",
-          "id": "a0dcca65-5ed2-4b30-9562-15628743cf1c",
-          "latitude": 51.271786,
-          "longitude": 5.7352986
+          "name": "Waterfront bv"
         }
       },
       "delivery_stop": {
         "activity_label": "DELIVERY",
         "note": "0000000030 - WATERFRONT DAG NACHT - CUSTOMERS",
-        "reference_number": "0081770181 / IONR26-0343",
+        "reference_number": "0081798367 / 4600057089",
         "time_window": {
           "start_time": "00:00:00",
           "use_location_opening_hours": false
         },
-        "date": "2026-07-28",
+        "date": "2026-09-08",
         "location": {
-          "address": "Raadhuisstraat 21",
-          "city": "Hoogerheide",
+          "address": "ADA BYRONWEG 19",
+          "address_second_line": "Geen Bigbags beschikbaar",
+          "city": "Roermond",
           "country": "NL",
-          "postal_code": "4631 NG",
-          "name": "Somers-hendrikx bv",
-          "id": "ceffdd1d-9de5-431b-b0b4-2209746a0ca5",
-          "latitude": 51.4274829,
-          "longitude": 4.32045
+          "postal_code": "6045 GM",
+          "name": "Aldi roermond b.v."
         }
       },
       "goods": [
         {
-          "quantity": 4,
-          "total_pallet_spaces": 4.0,
+          "quantity": 10,
+          "total_pallet_spaces": 8,
           "unit_pallet_spaces": 1.0,
-          "packaging_type": {
-            "name": "Pallets",
-            "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:5af9b392-ebd5-4652-b74a-e7bb95514967",
-            "packaging_size": {
-              "name": "Pallet",
-              "pallet_spaces": 1.0
-            }
-          }
-        }
-      ]
-    },
-    {
-      "pickup_stop": {
-        "activity_label": "PICKUP",
-        "reference_number": "R25012462",
-        "time_window": {
-          "start_time": "06:00:00",
-          "use_location_opening_hours": false
-        },
-        "date": "2026-07-28",
-        "location": {
-          "address": "Copernicusstraat 10",
-          "city": "Weert",
-          "country": "NL",
-          "postal_code": "6003 DE",
-          "name": "Waterfront",
-          "id": "a0dcca65-5ed2-4b30-9562-15628743cf1c",
-          "latitude": 51.271786,
-          "longitude": 5.7352986
-        }
-      },
-      "delivery_stop": {
-        "activity_label": "DELIVERY",
-        "reference_number": "0081770188 / 21673",
-        "time_window": {
-          "name": "Afspraak",
-          "start_time": "07:00:00",
-          "end_time": "07:00:00",
-          "use_location_opening_hours": false
-        },
-        "date": "2026-07-28",
-        "location": {
-          "address": "Klarinetweg 28",
-          "city": "Middelburg",
-          "country": "NL",
-          "postal_code": "4337 RA",
-          "name": "World of Drinks",
-          "id": "f157fc17-3d2d-426d-87d3-ab894eec4c8e",
-          "latitude": 51.4840621,
-          "longitude": 3.6313258
-        }
-      },
-      "goods": [
-        {
-          "quantity": 7,
-          "total_pallet_spaces": 7.0,
-          "unit_pallet_spaces": 1.0,
-          "packaging_type": {
-            "name": "Pallets",
-            "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:5af9b392-ebd5-4652-b74a-e7bb95514967",
-            "packaging_size": {
-              "name": "Pallet",
-              "pallet_spaces": 1.0
-            }
-          }
-        }
-      ]
-    },
-    {
-      "pickup_stop": {
-        "activity_label": "PICKUP",
-        "reference_number": "R25012462",
-        "time_window": {
-          "name": "Afspraak",
-          "start_time": "06:00:00",
-          "end_time": "06:00:00",
-          "use_location_opening_hours": false
-        },
-        "date": "2026-07-28",
-        "location": {
-          "address": "Copernicusstraat 10",
-          "city": "Weert",
-          "country": "NL",
-          "postal_code": "6003 DE",
-          "name": "Waterfront",
-          "id": "a0dcca65-5ed2-4b30-9562-15628743cf1c",
-          "latitude": 51.271786,
-          "longitude": 5.7352986
-        }
-      },
-      "delivery_stop": {
-        "activity_label": "DELIVERY",
-        "note": "0000070862 - WF WEERT 26 PAL ONEWAY",
-        "reference_number": "0081770159 / 69864",
-        "time_window": {
-          "start_time": "00:00:00",
-          "use_location_opening_hours": false
-        },
-        "date": "2026-07-28",
-        "location": {
-          "address": "Industrieweg 15",
-          "address_second_line": "Stampershoek",
-          "city": "Oostburg",
-          "country": "NL",
-          "postal_code": "4501 PM",
-          "name": "Foox west",
-          "id": "ae5300c3-5ff1-498d-8305-ec98bdd4cdde",
-          "latitude": 51.3324886,
-          "longitude": 3.497622
-        }
-      },
-      "goods": [
-        {
-          "quantity": 8,
-          "total_pallet_spaces": 7.0,
-          "packaging_type": {
-            "name": "Pallets",
-            "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:5af9b392-ebd5-4652-b74a-e7bb95514967",
-            "packaging_size": {
-              "name": "Pallet",
-              "pallet_spaces": 1.0
-            }
-          }
-        }
-      ]
-    },
-    {
-      "pickup_stop": {
-        "activity_label": "PICKUP",
-        "reference_number": "emballage retour",
-        "date": "2026-07-28",
-        "location": {
-          "address": "Klarinetweg 28",
-          "city": "Middelburg",
-          "country": "NL",
-          "postal_code": "4337 RA",
-          "name": "World of Drinks",
-          "id": "f157fc17-3d2d-426d-87d3-ab894eec4c8e",
-          "latitude": 51.4840621,
-          "longitude": 3.6313258
-        }
-      },
-      "delivery_stop": {
-        "activity_label": "DELIVERY",
-        "reference_number": "emballage retour",
-        "date": "2026-07-28",
-        "location": {
-          "address": "Copernicusstraat 10",
-          "city": "Weert",
-          "country": "NL",
-          "postal_code": "6003 DE",
-          "name": "Waterfront",
-          "id": "a0dcca65-5ed2-4b30-9562-15628743cf1c",
-          "latitude": 51.271786,
-          "longitude": 5.7352986
-        }
-      },
-      "goods": [
-        {
-          "quantity": 26,
           "packaging_type": {
             "name": "Pallets Stackable",
             "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:3e0ad7ef-c1bb-4baa-9d1b-55052c5cfe19",
@@ -233,38 +66,34 @@
     {
       "pickup_stop": {
         "activity_label": "PICKUP",
-        "reference_number": "Emballage retour",
-        "date": "2026-07-28",
+        "reference_number": "emballage retour",
+        "date": "2026-09-08",
         "location": {
-          "address": "Tussenriemer 40, Roosendaal, NB, NL, 4704",
-          "city": "roosendaal",
+          "address": "ADA BYRONWEG 19",
+          "address_second_line": "Geen Bigbags beschikbaar",
+          "city": "Roermond",
           "country": "NL",
-          "postal_code": "4704",
-          "name": "Aldi Roosendaal BV",
-          "id": "3102afad-9aa3-4bcc-95a8-c9d89235565f",
-          "latitude": 51.5540379,
-          "longitude": 4.4606109
+          "postal_code": "6045 GM",
+          "name": "Aldi roermond b.v."
         }
       },
       "delivery_stop": {
         "activity_label": "DELIVERY",
-        "reference_number": "Emballage retour",
-        "date": "2026-07-28",
+        "reference_number": "emballage retour",
+        "date": "2026-09-08",
         "location": {
-          "address": "Copernicusstraat 10",
-          "city": "Weert",
+          "address": "KORENDIJK 16",
+          "address_second_line": "SRN 8056 BigBag laden of stempel!",
+          "city": "Helmond",
           "country": "NL",
-          "postal_code": "6003 DE",
-          "name": "Waterfront",
-          "id": "a0dcca65-5ed2-4b30-9562-15628743cf1c",
-          "latitude": 51.271786,
-          "longitude": 5.7352986
+          "postal_code": "5704 RD",
+          "name": "Bidfood b.v."
         }
       },
       "goods": [
         {
           "description": "emballage",
-          "quantity": 26,
+          "quantity": 8,
           "packaging_type": {
             "name": "Pallets Stackable",
             "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:3e0ad7ef-c1bb-4baa-9d1b-55052c5cfe19",
@@ -278,55 +107,51 @@
     {
       "pickup_stop": {
         "activity_label": "PICKUP",
-        "reference_number": "R25012462",
+        "reference_number": "R25013443",
         "time_window": {
           "name": "Afspraak",
-          "start_time": "06:00:00",
-          "end_time": "06:00:00",
+          "start_time": "05:00:00",
+          "end_time": "05:00:00",
           "use_location_opening_hours": false
         },
-        "date": "2026-07-28",
+        "date": "2026-09-08",
         "location": {
-          "address": "Copernicusstraat 10",
+          "address": "COPERNICUSSTRAAT 10",
           "city": "Weert",
           "country": "NL",
           "postal_code": "6003 DE",
-          "name": "Waterfront",
-          "id": "a0dcca65-5ed2-4b30-9562-15628743cf1c",
-          "latitude": 51.271786,
-          "longitude": 5.7352986
+          "name": "Waterfront bv"
         }
       },
       "delivery_stop": {
         "activity_label": "DELIVERY",
         "note": "0000000030 - WATERFRONT DAG NACHT - CUSTOMERS",
-        "reference_number": "0081770149 / 3500357053",
+        "reference_number": "0081798374 / 323576",
         "time_window": {
-          "start_time": "00:00:00",
+          "start_time": "05:00:00",
           "use_location_opening_hours": false
         },
-        "date": "2026-07-28",
+        "date": "2026-09-08",
         "location": {
-          "address": "Tussenriemer 40, Roosendaal, NB, NL, 4704",
-          "city": "roosendaal",
+          "address": "KORENDIJK 16",
+          "address_second_line": "SRN 8056 BigBag laden of stempel!",
+          "city": "Helmond",
           "country": "NL",
-          "postal_code": "4704",
-          "name": "Aldi Roosendaal BV",
-          "id": "3102afad-9aa3-4bcc-95a8-c9d89235565f",
-          "latitude": 51.5540379,
-          "longitude": 4.4606109
+          "postal_code": "5704 RD",
+          "name": "Bidfood b.v."
         }
       },
       "goods": [
         {
-          "quantity": 8,
-          "total_pallet_spaces": 8.0,
+          "quantity": 6,
+          "total_pallet_spaces": 6,
           "unit_pallet_spaces": 1.0,
           "packaging_type": {
-            "name": "Pallets Stackable",
-            "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:3e0ad7ef-c1bb-4baa-9d1b-55052c5cfe19",
+            "name": "Pallets",
+            "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:5af9b392-ebd5-4652-b74a-e7bb95514967",
             "packaging_size": {
-              "name": "Pallet"
+              "name": "Pallet",
+              "pallet_spaces": 1.0
             }
           }
         }
@@ -336,35 +161,125 @@
       "pickup_stop": {
         "activity_label": "PICKUP",
         "reference_number": "emballage retour",
-        "date": "2026-07-28",
+        "date": "2026-09-08",
         "location": {
-          "address": "Raadhuisstraat 21",
-          "city": "Hoogerheide",
+          "address": "KORENDIJK 16",
+          "address_second_line": "SRN 8056 BigBag laden of stempel!",
+          "city": "Helmond",
           "country": "NL",
-          "postal_code": "4631 NG",
-          "name": "Somers-hendrikx bv",
-          "id": "ceffdd1d-9de5-431b-b0b4-2209746a0ca5",
-          "latitude": 51.4274829,
-          "longitude": 4.32045
+          "postal_code": "5704 RD",
+          "name": "Bidfood b.v."
         }
       },
       "delivery_stop": {
         "activity_label": "DELIVERY",
         "reference_number": "emballage retour",
-        "date": "2026-07-28",
+        "date": "2026-09-08",
         "location": {
-          "address": "Copernicusstraat 10",
-          "city": "Weert",
+          "address": "BRIELTJENSPOLDER 28D",
+          "address_second_line": "SRN 8519 BigBag laden of stempel!",
+          "city": "Made",
           "country": "NL",
-          "postal_code": "6003 DE",
-          "name": "Waterfront",
-          "id": "a0dcca65-5ed2-4b30-9562-15628743cf1c",
-          "latitude": 51.271786,
-          "longitude": 5.7352986
+          "postal_code": "4921 PJ",
+          "name": "Spadel nl- sampling marketing"
         }
       },
       "goods": [
         {
+          "quantity": 6,
+          "packaging_type": {
+            "name": "Pallets",
+            "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:5af9b392-ebd5-4652-b74a-e7bb95514967",
+            "packaging_size": {
+              "name": "Pallet",
+              "pallet_spaces": 1.0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "pickup_stop": {
+        "activity_label": "PICKUP",
+        "reference_number": "R25013443",
+        "time_window": {
+          "name": "Afspraak",
+          "start_time": "09:00:00",
+          "end_time": "09:00:00",
+          "use_location_opening_hours": false
+        },
+        "date": "2026-09-08",
+        "location": {
+          "address": "COPERNICUSSTRAAT 10",
+          "city": "Weert",
+          "country": "NL",
+          "postal_code": "6003 DE",
+          "name": "Waterfront bv"
+        }
+      },
+      "delivery_stop": {
+        "activity_label": "DELIVERY",
+        "note": "0000000030 - WATERFRONT DAG NACHT - CUSTOMERS / AFLEVERADRES FLEMINGWEG 8, ALPHEN AAN DEN RIJN 2408 AV",
+        "reference_number": "0081796715 / SPA ACTIVE - DUTCH PR AGENCY DELIVE",
+        "time_window": {
+          "start_time": "09:00:00",
+          "use_location_opening_hours": false
+        },
+        "date": "2026-09-08",
+        "location": {
+          "address": "BRIELTJENSPOLDER 28D",
+          "address_second_line": "SRN 8519 BigBag laden of stempel!",
+          "city": "Made",
+          "country": "NL",
+          "postal_code": "4921 PJ",
+          "name": "Spadel nl- sampling marketing"
+        }
+      },
+      "goods": [
+        {
+          "quantity": 9,
+          "total_pallet_spaces": 6,
+          "unit_pallet_spaces": 1.0,
+          "packaging_type": {
+            "name": "Pallets",
+            "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:5af9b392-ebd5-4652-b74a-e7bb95514967",
+            "packaging_size": {
+              "name": "Pallet",
+              "pallet_spaces": 1.0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "pickup_stop": {
+        "activity_label": "PICKUP",
+        "reference_number": "emballage retour",
+        "date": "2026-09-08",
+        "location": {
+          "address": "BRIELTJENSPOLDER 28D",
+          "address_second_line": "SRN 8519 BigBag laden of stempel!",
+          "city": "Made",
+          "country": "NL",
+          "postal_code": "4921 PJ",
+          "name": "Spadel nl- sampling marketing"
+        }
+      },
+      "delivery_stop": {
+        "activity_label": "DELIVERY",
+        "reference_number": "emballage retour",
+        "date": "2026-09-08",
+        "location": {
+          "address": "COPERNICUSSTRAAT 10",
+          "city": "Weert",
+          "country": "NL",
+          "postal_code": "6003 DE",
+          "name": "Waterfront bv"
+        }
+      },
+      "goods": [
+        {
+          "quantity": 6,
           "packaging_type": {
             "name": "Pallets",
             "export_alias": "urn:x-qargo:alias:CARGO_PACKAGING:5af9b392-ebd5-4652-b74a-e7bb95514967",
@@ -377,8 +292,5 @@
       ]
     }
   ],
-  "customer": {
-    "name": "SPADEL NEDERLAND BV"
-  },
   "pricing": {}
 }

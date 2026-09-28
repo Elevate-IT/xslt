@@ -152,7 +152,7 @@
   <xsl:template name="emit-return-consignment">
     <xsl:variable name="doc" select="ns0:Documents/ns0:Document[1]" />
     <xsl:variable name="pickup" select="$doc/ns0:ShipToAddress" />
-    <xsl:variable name="delivery" select="preceding-sibling::ns0:TripLine[1]/ns0:Documents/ns0:Document[1]/ns0:ShipToAddress | ns0:Documents/ns0:Document[1]/ns0:SenderAddress[not(../../../preceding-sibling::ns0:TripLine)]" />
+    <xsl:variable name="delivery" select="$doc/ns0:SenderAddress" />
     <xsl:variable name="returnQty" select="normalize-space($doc/ns0:ExpectedShipmentCarrierQty)" />
     <xsl:variable name="isStackable" select="count($doc/ns0:DocumentLines/ns0:DocumentLine[starts-with(normalize-space(ns0:CarrierTypeCode), '2DUSS')]) &gt; 0" />
     
@@ -201,14 +201,11 @@
     <xsl:if test="$isStackable">
       <xsl:text>"description":"emballage",</xsl:text>
     </xsl:if>
-    <xsl:text>"quantity":</xsl:text>
-    <xsl:choose>
-      <xsl:when test="$returnQty != ''">
-        <xsl:value-of select="$returnQty" />
-      </xsl:when>
-      <xsl:otherwise>0</xsl:otherwise>
-    </xsl:choose>
-    <xsl:text>,</xsl:text>
+    <xsl:if test="$returnQty != ''">
+      <xsl:text>"quantity":</xsl:text>
+      <xsl:value-of select="$returnQty" />
+      <xsl:text>,</xsl:text>
+    </xsl:if>
     <xsl:text>"packaging_type":</xsl:text>
     <xsl:call-template name="emit-packaging-type">
       <xsl:with-param name="isStackable" select="$isStackable" />
