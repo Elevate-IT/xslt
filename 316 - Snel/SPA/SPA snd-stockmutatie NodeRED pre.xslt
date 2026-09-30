@@ -2,13 +2,17 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema">
   
+  
   <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
+  
   
   <xsl:key name="GroupBy-Actie_ActieCode_TaakNr_Productcode_Redencode_SSCC_Lotnr_THT" match="//ItemLedgerEntry"
     use="concat(Process, '-', Actie, '-', ActieCode, '-', Taak_Nr, '-', Productcode, '-', Redencode, '-', SSCC, '-', Lotnr, '-', THT)" />
   
+  
   <xsl:key name="GroupBy-Actie_ActieCode_Productcode_Redencode_SSCC_Lotnr_THT" match="//ItemLedgerEntry"
     use="concat(Process, '-', Actie, '-', ActieCode, '-', Productcode, '-', Redencode, '-', SSCC, '-', Lotnr, '-', THT)" />
+  
   
   <xsl:template match="/">
     <xsl:element name="Message">
@@ -16,11 +20,13 @@
     </xsl:element>
   </xsl:template>
   
+  
   <xsl:template match="Message/ItemLedgerEntries">
     <xsl:element name="ItemLedgerEntries">
       <xsl:for-each select="ItemLedgerEntry[count(. | key('GroupBy-Actie_ActieCode_Productcode_Redencode_SSCC_Lotnr_THT', concat(Process, '-', Actie, '-', ActieCode, '-', Productcode, '-', Redencode, '-', SSCC, '-', Lotnr, '-', THT))[1]) = 1]">
         <xsl:variable name="LineKey" select="concat(Process, '-', Actie, '-', ActieCode, '-', Productcode, '-', Redencode, '-', SSCC, '-', Lotnr, '-', THT)" />
         <xsl:if test="$LineKey != '-------'">
+          
           
           <xsl:variable name="TaakNr">
             <xsl:choose>
@@ -39,6 +45,7 @@
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:variable>
+                
                 
                 <xsl:variable name="LedgerEntry" select="//ItemLedgerEntry[Process = 'WMSTRANSFE'][EntryNo = $EntryNo]" />
                 <xsl:variable name="TaskNr" select="//ItemLedgerEntry[Process = 'WMSTRANSFE'][Actie = $LedgerEntry/Actie][Productcode = $LedgerEntry/Productcode][SSCC = $LedgerEntry/SSCC][Lotnr = $LedgerEntry/Lotnr][THT = $LedgerEntry/THT][1]/Taak_Nr" />
@@ -140,5 +147,4 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:template>
-  
 </xsl:stylesheet>
