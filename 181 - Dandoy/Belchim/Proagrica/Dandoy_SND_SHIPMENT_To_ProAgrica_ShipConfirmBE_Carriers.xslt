@@ -162,6 +162,25 @@
               </xsl:choose>
             </ttdesp:OrderLineReferenceID>
             
+            <xsl:variable name="PalletType">
+              <xsl:choose>
+                <xsl:when test="ancestor::s0:Document[1]/s0:Attributes/s0:Attribute[s0:Code = 'VZTYPE1']/s0:Value">
+                  <xsl:value-of select="ancestor::s0:Document[1]/s0:Attributes/s0:Attribute[s0:Code = 'VZTYPE1']/s0:Value" />
+                </xsl:when>
+                <!-- <xsl:when test="s0:CarrierTypeCode">
+                  <xsl:value-of select="s0:CarrierTypeCode"/>
+                </xsl:when> -->
+              </xsl:choose>
+            </xsl:variable>
+            <xsl:if test="$PalletType">
+              <ttdesp:Remark>
+                <ttdesp:TextFunctionTypeCode>999</ttdesp:TextFunctionTypeCode>
+                <ttdesp:TextLines>
+                  <xsl:value-of select="$PalletType" />
+                </ttdesp:TextLines>
+              </ttdesp:Remark>
+            </xsl:if>
+            
             <ttdesp:ProductUnit>
               <ttdesp:ProductUnitID_SSCC schemeID="SSCC">
                 <xsl:value-of select="s0:CarrierNo" />
