@@ -186,7 +186,7 @@
           <number key="quantity">
             <xsl:choose>
               <xsl:when test="$returnQty != ''">
-                <xsl:value-of select="$returnQty" />
+                <xsl:value-of select="ceiling(number($returnQty))" />
               </xsl:when>
               <xsl:otherwise>0</xsl:otherwise>
             </xsl:choose>
