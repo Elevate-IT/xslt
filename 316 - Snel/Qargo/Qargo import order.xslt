@@ -28,7 +28,7 @@
           <string key="name">Transport</string>
         </map>
         <array key="consignments">
-          <xsl:for-each select="ns0:TripLines/ns0:TripLine">
+          <xsl:for-each select="ns0:TripLines/ns0:TripLine[ns0:Documents/ns0:Document[ns0:DocumentType = '2']]">
             <xsl:sort select="number(ns0:LoadOrder)" data-type="number" order="descending" />
             <xsl:call-template name="emit-forward-consignment" />
             <xsl:if test="ns0:Documents/ns0:Document[1]/ns0:ShippingAgentCode = ('0000000030', '0000000331', '0000000332', '0000070861', '0000070864', '0000070865', '0000070866', '0000070868', '0000070869')">
