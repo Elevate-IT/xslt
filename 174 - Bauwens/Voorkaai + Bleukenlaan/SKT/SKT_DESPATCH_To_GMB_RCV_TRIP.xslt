@@ -1,17 +1,21 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
-                exclude-result-prefixes="msxsl var MyScript" version="1.0"
-                xmlns:ns0="www.boltrics.nl/receivetrip:v1.00"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript">
-  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                exclude-result-prefixes="msxsl var xs" version="3.0"
+                xmlns:ns0="www.boltrics.nl/receivetrip:v1.00">
+  
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" indent="yes" />
+
   <xsl:key name="Group_by_PickingInstructions" match="DELIVERY/DespatchData" use="PickingInstructions" />
+
   <xsl:template match="/">
     <xsl:apply-templates select="//DESPATCH" />
   </xsl:template>
+
   <xsl:template match="//DESPATCH">
     <xsl:variable name="FirstLoadCarRunSeq">
-      <xsl:value-of select="DELIVERY/DespatchData[LoadSeq = '1']/FirstLoadCarRunSeq"/>
+      <xsl:value-of select="(DELIVERY/DespatchData[LoadSeq = '1']/FirstLoadCarRunSeq)[1]"/>
     </xsl:variable>
     <ns0:Message>
       <ns0:Header>
@@ -19,7 +23,7 @@
           <xsl:value-of select="UNH/MessageId" />
         </ns0:MessageID>
         <ns0:CreationDateTime>
-          <xsl:value-of select="MyScript:GetCurrentDate('s')" />
+          <xsl:value-of select="current-dateTime()" />
         </ns0:CreationDateTime>
         <ns0:ProcesAction>
           <xsl:text>INSERT</xsl:text>
@@ -34,7 +38,7 @@
       <ns0:Trips>
         <ns0:Trip>
           <ns0:Date>
-            <xsl:value-of select="MyScript:ParseDate(DELIVERY/DespatchData/CarrierRunDate, 'yyyyMMdd', 'yyyy-MM-dd')" />
+            <xsl:value-of select="let $d := string((DELIVERY/DespatchData/CarrierRunDate)[1]) return if ($d = '') then '' else format-date(xs:date(replace($d, '^(\d{4})(\d{2})(\d{2})$', '$1-$2-$3')), '[Y0001]-[M01]-[D01]')"/>
           </ns0:Date>
           <ns0:BuildingCode>
             <xsl:choose>
@@ -50,10 +54,10 @@
             </xsl:choose>
           </ns0:BuildingCode>
           <ns0:ExternalDocumentNo>
-            <xsl:value-of select="DELIVERY/DespatchData/CarrierRunId" />
+            <xsl:value-of select="(DELIVERY/DespatchData/CarrierRunId)[1]" />
           </ns0:ExternalDocumentNo>
           <ns0:ExternalRouteNo>
-            <xsl:value-of select="DELIVERY/DespatchData/CarrierRunId" />
+            <xsl:value-of select="(DELIVERY/DespatchData/CarrierRunId)[1]" />
           </ns0:ExternalRouteNo>
           <ns0:Attribute01>
             <xsl:choose>
@@ -69,10 +73,10 @@
             <xsl:for-each select="DELIVERY">
               <ns0:TripLine>
                 <ns0:LoadingSequence>
-                  <xsl:value-of select="DespatchData/LoadSeq" />
+                  <xsl:value-of select="(DespatchData/LoadSeq)[1]" />
                 </ns0:LoadingSequence>
                 <ns0:ExternalDocumentNo>
-                  <xsl:value-of select="concat(DespatchData/CarrierRunId, '-', CallOffData/DeliveryAddressId)" />
+                  <xsl:value-of select="concat((DespatchData/CarrierRunId)[1], '-', (CallOffData/DeliveryAddressId)[1])" />
                 </ns0:ExternalDocumentNo>
                 <ns0:DocumentType>2</ns0:DocumentType>
               </ns0:TripLine>
@@ -81,34 +85,5 @@
         </ns0:Trip>
       </ns0:Trips>
     </ns0:Message>
-    <xsl:value-of select="MyScript:Sleep()" />
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-
-      public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }    
-      
-      public void Sleep()
-      {
-        Threading.Thread.Sleep(60000);
-      }
-
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
