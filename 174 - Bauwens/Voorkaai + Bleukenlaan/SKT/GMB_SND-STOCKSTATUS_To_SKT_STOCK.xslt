@@ -33,7 +33,7 @@
           <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime, '[Y0001][M01][D01]')"/>
         </MessageDate>
         <MessageTime>
-          <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime, '[h01][m01][s01]')"/>
+          <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime, '[H01][m01][s01]')"/>
         </MessageTime>
         <MessageType>NEW</MessageType>
         <MessageName>STOCK</MessageName>
@@ -64,7 +64,7 @@
         <xsl:when test="../../s0:BuildingCode = 'KL'">150</xsl:when>
         <xsl:when test="../../s0:BuildingCode = 'OL'">400</xsl:when>
         <xsl:when test="../../s0:BuildingCode = 'RT'">394</xsl:when>
-        <xsl:when test="../../s0:BuildingCode = 'V1' or s0:BuildingCode = 'V2'">305</xsl:when>
+        <xsl:when test="../../s0:BuildingCode = 'V1' or ../../s0:BuildingCode = 'V2'">305</xsl:when>
         <xsl:when test="../../s0:BuildingCode = 'TURNHOUT 1'">100</xsl:when>
         <xsl:when test="../../s0:BuildingCode = 'BR'">700</xsl:when>
         <xsl:when test="../../s0:BuildingCode = 'ST'">100</xsl:when>

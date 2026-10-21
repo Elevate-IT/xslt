@@ -2,11 +2,14 @@
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:s0="www.boltrics.nl/senddetailline:v1.00"
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
-                exclude-result-prefixes="msxsl s0 MyScript" version="1.0">
-  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+                exclude-result-prefixes="msxsl s0 MyScript" version="3.0">
+
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" indent="yes" />
+
   <xsl:template match="/">
     <xsl:apply-templates select="//s0:Message/s0:DocumentDetailLines/s0:DocumentDetailLine" />
   </xsl:template>
+
   <xsl:template match="//s0:Message/s0:DocumentDetailLines/s0:DocumentDetailLine">
     <VIO-ACK>
       <UNH>
@@ -28,10 +31,10 @@
           </xsl:choose>
         </MessageId>
         <MessageDate>
-          <xsl:value-of select="MyScript:ParseDate(//s0:Header/s0:CreationDateTime, 's', 'yyyyMMdd')" />
+          <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime, '[Y0001][M01][D01]')"/>
         </MessageDate>
         <MessageTime>
-          <xsl:value-of select="MyScript:ParseDate(//s0:Header/s0:CreationDateTime, 's', 'HHmmss')" />
+          <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime, '[H01][m01][s01]')"/>
         </MessageTime>
         <MessageType>
           <xsl:text>Confirm</xsl:text>
@@ -40,6 +43,7 @@
           <xsl:text>VIO-ACK</xsl:text>
         </MessageName>
       </UNH>
+      
       <xsl:variable name="CarrierNo" select="s0:CarrierNo" />
       <xsl:choose>
         <xsl:when test="count(s0:Posted) = 0">
@@ -292,34 +296,4 @@
       </xsl:choose>
     </VIO-ACK>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-      public string Replace(string input, string toReplace, string replaceTo)
-			{
-				return input.Replace(toReplace,replaceTo);
-			}
-      
-			public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }
-      
-      public int Abs(int input)
-			{
-				return Math.Abs(input);
-			}
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>

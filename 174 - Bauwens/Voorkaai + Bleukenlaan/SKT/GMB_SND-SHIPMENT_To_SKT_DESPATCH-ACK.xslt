@@ -1,9 +1,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:s0="www.boltrics.nl/sendshipment:v1.00"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
-                exclude-result-prefixes="msxsl s0 MyScript" version="1.0">
-  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+                exclude-result-prefixes="msxsl s0" version="3.0">
+  
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" indent="yes" />
   
   <xsl:key name="Group-by-LineNo-CarrierQty" match="//s0:Carrier" use="concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity)" />
   
@@ -13,8 +13,24 @@
   <xsl:key name="Group-by-CarrierRunSeq_Quantity" match="s0:DocumentDetailLines/s0:DocumentDetailLine"
     use="concat(../../s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value, '-', s0:Quantity)"/>
   
+  <!-- Pass 2 mode: copies everything as-is, only fills in the PalletLine numbers -->
+  <xsl:mode name="NumberPalletLines" on-no-match="shallow-copy" />
+
   <xsl:template match="/">
-    <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
+    <!-- Pass 1: build the output with empty <PalletLine/> placeholders -->
+    <xsl:variable name="Output">
+      <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
+    </xsl:variable>
+    <!-- Pass 2: number <PalletLine/> placeholders -->
+    <xsl:apply-templates select="$Output" mode="NumberPalletLines" />
+  </xsl:template>
+
+  <!-- Replaces MyScript:GetNextPalletLine(): a running counter (1, 2, 3, ...) over all PalletLines in output order,
+       never reset between DELIVERY or DESPATCH-ACK elements -->
+  <xsl:template match="PalletLine" mode="NumberPalletLines">
+    <PalletLine>
+      <xsl:number level="any" count="PalletLine" />
+    </PalletLine>
   </xsl:template>
   
   <xsl:template match="//s0:Message/s0:Documents/s0:Document">
@@ -38,16 +54,17 @@
           </xsl:choose>
         </MessageId>
         <MessageDate>
-          <xsl:value-of select="MyScript:ParseDate(//s0:Header/s0:CreationDateTime, 's', 'yyyyMMdd')" />
+          <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime, '[Y0001][M01][D01]')"/>
         </MessageDate>
         <MessageTime>
-          <xsl:value-of select="MyScript:ParseDate(//s0:Header/s0:CreationDateTime, 's', 'HHmmss')" />
+          <xsl:value-of select="format-dateTime(//s0:Header/s0:CreationDateTime, '[H01][m01][s01]')"/>
         </MessageTime>
         <MessageType>NEW</MessageType>
         <MessageName>
           <xsl:text>DESPATCH-ACK</xsl:text>
         </MessageName>
       </UNH>
+      
       <xsl:for-each select="s0:DocumentLines/s0:DocumentLine[s0:Type = 1][count(. | key('Group-by-CarrierRunSeq', s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value)[1]) = 1]">
         <xsl:variable name="LineKey" select="s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value" />
         <xsl:if test="$LineKey != ''">
@@ -71,7 +88,7 @@
               </NumberOfPallets>
               <xsl:if test="../../s0:DeliveryDate != ''">
                 <NormalDeliveryDate>
-                  <xsl:value-of select="MyScript:ParseDate(../../s0:DeliveryDate, 'yyyy-MM-dd', 'yyyyMMdd')" />
+                  <xsl:value-of select="format-date(../../s0:DeliveryDate, '[Y0001][M01][D01]')"/>
                 </NormalDeliveryDate>
               </xsl:if>
               <DeliveryAddressId>
@@ -112,37 +129,13 @@
               <CarrierShipmentReference>
                 <xsl:value-of select="../../s0:No" />
               </CarrierShipmentReference>
-              <!--<xsl:for-each select="../../s0:Carriers/s0:Carrier[s0:Contents/s0:Content/s0:DocumentLineNo = $DocLineNo][count(. | key('Group-by-LineNo-CarrierQty', concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity))[1]) = 1]">
-                   <xsl:variable name="LineKey2" select="concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity)" />
-                   <xsl:if test="concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity) != '-'">
-                   <PalletsDespatch>
-                   <PalletLine>
-                   <xsl:value-of select="MyScript:GetNextPalletLine()" />
-                   </PalletLine>
-                   <NumberOfPallets>
-                   <xsl:value-of select="count(key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:No)" />
-                   </NumberOfPallets>
-                   <NumberOfPiecesPerPallet>
-                   <xsl:value-of select="key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:Contents/s0:Content/s0:Quantity" />
-                   </NumberOfPiecesPerPallet>
-                   <xsl:for-each select="key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:No">
-                   <PalletSSCC>
-                   <PalletSSCCCode>
-                   <xsl:value-of select="current()" />
-                   </PalletSSCCCode>
-                   </PalletSSCC>
-                   </xsl:for-each>
-                   </PalletsDespatch>
-                   </xsl:if>
-                   </xsl:for-each>-->
+              
               <xsl:for-each select="key('Group-by-CarrierRunSeq', $LineKey)/s0:DocumentDetailLines/s0:DocumentDetailLine[count(. | key('Group-by-CarrierRunSeq_Quantity', concat(../../s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value, '-', s0:Quantity))[1]) = 1]">
                 <xsl:variable name="LineKey2" select="concat(../../s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value, '-', s0:Quantity)" />
                 <xsl:variable name="Quantity" select="s0:Quantity" />
                 <xsl:if test="$LineKey2 != '-'">
                   <PalletsDespatch>
-                    <PalletLine>
-                      <xsl:value-of select="MyScript:GetNextPalletLine()" />
-                    </PalletLine>
+                    <PalletLine />
                     <NumberOfPallets>
                       <xsl:value-of select="count(key('Group-by-CarrierRunSeq', $LineKey)/s0:DocumentDetailLines/s0:DocumentDetailLine[s0:Quantity = $Quantity])" />
                     </NumberOfPallets>
@@ -165,45 +158,4 @@
       </xsl:for-each>
     </DESPATCH-ACK>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-      public string Replace(string input, string toReplace, string replaceTo)
-			{
-				return input.Replace(toReplace,replaceTo);
-			}
-      
-			public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }
-      
-      public int Abs(int input)
-			{
-				return Math.Abs(input);
-			}
-      
-      public int PalletLine;
-      public void SetPalletLine(string input)
-      {
-        PalletLine = Int32.Parse(input);
-      }
-      
-      public string GetNextPalletLine()
-      {
-        PalletLine += 1;
-        return PalletLine.ToString();
-      }
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
