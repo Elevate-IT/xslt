@@ -24,7 +24,7 @@
           <xsl:value-of select="UNH/Receiver" />
         </ns0:ToTradingPartner>
       </ns0:Header>
-
+      
       <ns0:CustomerItems>
         <ns0:CustomerItem>
           <ns0:No>
@@ -125,7 +125,7 @@
           </ns0:Conditions>
         </ns0:CustomerItem>
       </ns0:CustomerItems>
-
+      
     </ns0:Message>
   </xsl:template>
   <msxsl:script language="C#" implements-prefix="MyScript">

@@ -30,9 +30,9 @@
             <xsl:value-of select="MyScript:Split(StockData/OrderReferenceId, '|')" />
             <xsl:value-of select="StockData/OrderId" />
           </ns0:ExternalDocumentNo>
-          <!--<ns0:ExternalNo>
-            <xsl:value-of select="MyScript:GetFromSplitsArray(1)" />
-          </ns0:ExternalNo>-->
+          <ns0:ExternalReference>
+            <xsl:value-of select="StockData/DestinationWarehouse" />
+          </ns0:ExternalReference>
           <ns0:GTIN>
             <xsl:value-of select="StockData/OrderId" />
           </ns0:GTIN>

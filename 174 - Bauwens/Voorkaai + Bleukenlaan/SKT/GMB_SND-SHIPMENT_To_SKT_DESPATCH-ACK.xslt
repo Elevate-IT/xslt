@@ -4,19 +4,19 @@
                 xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
                 exclude-result-prefixes="msxsl s0 MyScript" version="1.0">
   <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
-
+  
   <xsl:key name="Group-by-LineNo-CarrierQty" match="//s0:Carrier" use="concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity)" />
-
+  
   <xsl:key name="Group-by-CarrierRunSeq" match="s0:DocumentLines/s0:DocumentLine[s0:Type = 1]"
-           use="s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value"/>
+    use="s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value"/>
   
   <xsl:key name="Group-by-CarrierRunSeq_Quantity" match="s0:DocumentDetailLines/s0:DocumentDetailLine"
-           use="concat(../../s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value, '-', s0:Quantity)"/>
-
+    use="concat(../../s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value, '-', s0:Quantity)"/>
+  
   <xsl:template match="/">
     <xsl:apply-templates select="//s0:Message/s0:Documents/s0:Document" />
   </xsl:template>
-
+  
   <xsl:template match="//s0:Message/s0:Documents/s0:Document">
     <DESPATCH-ACK>
       <UNH>
@@ -61,10 +61,10 @@
               </CallOffId>
               <OrderReferenceId>
                 <xsl:value-of select="concat(../../s0:Attributes/s0:Attribute[s0:Code = 'SK_CUSTID']/s0:Value, '|',
-                                          s0:ExternalNo, '|',
-                                          s0:Description2, '|',
-                                          s0:Description, '|',
-                                          s0:Attributes/s0:Attribute[s0:Code = 'SK_CUSTAID']/s0:Value)" />
+                    s0:ExternalNo, '|',
+                    s0:Description2, '|',
+                    s0:Description, '|',
+                    s0:Attributes/s0:Attribute[s0:Code = 'SK_CUSTAID']/s0:Value)" />
               </OrderReferenceId>
               <NumberOfPallets>
                 <xsl:value-of select="sum(key('Group-by-CarrierRunSeq', $LineKey)/s0:CarrierQtyPosted)" />
@@ -113,28 +113,28 @@
                 <xsl:value-of select="../../s0:No" />
               </CarrierShipmentReference>
               <!--<xsl:for-each select="../../s0:Carriers/s0:Carrier[s0:Contents/s0:Content/s0:DocumentLineNo = $DocLineNo][count(. | key('Group-by-LineNo-CarrierQty', concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity))[1]) = 1]">
-                <xsl:variable name="LineKey2" select="concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity)" />
-                <xsl:if test="concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity) != '-'">
-                  <PalletsDespatch>
-                    <PalletLine>
-                      <xsl:value-of select="MyScript:GetNextPalletLine()" />
-                    </PalletLine>
-                    <NumberOfPallets>
-                      <xsl:value-of select="count(key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:No)" />
-                    </NumberOfPallets>
-                    <NumberOfPiecesPerPallet>
-                      <xsl:value-of select="key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:Contents/s0:Content/s0:Quantity" />
-                    </NumberOfPiecesPerPallet>
-                    <xsl:for-each select="key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:No">
-                      <PalletSSCC>
-                        <PalletSSCCCode>
-                          <xsl:value-of select="current()" />
-                        </PalletSSCCCode>
-                      </PalletSSCC>
-                    </xsl:for-each>
-                  </PalletsDespatch>
-                </xsl:if>
-              </xsl:for-each>-->
+                   <xsl:variable name="LineKey2" select="concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity)" />
+                   <xsl:if test="concat(s0:Contents/s0:Content/s0:DocumentLineNo, '-', s0:Contents/s0:Content/s0:Quantity) != '-'">
+                   <PalletsDespatch>
+                   <PalletLine>
+                   <xsl:value-of select="MyScript:GetNextPalletLine()" />
+                   </PalletLine>
+                   <NumberOfPallets>
+                   <xsl:value-of select="count(key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:No)" />
+                   </NumberOfPallets>
+                   <NumberOfPiecesPerPallet>
+                   <xsl:value-of select="key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:Contents/s0:Content/s0:Quantity" />
+                   </NumberOfPiecesPerPallet>
+                   <xsl:for-each select="key('Group-by-LineNo-CarrierQty',$LineKey2)/s0:No">
+                   <PalletSSCC>
+                   <PalletSSCCCode>
+                   <xsl:value-of select="current()" />
+                   </PalletSSCCCode>
+                   </PalletSSCC>
+                   </xsl:for-each>
+                   </PalletsDespatch>
+                   </xsl:if>
+                   </xsl:for-each>-->
               <xsl:for-each select="key('Group-by-CarrierRunSeq', $LineKey)/s0:DocumentDetailLines/s0:DocumentDetailLine[count(. | key('Group-by-CarrierRunSeq_Quantity', concat(../../s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value, '-', s0:Quantity))[1]) = 1]">
                 <xsl:variable name="LineKey2" select="concat(../../s0:Attributes/s0:Attribute[s0:Code = 'SK_CR_SEQ']/s0:Value, '-', s0:Quantity)" />
                 <xsl:variable name="Quantity" select="s0:Quantity" />

@@ -168,7 +168,7 @@
             </xsl:if>
           </StockData>
         </xsl:when>
-
+        
         <xsl:when test="s0:Posted = 1">
           <StockData>
             <PalletSSCCcode>
@@ -240,7 +240,7 @@
                   <xsl:text>Confirm</xsl:text>
                 </xsl:otherwise>
               </xsl:choose>
-
+              
             </Type>
             <DestinationWarehouse>
               <xsl:choose>

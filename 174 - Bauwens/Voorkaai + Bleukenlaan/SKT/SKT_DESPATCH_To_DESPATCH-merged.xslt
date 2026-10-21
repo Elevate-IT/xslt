@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl MyScript"
-    xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
->
+                xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl MyScript"
+                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript"
+  >
   <xsl:output method="xml" indent="yes"/>
   <xsl:key name="Group-by-DelAddress" match="//DELIVERY" use="CallOffData/DeliveryAddressId" />
-
+  
   <xsl:template match="@* | node()">
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
     </xsl:copy>
   </xsl:template>
-
+  
   <xsl:template match="/">
     <xsl:apply-templates select="DESPATCH"/>
   </xsl:template>
-
+  
   <xsl:template match="DESPATCH">
     <xsl:copy>
       <xsl:apply-templates select="UNH"/>
     </xsl:copy>
   </xsl:template>
-
+  
   <xsl:template match="UNH">
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
     </xsl:copy>
-
+    
     <xsl:for-each select="//DELIVERY[count(. | key('Group-by-DelAddress', CallOffData/DeliveryAddressId)[1]) = 1]">
       <xsl:variable name="LineKey" select="CallOffData/DeliveryAddressId" />
       <xsl:if test="CallOffData/DeliveryAddressId != ''">
@@ -34,11 +34,11 @@
         <xsl:for-each select="key('Group-by-DelAddress', CallOffData/DeliveryAddressId)/DespatchData">
           <xsl:value-of select="MyScript:SetMinRunSeqId(CarrierRunSeqId)" />
         </xsl:for-each>
-
+        
         <xsl:value-of select="MyScript:AddToMinRunSeqIdList()" />
       </xsl:if>
     </xsl:for-each>
-
+    
     <xsl:for-each select="//DELIVERY[count(. | key('Group-by-DelAddress', CallOffData/DeliveryAddressId)[1]) = 1]">
       <xsl:variable name="LineKey" select="CallOffData/DeliveryAddressId" />
       <xsl:variable name="Counter" select="MyScript:GetCounter(1)"/>
@@ -49,7 +49,7 @@
           <xsl:value-of select="MyScript:SetMinRunSeqId(CarrierRunSeqId)" />
           <xsl:value-of select="MyScript:SetMaxRunSeqId(CarrierRunSeqId)" />
         </xsl:for-each>
-
+        
         <xsl:copy>
           <xsl:for-each select="//CallOffData[DeliveryAddressId = $LineKey]">
             <xsl:variable name="Counter2" select="MyScript:GetCounter2(1)"/>
@@ -81,7 +81,7 @@
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
-
+  
   <xsl:template match="DespatchData">
     <xsl:param name="Counter"/>
     <xsl:param name="Counter2"/>
@@ -103,7 +103,7 @@
       <xsl:apply-templates select="@* | node()"/>
     </xsl:copy>
   </xsl:template>
-
+  
   <msxsl:script language="C#" implements-prefix="MyScript">
     <![CDATA[
       public int Counter;

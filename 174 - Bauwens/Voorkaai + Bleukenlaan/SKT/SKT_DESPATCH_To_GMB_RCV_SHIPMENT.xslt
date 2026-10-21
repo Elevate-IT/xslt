@@ -56,7 +56,7 @@
             <ns0:ExternalDocumentNo>
               <xsl:value-of select="concat(DespatchData/CarrierRunId, '-', CallOffData/DeliveryAddressId)" />
             </ns0:ExternalDocumentNo>
-
+            
             <ns0:ShippingAgent>
               <ns0:ExternalNo>
                 <xsl:value-of select="DespatchData/CarrierAddressId" />
@@ -80,15 +80,15 @@
                 <xsl:value-of select="DespatchData/CarrierCountryId" />
               </ns0:CountryCode>
             </ns0:ShippingAgent>
-
+            
             <ns0:OrderTypeCode>
               <xsl:text>SMURFITKAPPA</xsl:text>
             </ns0:OrderTypeCode>
-
+            
             <ns0:ShipToAddress>
               <!--<ns0:ExternalNo>
-                <xsl:value-of select="CallOffData/DeliveryAddressId" />
-              </ns0:ExternalNo>-->
+                   <xsl:value-of select="CallOffData/DeliveryAddressId" />
+                   </ns0:ExternalNo>-->
               <ns0:Name>
                 <xsl:value-of select="CallOffData/DeliveryName" />
               </ns0:Name>
@@ -108,38 +108,38 @@
                 <xsl:value-of select="CallOffData/DeliveryCountryId" />
               </ns0:CountryCode>
             </ns0:ShipToAddress>
-
+            
             <ns0:TripNo>
               <xsl:value-of select="DespatchData/CarrierRunId" />
             </ns0:TripNo>
             <ns0:SequenceNo>
               <xsl:value-of select="DespatchData/LoadSeq" />
             </ns0:SequenceNo>
-
+            
             <!--<ns0:CarrierAddress>
-              <ns0:ExternalNo>
-                <xsl:value-of select="DespatchData/CarrierAddressId" />
-              </ns0:ExternalNo>
-              <ns0:Name>
-                <xsl:value-of select="DespatchData/CarrierName" />
-              </ns0:Name>
-              <ns0:Address>
-                <xsl:value-of select="DespatchData/CarrierName2" />
-              </ns0:Address>
-              <ns0:Address2>
-                <xsl:value-of select="DespatchData/CarrierAddress" />
-              </ns0:Address2>
-              <ns0:City>
-                <xsl:value-of select="DespatchData/CarrierCity" />
-              </ns0:City>
-              <ns0:PostCode>
-                <xsl:value-of select="DespatchData/CarrierZip" />
-              </ns0:PostCode>
-              <ns0:CountryCode>
-                <xsl:value-of select="DespatchData/CarrierCountryId" />
-              </ns0:CountryCode>
-            </ns0:CarrierAddress>-->
-
+                 <ns0:ExternalNo>
+                 <xsl:value-of select="DespatchData/CarrierAddressId" />
+                 </ns0:ExternalNo>
+                 <ns0:Name>
+                 <xsl:value-of select="DespatchData/CarrierName" />
+                 </ns0:Name>
+                 <ns0:Address>
+                 <xsl:value-of select="DespatchData/CarrierName2" />
+                 </ns0:Address>
+                 <ns0:Address2>
+                 <xsl:value-of select="DespatchData/CarrierAddress" />
+                 </ns0:Address2>
+                 <ns0:City>
+                 <xsl:value-of select="DespatchData/CarrierCity" />
+                 </ns0:City>
+                 <ns0:PostCode>
+                 <xsl:value-of select="DespatchData/CarrierZip" />
+                 </ns0:PostCode>
+                 <ns0:CountryCode>
+                 <xsl:value-of select="DespatchData/CarrierCountryId" />
+                 </ns0:CountryCode>
+                 </ns0:CarrierAddress>-->
+            
             <ns0:Attributes>
               <ns0:Attribute>
                 <ns0:Code>
@@ -262,7 +262,7 @@
                 </ns0:Value>
               </ns0:Attribute>
             </ns0:Attributes>
-
+            
             <ns0:DocumentLines>
               <xsl:for-each select="DespatchData/PalletsDespatch" >
                 <xsl:variable name="PalletsDespatch" select="." />
@@ -421,7 +421,7 @@
                 </xsl:for-each>
               </xsl:for-each>
             </ns0:DocumentLines>
-
+            
           </ns0:Document>
         </xsl:for-each>
       </ns0:Documents>
