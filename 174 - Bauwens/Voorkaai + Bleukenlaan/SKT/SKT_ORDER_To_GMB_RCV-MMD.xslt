@@ -1,18 +1,21 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:msxsl="urn:schemas-microsoft-com:xslt"
-                xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
-                exclude-result-prefixes="msxsl var MyScript" version="1.0"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:ns0="www.boltrics.nl/materialmasterdata:v1.00"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript">
-  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
+                exclude-result-prefixes="xs" version="3.0">
+  
+  <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" indent="yes" />
+  
   <xsl:template match="ORDER">
+    <xsl:variable name="RefParts" as="xs:string*" select="tokenize(string((OrderData/OrderReferenceId)[1]), '\|')" />
+    <xsl:variable name="DimParts" as="xs:string*" select="tokenize(string((OrderData/PalletDimensions)[1]), '\*')" />
+    
     <ns0:Message>
       <ns0:Header>
         <ns0:MessageID>
           <xsl:value-of select="UNH/MessageId" />
         </ns0:MessageID>
         <ns0:CreationDateTime>
-          <xsl:value-of select="MyScript:GetCurrentDate('s')" />
+          <xsl:value-of select="current-dateTime()" />
         </ns0:CreationDateTime>
         <ns0:ProcesAction>
           <xsl:text>INSERT</xsl:text>
@@ -31,11 +34,10 @@
             <xsl:value-of select="OrderData/OrderId" />
           </ns0:No>
           <ns0:Description>
-            <xsl:value-of select="MyScript:Split(OrderData/OrderReferenceId, '|')" />
-            <xsl:value-of select="substring(MyScript:GetFromSplitsArray(3), 1, 50)"/>
+            <xsl:value-of select="substring($RefParts[4], 1, 50)"/>
           </ns0:Description>
           <ns0:Description2>
-            <xsl:value-of select="MyScript:GetFromSplitsArray(2)" />
+            <xsl:value-of select="$RefParts[3]" />
           </ns0:Description2>
           <ns0:BaseUnitofMeasure>
             <xsl:value-of select="OrderData/StockType" />
@@ -47,7 +49,7 @@
             <xsl:value-of select="OrderData/PalletsPerCombination[PalletType = 'G']/PalletDescription" />
           </ns0:CarrierTypeCodeShipment>
           <ns0:ExternalNo>
-            <xsl:value-of select="MyScript:GetFromSplitsArray(1)"/>
+            <xsl:value-of select="$RefParts[2]"/>
           </ns0:ExternalNo>
           <ns0:UnitofMeasureatReceipt>
             <xsl:value-of select="OrderData/StockType" />
@@ -67,10 +69,10 @@
                 <xsl:value-of select="OrderData/StockType" />
               </ns0:Code>
               <ns0:GrossWeight>
-                <xsl:value-of select="format-number(translate(OrderData/WeightPer1000Pieces, ',', '.') div 1000, '#.#####')" />
+                <xsl:value-of select="format-number(number(translate(OrderData/WeightPer1000Pieces, ',', '.')) div 1000, '0.#####')" />
               </ns0:GrossWeight>
               <ns0:NetWeight>
-                <xsl:value-of select="format-number(translate(OrderData/WeightPer1000Pieces, ',', '.') div 1000, '#.#####')" />
+                <xsl:value-of select="format-number(number(translate(OrderData/WeightPer1000Pieces, ',', '.')) div 1000, '0.#####')" />
               </ns0:NetWeight>
               <ns0:EANCode>
                 <xsl:value-of select="OrderData/OrderEanId" />
@@ -85,15 +87,14 @@
                       <xsl:value-of select="OrderData/QuantityPerPallet" />
                     </ns0:QtyperUOMCode>
                   </xsl:if>
-                  <xsl:value-of select="MyScript:Split(OrderData/PalletDimensions, '*')" />
-                  <xsl:if test="MyScript:GetFromSplitsArray(0) != ''">
+                  <xsl:if test="$DimParts[1] != ''">
                     <ns0:Length>
-                      <xsl:value-of select="MyScript:GetFromSplitsArray(0)" />
+                      <xsl:value-of select="$DimParts[1]" />
                     </ns0:Length>
                   </xsl:if>
-                  <xsl:if test="MyScript:GetFromSplitsArray(1) != ''">
+                  <xsl:if test="$DimParts[2] != ''">
                     <ns0:Width>
-                      <xsl:value-of select="MyScript:GetFromSplitsArray(1)" />
+                      <xsl:value-of select="$DimParts[2]" />
                     </ns0:Width>
                   </xsl:if>
                   <xsl:if test="OrderData/PalletHeight != ''">
@@ -128,54 +129,4 @@
       
     </ns0:Message>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 1;
-          return LINCounter.ToString();
-      }   
-      
-			public string GetCurrentDate(string formatOut)
-			{
-				return System.DateTime.Now.ToString(formatOut);
-			}
-      
-      public string ParseEOMDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        DateTime endOfMonth = new DateTime(dateT.Year, dateT.Month, DateTime.DaysInMonth(dateT.Year, dateT.Month));
-        return endOfMonth.ToString(formatOut);
-      }
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }
-      
-      public string[] splits;
-      
-      public void Split(string input, string seperator)
-      {
-        char seperatorChar = Convert.ToChar(seperator);
-        splits = input.Split(seperatorChar);
-      }
-      
-      public string GetFromSplitsArray(int i)
-      {
-        return splits[i];
-      }
-
-		]]>
-  </msxsl:script>
 </xsl:stylesheet>
