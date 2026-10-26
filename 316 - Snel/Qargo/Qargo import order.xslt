@@ -47,7 +47,6 @@
     <xsl:variable name="pickup" select="$doc/ns0:SenderAddress" />
     <xsl:variable name="delivery" select="$doc/ns0:ShipToAddress" />
     <xsl:variable name="lineCount" select="count($doc/ns0:DocumentLines/ns0:DocumentLine)" />
-    <xsl:variable name="expectedQty" select="normalize-space($doc/ns0:ExpectedShipmentCarrierQty)" />
     <xsl:variable name="isStackable" select="count($doc/ns0:DocumentLines/ns0:DocumentLine[starts-with(normalize-space(ns0:CarrierTypeCode), '2DUSS')]) &gt; 0" />
 
     <map>
@@ -76,18 +75,12 @@
       </map>
       <map key="delivery_stop">
         <string key="activity_label">DELIVERY</string>
-        <xsl:if test="normalize-space($doc/ns0:ShippingAgentName) != '' or $doc/ns0:Comments/ns0:Comment[ns0:Code = 'LOSINSTRUCTIE']">
+        <xsl:if test="normalize-space($doc/ns0:ShippingAgentName) != ''">
           <string key="note">
             <xsl:value-of select="normalize-space($doc/ns0:ShippingAgentName)" />
-            <xsl:for-each select="$doc/ns0:Comments/ns0:Comment[ns0:Code = 'LOSINSTRUCTIE']">
-              <xsl:if test="position() != 1 or normalize-space($doc/ns0:ShippingAgentName) != ''">
-                <xsl:text> / </xsl:text>
-              </xsl:if>
-              <xsl:value-of select="normalize-space(ns0:Comment)" />
-            </xsl:for-each>
           </string>
         </xsl:if>
-        <string key="reference_number">
+        <xsl:variable name="baseReference">
           <xsl:choose>
             <xsl:when test="normalize-space($doc/ns0:ExternalDocumentNo) != '' and normalize-space($doc/ns0:ExternalReference) != ''">
               <xsl:value-of select="concat(normalize-space($doc/ns0:ExternalDocumentNo), ' / ', normalize-space($doc/ns0:ExternalReference))" />
@@ -99,6 +92,15 @@
               <xsl:value-of select="normalize-space($doc/ns0:ExternalReference)" />
             </xsl:otherwise>
           </xsl:choose>
+        </xsl:variable>
+        <string key="reference_number">
+          <xsl:value-of select="normalize-space($baseReference)" />
+          <xsl:for-each select="$doc/ns0:Comments/ns0:Comment[ns0:Code = 'LOSINSTRUCTIE'][normalize-space(ns0:Comment) != '']">
+            <xsl:if test="normalize-space($baseReference) != '' or position() != 1">
+              <xsl:text> / </xsl:text>
+            </xsl:if>
+            <xsl:value-of select="normalize-space(ns0:Comment)" />
+          </xsl:for-each>
         </string>
         <map key="time_window">
           <string key="start_time">
@@ -119,11 +121,7 @@
           <number key="quantity">
             <xsl:value-of select="$lineCount" />
           </number>
-          <xsl:if test="$expectedQty != ''">
-            <number key="total_pallet_spaces">
-              <xsl:value-of select="$expectedQty" />
-            </number>
-          </xsl:if>
+          <number key="total_pallet_spaces">0</number>
           <number key="unit_pallet_spaces">1.0</number>
           <xsl:call-template name="emit-packaging-type">
             <xsl:with-param name="isStackable" select="$isStackable" />
@@ -137,7 +135,7 @@
   <xsl:template name="emit-return-consignment">
     <xsl:variable name="doc" select="ns0:Documents/ns0:Document[1]" />
     <xsl:variable name="pickup" select="$doc/ns0:ShipToAddress" />
-    <xsl:variable name="delivery" select="preceding-sibling::ns0:TripLine[1]/ns0:Documents/ns0:Document[1]/ns0:ShipToAddress | ns0:Documents/ns0:Document[1]/ns0:SenderAddress[not(../../../preceding-sibling::ns0:TripLine)]" />
+    <xsl:variable name="delivery" select="$doc/ns0:SenderAddress" />
     <xsl:variable name="returnQty" select="normalize-space($doc/ns0:ExpectedShipmentCarrierQty)" />
     <xsl:variable name="isStackable" select="count($doc/ns0:DocumentLines/ns0:DocumentLine[starts-with(normalize-space(ns0:CarrierTypeCode), '2DUSS')]) &gt; 0" />
 
