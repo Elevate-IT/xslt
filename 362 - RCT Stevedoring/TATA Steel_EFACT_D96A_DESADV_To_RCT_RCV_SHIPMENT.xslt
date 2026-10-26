@@ -58,11 +58,48 @@
             <xsl:value-of select="eit:createDate(s0:DTM/s0:C507[C50701=11]/C50702)" />
           </ns0:DeliveryDate>
           <ns0:ShipToAddress>
-            <!-- req 9343 - if templ is in the address, then No = A0000023, else use the old logic (ExternalNo, Name, Name2) -->
+            <!-- Map LOC 11 destinations to their RCT address numbers; DS keeps the existing fallback. -->
+            <xsl:variable name="loc11_c519" select="lower-case(normalize-space(s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C519/C51901))" />
+            <xsl:variable name="loc11_c517" select="lower-case(normalize-space(s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C517/C51701))" />
+            <xsl:variable name="loc11_destination">
+              <xsl:choose>
+                <xsl:when test="contains($loc11_c519, 'ds') or contains($loc11_c519, 'mau') or contains($loc11_c519, 'duffel') or contains($loc11_c519, 'uni') or contains($loc11_c519, 'evr') or contains($loc11_c519, 'tepl') or contains($loc11_c519, 'ind') or contains($loc11_c519, 'bam')">
+                  <xsl:value-of select="$loc11_c519" />
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="$loc11_c517" />
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
             <xsl:choose>
-              <xsl:when test="contains(lower-case(normalize-space(s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C519/C51901)), 'tepl') or contains(lower-case(normalize-space(s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C517/C51701)), 'tepl')">
+              <xsl:when test="contains($loc11_destination, 'mau')">
+                <ns0:No>
+                  <xsl:text>A000040</xsl:text>
+                </ns0:No>
+              </xsl:when>
+              <xsl:when test="contains($loc11_destination, 'duffel')">
+                <ns0:No>
+                  <xsl:text>A000003</xsl:text>
+                </ns0:No>
+              </xsl:when>
+              <xsl:when test="contains($loc11_destination, 'uni') or contains($loc11_destination, 'evr')">
+                <ns0:No>
+                  <xsl:text>A000004</xsl:text>
+                </ns0:No>
+              </xsl:when>
+              <xsl:when test="contains($loc11_destination, 'tepl')">
                 <ns0:No>
                   <xsl:text>A0000023</xsl:text>
+                </ns0:No>
+              </xsl:when>
+              <xsl:when test="contains($loc11_destination, 'ind')">
+                <ns0:No>
+                  <xsl:text>A000026</xsl:text>
+                </ns0:No>
+              </xsl:when>
+              <xsl:when test="contains($loc11_destination, 'bam')">
+                <ns0:No>
+                  <xsl:text>A000032</xsl:text>
                 </ns0:No>
               </xsl:when>
 
