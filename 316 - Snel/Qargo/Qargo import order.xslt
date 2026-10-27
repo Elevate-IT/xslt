@@ -58,10 +58,20 @@
         <map key="time_window">
           <string key="name">Afspraak</string>
           <string key="start_time">
-            <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
+            <xsl:choose>
+              <xsl:when test="normalize-space($doc/ns0:PlannedStartTime) != ''">
+                <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
+              </xsl:when>
+              <xsl:otherwise>00:00:00</xsl:otherwise>
+            </xsl:choose>
           </string>
           <string key="end_time">
-            <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
+            <xsl:choose>
+              <xsl:when test="normalize-space($doc/ns0:PlannedStartTime) != ''">
+                <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
+              </xsl:when>
+              <xsl:otherwise>00:00:00</xsl:otherwise>
+            </xsl:choose>
           </string>
           <boolean key="use_location_opening_hours">false</boolean>
         </map>
@@ -104,7 +114,12 @@
         </string>
         <map key="time_window">
           <string key="start_time">
-            <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
+            <xsl:choose>
+              <xsl:when test="normalize-space($doc/ns0:PlannedStartTime) != ''">
+                <xsl:value-of select="normalize-space($doc/ns0:PlannedStartTime)" />
+              </xsl:when>
+              <xsl:otherwise>00:00:00</xsl:otherwise>
+            </xsl:choose>
           </string>
           <boolean key="use_location_opening_hours">false</boolean>
         </map>
