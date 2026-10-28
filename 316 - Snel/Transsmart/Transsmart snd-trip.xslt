@@ -1,19 +1,16 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:msxsl="urn:schemas-microsoft-com:xslt"
-                xmlns:var="http://schemas.microsoft.com/BizTalk/2003/var"
-                exclude-result-prefixes="msxsl var MyScript ns0" version="1.0"
-                xmlns:ns0="www.boltrics.nl/sendtrip:v1.00"
-                xmlns:MyScript="http://schemas.microsoft.com/BizTalk/2003/MyScript">
+                exclude-result-prefixes="ns0" version="2.0"
+                xmlns:ns0="www.boltrics.nl/sendtrip:v1.00">
   <xsl:output omit-xml-declaration="yes" method="xml" version="1.0" />
   <xsl:template match="/">
     <xsl:apply-templates select="ns0:Message/ns0:Trips/ns0:Trip" />
   </xsl:template>
-  
+
   <xsl:template match="ns0:Trips/ns0:Trip">
     <GENERAL>
       <MESSAGE_VERSION>8.0.1.0</MESSAGE_VERSION>
       <MESSAGE_DATE_CREATED>
-        <xsl:value-of select="MyScript:GetCurrentDate('yyyy-MM-ddThh:mm:ss.fffK')"/>
+        <xsl:value-of select="format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]T[h01]:[m01]:[s01].[f001][Z]')"/>
       </MESSAGE_DATE_CREATED>
       <MESSAGE_REFERENCE>WMS-TMS</MESSAGE_REFERENCE>
       <SENDING_PARTY>Elevate-IT</SENDING_PARTY>
@@ -40,7 +37,7 @@
               <xsl:value-of select="ns0:Date"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="MyScript:GetCurrentDate('yyyy-MM-dd')"/>
+              <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/>
             </xsl:otherwise>
           </xsl:choose>
         </DATE>
@@ -290,43 +287,4 @@
       </FILE>
     </GENERAL>
   </xsl:template>
-  <msxsl:script language="C#" implements-prefix="MyScript">
-    <![CDATA[			
-
-      public int LINCounter = 0;
-      public string GetLinCounter()
-      {
-          LINCounter = LINCounter + 1;
-          return LINCounter.ToString();
-      }   
-      
-		public string GetCurrentDate(string formatOut)
-		{
-			return System.DateTime.Now.ToString(formatOut);
-		}
-      
-      public string ParseEOMDate(string input, string formatIn, string formatOut)
-      {
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        DateTime endOfMonth = new DateTime(dateT.Year, dateT.Month, DateTime.DaysInMonth(dateT.Year, dateT.Month));
-        return endOfMonth.ToString(formatOut);
-      }
-      
-      public string ParseDate(string input, string formatIn, string formatOut)
-      {
-        if(System.String.IsNullOrEmpty(input)) return input;
-        
-        DateTime dateT = DateTime.ParseExact(input, formatIn, null);
-        return dateT.ToString(formatOut);
-      }
-      
-      public string GetGUID()
-      {
-        return "{"+Guid.NewGuid().ToString()+"}";
-      }            
-
-		]]>
-  </msxsl:script>
-  
-  
 </xsl:stylesheet>
