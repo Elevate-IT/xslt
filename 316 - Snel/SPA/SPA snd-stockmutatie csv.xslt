@@ -16,13 +16,15 @@
   
   
   <xsl:template match="Message/ItemLedgerEntries">
-    <xsl:for-each select="ItemLedgerEntry[count(. | key('GroupBy-ActieCode_TaakNr_Productcode_Redencode_SSCC_Lotnr_THT', concat(Process, '-', ActieCode, '-', Taak_Nr, '-', Productcode, '-', Redencode, '-', SSCC, '-', Lotnr, '-', THT))[1]) = 1]">
+    <xsl:for-each select="ItemLedgerEntry[count(. | key('GroupBy-ActieCode_TaakNr_Productcode_Redencode_SSCC_Lotnr_THT', concat(Process, '-', ActieCode, '-', Taak_Nr, '-', Productcode, '-', Redencode, '-', SSCC, '-', Lotnr, '-', THT))[1]) = 1][concat(Process, '-', ActieCode, '-', Taak_Nr, '-', Productcode, '-', Redencode, '-', SSCC, '-', Lotnr, '-', THT) != '-------']">
       <xsl:sort select="InitialSort" data-type="number" />
       <xsl:sort select="Colli" data-type="number" />
       <xsl:sort select="Datum_creatie" />
       <xsl:sort select="Tijd_creatie" />
       <xsl:variable name="LineKey" select="concat(Process, '-', ActieCode, '-', Taak_Nr, '-', Productcode, '-', Redencode, '-', SSCC, '-', Lotnr, '-', THT)" />
-      <xsl:if test="$LineKey != '-------'">
+        <xsl:if test="position() &gt; 1">
+          <xsl:text>&#10;</xsl:text>
+        </xsl:if>
         <!--kolom A-->
         <xsl:value-of select="Actie" />
         <xsl:text>;</xsl:text>
@@ -71,8 +73,6 @@
         <!--kolom P-->
         <xsl:value-of select="Tijd_creatie" />
         <xsl:text>;</xsl:text>
-        <xsl:text>&#10;</xsl:text>
-      </xsl:if>
     </xsl:for-each>
   </xsl:template>
 </xsl:stylesheet>
