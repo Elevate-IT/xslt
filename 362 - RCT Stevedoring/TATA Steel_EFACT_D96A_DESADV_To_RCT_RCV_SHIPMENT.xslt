@@ -58,12 +58,13 @@
             <xsl:value-of select="eit:createDate(s0:DTM/s0:C507[C50701=11]/C50702)" />
           </ns0:DeliveryDate>
           <ns0:ShipToAddress>
-            <!-- Map LOC 11 destinations to their RCT address numbers; DS keeps the existing fallback. -->
+            <!-- Map known LOC 11 destinations to their RCT address numbers; only unknown destinations use the fallback. -->
             <xsl:variable name="loc11_c519" select="lower-case(normalize-space(s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C519/C51901))" />
             <xsl:variable name="loc11_c517" select="lower-case(normalize-space(s0:NADLoop1[s0:LOC/LOC01 = '11']/s0:LOC/s0:C517/C51701))" />
+            <xsl:variable name="loc11_has_mapping" select="contains($loc11_c519, 'ds') or contains($loc11_c519, 'mau') or contains($loc11_c519, 'duffel') or contains($loc11_c519, 'uni') or contains($loc11_c519, 'evr') or contains($loc11_c519, 'tepl') or contains($loc11_c519, 'ind') or contains($loc11_c519, 'bam') or contains($loc11_c517, 'ds') or contains($loc11_c517, 'mau') or contains($loc11_c517, 'duffel') or contains($loc11_c517, 'uni') or contains($loc11_c517, 'evr') or contains($loc11_c517, 'tepl') or contains($loc11_c517, 'ind') or contains($loc11_c517, 'bam')" />
             <xsl:variable name="loc11_destination">
               <xsl:choose>
-                <xsl:when test="contains($loc11_c519, 'ds') or contains($loc11_c519, 'mau') or contains($loc11_c519, 'duffel') or contains($loc11_c519, 'uni') or contains($loc11_c519, 'evr') or contains($loc11_c519, 'tepl') or contains($loc11_c519, 'ind') or contains($loc11_c519, 'bam')">
+                <xsl:when test="$loc11_has_mapping and (contains($loc11_c519, 'ds') or contains($loc11_c519, 'mau') or contains($loc11_c519, 'duffel') or contains($loc11_c519, 'uni') or contains($loc11_c519, 'evr') or contains($loc11_c519, 'tepl') or contains($loc11_c519, 'ind') or contains($loc11_c519, 'bam'))">
                   <xsl:value-of select="$loc11_c519" />
                 </xsl:when>
                 <xsl:otherwise>
@@ -72,34 +73,34 @@
               </xsl:choose>
             </xsl:variable>
             <xsl:choose>
-              <xsl:when test="contains($loc11_destination, 'mau')">
+              <xsl:when test="$loc11_has_mapping and contains($loc11_destination, 'mau')">
                 <ns0:No>
-                  <xsl:text>A000040</xsl:text>
+                  <xsl:text>A0000040</xsl:text>
                 </ns0:No>
               </xsl:when>
-              <xsl:when test="contains($loc11_destination, 'duffel')">
+              <xsl:when test="$loc11_has_mapping and contains($loc11_destination, 'duffel')">
                 <ns0:No>
-                  <xsl:text>A000003</xsl:text>
+                  <xsl:text>A0000003</xsl:text>
                 </ns0:No>
               </xsl:when>
-              <xsl:when test="contains($loc11_destination, 'uni') or contains($loc11_destination, 'evr')">
+              <xsl:when test="$loc11_has_mapping and (contains($loc11_destination, 'uni') or contains($loc11_destination, 'evr'))">
                 <ns0:No>
-                  <xsl:text>A000004</xsl:text>
+                  <xsl:text>A0000004</xsl:text>
                 </ns0:No>
               </xsl:when>
-              <xsl:when test="contains($loc11_destination, 'tepl')">
+              <xsl:when test="$loc11_has_mapping and contains($loc11_destination, 'tepl')">
                 <ns0:No>
                   <xsl:text>A0000023</xsl:text>
                 </ns0:No>
               </xsl:when>
-              <xsl:when test="contains($loc11_destination, 'ind')">
+              <xsl:when test="$loc11_has_mapping and contains($loc11_destination, 'ind')">
                 <ns0:No>
-                  <xsl:text>A000026</xsl:text>
+                  <xsl:text>A0000026</xsl:text>
                 </ns0:No>
               </xsl:when>
-              <xsl:when test="contains($loc11_destination, 'bam')">
+              <xsl:when test="$loc11_has_mapping and contains($loc11_destination, 'bam')">
                 <ns0:No>
-                  <xsl:text>A000032</xsl:text>
+                  <xsl:text>A0000032</xsl:text>
                 </ns0:No>
               </xsl:when>
 
